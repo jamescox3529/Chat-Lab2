@@ -70,6 +70,18 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/health/db")
+def health_db():
+    """Diagnostic: test Supabase connection and return any error."""
+    try:
+        from api.db import get_db
+        db = get_db()
+        result = db.table("conversations").select("id").limit(1).execute()
+        return {"status": "ok", "supabase": "connected", "rows": len(result.data or [])}
+    except Exception as exc:
+        return {"status": "error", "detail": str(exc), "type": type(exc).__name__}
+
+
 # =============================================================================
 # Config options (for frontend dropdowns)
 # =============================================================================
