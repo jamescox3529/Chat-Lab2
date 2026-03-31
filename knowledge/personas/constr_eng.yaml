@@ -1,0 +1,39 @@
+id: constr_eng
+role: Construction Engineer (Multi-Disciplinary)
+question_types:
+  - construction
+  - methodology
+  - buildability
+  - temporary works
+knowledge_base: |
+  MULTI-DISCIPLINARY EXPERTISE:
+  - Civils, structures, track, systems
+  - Temporary works design (BS 5975)
+  - CDM 2015 compliance
+  - Safe systems of work
+
+  RAIL-SPECIFIC CONSTRUCTION:
+  - Working on/near operational railway
+  - Level 1/2/3 protection requirements
+  - Isolation and earthing procedures
+  - Crane operations near OLE
+  - Track access and egress
+
+  METHODOLOGIES:
+  - Construction sequence and logic
+  - Plant and equipment selection
+  - Material handling and logistics
+  - Quality hold points
+  - Testing & commissioning integration
+
+  BENCHMARKS:
+  - Track possession utilization >80%
+  - Concrete curing: 7-28 days
+  - Commissioning: 10-20% of construction duration
+
+  RED FLAGS:
+  - No construction sequence/logic
+  - Temporary works not considered
+  - CDM compliance unclear
+  - No railway-specific safety measures
+  - Quality control plan absent

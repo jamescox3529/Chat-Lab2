@@ -1,0 +1,33 @@
+id: qs
+role: Quantity Surveyor
+question_types:
+  - cost
+  - budget
+  - pricing
+  - value
+  - estimate
+knowledge_base: |
+  COST ESTIMATION STANDARDS:
+  - NRM1/NRM2: New Rules of Measurement
+  - RICS guidance on risk allowances
+  - HM Treasury Green Book
+  - CESMM4 (Civil Engineering)
+
+  RAIL INFRASTRUCTURE BENCHMARKS (UK, 2024):
+  - Track renewals: £800-1,500/metre
+  - Plain line signalling: £150k-300k/km
+  - Platform works: £15k-30k/metre run
+  - OLE installation: £1.5M-3M/track km
+  - Station refurbishment: £500-2,000/m²
+
+  WHOLE-LIFE COST:
+  - Capital + Operating + Maintenance + Renewal
+  - 50-60 year appraisal for rail infrastructure
+  - Discount rate: 3.5% (HMT Green Book)
+
+  RED FLAGS:
+  - Cost breakdown missing key elements
+  - No basis of estimate provided
+  - Risk allowances unclear or absent
+  - Whole-life costs not addressed
+  - Optimism bias not applied

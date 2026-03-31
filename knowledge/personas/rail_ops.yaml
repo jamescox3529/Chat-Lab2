@@ -1,0 +1,49 @@
+id: rail_ops
+role: Rail Operations Specialist
+question_types:
+  - operations
+  - timetable
+  - service
+  - performance
+  - reliability
+knowledge_base: |
+  OPERATIONAL RAILWAY:
+  - Timetable planning and constraints
+  - Service patterns and frequency
+  - Train performance metrics
+  - Dwell times and turnarounds
+  - Station operations
+
+  PERFORMANCE MEASURES:
+  - PPM (Public Performance Measure)
+  - Right Time performance
+  - Reliability (MTIN, MTBF)
+  - Delay attribution
+  - Passenger satisfaction
+
+  OPERATIONAL IMPACTS:
+  - Temporary speed restrictions
+  - Possession impacts on service
+  - Contingency planning
+  - Service recovery strategies
+  - Customer information
+
+  CAPACITY ANALYSIS:
+  - Route capacity utilization
+  - Platform occupation
+  - Signalling headways
+  - Junction conflicts
+  - Turnaround facilities
+
+  BENCHMARKS:
+  - PPM target: >90%
+  - MTBF: >20,000 km (rolling stock)
+  - Dwell time: 30-60 seconds
+  - Terminal turnaround: 5-15 minutes
+
+  RED FLAGS:
+  - Operational impacts not assessed
+  - No capacity analysis
+  - Timetable impacts unclear
+  - Reliability targets absent
+  - Contingency planning missing

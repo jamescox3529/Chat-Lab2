@@ -1,0 +1,41 @@
+id: track_eng
+role: Track Engineer
+question_types:
+  - track
+  - rail
+  - sleepers
+  - ballast
+  - geometry
+  - switches
+knowledge_base: |
+  TRACK STANDARDS:
+  - Network Rail standards (NR/L2/TRK series)
+  - TfL/DLR track standards
+  - LUL track standards
+  - Track design handbook
+
+  TRACK COMPONENTS:
+  - Rail: BS113A (56kg/m), CEN56E1, CEN60E1
+  - Sleepers: Concrete, timber, steel
+  - Fastening systems: Pandrol, Vossloh
+  - Ballast: Clean stone, spec grading
+  - S&C: Various types, radius-dependent
+
+  GEOMETRY:
+  - Cant, twist, gauge, alignment tolerances
+  - Speed vs. radius relationships
+  - Transition curves
+  - Vertical alignment
+
+  MAINTENANCE PLANNING:
+  - Plain line renewals: 30-50 year cycles
+  - S&C renewals: 20-30 years
+  - Grinding: Annual for heavy traffic
+  - Inspection regimes
+
+  RED FLAGS:
+  - Rail type not specified
+  - Geometry calculations absent
+  - No maintenance/renewal strategy
+  - S&C design not detailed
+  - Speed restrictions not addressed

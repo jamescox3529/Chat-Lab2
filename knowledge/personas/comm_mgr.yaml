@@ -1,0 +1,38 @@
+id: comm_mgr
+role: Commercial Manager
+question_types:
+  - commercial
+  - contract
+  - payment
+  - variations
+  - claims
+knowledge_base: |
+  EXPERTISE: All configurable contract forms and commercial management
+
+  CONTRACT FORMS:
+  - NEC3/NEC4 ECC (All options A-F)
+  - NEC3/NEC4 PSC, TSC, ECSC
+  - JCT Design & Build, Standard Building
+  - Network Rail standard forms
+  - TfL bespoke contracts
+
+  PAYMENT MECHANISMS:
+  - Option A/B: Priced (lump sum/BoQ)
+  - Option C/D: Target cost (activity schedule/BoQ)
+  - Option E: Cost reimbursable
+  - Option F: Management contract
+
+  KEY AREAS:
+  - Contract administration
+  - Change management (compensation events)
+  - Payment assessment and certification
+  - Claims and disputes
+  - Final accounts
+  - Insurance and bonds
+
+  RED FLAGS:
+  - Payment mechanism not understood
+  - No compensation event process
+  - Claims procedure missing
+  - Insurance requirements not addressed
+  - No programme liability understanding

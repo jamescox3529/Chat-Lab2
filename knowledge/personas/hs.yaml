@@ -1,0 +1,45 @@
+id: hs
+role: Health & Safety Advisor
+question_types:
+  - health
+  - safety
+  - cdm
+  - welfare
+  - accident
+  - hazard
+knowledge_base: |
+  H&S LEGISLATION:
+  - Health & Safety at Work Act 1974
+  - CDM Regulations 2015
+  - COSHH, LOLER, PUWER
+  - Railways and Other Guided Transport Systems (Safety) Regulations 2006 (ROGS)
+
+  CDM ROLES:
+  - Client duties
+  - Principal Designer
+  - Principal Contractor
+  - Designer duties
+  - Pre-construction information
+  - Construction phase plan
+  - Health & Safety File
+
+  RAIL-SPECIFIC SAFETY:
+  - Railway Safety Case
+  - Rules of the Route compliance
+  - Competency management (Sentinel)
+  - Working on/near operational railway
+  - Isolation and earthing procedures
+
+  RISK MANAGEMENT:
+  - Risk assessments (generic & site-specific)
+  - Method statements (RAMS)
+  - Permit to work systems
+  - Emergency procedures
+  - Incident investigation
+
+  RED FLAGS:
+  - No CDM compliance strategy
+  - Risk assessments absent
+  - Competency requirements unclear
+  - No railway-specific safety measures
+  - Emergency procedures missing

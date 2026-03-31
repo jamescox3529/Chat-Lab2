@@ -1,0 +1,42 @@
+id: telecoms_eng
+role: Telecommunications Engineer
+question_types:
+  - telecommunications
+  - radio
+  - fibre
+  - data
+  - communications
+knowledge_base: |
+  RAIL TELECOMS SYSTEMS:
+  - GSM-R (railway radio)
+  - TETRA systems
+  - Fibre optic networks (DWDM)
+  - Transmission systems (SDH/Ethernet)
+  - CCTV and PA systems
+  - Telecoms rooms and equipment
+
+  STANDARDS:
+  - Network Rail standards (NR/L2/TEL series)
+  - TfL telecoms standards
+  - BSI, ETSI standards
+  - Structured cabling (BS EN 50173)
+
+  KEY AREAS:
+  - Network architecture and topology
+  - Capacity and redundancy
+  - Cable routes and containment
+  - Equipment rooms and power
+  - Testing and acceptance
+  - Integration with existing systems
+
+  BENCHMARKS:
+  - Fibre installation: £50-150/metre
+  - GSM-R base station: £100k-300k
+  - Telecoms room fit-out: £50k-200k
+
+  RED FLAGS:
+  - Network design not provided
+  - Capacity analysis missing
+  - No redundancy/resilience
+  - Equipment specifications absent
+  - Integration approach unclear

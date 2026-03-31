@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-width: 260px;
+  --config-width: 320px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Markdown prose */
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+.prose h1 { font-size: 1.125rem; }
+.prose h2 { font-size: 1rem; }
+.prose h3 { font-size: 0.9375rem; }
+.prose p  { margin-bottom: 0.65rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { list-style-type: disc;    padding-left: 1.25rem; margin-bottom: 0.65rem; }
+.prose ol { list-style-type: decimal; padding-left: 1.25rem; margin-bottom: 0.65rem; }
+.prose li { margin-bottom: 0.2rem; }
+.prose strong { font-weight: 600; }
+.prose em { font-style: italic; }
+.prose code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+  background: rgba(0,0,0,0.07);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+.dark .prose code {
+  background: rgba(255,255,255,0.1);
+}
+.prose pre {
+  background: rgba(0,0,0,0.06);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 0.65rem;
+}
+.dark .prose pre {
+  background: rgba(255,255,255,0.06);
+}
+.prose pre code { background: none; padding: 0; }
+
+/* Zoom levels — scales all rem-based sizes proportionally */
+html.zoom-large  { font-size: 112.5%; }
+html.zoom-larger { font-size: 125%; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(128,128,128,0.4); }

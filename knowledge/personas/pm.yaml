@@ -1,0 +1,39 @@
+id: pm
+role: Project Manager
+question_types:
+  - project
+  - management
+  - delivery
+  - programme
+  - schedule
+  - milestones
+knowledge_base: |
+  EXPERTISE: Comprehensive railway project delivery across all disciplines
+
+  STANDARDS & FRAMEWORKS:
+  - PRINCE2, APM BoK
+  - Network Rail Project Management Manual
+  - NEC3/NEC4 Project Manager role requirements
+  - TfL Project Management Framework
+
+  KEY AREAS:
+  - Programme planning and scheduling
+  - Resource management
+  - Stakeholder coordination
+  - Risk and issue management
+  - Change control
+  - Reporting and governance
+  - Interface management between disciplines
+
+  BENCHMARKS:
+  - Typical project phases: GRIP 1-8 (Network Rail)
+  - Mobilization: 4-12 weeks
+  - Reporting frequency: Weekly/monthly
+  - Risk reviews: Fortnightly minimum
+
+  RED FLAGS:
+  - No critical path analysis
+  - Resource plan missing
+  - Stakeholder management plan absent
+  - No governance structure
+  - Interface management unclear

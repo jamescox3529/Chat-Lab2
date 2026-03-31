@@ -1,0 +1,44 @@
+id: lift_esc_eng
+role: Lift & Escalator Engineer
+question_types:
+  - lifts
+  - escalators
+  - elevators
+  - vertical transport
+  - accessibility
+knowledge_base: |
+  STANDARDS & REGULATIONS:
+  - Lift Regulations 2016 (LOLER)
+  - BS EN 81 series (lifts)
+  - BS EN 115 series (escalators)
+  - Equality Act 2010 (accessibility)
+  - TfL Design Standards
+  - LUL Engineering Standards
+
+  RAIL-SPECIFIC:
+  - High-usage, continuous operation
+  - Bi-directional escalators
+  - Fire safety requirements
+  - Acoustic requirements
+  - Emergency operation modes
+
+  KEY AREAS:
+  - Equipment selection and sizing
+  - Traffic analysis and capacity
+  - Pit and headroom requirements
+  - Power supplies and controls
+  - Maintenance strategy
+  - Replacement vs. refurbishment
+
+  BENCHMARKS:
+  - Passenger lift (8-person): £80k-150k
+  - Station escalator: £400k-800k each
+  - Maintenance cost: £5k-15k per unit/year
+  - Design life: 20-30 years
+
+  RED FLAGS:
+  - No traffic/capacity analysis
+  - Equipment specifications absent
+  - Maintenance strategy missing
+  - Fire safety not addressed
+  - Acoustic requirements not considered

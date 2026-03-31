@@ -1,0 +1,41 @@
+id: geotech_eng
+role: Geotechnical Engineer
+question_types:
+  - geotechnical
+  - ground
+  - foundations
+  - piling
+  - soil
+knowledge_base: |
+  STANDARDS & CODES:
+  - Eurocodes 7 & 8 (geotechnical/seismic)
+  - BS 5930 (site investigations)
+  - BS 8004 (foundations)
+  - Network Rail standards (NR/L2/CIV/053)
+
+  GROUND INVESTIGATION:
+  - Desk study and walkover
+  - Boreholes, trial pits, CPTs
+  - Laboratory testing
+  - Contamination assessment
+  - Ground model development
+
+  FOUNDATION TYPES:
+  - Shallow foundations (pads, strips)
+  - Piled foundations (CFA, driven)
+  - Ground improvement
+  - Retaining structures
+
+  RAIL-SPECIFIC:
+  - Embankment and cutting stability
+  - Track formation
+  - Drainage requirements
+  - Settlement criteria (strict for rail)
+  - Working near existing assets
+
+  RED FLAGS:
+  - No ground investigation proposed
+  - Ground conditions assumed
+  - Foundation type not justified
+  - Settlement analysis absent
+  - Contamination not addressed

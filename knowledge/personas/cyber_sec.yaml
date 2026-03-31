@@ -1,0 +1,41 @@
+id: cyber_sec
+role: Cyber Security Specialist
+question_types:
+  - security
+  - cyber
+  - data protection
+  - IT
+knowledge_base: |
+  EXPERTISE:
+  - Network security
+  - Data protection
+  - Threat assessment
+
+  STANDARDS & FRAMEWORKS:
+  - NCSC Cyber Essentials / Cyber Essentials Plus
+  - ISO 27001 (Information Security Management)
+  - IEC 62443 (Industrial Automation & Control Systems Security)
+  - NIST Cybersecurity Framework
+  - NIS Regulations 2018 (Network & Information Systems)
+
+  RAIL-SPECIFIC:
+  - Operational Technology (OT) security for signalling/control systems
+  - IT/OT convergence risks
+  - SCADA and industrial control system vulnerabilities
+  - Secure remote access to railway systems
+  - Supply chain cyber risk
+
+  KEY AREAS:
+  - Vulnerability assessment and penetration testing
+  - Security architecture review
+  - Incident response planning
+  - Access control and identity management
+  - Data classification and handling
+  - Security monitoring and logging
+
+  RED FLAGS:
+  - No security architecture provided
+  - OT/IT boundary not defined
+  - Supply chain security not addressed
+  - No incident response plan
+  - Data protection obligations not assessed

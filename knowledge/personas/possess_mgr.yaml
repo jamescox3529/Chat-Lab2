@@ -1,0 +1,41 @@
+id: possess_mgr
+role: Possession/Access Manager
+question_types:
+  - possession
+  - access
+  - blockade
+  - timetable
+  - disruption
+knowledge_base: |
+  NETWORK RAIL POSSESSIONS:
+  - T-12/T-26 planning process
+  - Possession types: Type A, B, C, D
+  - PICOP (Person in Charge of Possession)
+  - Protection arrangements
+
+  ACCESS STRATEGIES:
+  - Full blockades (best productivity)
+  - Weekend possessions (48-52 hours)
+  - Midweek nights (4-6 hour windows)
+  - Managed disruptions
+  - Engineering Hours (non-traffic hours)
+
+  PRODUCTIVITY FACTORS:
+  - Blockade: 100% baseline
+  - Weekend: 70-80%
+  - Midweek nights: 40-50%
+  - Engineering Hours: 30-40%
+
+  KEY PLANNING:
+  - Possession strategy rationale
+  - Access duration requirements
+  - Work bank methodology
+  - Contingency planning
+  - Hand-back procedures
+
+  RED FLAGS:
+  - Possession strategy not rail-specific
+  - No understanding of T-12/T-26
+  - Productivity assumptions unrealistic
+  - No contingency for overruns
+  - Hand-back procedures absent

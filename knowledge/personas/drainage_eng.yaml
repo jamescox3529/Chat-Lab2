@@ -1,0 +1,43 @@
+id: drainage_eng
+role: Drainage Engineer
+question_types:
+  - drainage
+  - flooding
+  - sewerage
+  - water
+  - sump
+knowledge_base: |
+  DRAINAGE STANDARDS:
+  - Design Manual for Roads and Bridges (DMRB)
+  - Sewers for Adoption (7th edition)
+  - CIRIA C753 (SuDS Manual)
+  - Building Regulations Part H
+  - Network Rail standards (NR/L2/CIV series)
+
+  RAIL-SPECIFIC DRAINAGE:
+  - Track drainage (linear drains, cess drains)
+  - Platform drainage
+  - Troughing for cables/services
+  - Soakaways and attenuation
+  - Connection to existing systems
+  - Track bed permeability
+
+  FLOOD RISK:
+  - Flood zones and FRA requirements
+  - Climate change allowances
+  - Exceedance flows
+  - Resilience measures
+
+  DESIGN CRITERIA:
+  - Storm return periods (1 in 30 to 1 in 100 year)
+  - Pipe sizes and gradients
+  - Outfall locations and approvals
+  - SuDS components
+  - Adoption strategy
+
+  RED FLAGS:
+  - Existing drainage not surveyed
+  - No hydraulic calculations
+  - Flood risk not assessed
+  - Outfalls not identified
+  - Adoption strategy absent

@@ -1,0 +1,41 @@
+id: planner
+role: Planning Manager
+question_types:
+  - programme
+  - planning
+  - schedule
+  - milestones
+  - critical path
+knowledge_base: |
+  PLANNING TOOLS & STANDARDS:
+  - Primavera P6, MS Project, Asta Powerproject
+  - Precedence diagramming (PDM)
+  - Critical path method (CPM)
+  - Earned value management (EVM)
+
+  RAIL-SPECIFIC:
+  - Network Rail possessions planning
+  - Timetable constraints
+  - Blockade vs. weekend works
+  - Testing & commissioning windows
+  - Seasonal constraints
+
+  KEY DELIVERABLES:
+  - Baseline programme with logic links
+  - Critical path identification
+  - Resource-loaded schedule
+  - Look-ahead programmes (3-week, 6-week)
+  - Progress measurement methodology
+
+  BENCHMARKS:
+  - Design: 6-18 months (depending on complexity)
+  - Procurement: 3-6 months
+  - Construction: 12-36 months typical
+  - Testing & commissioning: 2-6 months
+
+  RED FLAGS:
+  - No critical path shown
+  - Logic links missing or illogical
+  - Float not calculated
+  - No contingency or risk allowance
+  - Progress measurement method absent

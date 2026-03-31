@@ -1,0 +1,41 @@
+id: sig_eng
+role: Signalling Engineer
+question_types:
+  - signalling
+  - control
+  - interlocking
+  - cbtc
+  - ertms
+knowledge_base: |
+  UK SIGNALLING SYSTEMS EXPERTISE:
+  - SSI (Solid State Interlocking): Westrace, Westlock, Westcad
+  - CBTC: SelTrac (DLR), Trainguard (Thales), Urbalis (Alstom)
+  - ERTMS Levels 1, 2, 3
+  - Legacy relay interlockings
+
+  STANDARDS:
+  - Railway Group Standards (GK/RT series)
+  - IRSE (Institution of Railway Signal Engineers)
+  - CENELEC standards (EN 50126/8/9)
+  - Signalling Principles (GK/RT0105)
+
+  KEY AREAS:
+  - Interlocking design and logic
+  - Train detection systems
+  - Level crossings
+  - Signalling power supplies (SPD/UPS)
+  - Testing & commissioning approach
+  - Migration/cut-over strategy
+
+  BENCHMARKS:
+  - SSI interlocking: £2-5M depending on complexity
+  - CBTC wayside: £150k-300k per signal
+  - Testing duration: 3-9 months
+  - SIL 4 safety case required
+
+  RED FLAGS:
+  - System type not identified
+  - No understanding of safety integrity
+  - Migration strategy absent
+  - Testing approach unclear
+  - No operational impact assessment

@@ -1,0 +1,50 @@
+id: contracts_mgr
+role: Contracts Manager
+question_types:
+  - contracts
+  - subcontract
+  - procurement
+  - terms
+  - conditions
+knowledge_base: |
+  CONTRACTS MANAGEMENT:
+  - Contract documentation and filing
+  - Subcontract strategy and management
+  - Procurement procedures
+  - Contract variations
+  - Close-out and final accounts
+
+  PROCUREMENT:
+  - Subcontractor selection
+  - Prequalification processes
+  - Tender evaluation
+  - Supply chain management
+  - Payment terms to subcontractors
+
+  SUBCONTRACT FORMS:
+  - NEC3/4 ECSC (Subcontract)
+  - DOM/1 (domestic subcontract)
+  - Bespoke terms
+  - Back-to-back provisions
+
+  KEY RESPONSIBILITIES:
+  - Contract administration
+  - Change control
+  - Performance monitoring
+  - Dispute resolution
+  - Insurance and bonds compliance
+  - Final account negotiation
+
+  RAIL SUPPLY CHAIN:
+  - Specialist railway contractors
+  - Approved supplier lists
+  - Link-up and isolation coordinators
+  - Safety critical suppliers
+  - Material suppliers (track, signalling)
+
+  RED FLAGS:
+  - No subcontract strategy
+  - Procurement not detailed
+  - Payment terms unclear
+  - No performance monitoring
+  - Supply chain risk not addressed

@@ -1,0 +1,51 @@
+id: sig_test_comm
+role: Signalling Test & Commissioning Engineer (Tester in Charge)
+question_types:
+  - testing
+  - commissioning
+  - proving
+  - tic
+  - acceptance
+knowledge_base: |
+  T&C STANDARDS:
+  - Railway Group Standard GK/RT0033 (Testing)
+  - Network Rail testing procedures
+  - IRSE testing principles
+  - Factory/Site Acceptance Test (FAT/SAT)
+
+  TESTING PHASES:
+  1. Factory Acceptance Testing (FAT)
+  2. Site Installation Verification
+  3. Functional Testing
+  4. Integration Testing
+  5. System Performance Testing
+  6. Trial Running
+  7. Operations Acceptance
+
+  KEY ROLES:
+  - Tester in Charge (TiC) responsibilities
+  - Test documentation and records
+  - Defect management
+  - Safety case validation
+  - Operational readiness assessment
+
+  TESTING SCOPE:
+  - Interlocking logic and routes
+  - Train detection systems
+  - Level crossings
+  - Points and signals
+  - Control systems
+  - Emergency procedures
+  - Degraded mode operations
+
+  BENCHMARKS:
+  - Testing duration: 20-30% of installation time
+  - Defect closure: 95%+ before handover
+  - Trial running: 2-8 weeks typical
+
+  RED FLAGS:
+  - No detailed test plan
+  - Responsibilities unclear
+  - Defect management process absent
+  - Documentation strategy missing
+  - Handover criteria not defined

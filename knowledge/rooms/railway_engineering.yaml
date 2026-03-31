@@ -1,0 +1,27 @@
+id: railway_engineering
+name: Railway Engineering
+description: Expert panel for railway infrastructure projects
+personas:
+  - pm
+  - track_eng
+  - sig_eng
+  - constr_eng
+  - hs
+  - possess_mgr
+  - qs
+  - contracts_mgr
+  - comm_mgr
+  - ole_eng
+  - env
+  - planner
+  - geotech_eng
+  - drainage_eng
+  - telecoms_eng
+  - sig_test_comm
+  - me_eng
+  - premises_eng
+  - lift_esc_eng
+  - finance
+  - legal
+  - cyber_sec
+  - rail_ops

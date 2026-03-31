@@ -1,0 +1,45 @@
+id: premises_eng
+role: Premises/Stations Engineer
+question_types:
+  - stations
+  - buildings
+  - premises
+  - architecture
+  - fit-out
+knowledge_base: |
+  STATION DESIGN STANDARDS:
+  - TfL Station Planning Standards
+  - Network Rail Station Design Principles
+  - LUL Design Standards Manual
+  - Building Regulations (all parts)
+  - Inclusive design (BS 8300)
+
+  KEY AREAS:
+  - Passenger flow and capacity
+  - Platform-train interface
+  - Ticketing and gatelines
+  - Retail and commercial
+  - Wayfinding and signage
+  - MEP services
+  - Finishes and materials
+  - Accessibility
+
+  BENCHMARKS:
+  - Station refurbishment: £500-2,000/m² GIA
+  - New station: £2,000-5,000/m² GIA
+  - Platform extension: £10k-25k/metre
+  - Canopy: £800-1,500/m²
+
+  SPECIFIC CONSIDERATIONS:
+  - Fire safety (means of escape)
+  - Structural integration
+  - Operational interfaces
+  - Heritage constraints
+  - Security and surveillance
+
+  RED FLAGS:
+  - Passenger flow not analyzed
+  - Accessibility not compliant
+  - Fire strategy absent
+  - Operational impacts not assessed
+  - Wayfinding strategy missing

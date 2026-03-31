@@ -1,0 +1,285 @@
+"""
+Chat-Lab2 — FastAPI Backend
+============================
+All API routes. Run with:
+  uvicorn api.main:app --reload --port 8000
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import uuid
+from datetime import datetime, timezone
+from typing import Optional
+
+from fastapi import Depends, FastAPI, HTTPException, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+
+from api.auth import get_current_user_id
+from api.config import (
+    EXPERIENCE_OPTIONS,
+    TASK_OPTIONS,
+    UNCERTAINTY_OPTIONS,
+    USE_OPTIONS,
+    INFRA_MANAGERS,
+    INFRA_TYPES,
+    CONTRACT_TYPES,
+    CONTRACT_OPTIONS,
+    PROJECT_VALUES,
+)
+from api.personas.loader import list_personas, get_persona
+from api.rooms.loader import list_rooms, get_room
+from api.conversations.store import (
+    create_conversation,
+    get_conversation,
+    list_conversations,
+    update_conversation,
+    delete_conversation,
+    append_message,
+)
+from api.documents.store import create_document, get_document, delete_document
+from api.documents.extract import extract_text
+from api.pipeline.pipeline import run_pipeline
+from api.pipeline.prompts import build_project_context, build_user_profile_instruction
+
+app = FastAPI(title="Chat-Lab2 API", version="1.0.0")
+
+# ALLOWED_ORIGINS is a comma-separated list set in production env vars.
+# Falls back to "*" for local development when the var is absent.
+_raw_origins = os.environ.get("ALLOWED_ORIGINS", "")
+_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()] or ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# =============================================================================
+# Health
+# =============================================================================
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
+# =============================================================================
+# Config options (for frontend dropdowns)
+# =============================================================================
+
+@app.get("/api/config/options")
+def config_options():
+    return {
+        "experience": [{"label": label, "value": label} for label, _ in EXPERIENCE_OPTIONS],
+        "task": [{"label": label, "value": label} for label, _ in TASK_OPTIONS],
+        "uncertainty": [{"label": label, "value": label} for label, _ in UNCERTAINTY_OPTIONS],
+        "use": [{"label": label, "value": label} for label, _ in USE_OPTIONS],
+        "infra_managers": INFRA_MANAGERS,
+        "infra_types": INFRA_TYPES,
+        "contract_types": CONTRACT_TYPES,
+        "contract_options": CONTRACT_OPTIONS,
+        "project_values": PROJECT_VALUES,
+    }
+
+
+# =============================================================================
+# Rooms
+# =============================================================================
+
+@app.get("/api/rooms")
+def get_rooms():
+    return list_rooms()
+
+
+@app.get("/api/rooms/{room_id}")
+def get_room_detail(room_id: str):
+    room = get_room(room_id)
+    if room is None:
+        raise HTTPException(status_code=404, detail="Room not found")
+    return {
+        "id": room.id,
+        "name": room.name,
+        "description": room.description,
+        "personas": [
+            {"id": pid, "role": p.role}
+            for pid in room.personas
+            if (p := get_persona(pid)) is not None
+        ],
+    }
+
+
+# =============================================================================
+# Conversations
+# =============================================================================
+
+class ConversationCreate(BaseModel):
+    room_id: str
+    config: dict = {}
+
+
+class ConversationPatch(BaseModel):
+    title: Optional[str] = None
+    config: Optional[dict] = None
+
+
+@app.post("/api/conversations", status_code=201)
+def create_conv(
+    body: ConversationCreate,
+    user_id: str = Depends(get_current_user_id),
+):
+    return create_conversation(room_id=body.room_id, config=body.config, user_id=user_id)
+
+
+@app.get("/api/conversations")
+def list_convs(user_id: str = Depends(get_current_user_id)):
+    return list_conversations(user_id=user_id)
+
+
+@app.get("/api/conversations/{conv_id}")
+def get_conv(conv_id: str, user_id: str = Depends(get_current_user_id)):
+    conv = get_conversation(conv_id, user_id=user_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    return conv
+
+
+@app.patch("/api/conversations/{conv_id}")
+def patch_conv(
+    conv_id: str,
+    body: ConversationPatch,
+    user_id: str = Depends(get_current_user_id),
+):
+    patch = {}
+    if body.title is not None:
+        patch["title"] = body.title
+    if body.config is not None:
+        patch["config"] = body.config
+    result = update_conversation(conv_id, patch, user_id=user_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    return result
+
+
+@app.delete("/api/conversations/{conv_id}", status_code=204)
+def delete_conv(conv_id: str, user_id: str = Depends(get_current_user_id)):
+    if not delete_conversation(conv_id, user_id=user_id):
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+
+# =============================================================================
+# Chat (SSE streaming)
+# =============================================================================
+
+class ChatRequest(BaseModel):
+    message: str
+
+
+@app.post("/api/conversations/{conv_id}/chat")
+async def chat(
+    conv_id: str,
+    body: ChatRequest,
+    user_id: str = Depends(get_current_user_id),
+):
+    conv = get_conversation(conv_id, user_id=user_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    config = conv.get("config", {})
+    user_profile = config.get("user_profile", {})
+    project_config = config.get("project_config", {})
+    document_ids = config.get("document_ids", [])
+
+    # Resolve documents (scoped to same user)
+    documents = []
+    for doc_id in document_ids:
+        doc = get_document(doc_id, user_id=user_id)
+        if doc:
+            documents.append(doc)
+
+    project_context = build_project_context(project_config, documents)
+    user_instruction = build_user_profile_instruction(user_profile)
+
+    history = conv.get("messages", [])
+    user_message = body.message
+
+    # Save user message immediately
+    user_msg = {
+        "id": str(uuid.uuid4()),
+        "role": "user",
+        "content": user_message,
+        "panel": [],
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+    append_message(conv_id, user_msg, user_id=user_id)
+
+    async def event_stream():
+        full_response = []
+        panel_ids = []
+        message_id = None
+
+        async for event in run_pipeline(
+            room_id=conv["room_id"],
+            user_message=user_message,
+            history=history,
+            project_context=project_context,
+            user_instruction=user_instruction,
+        ):
+            if event["type"] == "token":
+                full_response.append(event["content"])
+            elif event["type"] == "done":
+                panel_ids = event.get("panel", [])
+                message_id = event.get("message_id")
+
+            yield f"data: {json.dumps(event)}\n\n"
+
+        # Save assistant message
+        assistant_msg = {
+            "id": message_id or str(uuid.uuid4()),
+            "role": "assistant",
+            "content": "".join(full_response),
+            "panel": panel_ids,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        append_message(conv_id, assistant_msg, user_id=user_id)
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
+# =============================================================================
+# Documents
+# =============================================================================
+
+@app.post("/api/documents", status_code=201)
+async def upload_document(
+    file: UploadFile = File(...),
+    user_id: str = Depends(get_current_user_id),
+):
+    allowed = {".pdf", ".docx", ".xlsx", ".xls"}
+    suffix = "." + file.filename.rsplit(".", 1)[-1].lower() if "." in file.filename else ""
+    if suffix not in allowed:
+        raise HTTPException(status_code=400, detail=f"Unsupported file type: {suffix}")
+
+    file_bytes = await file.read()
+    content = extract_text(file.filename, file_bytes)
+    doc = create_document(name=file.filename, content=content, user_id=user_id)
+    return doc
+
+
+@app.delete("/api/documents/{doc_id}", status_code=204)
+def remove_document(doc_id: str, user_id: str = Depends(get_current_user_id)):
+    if not delete_document(doc_id, user_id=user_id):
+        raise HTTPException(status_code=404, detail="Document not found")

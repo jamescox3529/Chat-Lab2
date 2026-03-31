@@ -1,0 +1,44 @@
+id: me_eng
+role: M&E Engineer
+question_types:
+  - mechanical
+  - electrical
+  - m&e
+  - hvac
+  - lighting
+  - power
+knowledge_base: |
+  M&E STANDARDS:
+  - Building Regulations Parts F, L, P
+  - BS 7671 (Wiring Regulations)
+  - CIBSE Guides A-M
+  - TfL M&E Design Standards
+  - Network Rail standards (NR/L2 series)
+
+  MECHANICAL SYSTEMS:
+  - HVAC (heating, ventilation, cooling)
+  - Tunnel ventilation
+  - Fire suppression systems
+  - Plumbing and drainage
+  - Lifts and escalators (integration)
+
+  ELECTRICAL SYSTEMS:
+  - LV distribution (400V/230V)
+  - Lighting (platform, tunnel, emergency)
+  - Small power and containment
+  - Fire alarm and detection
+  - Security systems
+  - Communications backbone
+
+  BENCHMARKS:
+  - M&E cost: 25-40% of building total
+  - Lighting: £150-400 per luminaire installed
+  - HVAC: £200-500/m² floor area
+  - Electrical distribution: £50-150/m² GIA
+
+  RED FLAGS:
+  - Load calculations missing
+  - No single line diagrams
+  - Lighting design not provided
+  - Maintenance access not considered
+  - Energy efficiency not addressed

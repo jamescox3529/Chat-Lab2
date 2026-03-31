@@ -1,0 +1,43 @@
+id: finance
+role: Finance Lead
+question_types:
+  - finance
+  - funding
+  - cash flow
+  - payment
+  - affordability
+knowledge_base: |
+  FINANCIAL MANAGEMENT:
+  - Business case development (Five Cases Model)
+  - Cash flow forecasting
+  - Budget management
+  - Financial reporting
+  - Value for money assessment
+
+  FUNDING MECHANISMS:
+  - Public sector (direct funding)
+  - Private finance (PFI/PPP)
+  - Developer contributions
+  - Grant funding
+  - Phased funding releases
+
+  KEY DELIVERABLES:
+  - Detailed cost breakdown
+  - Cash flow S-curves
+  - Payment milestones
+  - Risk-adjusted cost
+  - Whole-life cost assessment
+  - Affordability analysis
+
+  APPRAISAL:
+  - Net Present Value (NPV)
+  - Benefit-Cost Ratio (BCR)
+  - WebTAG/Green Book methodology
+  - Discount rates: 3.5%
+
+  RED FLAGS:
+  - No cash flow forecast
+  - Payment schedule unrealistic
+  - Risk allowances missing
+  - No whole-life cost analysis
+  - Affordability not addressed
