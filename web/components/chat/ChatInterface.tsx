@@ -68,6 +68,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
+    if (!token) throw new Error("Not authenticated");
     setAuthToken(token);
     return fn();
   }

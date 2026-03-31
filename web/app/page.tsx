@@ -10,7 +10,7 @@ import NavRail from "@/components/nav/NavRail";
 export default function HomePage() {
   const router = useRouter();
   const { user } = useUser();
-  const { getToken } = useAuth();
+  const { getToken, isLoaded } = useAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
   const [recentConvs, setRecentConvs] = useState<ConversationSummary[]>([]);
   const [loading, setLoading] = useState(false);
@@ -18,14 +18,16 @@ export default function HomePage() {
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
+    if (!token) throw new Error("Not authenticated");
     setAuthToken(token);
     return fn();
   }
 
   useEffect(() => {
+    if (!isLoaded) return;
     withToken(() => getRooms()).then(setRooms).catch(() => {});
     withToken(() => listConversations()).then((c) => setRecentConvs(c.slice(0, 5))).catch(() => {});
-  }, []);
+  }, [isLoaded]);
 
   async function startConversation(roomId: string) {
     setLoading(true);

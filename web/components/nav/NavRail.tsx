@@ -19,13 +19,14 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const activeId = params?.convId as string | undefined;
   const { dark, toggle } = useTheme();
   const { zoom, zoomIn, zoomOut } = useZoom();
-  const { getToken } = useAuth();
+  const { getToken, isLoaded } = useAuth();
 
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [deleting, setDeleting] = useState<string | null>(null);
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
+    if (!token) throw new Error("Not authenticated");
     setAuthToken(token);
     return fn();
   }
@@ -37,7 +38,10 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     } catch {}
   }
 
-  useEffect(() => { load(); }, [refreshTrigger]);
+  useEffect(() => {
+    if (!isLoaded) return;
+    load();
+  }, [isLoaded, refreshTrigger]);
 
   async function handleDelete(e: React.MouseEvent, id: string) {
     e.stopPropagation();
