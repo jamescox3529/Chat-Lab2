@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getConversation, updateConversation, streamChat } from "@/lib/api";
+import { useAuth } from "@clerk/nextjs";
+import { getConversation, updateConversation, streamChat, setAuthToken } from "@/lib/api";
 import type { Conversation, ConversationConfig, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown } from "./MessageBubble";
 import StatusBar from "./StatusBar";
@@ -21,6 +22,7 @@ const EMPTY_CONFIG: ConversationConfig = {
 };
 
 export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: ChatInterfaceProps) {
+  const { getToken } = useAuth();
   const [conv, setConv] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [config, setConfig] = useState<ConversationConfig>(EMPTY_CONFIG);
@@ -38,7 +40,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
 
   useEffect(() => {
     if (!convId) return;
-    getConversation(convId).then((c) => {
+    withToken(() => getConversation(convId)).then((c) => {
       setConv(c);
       setMessages(c.messages);
       setConfig(c.config ?? EMPTY_CONFIG);
@@ -49,7 +51,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     if (!convId || !conv) return;
     if (saveRef.current) clearTimeout(saveRef.current);
     saveRef.current = setTimeout(() => {
-      updateConversation(convId, { config }).catch(() => {});
+      withToken(() => updateConversation(convId, { config })).catch(() => {});
     }, 800);
   }, [config]);
 
@@ -63,6 +65,12 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     ta.style.height = "auto";
     ta.style.height = Math.min(ta.scrollHeight, 160) + "px";
   }, [input]);
+
+  async function withToken<T>(fn: () => Promise<T>): Promise<T> {
+    const token = await getToken();
+    setAuthToken(token);
+    return fn();
+  }
 
   const panelRoles: Record<string, string> = {};
 
@@ -88,6 +96,8 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     let messageId = "";
 
     try {
+      const token = await getToken();
+      setAuthToken(token);
       for await (const event of streamChat(convId, text)) {
         if (event.type === "status")      setStatus(event.content);
         else if (event.type === "token")  { fullContent += event.content; setStreamingContent(fullContent); }

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { listConversations, deleteConversation } from "@/lib/api";
-import { UserButton } from "@clerk/nextjs";
+import { listConversations, deleteConversation, setAuthToken } from "@/lib/api";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import { useTheme } from "@/lib/useTheme";
 import { useZoom } from "@/lib/useZoom";
 import type { ConversationSummary } from "@/lib/types";
@@ -19,13 +19,20 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const activeId = params?.convId as string | undefined;
   const { dark, toggle } = useTheme();
   const { zoom, zoomIn, zoomOut } = useZoom();
+  const { getToken } = useAuth();
 
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [deleting, setDeleting] = useState<string | null>(null);
 
+  async function withToken<T>(fn: () => Promise<T>): Promise<T> {
+    const token = await getToken();
+    setAuthToken(token);
+    return fn();
+  }
+
   async function load() {
     try {
-      const data = await listConversations();
+      const data = await withToken(() => listConversations());
       setConversations(data);
     } catch {}
   }
@@ -36,7 +43,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     e.stopPropagation();
     setDeleting(id);
     try {
-      await deleteConversation(id);
+      await withToken(() => deleteConversation(id));
       setConversations((prev) => prev.filter((c) => c.id !== id));
       if (activeId === id) router.push("/");
     } finally {

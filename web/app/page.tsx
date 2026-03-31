@@ -2,28 +2,35 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
-import { getRooms, listConversations, createConversation } from "@/lib/api";
+import { useUser, useAuth } from "@clerk/nextjs";
+import { getRooms, listConversations, createConversation, setAuthToken } from "@/lib/api";
 import type { Room, ConversationSummary } from "@/lib/types";
 import NavRail from "@/components/nav/NavRail";
 
 export default function HomePage() {
   const router = useRouter();
   const { user } = useUser();
+  const { getToken } = useAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
   const [recentConvs, setRecentConvs] = useState<ConversationSummary[]>([]);
   const [loading, setLoading] = useState(false);
   const [navRefresh, setNavRefresh] = useState(0);
 
+  async function withToken<T>(fn: () => Promise<T>): Promise<T> {
+    const token = await getToken();
+    setAuthToken(token);
+    return fn();
+  }
+
   useEffect(() => {
-    getRooms().then(setRooms).catch(() => {});
-    listConversations().then((c) => setRecentConvs(c.slice(0, 5))).catch(() => {});
+    withToken(() => getRooms()).then(setRooms).catch(() => {});
+    withToken(() => listConversations()).then((c) => setRecentConvs(c.slice(0, 5))).catch(() => {});
   }, []);
 
   async function startConversation(roomId: string) {
     setLoading(true);
     try {
-      const conv = await createConversation(roomId, { user_profile: {}, project_config: {}, document_ids: [] });
+      const conv = await withToken(() => createConversation(roomId, { user_profile: {}, project_config: {}, document_ids: [] }));
       setNavRefresh((n) => n + 1);
       router.push(`/chat/${conv.id}`);
     } catch (err) { console.error(err); }

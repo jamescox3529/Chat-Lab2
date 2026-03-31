@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getConfigOptions, uploadDocument, deleteDocument } from "@/lib/api";
+import { useAuth } from "@clerk/nextjs";
+import { getConfigOptions, uploadDocument, deleteDocument, setAuthToken } from "@/lib/api";
 import type { ConfigOptions, ConversationConfig, Document } from "@/lib/types";
 
 interface ConfigPanelProps {
@@ -16,9 +17,16 @@ interface ConfigPanelProps {
 export default function ConfigPanel({
   config, onChange, documents, onDocumentsChange, collapsed, onToggle,
 }: ConfigPanelProps) {
+  const { getToken } = useAuth();
   const [options, setOptions] = useState<ConfigOptions | null>(null);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  async function withToken<T>(fn: () => Promise<T>): Promise<T> {
+    const token = await getToken();
+    setAuthToken(token);
+    return fn();
+  }
 
   useEffect(() => { getConfigOptions().then(setOptions).catch(() => {}); }, []);
 
@@ -35,7 +43,7 @@ export default function ConfigPanel({
     setUploading(true);
     try {
       const uploaded: Document[] = [];
-      for (const file of files) uploaded.push(await uploadDocument(file));
+      for (const file of files) uploaded.push(await withToken(() => uploadDocument(file)));
       const newDocs = [...documents, ...uploaded];
       onDocumentsChange(newDocs);
       onChange({ ...config, document_ids: newDocs.map((d) => d.id) });
@@ -44,7 +52,7 @@ export default function ConfigPanel({
   }
 
   async function handleRemoveDoc(docId: string) {
-    try { await deleteDocument(docId); } catch {}
+    try { await withToken(() => deleteDocument(docId)); } catch {}
     const newDocs = documents.filter((d) => d.id !== docId);
     onDocumentsChange(newDocs);
     onChange({ ...config, document_ids: newDocs.map((d) => d.id) });

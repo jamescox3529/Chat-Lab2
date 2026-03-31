@@ -2,17 +2,21 @@
 
 import { useRouter, useParams } from "next/navigation";
 import { useState } from "react";
-import { createConversation } from "@/lib/api";
+import { useAuth } from "@clerk/nextjs";
+import { createConversation, setAuthToken } from "@/lib/api";
 import ChatInterface from "@/components/chat/ChatInterface";
 
 export default function ChatPage() {
   const params = useParams();
   const router = useRouter();
+  const { getToken } = useAuth();
   const convId = params?.convId as string;
   const [navRefresh, setNavRefresh] = useState(0);
 
   async function handleNewChat() {
     try {
+      const token = await getToken();
+      setAuthToken(token);
       const conv = await createConversation("railway_engineering", {
         user_profile: {},
         project_config: {},
