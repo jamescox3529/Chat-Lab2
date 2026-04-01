@@ -251,6 +251,9 @@ async def chat(
 
             yield f"data: {json.dumps(event)}\n\n"
 
+            # Keep-alive comment to prevent proxy/CDN timeouts (e.g. Fastly 60s)
+            yield ": ping\n\n"
+
         # Save assistant message
         assistant_msg = {
             "id": message_id or str(uuid.uuid4()),
