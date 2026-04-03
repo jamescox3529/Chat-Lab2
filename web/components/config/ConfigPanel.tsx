@@ -36,7 +36,7 @@ export default function ConfigPanel({
     onChange({ ...config, user_profile: { ...config.user_profile, [key]: value || undefined } });
   }
   function setProject(key: string, value: string) {
-    onChange({ ...config, project_config: { ...config.project_config, [key]: value || undefined } });
+    onChange({ ...config, project_config: { ...config.project_config, [key]: value } });
   }
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
