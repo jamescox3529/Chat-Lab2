@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser, useAuth } from "@clerk/nextjs";
-import { getRooms, listConversations, createConversation, setAuthToken } from "@/lib/api";
-import type { Room, ConversationSummary } from "@/lib/types";
+import { getRooms, createConversation, setAuthToken } from "@/lib/api";
+import type { Room } from "@/lib/types";
 import NavRail from "@/components/nav/NavRail";
 
 export default function HomePage() {
@@ -12,7 +12,6 @@ export default function HomePage() {
   const { user } = useUser();
   const { getToken, isLoaded } = useAuth();
   const [rooms, setRooms] = useState<Room[]>([]);
-  const [recentConvs, setRecentConvs] = useState<ConversationSummary[]>([]);
   const [loading, setLoading] = useState(false);
   const [navRefresh, setNavRefresh] = useState(0);
 
@@ -26,7 +25,6 @@ export default function HomePage() {
   useEffect(() => {
     if (!isLoaded) return;
     withToken(() => getRooms()).then(setRooms).catch(() => {});
-    withToken(() => listConversations()).then((c) => setRecentConvs(c.slice(0, 5))).catch(() => {});
   }, [isLoaded]);
 
   async function startConversation(roomId: string) {
@@ -77,24 +75,6 @@ export default function HomePage() {
               </button>
             ))}
           </div>
-
-          {recentConvs.length > 0 && (
-            <div className="mt-10">
-              <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-600 uppercase tracking-wider mb-3">Recent conversations</h3>
-              <div className="space-y-1">
-                {recentConvs.map((conv) => (
-                  <button
-                    key={conv.id}
-                    onClick={() => router.push(`/chat/${conv.id}`)}
-                    className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-bubble transition-colors group"
-                  >
-                    <span className="text-sm text-gray-700 dark:text-gray-300 truncate block">{conv.title || "New conversation"}</span>
-                    <span className="text-xs text-gray-400 dark:text-gray-600">{conv.message_count} message{conv.message_count !== 1 ? "s" : ""}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
