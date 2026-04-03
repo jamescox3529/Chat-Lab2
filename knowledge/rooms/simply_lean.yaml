@@ -1,0 +1,11 @@
+id: simply_lean
+name: Simply Lean Advisory Panel
+description: Continuous improvement experts combining Lean principles with real-world operational perspective — for any industry
+personas:
+  - lean_sensei
+  - ops_mgr
+  - change_mgmt
+  - process_eng
+  - biz_analyst
+  - supply_chain
+  - ci_coach
