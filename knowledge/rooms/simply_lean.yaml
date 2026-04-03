@@ -1,6 +1,45 @@
 id: simply_lean
 name: Lean Manufacturing
 description: Continuous improvement experts combining Lean principles with real-world operational perspective — for any industry
+project_context:
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Healthcare
+      - Logistics & Distribution
+      - Food & Beverage
+      - Professional Services
+      - Retail
+      - Construction
+      - Other
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 20 staff
+      - 20–100 staff
+      - 100–500 staff
+      - 500+ staff
+  - key: lean_maturity
+    label: Lean Maturity
+    options:
+      - ""
+      - New to Lean — no prior experience
+      - Some CI activity — early stages
+      - Established improvement programme
+      - Mature Lean — advanced practitioners
+  - key: primary_challenge
+    label: Primary Challenge
+    options:
+      - ""
+      - Waste reduction and process efficiency
+      - Lead time and throughput improvement
+      - Quality and defect reduction
+      - Cost reduction and profitability
+      - Culture change and people engagement
+      - Production scheduling and capacity
 personas:
   - lean_sensei
   - ops_mgr

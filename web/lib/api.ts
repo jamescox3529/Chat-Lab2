@@ -47,8 +47,8 @@ export const getRooms = (): Promise<Room[]> => req("/api/rooms");
 export const getRoom = (id: string): Promise<Room> => req(`/api/rooms/${id}`);
 
 // Config options
-export const getConfigOptions = (): Promise<ConfigOptions> =>
-  req("/api/config/options");
+export const getConfigOptions = (roomId?: string): Promise<ConfigOptions> =>
+  req(`/api/config/options${roomId ? `?room_id=${roomId}` : ""}`);
 
 // Conversations
 export const createConversation = (

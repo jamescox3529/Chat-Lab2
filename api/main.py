@@ -24,11 +24,6 @@ from api.config import (
     TASK_OPTIONS,
     UNCERTAINTY_OPTIONS,
     USE_OPTIONS,
-    INFRA_MANAGERS,
-    INFRA_TYPES,
-    CONTRACT_TYPES,
-    CONTRACT_OPTIONS,
-    PROJECT_VALUES,
 )
 from api.personas.loader import list_personas, get_persona
 from api.rooms.loader import list_rooms, get_room
@@ -87,17 +82,18 @@ def health_db():
 # =============================================================================
 
 @app.get("/api/config/options")
-def config_options():
+def config_options(room_id: str = ""):
+    room = get_room(room_id) if room_id else None
+    project_fields = [
+        {"key": f.key, "label": f.label, "options": f.options}
+        for f in room.project_context
+    ] if room else []
     return {
         "experience": [{"label": label, "value": label} for label, _ in EXPERIENCE_OPTIONS],
         "task": [{"label": label, "value": label} for label, _ in TASK_OPTIONS],
         "uncertainty": [{"label": label, "value": label} for label, _ in UNCERTAINTY_OPTIONS],
         "use": [{"label": label, "value": label} for label, _ in USE_OPTIONS],
-        "infra_managers": INFRA_MANAGERS,
-        "infra_types": INFRA_TYPES,
-        "contract_types": CONTRACT_TYPES,
-        "contract_options": CONTRACT_OPTIONS,
-        "project_values": PROJECT_VALUES,
+        "project_fields": project_fields,
     }
 
 
@@ -215,7 +211,9 @@ async def chat(
         if doc:
             documents.append(doc)
 
-    project_context = build_project_context(project_config, documents)
+    room = get_room(conv.get("room_id", ""))
+    field_labels = {f.key: f.label for f in room.project_context} if room else {}
+    project_context = build_project_context(project_config, documents, field_labels)
     user_instruction = build_user_profile_instruction(user_profile)
 
     history = conv.get("messages", [])

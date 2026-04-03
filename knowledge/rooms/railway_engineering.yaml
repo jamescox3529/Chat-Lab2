@@ -1,6 +1,69 @@
 id: railway_engineering
 name: Railway Engineering
 description: Expert panel for railway infrastructure projects
+project_context:
+  - key: infra_manager
+    label: Infrastructure Manager
+    options:
+      - ""
+      - Network Rail
+      - Transport for London (TfL)
+      - Transport for Wales
+      - Transport Scotland / ScotRail
+      - Merseytravel / Merseyrail
+      - Nexus (Tyne and Wear Metro)
+      - HS2 Ltd
+      - Heathrow Express
+      - DLR
+      - London Underground
+      - Other
+  - key: infra_type
+    label: Infrastructure Type
+    options:
+      - ""
+      - Track & Permanent Way
+      - Signalling & Control Systems
+      - Telecoms & IT Infrastructure
+      - Electrification & OLE
+      - Premises & Stations
+      - Civil Structures & Earthworks
+      - Tunnels & Bridges
+      - Drainage & Lineside
+      - Rolling Stock Maintenance Facilities
+      - Multi-Discipline
+  - key: contract_type
+    label: Contract Type
+    options:
+      - ""
+      - NEC4 Engineering & Construction Contract (ECC)
+      - NEC3 Engineering & Construction Contract (ECC)
+      - NEC4 Professional Services Contract (PSC)
+      - NEC4 Term Service Contract (TSC)
+      - NEC4 Framework Contract (FC)
+      - JCT Design and Build
+      - JCT Standard Building Contract
+      - Measured Term Contract
+      - Other
+  - key: contract_option
+    label: Contract Option
+    options:
+      - ""
+      - Option A — Priced (Activity Schedule)
+      - Option B — Priced (Bill of Quantities)
+      - Option C — Target (Activity Schedule)
+      - Option D — Target (Bill of Quantities)
+      - Option E — Cost Reimbursable
+      - Option F — Management Contract
+  - key: project_value
+    label: Project Value
+    options:
+      - ""
+      - Under £1M
+      - £1M – £5M
+      - £5M – £25M
+      - £25M – £100M
+      - £100M – £500M
+      - Over £500M
 personas:
   - pm
   - track_eng

@@ -107,20 +107,18 @@ PANEL RESPONSES:
 Please synthesise these into a single response for the user."""
 
 
-def build_project_context(config: dict, documents: list[dict]) -> str:
+def build_project_context(
+    config: dict,
+    documents: list[dict],
+    field_labels: dict[str, str] | None = None,
+) -> str:
     lines = []
 
     config_lines = []
-    if config.get("infra_manager"):
-        config_lines.append(f"Infrastructure Manager: {config['infra_manager']}")
-    if config.get("infra_type"):
-        config_lines.append(f"Infrastructure Type: {config['infra_type']}")
-    if config.get("contract_type"):
-        config_lines.append(f"Contract Type: {config['contract_type']}")
-    if config.get("contract_option"):
-        config_lines.append(f"Contract Option: {config['contract_option']}")
-    if config.get("project_value"):
-        config_lines.append(f"Project Value: {config['project_value']}")
+    for key, value in config.items():
+        if value:
+            label = field_labels.get(key, key) if field_labels else key
+            config_lines.append(f"{label}: {value}")
 
     if config_lines:
         lines.append("PROJECT CONTEXT:")

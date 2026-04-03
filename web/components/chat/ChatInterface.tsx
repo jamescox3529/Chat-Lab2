@@ -216,6 +216,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         onDocumentsChange={setDocuments}
         collapsed={configCollapsed}
         onToggle={() => setConfigCollapsed((c) => !c)}
+        roomId={conv?.room_id}
       />
     </div>
   );

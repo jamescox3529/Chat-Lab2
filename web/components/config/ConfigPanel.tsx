@@ -12,10 +12,11 @@ interface ConfigPanelProps {
   onDocumentsChange: (docs: Document[]) => void;
   collapsed: boolean;
   onToggle: () => void;
+  roomId?: string;
 }
 
 export default function ConfigPanel({
-  config, onChange, documents, onDocumentsChange, collapsed, onToggle,
+  config, onChange, documents, onDocumentsChange, collapsed, onToggle, roomId,
 }: ConfigPanelProps) {
   const { getToken } = useAuth();
   const [options, setOptions] = useState<ConfigOptions | null>(null);
@@ -29,7 +30,7 @@ export default function ConfigPanel({
     return fn();
   }
 
-  useEffect(() => { getConfigOptions().then(setOptions).catch(() => {}); }, []);
+  useEffect(() => { getConfigOptions(roomId).then(setOptions).catch(() => {}); }, [roomId]);
 
   function setProfile(key: string, value: string) {
     onChange({ ...config, user_profile: { ...config.user_profile, [key]: value || undefined } });
@@ -103,19 +104,23 @@ export default function ConfigPanel({
         <div className="border-t border-gray-300 dark:border-dark-border" />
 
         {/* Project Context */}
-        <section>
-          <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase tracking-wider mb-1">Project Context</h3>
-          <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">All fields optional — used to ground panel responses.</p>
-          {options && (
+        {options && options.project_fields.length > 0 && (
+          <section>
+            <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase tracking-wider mb-1">Project Context</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">All fields optional — used to ground panel responses.</p>
             <div className="space-y-3">
-              <SelectField label="Infrastructure Manager" options={options.infra_managers} value={config.project_config.infra_manager ?? ""} onChange={(v) => setProject("infra_manager", v)} />
-              <SelectField label="Infrastructure Type"    options={options.infra_types}     value={config.project_config.infra_type ?? ""}     onChange={(v) => setProject("infra_type", v)} />
-              <SelectField label="Contract Type"          options={options.contract_types}  value={config.project_config.contract_type ?? ""}  onChange={(v) => setProject("contract_type", v)} />
-              <SelectField label="Contract Option"        options={options.contract_options} value={config.project_config.contract_option ?? ""} onChange={(v) => setProject("contract_option", v)} />
-              <SelectField label="Project Value"          options={options.project_values}  value={config.project_config.project_value ?? ""}  onChange={(v) => setProject("project_value", v)} />
+              {options.project_fields.map((field) => (
+                <SelectField
+                  key={field.key}
+                  label={field.label}
+                  options={field.options}
+                  value={config.project_config[field.key] ?? ""}
+                  onChange={(v) => setProject(field.key, v)}
+                />
+              ))}
             </div>
-          )}
-        </section>
+          </section>
+        )}
 
         <div className="border-t border-gray-300 dark:border-dark-border" />
 

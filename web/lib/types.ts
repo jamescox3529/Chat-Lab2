@@ -17,13 +17,7 @@ export interface ConversationConfig {
     uncertainty?: string;
     use?: string;
   };
-  project_config: {
-    infra_manager?: string;
-    infra_type?: string;
-    contract_type?: string;
-    contract_option?: string;
-    project_value?: string;
-  };
+  project_config: Record<string, string>;
   document_ids: string[];
 }
 
@@ -61,16 +55,18 @@ export interface Document {
   uploaded_at: string;
 }
 
+export interface ProjectContextField {
+  key: string;
+  label: string;
+  options: string[];
+}
+
 export interface ConfigOptions {
   experience: { label: string; value: string }[];
   task: { label: string; value: string }[];
   uncertainty: { label: string; value: string }[];
   use: { label: string; value: string }[];
-  infra_managers: string[];
-  infra_types: string[];
-  contract_types: string[];
-  contract_options: string[];
-  project_values: string[];
+  project_fields: ProjectContextField[];
 }
 
 // SSE event types
