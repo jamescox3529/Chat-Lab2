@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
-import { getConfigOptions, uploadDocument, deleteDocument, setAuthToken } from "@/lib/api";
+import { uploadDocument, deleteDocument, setAuthToken } from "@/lib/api";
 import type { ConfigOptions, ConversationConfig, Document } from "@/lib/types";
 
 interface ConfigPanelProps {
@@ -12,14 +12,13 @@ interface ConfigPanelProps {
   onDocumentsChange: (docs: Document[]) => void;
   collapsed: boolean;
   onToggle: () => void;
-  roomId?: string;
+  options: ConfigOptions | null;
 }
 
 export default function ConfigPanel({
-  config, onChange, documents, onDocumentsChange, collapsed, onToggle, roomId,
+  config, onChange, documents, onDocumentsChange, collapsed, onToggle, options,
 }: ConfigPanelProps) {
   const { getToken } = useAuth();
-  const [options, setOptions] = useState<ConfigOptions | null>(null);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -29,8 +28,6 @@ export default function ConfigPanel({
     setAuthToken(token);
     return fn();
   }
-
-  useEffect(() => { getConfigOptions(roomId).then(setOptions).catch(() => {}); }, [roomId]);
 
   function setProfile(key: string, value: string) {
     onChange({ ...config, user_profile: { ...config.user_profile, [key]: value || undefined } });

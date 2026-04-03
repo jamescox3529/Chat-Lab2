@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
-import { getConversation, updateConversation, streamChat, setAuthToken, getRoom } from "@/lib/api";
-import type { Conversation, ConversationConfig, Document, Message } from "@/lib/types";
+import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions } from "@/lib/api";
+import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown } from "./MessageBubble";
 import StatusBar from "./StatusBar";
 import ConfigPanel from "@/components/config/ConfigPanel";
@@ -25,6 +25,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   const { getToken } = useAuth();
   const [conv, setConv] = useState<Conversation | null>(null);
   const [roomName, setRoomName] = useState<string>("");
+  const [configOptions, setConfigOptions] = useState<ConfigOptions | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [config, setConfig] = useState<ConversationConfig>(EMPTY_CONFIG);
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -45,7 +46,13 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
       setConv(c);
       setMessages(c.messages);
       setConfig(c.config ?? EMPTY_CONFIG);
-      withToken(() => getRoom(c.room_id)).then((r) => setRoomName(r.name)).catch(() => {});
+      Promise.all([
+        withToken(() => getRoom(c.room_id)).catch(() => null),
+        withToken(() => getConfigOptions(c.room_id)).catch(() => null),
+      ]).then(([room, options]) => {
+        if (room) setRoomName(room.name);
+        if (options) setConfigOptions(options);
+      });
     });
   }, [convId]);
 
@@ -216,7 +223,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         onDocumentsChange={setDocuments}
         collapsed={configCollapsed}
         onToggle={() => setConfigCollapsed((c) => !c)}
-        roomId={conv?.room_id}
+        options={configOptions}
       />
     </div>
   );
