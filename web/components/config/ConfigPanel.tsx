@@ -104,7 +104,7 @@ export default function ConfigPanel({
         <div className="border-t border-gray-300 dark:border-dark-border" />
 
         {/* Project Context */}
-        {options && options.project_fields.length > 0 && (
+        {options && options.project_fields?.length > 0 && (
           <section>
             <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase tracking-wider mb-1">Project Context</h3>
             <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">All fields optional — used to ground panel responses.</p>
