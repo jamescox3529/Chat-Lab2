@@ -4,13 +4,17 @@ Prompt builders for the three-stage pipeline.
 
 from __future__ import annotations
 
+import json
 from typing import Dict
 
 
-def build_dispatcher_system(room_personas: Dict[str, str], project_context: str) -> str:
+def build_dispatcher_system(room_personas: Dict[str, str], project_context: str, room_name: str = "") -> str:
     panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
+    panel_ids = list(room_personas.keys())
+    example_ids = panel_ids[:3] if len(panel_ids) >= 3 else panel_ids
+    panel_label = room_name if room_name else "expert panel"
     base = f"""\
-You are a dispatcher for a railway engineering expert panel.
+You are a dispatcher for the {panel_label}.
 
 The panel consists of these specialists:
 {panel_lines}
@@ -21,9 +25,9 @@ members are genuinely relevant to this specific question.
 Return ONLY a JSON array of persona IDs. Nothing else. No explanation. No markdown.
 
 Examples:
-["pm", "track_eng"]
-["hs", "constr_eng", "possess_mgr"]
-["sig_eng"]
+{json.dumps(example_ids[:2])}
+{json.dumps(example_ids[:3])}
+{json.dumps([example_ids[0]])}
 """
     if project_context:
         return f"{project_context}\n\n{base}"
@@ -35,6 +39,7 @@ def build_persona_system(
     knowledge_base: str,
     project_context: str,
     user_instruction: str,
+    room_name: str = "",
 ) -> str:
     context_block = (
         f"\n\nPROJECT CONTEXT:\nYou have been provided with the following project "
@@ -43,23 +48,25 @@ def build_persona_system(
         if project_context else ""
     )
     style_block = f"\n\n{user_instruction}" if user_instruction else ""
+    panel_label = room_name if room_name else "expert panel"
 
     return f"""\
-You are a {role} with deep expertise in railway engineering.
+You are a {role}.
 
 YOUR KNOWLEDGE BASE:
 {knowledge_base}
 {context_block}{style_block}
 
-You are part of a panel advising on a railway engineering question. Respond \
+You are part of the {panel_label}. Respond \
 from your specialist perspective only. Be concise and practical — 2 to 4 short \
 paragraphs. Focus on what matters most from your discipline. Do not add \
 preamble like "As a {role}..." — just answer directly."""
 
 
-def build_synthesiser_system(user_instruction: str) -> str:
-    base = """\
-You are synthesising advice from a panel of railway engineering specialists \
+def build_synthesiser_system(user_instruction: str, room_name: str = "") -> str:
+    panel_label = room_name if room_name else "expert panel"
+    base = f"""\
+You are synthesising advice from the {panel_label} \
 into a single, clear response for the user.
 
 Your job:

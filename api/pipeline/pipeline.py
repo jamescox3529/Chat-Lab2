@@ -70,9 +70,11 @@ def _dispatch(
     history: list[dict],
     room_personas: Dict[str, Persona],
     project_context: str,
+    room_name: str = "",
 ) -> List[str]:
+    fallback = next(iter(room_personas)) if room_personas else "pm"
     panel_map = {pid: p.role for pid, p in room_personas.items()}
-    system = build_dispatcher_system(panel_map, project_context)
+    system = build_dispatcher_system(panel_map, project_context, room_name=room_name)
 
     api_history = _build_api_history(history)
     api_history.append({"role": "user", "content": user_message})
@@ -88,9 +90,9 @@ def _dispatch(
     try:
         ids = json.loads(raw)
         valid = [pid for pid in ids if pid in room_personas]
-        return valid if valid else ["pm"]
+        return valid if valid else [fallback]
     except (json.JSONDecodeError, TypeError):
-        return ["pm"]
+        return [fallback]
 
 
 # ---------------------------------------------------------------------------
@@ -104,12 +106,14 @@ def _call_persona(
     history: list[dict],
     project_context: str,
     user_instruction: str,
+    room_name: str = "",
 ) -> str:
     system = build_persona_system(
         role=persona.role,
         knowledge_base=persona.knowledge_base,
         project_context=project_context,
         user_instruction=user_instruction,
+        room_name=room_name,
     )
 
     api_history = _build_api_history(history)
@@ -135,8 +139,9 @@ async def _stream_synthesiser(
     persona_responses: Dict[str, str],
     persona_roles: Dict[str, str],
     user_instruction: str,
+    room_name: str = "",
 ) -> AsyncIterator[str]:
-    system = build_synthesiser_system(user_instruction)
+    system = build_synthesiser_system(user_instruction, room_name=room_name)
     user_content = build_synthesiser_user_message(
         user_message, persona_responses, persona_roles
     )
@@ -182,7 +187,7 @@ async def run_pipeline(
 
     # Stage 1
     yield {"type": "status", "content": "Consulting panel..."}
-    selected_ids = _dispatch(client, user_message, history, room_personas, project_context)
+    selected_ids = _dispatch(client, user_message, history, room_personas, project_context, room_name=room.name)
 
     # Stage 2
     persona_responses: Dict[str, str] = {}
@@ -190,7 +195,7 @@ async def run_pipeline(
         persona = room_personas[pid]
         yield {"type": "status", "content": f"Consulting {persona.role}..."}
         persona_responses[pid] = _call_persona(
-            client, persona, user_message, history, project_context, user_instruction
+            client, persona, user_message, history, project_context, user_instruction, room_name=room.name
         )
 
     # Stage 3
@@ -198,7 +203,7 @@ async def run_pipeline(
     persona_roles = {pid: room_personas[pid].role for pid in selected_ids}
 
     async for token in _stream_synthesiser(
-        client, user_message, persona_responses, persona_roles, user_instruction
+        client, user_message, persona_responses, persona_roles, user_instruction, room_name=room.name
     ):
         yield {"type": "token", "content": token}
 

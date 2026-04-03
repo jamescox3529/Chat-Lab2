@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
-import { getConversation, updateConversation, streamChat, setAuthToken } from "@/lib/api";
+import { getConversation, updateConversation, streamChat, setAuthToken, getRoom } from "@/lib/api";
 import type { Conversation, ConversationConfig, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown } from "./MessageBubble";
 import StatusBar from "./StatusBar";
@@ -24,6 +24,7 @@ const EMPTY_CONFIG: ConversationConfig = {
 export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: ChatInterfaceProps) {
   const { getToken } = useAuth();
   const [conv, setConv] = useState<Conversation | null>(null);
+  const [roomName, setRoomName] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [config, setConfig] = useState<ConversationConfig>(EMPTY_CONFIG);
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -44,6 +45,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
       setConv(c);
       setMessages(c.messages);
       setConfig(c.config ?? EMPTY_CONFIG);
+      withToken(() => getRoom(c.room_id)).then((r) => setRoomName(r.name)).catch(() => {});
     });
   }, [convId]);
 
@@ -143,7 +145,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         {/* Header */}
         <div className="px-6 py-3 border-b border-gray-200 dark:border-dark-border flex items-center flex-shrink-0">
           <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-            {conv?.title || "Railway Engineering"}
+            {roomName || conv?.title || ""}
           </h1>
         </div>
 
