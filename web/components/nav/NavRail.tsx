@@ -69,9 +69,13 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
       {/* Header */}
       <div className="p-4 border-b border-gray-300 dark:border-dark-border">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 tracking-wide">
+          <button
+            onClick={() => router.push("/")}
+            className="text-sm font-semibold text-gray-600 dark:text-gray-400 tracking-wide hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+            title="Back to rooms"
+          >
             Chat-Lab
-          </span>
+          </button>
           <div className="flex items-center gap-1">
             {/* Zoom out */}
             <button
