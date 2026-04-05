@@ -142,9 +142,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     <div className="flex h-full overflow-hidden">
 
       {/* Nav rail */}
-      <div style={{ width: "var(--nav-width)", flexShrink: 0 }}>
-        <NavRail onNewChat={onNewChat} refreshTrigger={navRefresh} />
-      </div>
+      <NavRail onNewChat={onNewChat} refreshTrigger={navRefresh} />
 
       {/* Main chat */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white dark:bg-dark-chat">

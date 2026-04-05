@@ -68,9 +68,7 @@ export default function RoomPage() {
 
   return (
     <div className="flex h-full overflow-hidden">
-      <div style={{ width: "var(--nav-width)", flexShrink: 0 }}>
-        <NavRail onNewChat={() => setShowModal(true)} refreshTrigger={navRefresh} />
-      </div>
+      <NavRail onNewChat={() => setShowModal(true)} refreshTrigger={navRefresh} />
 
       <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
         <div className="w-full max-w-xl mx-auto">

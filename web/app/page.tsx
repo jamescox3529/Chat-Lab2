@@ -27,9 +27,7 @@ export default function HomePage() {
 
   return (
     <div className="flex h-full overflow-hidden">
-      <div style={{ width: "var(--nav-width)", flexShrink: 0 }}>
-        <NavRail onNewChat={() => router.push("/")} refreshTrigger={0} />
-      </div>
+      <NavRail onNewChat={() => router.push("/")} refreshTrigger={0} />
 
       <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-8 py-12 bg-white dark:bg-dark-chat">
         <div className="w-full max-w-xl">
