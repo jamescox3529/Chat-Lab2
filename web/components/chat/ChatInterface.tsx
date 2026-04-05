@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
 import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
-import MessageBubble, { renderMarkdown } from "./MessageBubble";
+import MessageBubble, { renderMarkdown, parseQuestions } from "./MessageBubble";
 import StatusBar from "./StatusBar";
+import QuestionsBubble from "./QuestionsBubble";
 import ConfigPanel from "@/components/config/ConfigPanel";
 import { useNavContext } from "@/context/NavContext";
 
@@ -98,7 +99,11 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   }
 
   async function handleSend() {
-    const text = input.trim();
+    await handleSendText(input);
+  }
+
+  async function handleSendText(raw: string) {
+    const text = raw.trim();
     if (!text || streaming) return;
     setInput("");
     setStreaming(true);
@@ -171,9 +176,32 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
             </div>
           )}
 
-          {messages.map((msg) => (
-            <MessageBubble key={msg.id} message={msg} panelRoles={panelRoles} />
-          ))}
+          {messages.map((msg, idx) => {
+            const isLastAssistant = msg.role === "assistant" && idx === messages.length - 1;
+            const parsed = msg.role === "assistant" ? parseQuestions(msg.content) : null;
+            const displayMsg = parsed ? { ...msg, content: parsed.main } : msg;
+            const pendingQuestions =
+              isLastAssistant && !streaming && parsed && parsed.questions.length > 0
+                ? parsed.questions
+                : null;
+
+            return (
+              <div key={msg.id} className="space-y-3">
+                <MessageBubble message={displayMsg} panelRoles={panelRoles} />
+                {pendingQuestions && (
+                  <QuestionsBubble
+                    questions={pendingQuestions}
+                    disabled={streaming}
+                    onSubmit={(formatted) => {
+                      setInput(formatted);
+                      // send immediately
+                      handleSendText(formatted);
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
 
           {/* Streaming bubble */}
           {streaming && (

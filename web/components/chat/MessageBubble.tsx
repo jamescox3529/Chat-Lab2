@@ -46,6 +46,27 @@ export default function MessageBubble({ message, panelRoles }: MessageBubbleProp
   );
 }
 
+const QUESTIONS_MARKER = "To sharpen this advice, the panel needs to know:";
+
+export function parseQuestions(content: string): { main: string; questions: string[] } {
+  // Find the bold marker (with or without surrounding **)
+  const markerIndex = content.indexOf(QUESTIONS_MARKER);
+  if (markerIndex === -1) return { main: content, questions: [] };
+
+  const main = content.slice(0, markerIndex).replace(/\*+\s*$/, "").trimEnd();
+  const remainder = content.slice(markerIndex + QUESTIONS_MARKER.length);
+
+  // Extract numbered items from the questions block
+  const questions: string[] = [];
+  const lines = remainder.split("\n");
+  for (const line of lines) {
+    const match = line.match(/^\d+\.\s+(.+)/);
+    if (match) questions.push(match[1].trim());
+  }
+
+  return { main, questions };
+}
+
 // Line-by-line markdown renderer
 export function renderMarkdown(text: string): string {
   const lines = text.split("\n");
@@ -73,9 +94,16 @@ export function renderMarkdown(text: string): string {
       out.push(`<ul>${items.join("")}</ul>`);
     } else if (/^\d+\. /.test(line)) {
       const items: string[] = [];
-      while (i < lines.length && /^\d+\. /.test(lines[i])) {
-        items.push(`<li>${inline(lines[i].replace(/^\d+\. /, ""))}</li>`);
-        i++;
+      while (i < lines.length) {
+        if (/^\d+\. /.test(lines[i])) {
+          items.push(`<li>${inline(lines[i].replace(/^\d+\. /, ""))}</li>`);
+          i++;
+        } else if (lines[i].trim() === "" && i + 1 < lines.length && /^\d+\. /.test(lines[i + 1])) {
+          // blank line between numbered items — skip and continue list
+          i++;
+        } else {
+          break;
+        }
       }
       out.push(`<ol>${items.join("")}</ol>`);
     } else if (line.trim() === "") {
