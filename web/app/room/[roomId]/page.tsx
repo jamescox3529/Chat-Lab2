@@ -178,14 +178,8 @@ export default function RoomPage() {
           )}
 
           {conversations.length === 0 && room && (
-            <div className="text-center py-16">
-              <p className="text-sm text-gray-400 dark:text-gray-600 mb-4">No conversations yet.</p>
-              <button
-                onClick={() => setShowModal(true)}
-                className="text-sm font-medium text-gray-700 dark:text-gray-300 underline underline-offset-2"
-              >
-                Start your first chat
-              </button>
+            <div className="py-16">
+              <p className="text-sm text-gray-400 dark:text-gray-600">No conversations yet.</p>
             </div>
           )}
         </div>
