@@ -8,8 +8,10 @@ import os
 
 # Claude models
 MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
-# Fast/cheap model for lightweight tasks (dispatcher, title generation)
-FAST_MODEL = os.getenv("ANTHROPIC_FAST_MODEL", "claude-haiku-4-5-20250514")
+# Fast/cheap model for lightweight tasks (dispatcher, title generation).
+# Defaults to MODEL so it always works — set ANTHROPIC_FAST_MODEL in env
+# to a valid Haiku model ID to get the speed benefit.
+FAST_MODEL = os.getenv("ANTHROPIC_FAST_MODEL", MODEL)
 
 # Document limits
 DOC_CHAR_LIMIT = 50_000

@@ -186,35 +186,39 @@ async def run_pipeline(
 
     client = _get_client()
 
-    # Stage 1
-    yield {"type": "status", "content": "Consulting panel..."}
-    selected_ids = _dispatch(client, user_message, history, room_personas, project_context, room_name=room.name)
+    try:
+        # Stage 1
+        yield {"type": "status", "content": "Consulting panel..."}
+        selected_ids = _dispatch(client, user_message, history, room_personas, project_context, room_name=room.name)
 
-    # Stage 2 — call all selected personas in parallel
-    roles_label = ", ".join(room_personas[pid].role for pid in selected_ids)
-    yield {"type": "status", "content": f"Asking {roles_label}…"}
+        # Stage 2 — call all selected personas in parallel
+        roles_label = ", ".join(room_personas[pid].role for pid in selected_ids)
+        yield {"type": "status", "content": f"Asking {roles_label}…"}
 
-    loop = asyncio.get_running_loop()
+        loop = asyncio.get_running_loop()
 
-    async def _call_async(pid: str) -> tuple[str, str]:
-        persona = room_personas[pid]
-        response = await loop.run_in_executor(
-            None, _call_persona,
-            client, persona, user_message, history, project_context, user_instruction, room.name,
-        )
-        return pid, response
+        async def _call_async(pid: str) -> tuple[str, str]:
+            persona = room_personas[pid]
+            response = await loop.run_in_executor(
+                None, _call_persona,
+                client, persona, user_message, history, project_context, user_instruction, room.name,
+            )
+            return pid, response
 
-    results = await asyncio.gather(*[_call_async(pid) for pid in selected_ids])
-    persona_responses: Dict[str, str] = dict(results)
+        results = await asyncio.gather(*[_call_async(pid) for pid in selected_ids])
+        persona_responses: Dict[str, str] = dict(results)
 
-    # Stage 3
-    yield {"type": "status", "content": "Synthesising response..."}
-    persona_roles = {pid: room_personas[pid].role for pid in selected_ids}
+        # Stage 3
+        yield {"type": "status", "content": "Synthesising response..."}
+        persona_roles = {pid: room_personas[pid].role for pid in selected_ids}
 
-    async for token in _stream_synthesiser(
-        client, user_message, persona_responses, persona_roles, user_instruction, room_name=room.name
-    ):
-        yield {"type": "token", "content": token}
+        async for token in _stream_synthesiser(
+            client, user_message, persona_responses, persona_roles, user_instruction, room_name=room.name
+        ):
+            yield {"type": "token", "content": token}
 
-    message_id = str(uuid.uuid4())
-    yield {"type": "done", "panel": selected_ids, "message_id": message_id}
+        message_id = str(uuid.uuid4())
+        yield {"type": "done", "panel": selected_ids, "message_id": message_id}
+
+    except Exception as exc:
+        yield {"type": "error", "content": f"Pipeline error: {exc}"}
