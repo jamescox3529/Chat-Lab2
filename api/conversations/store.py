@@ -6,10 +6,35 @@ All queries are scoped to the authenticated user_id.
 
 from __future__ import annotations
 
+import os
 from datetime import datetime, timezone
 from typing import Optional
 
+import anthropic
+
+from api.config import MODEL
 from api.db import get_db
+
+
+def _generate_title(text: str) -> str:
+    """Ask Claude for a 5-7 word summary title. Falls back to truncation on any error."""
+    try:
+        client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
+        response = client.messages.create(
+            model=MODEL,
+            max_tokens=20,
+            messages=[{
+                "role": "user",
+                "content": (
+                    "Write a short title for this question — 5 to 7 words, "
+                    "sentence case, no punctuation at the end, no quotes. "
+                    "Reply with only the title:\n\n" + text[:500]
+                ),
+            }],
+        )
+        return response.content[0].text.strip().strip('"').strip("'")
+    except Exception:
+        return text[:60] + ("…" if len(text) > 60 else "")
 
 
 def _now() -> str:
@@ -117,8 +142,7 @@ def append_message(conv_id: str, message: dict, user_id: str) -> Optional[dict]:
 
     # Auto-title from first user message
     if not conv_result.data.get("title") and message["role"] == "user":
-        text = message.get("content", "")
-        title = text[:60] + ("…" if len(text) > 60 else "")
+        title = _generate_title(message.get("content", ""))
         db.table("conversations").update({"title": title}).eq("id", conv_id).execute()
 
     return get_conversation(conv_id, user_id)

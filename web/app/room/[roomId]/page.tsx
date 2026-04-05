@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { getRoom, getPillar, listConversations, setAuthToken } from "@/lib/api";
+import { getRoom, getPillar, listConversations, deleteConversation, setAuthToken } from "@/lib/api";
 import type { Room, ConversationSummary } from "@/lib/types";
 import NavRail from "@/components/nav/NavRail";
 import NewChatModal from "@/components/NewChatModal";
@@ -19,6 +19,7 @@ export default function RoomPage() {
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [navRefresh, setNavRefresh] = useState(0);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
@@ -44,6 +45,18 @@ export default function RoomPage() {
       })
       .catch(() => {});
   }, [isLoaded, roomId]);
+
+  async function handleDelete(e: React.MouseEvent, convId: string) {
+    e.stopPropagation();
+    setDeleting(convId);
+    try {
+      await withToken(() => deleteConversation(convId));
+      setConversations((prev) => prev.filter((c) => c.id !== convId));
+      setNavRefresh((n) => n + 1);
+    } finally {
+      setDeleting(null);
+    }
+  }
 
   function formatDate(iso: string) {
     const d = new Date(iso);
@@ -114,36 +127,51 @@ export default function RoomPage() {
               </h2>
               <div className="space-y-2">
                 {conversations.map((conv) => (
-                  <button
+                  <div
                     key={conv.id}
-                    onClick={() => router.push(`/chat/${conv.id}`)}
-                    className="w-full text-left px-4 py-3 rounded-xl border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-white dark:bg-dark-bubble transition-all group"
+                    className="relative group"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
-                          {conv.title || "New conversation"}
-                        </p>
-                        <p className="text-xs text-gray-400 dark:text-gray-600 mt-0.5">
-                          {formatDate(conv.updated_at)}
-                          {conv.message_count > 0 && (
-                            <span className="ml-2">
-                              {conv.message_count}{" "}
-                              {conv.message_count === 1 ? "message" : "messages"}
-                            </span>
-                          )}
-                        </p>
+                    <button
+                      onClick={() => router.push(`/chat/${conv.id}`)}
+                      className="w-full text-left px-4 py-3 rounded-xl border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-white dark:bg-dark-bubble transition-all"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0 pr-6">
+                          <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                            {conv.title || "New conversation"}
+                          </p>
+                          <p className="text-xs text-gray-400 dark:text-gray-600 mt-0.5">
+                            {formatDate(conv.updated_at)}
+                            {conv.message_count > 0 && (
+                              <span className="ml-2">
+                                {conv.message_count}{" "}
+                                {conv.message_count === 1 ? "message" : "messages"}
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                        <svg
+                          className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
-                      <svg
-                        className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 transition-colors"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </button>
+                    {/* Delete button — appears on hover */}
+                    <button
+                      onClick={(e) => handleDelete(e, conv.id)}
+                      disabled={deleting === conv.id}
+                      className="absolute right-10 top-1/2 -translate-y-1/2 p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-all disabled:opacity-50"
+                      title="Delete conversation"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
-                    </div>
-                  </button>
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
