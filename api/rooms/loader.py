@@ -30,6 +30,7 @@ class Room:
     name: str
     description: str
     personas: List[str]
+    pillar: str = ""
     project_context: List[ProjectContextField] = field(default_factory=list)
 
 
@@ -56,6 +57,7 @@ def load_rooms() -> Dict[str, Room]:
                 name=data["name"],
                 description=data.get("description", ""),
                 personas=data.get("personas", []),
+                pillar=data.get("pillar", ""),
                 project_context=context_fields,
             )
             rooms[room.id] = room

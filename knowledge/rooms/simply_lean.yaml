@@ -1,6 +1,7 @@
 id: simply_lean
 name: Lean Manufacturing
 description: Continuous improvement experts combining Lean principles with real-world operational perspective — for any industry
+pillar: strategy_advisory
 project_context:
   - key: industry
     label: Industry / Sector

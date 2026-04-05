@@ -1,3 +1,20 @@
+export interface Pillar {
+  id: string;
+  name: string;
+}
+
+export interface PillarDetail extends Pillar {
+  rooms: RoomSummary[];
+}
+
+export interface RoomSummary {
+  id: string;
+  name: string;
+  description: string;
+  pillar: string;
+  persona_count: number;
+}
+
 export interface Persona {
   id: string;
   role: string;
@@ -7,6 +24,8 @@ export interface Room {
   id: string;
   name: string;
   description: string;
+  pillar: string;
+  persona_count: number;
   personas?: Persona[];
 }
 

@@ -26,7 +26,8 @@ from api.config import (
     USE_OPTIONS,
 )
 from api.personas.loader import list_personas, get_persona
-from api.rooms.loader import list_rooms, get_room
+from api.pillars.loader import list_pillars, get_pillar
+from api.rooms.loader import load_rooms, list_rooms, get_room
 from api.conversations.store import (
     create_conversation,
     get_conversation,
@@ -98,12 +99,51 @@ def config_options(room_id: str = ""):
 
 
 # =============================================================================
+# Pillars
+# =============================================================================
+
+@app.get("/api/pillars")
+def get_pillars():
+    return list_pillars()
+
+
+@app.get("/api/pillars/{pillar_id}")
+def get_pillar_detail(pillar_id: str):
+    pillar = get_pillar(pillar_id)
+    if pillar is None:
+        raise HTTPException(status_code=404, detail="Pillar not found")
+    rooms = [r for r in load_rooms().values() if r.pillar == pillar_id]
+    return {
+        "id": pillar.id,
+        "name": pillar.name,
+        "rooms": [
+            {
+                "id": r.id,
+                "name": r.name,
+                "description": r.description,
+                "persona_count": len(r.personas),
+            }
+            for r in rooms
+        ],
+    }
+
+
+# =============================================================================
 # Rooms
 # =============================================================================
 
 @app.get("/api/rooms")
 def get_rooms():
-    return list_rooms()
+    return [
+        {
+            "id": r.id,
+            "name": r.name,
+            "description": r.description,
+            "pillar": r.pillar,
+            "persona_count": len(r.personas),
+        }
+        for r in load_rooms().values()
+    ]
 
 
 @app.get("/api/rooms/{room_id}")
@@ -115,6 +155,8 @@ def get_room_detail(room_id: str):
         "id": room.id,
         "name": room.name,
         "description": room.description,
+        "pillar": room.pillar,
+        "persona_count": len(room.personas),
         "personas": [
             {"id": pid, "role": p.role}
             for pid in room.personas
@@ -146,8 +188,11 @@ def create_conv(
 
 
 @app.get("/api/conversations")
-def list_convs(user_id: str = Depends(get_current_user_id)):
-    return list_conversations(user_id=user_id)
+def list_convs(room_id: str = "", user_id: str = Depends(get_current_user_id)):
+    convs = list_conversations(user_id=user_id)
+    if room_id:
+        convs = [c for c in convs if c.get("room_id") == room_id]
+    return convs
 
 
 @app.get("/api/conversations/{conv_id}")

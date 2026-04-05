@@ -13,10 +13,11 @@ interface ConfigPanelProps {
   collapsed: boolean;
   onToggle: () => void;
   options: ConfigOptions | null;
+  readOnly?: boolean;
 }
 
 export default function ConfigPanel({
-  config, onChange, documents, onDocumentsChange, collapsed, onToggle, options,
+  config, onChange, documents, onDocumentsChange, collapsed, onToggle, options, readOnly = false,
 }: ConfigPanelProps) {
   const { getToken } = useAuth();
   const [uploading, setUploading] = useState(false);
@@ -87,13 +88,27 @@ export default function ConfigPanel({
         {/* You & Your Goal */}
         <section>
           <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase tracking-wider mb-1">You &amp; Your Goal</h3>
-          <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">Helps the panel adjust how it responds. All optional.</p>
+          {readOnly
+            ? <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">Set when this conversation was created.</p>
+            : <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">Helps the panel adjust how it responds. All optional.</p>
+          }
           {options && (
             <div className="space-y-3">
-              <SelectField label="Your relationship to this subject" options={options.experience.map((o) => o.label)} value={config.user_profile.experience ?? ""} onChange={(v) => setProfile("experience", v)} />
-              <SelectField label="What are you trying to do?" options={options.task.map((o) => o.label)} value={config.user_profile.task ?? ""} onChange={(v) => setProfile("task", v)} />
-              <SelectField label="How to handle uncertainty?" options={options.uncertainty.map((o) => o.label)} value={config.user_profile.uncertainty ?? ""} onChange={(v) => setProfile("uncertainty", v)} />
-              <SelectField label="What will you do with the answer?" options={options.use.map((o) => o.label)} value={config.user_profile.use ?? ""} onChange={(v) => setProfile("use", v)} />
+              {readOnly ? (
+                <>
+                  <ReadOnlyField label="Your relationship to this subject" value={config.user_profile.experience} />
+                  <ReadOnlyField label="What are you trying to do?" value={config.user_profile.task} />
+                  <ReadOnlyField label="How to handle uncertainty?" value={config.user_profile.uncertainty} />
+                  <ReadOnlyField label="What will you do with the answer?" value={config.user_profile.use} />
+                </>
+              ) : (
+                <>
+                  <SelectField label="Your relationship to this subject" options={options.experience.map((o) => o.label)} value={config.user_profile.experience ?? ""} onChange={(v) => setProfile("experience", v)} />
+                  <SelectField label="What are you trying to do?" options={options.task.map((o) => o.label)} value={config.user_profile.task ?? ""} onChange={(v) => setProfile("task", v)} />
+                  <SelectField label="How to handle uncertainty?" options={options.uncertainty.map((o) => o.label)} value={config.user_profile.uncertainty ?? ""} onChange={(v) => setProfile("uncertainty", v)} />
+                  <SelectField label="What will you do with the answer?" options={options.use.map((o) => o.label)} value={config.user_profile.use ?? ""} onChange={(v) => setProfile("use", v)} />
+                </>
+              )}
             </div>
           )}
         </section>
@@ -106,15 +121,23 @@ export default function ConfigPanel({
             <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase tracking-wider mb-1">Project Context</h3>
             <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">All fields optional — used to ground panel responses.</p>
             <div className="space-y-3">
-              {options.project_fields.map((field) => (
-                <SelectField
-                  key={field.key}
-                  label={field.label}
-                  options={field.options}
-                  value={config.project_config[field.key] ?? ""}
-                  onChange={(v) => setProject(field.key, v)}
-                />
-              ))}
+              {options.project_fields.map((field) =>
+                readOnly ? (
+                  <ReadOnlyField
+                    key={field.key}
+                    label={field.label}
+                    value={config.project_config[field.key]}
+                  />
+                ) : (
+                  <SelectField
+                    key={field.key}
+                    label={field.label}
+                    options={field.options}
+                    value={config.project_config[field.key] ?? ""}
+                    onChange={(v) => setProject(field.key, v)}
+                  />
+                )
+              )}
             </div>
           </section>
         )}
@@ -137,32 +160,53 @@ export default function ConfigPanel({
                       {doc.char_count >= 50000 && <span className="ml-1 text-amber-500">(truncated)</span>}
                     </p>
                   </div>
-                  <button onClick={() => handleRemoveDoc(doc.id)} className="flex-shrink-0 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                  {!readOnly && (
+                    <button onClick={() => handleRemoveDoc(doc.id)} className="flex-shrink-0 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
           )}
 
-          <input ref={fileRef} type="file" accept=".pdf,.docx,.xlsx,.xls" multiple className="hidden" onChange={handleFileChange} />
-          <button
-            onClick={() => fileRef.current?.click()}
-            disabled={uploading}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 rounded-lg border border-dashed border-gray-400 dark:border-gray-700 hover:border-gray-500 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-dark-bubble transition-colors disabled:opacity-50"
-          >
-            {uploading ? (
-              <><Spinner />Uploading...</>
-            ) : (
-              <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-              </svg>Upload document</>
-            )}
-          </button>
+          {documents.length === 0 && readOnly && (
+            <p className="text-xs text-gray-400 dark:text-gray-600">No documents attached.</p>
+          )}
+
+          {!readOnly && (
+            <>
+              <input ref={fileRef} type="file" accept=".pdf,.docx,.xlsx,.xls" multiple className="hidden" onChange={handleFileChange} />
+              <button
+                onClick={() => fileRef.current?.click()}
+                disabled={uploading}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 rounded-lg border border-dashed border-gray-400 dark:border-gray-700 hover:border-gray-500 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-dark-bubble transition-colors disabled:opacity-50"
+              >
+                {uploading ? (
+                  <><Spinner />Uploading...</>
+                ) : (
+                  <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>Upload document</>
+                )}
+              </button>
+            </>
+          )}
         </section>
       </div>
+    </div>
+  );
+}
+
+function ReadOnlyField({ label, value }: { label: string; value?: string }) {
+  return (
+    <div>
+      <p className="text-xs font-medium text-gray-600 dark:text-gray-500 mb-1">{label}</p>
+      <p className="text-xs text-gray-800 dark:text-gray-300 px-2 py-1.5 bg-white dark:bg-dark-bubble rounded-md border border-gray-200 dark:border-dark-border">
+        {value || <span className="text-gray-400 dark:text-gray-600">— not set —</span>}
+      </p>
     </div>
   );
 }

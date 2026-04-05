@@ -1,4 +1,6 @@
 import type {
+  Pillar,
+  PillarDetail,
   Room,
   Conversation,
   ConversationSummary,
@@ -42,6 +44,10 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json();
 }
 
+// Pillars
+export const getPillars = (): Promise<Pillar[]> => req("/api/pillars");
+export const getPillar = (id: string): Promise<PillarDetail> => req(`/api/pillars/${id}`);
+
 // Rooms
 export const getRooms = (): Promise<Room[]> => req("/api/rooms");
 export const getRoom = (id: string): Promise<Room> => req(`/api/rooms/${id}`);
@@ -60,8 +66,8 @@ export const createConversation = (
     body: JSON.stringify({ room_id, config }),
   });
 
-export const listConversations = (): Promise<ConversationSummary[]> =>
-  req("/api/conversations");
+export const listConversations = (roomId?: string): Promise<ConversationSummary[]> =>
+  req(`/api/conversations${roomId ? `?room_id=${roomId}` : ""}`);
 
 export const getConversation = (id: string): Promise<Conversation> =>
   req(`/api/conversations/${id}`);

@@ -1,6 +1,7 @@
 id: railway_engineering
 name: Railway Engineering
 description: Expert panel for railway infrastructure projects
+pillar: infrastructure_engineering
 project_context:
   - key: infra_manager
     label: Infrastructure Manager

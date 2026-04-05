@@ -215,7 +215,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         </div>
       </div>
 
-      {/* Config panel */}
+      {/* Config panel — read-only once chat is created */}
       <ConfigPanel
         config={config}
         onChange={setConfig}
@@ -224,6 +224,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         collapsed={configCollapsed}
         onToggle={() => setConfigCollapsed((c) => !c)}
         options={configOptions}
+        readOnly
       />
     </div>
   );
