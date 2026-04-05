@@ -5,21 +5,25 @@ import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { getRoom, getPillar, listConversations, deleteConversation, setAuthToken } from "@/lib/api";
 import type { Room, ConversationSummary } from "@/lib/types";
-import NavRail from "@/components/nav/NavRail";
+import { useNavContext } from "@/context/NavContext";
 import NewChatModal from "@/components/NewChatModal";
 
 export default function RoomPage() {
   const router = useRouter();
   const params = useParams();
   const { getToken, isLoaded } = useAuth();
+  const { setOnNewChat, triggerNavRefresh } = useNavContext();
   const roomId = params?.roomId as string;
 
   const [room, setRoom] = useState<Room | null>(null);
   const [pillarName, setPillarName] = useState<string>("");
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [showModal, setShowModal] = useState(false);
-  const [navRefresh, setNavRefresh] = useState(0);
   const [deleting, setDeleting] = useState<string | null>(null);
+
+  useEffect(() => {
+    setOnNewChat(() => setShowModal(true));
+  }, []);
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
@@ -52,7 +56,7 @@ export default function RoomPage() {
     try {
       await withToken(() => deleteConversation(convId));
       setConversations((prev) => prev.filter((c) => c.id !== convId));
-      setNavRefresh((n) => n + 1);
+      triggerNavRefresh();
     } finally {
       setDeleting(null);
     }
@@ -67,10 +71,8 @@ export default function RoomPage() {
   }
 
   return (
-    <div className="flex h-full overflow-hidden">
-      <NavRail onNewChat={() => setShowModal(true)} refreshTrigger={navRefresh} />
-
-      <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
+    <>
+    <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
         <div className="w-full max-w-xl mx-auto">
 
           {/* Breadcrumb */}
@@ -188,11 +190,11 @@ export default function RoomPage() {
           roomId={roomId}
           onClose={() => setShowModal(false)}
           onCreated={(convId) => {
-            setNavRefresh((n) => n + 1);
+            triggerNavRefresh();
             router.push(`/chat/${convId}`);
           }}
         />
       )}
-    </div>
+    </>
   );
 }

@@ -5,14 +5,19 @@ import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { getPillar, setAuthToken } from "@/lib/api";
 import type { PillarDetail } from "@/lib/types";
-import NavRail from "@/components/nav/NavRail";
+import { useNavContext } from "@/context/NavContext";
 
 export default function PillarPage() {
   const router = useRouter();
   const params = useParams();
   const { getToken, isLoaded } = useAuth();
+  const { setOnNewChat } = useNavContext();
   const pillarId = params?.pillarId as string;
   const [pillar, setPillar] = useState<PillarDetail | null>(null);
+
+  useEffect(() => {
+    setOnNewChat(() => router.push("/"));
+  }, []);
 
   async function withToken<T>(fn: () => Promise<T>): Promise<T> {
     const token = await getToken();
@@ -27,10 +32,7 @@ export default function PillarPage() {
   }, [isLoaded, pillarId]);
 
   return (
-    <div className="flex h-full overflow-hidden">
-      <NavRail onNewChat={() => router.push("/")} refreshTrigger={0} />
-
-      <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
+    <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
         <div className="w-full max-w-xl mx-auto">
 
           {/* Breadcrumb */}
@@ -80,6 +82,5 @@ export default function PillarPage() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

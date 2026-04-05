@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import AuthProvider from "@/components/AuthProvider";
+import { NavContextProvider } from "@/context/NavContext";
+import AppShell from "@/components/AppShell";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,7 +38,11 @@ export default function RootLayout({
         </head>
         <body className="h-full bg-white dark:bg-dark-chat text-gray-900 dark:text-gray-100 antialiased">
           <AuthProvider />
-          {children}
+          <NavContextProvider>
+            <AppShell>
+              {children}
+            </AppShell>
+          </NavContextProvider>
         </body>
       </html>
     </ClerkProvider>

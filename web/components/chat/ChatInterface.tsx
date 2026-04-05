@@ -7,7 +7,7 @@ import type { Conversation, ConversationConfig, ConfigOptions, Document, Message
 import MessageBubble, { renderMarkdown } from "./MessageBubble";
 import StatusBar from "./StatusBar";
 import ConfigPanel from "@/components/config/ConfigPanel";
-import NavRail from "@/components/nav/NavRail";
+import { useNavContext } from "@/context/NavContext";
 
 interface ChatInterfaceProps {
   convId: string;
@@ -23,6 +23,7 @@ const EMPTY_CONFIG: ConversationConfig = {
 
 export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: ChatInterfaceProps) {
   const { getToken } = useAuth();
+  const { setOnNewChat, triggerNavRefresh } = useNavContext();
   const [conv, setConv] = useState<Conversation | null>(null);
   const [roomName, setRoomName] = useState<string>("");
   const [configOptions, setConfigOptions] = useState<ConfigOptions | null>(null);
@@ -34,7 +35,10 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   const [status, setStatus] = useState("");
   const [streamingContent, setStreamingContent] = useState("");
   const [configCollapsed, setConfigCollapsed] = useState(false);
-  const [navRefresh, setNavRefresh] = useState(navRefreshTrigger ?? 0);
+
+  useEffect(() => {
+    setOnNewChat(onNewChat);
+  }, [onNewChat]);
 
   const bottomRef   = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -131,7 +135,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     setStreamingContent("");
     setStatus("");
     setStreaming(false);
-    setNavRefresh((n) => n + 1);
+    triggerNavRefresh();
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -139,11 +143,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   }
 
   return (
-    <div className="flex h-full overflow-hidden">
-
-      {/* Nav rail */}
-      <NavRail onNewChat={onNewChat} refreshTrigger={navRefresh} />
-
+    <>
       {/* Main chat */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white dark:bg-dark-chat">
 
@@ -224,6 +224,6 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         options={configOptions}
         readOnly
       />
-    </div>
+    </>
   );
 }
