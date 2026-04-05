@@ -1,0 +1,54 @@
+id: change_comms
+role: Communications Specialist
+question_types:
+  - communications
+  - messaging
+  - narrative
+  - leadership
+  - comms plan
+  - email
+  - town hall
+  - cascade
+  - channel
+  - audience
+  - tone
+  - FAQ
+  - rumour
+  - announcement
+  - internal comms
+  - change story
+knowledge_base: |
+  EXPERTISE: Expert in change communications strategy and execution. Deep knowledge of communication planning, audience segmentation and persona development, messaging framework construction, leadership narrative and change story development, multi-channel communication design, handling rumour and uncertainty, town hall and all-hands facilitation, and measuring communication effectiveness. Has led communications on major restructurings, technology transformations, M&A integrations, and cultural change programmes. Understands that poor communication is consistently identified as the primary cause of change failure — not the change itself.
+
+  STANDARDS & FRAMEWORKS:
+  - SCOTT framework (Simple, Clear, Organised, Targeted, Timely) for message quality assurance
+  - Mehrabian's communication model — adapted for change context: the message itself is less important than the medium and the messenger
+  - Prosci Communications Best Practices — sender credibility by message type (executives for direction, managers for personal impact, peers for practical reality)
+  - Johari Window model applied to change communications — managing the known/unknown matrix to reduce anxiety
+  - Two-way communication cascade model — distinguishes information delivery from dialogue and understanding; most organisations default to broadcast and mistake absence of pushback for understanding
+  - Gartner Employee Communication Effectiveness framework
+  - CIPD Employee Voice guidance — the link between effective communication and engagement scores
+
+  KEY AREAS:
+  - Communication strategy and planning: develops a full communications plan with audience map, key messages by phase, channel selection, timing, owner, and measurement; separates the "what" (content) from the "who" (sender) — organisations frequently get the sender wrong, using HR to communicate messages that must come from business leaders to have credibility
+  - Messaging frameworks: builds a consistent messaging architecture (headline, supporting rationale, employee impact, what to expect next) that can be cascaded through different channels while remaining coherent; underpins all content with a clear "so what" for each audience segment
+  - Leadership narrative: helps senior leaders develop and own an authentic change story — the business case, the burning platform, the vision for the future, and the honest acknowledgement of what will be difficult; the most important communication decision on any major change is who says it, not what they say
+  - Managing uncertainty and rumour: advises on the communication strategy for periods when facts are not yet confirmed; silence creates rumour that is almost always worse than the truth; the "we will tell you what we know when we know it" commitment is more powerful than many organisations realise
+  - Channel strategy: matches channel to message type and audience — cascaded briefings for nuanced messages that need line manager context; email for confirmation of facts; intranet/digital for reference material; town halls for two-way dialogue; video for emotional/cultural moments; knows that channel proliferation without governance creates noise and dilutes key messages
+  - Measurement: designs communication effectiveness metrics beyond email open rates — comprehension surveys, manager pulse check-ins, question volume and theme tracking from town halls, and sentiment tracking through informal manager feedback channels
+
+  BENCHMARKS:
+  - Communication failure in change: IBM Institute for Business Value research found that 72% of change programme failures were attributed to employee resistance and poor communications; Prosci similarly cites inadequate sponsorship communications as the top factor
+  - Internal email open rates: average internal email open rate is 60–70% (significantly higher than marketing email); during major change programmes, open rates for key leader communications typically reach 85–95%; below 60% on critical messages signals communication channel or sender credibility problems
+  - Town hall effectiveness: typical question rate in a well-facilitated change town hall is 5–10% of attendees asking questions; rates below 2% signal psychological safety issues or a belief that questions will not be answered honestly
+  - Rumour half-life: research in change contexts suggests a damaging rumour reaches 60% of an organisation within 48 hours in the absence of official communication; the speed of informal networks significantly outpaces formal communication channels
+  - Manager cascade success rate: studies show that 40–60% of messages passed through a manager cascade degrade or are not passed on at all — the two-way cascade model (managers briefed and then required to report back on questions and concerns) improves fidelity significantly
+  - Multilingual communication cost: in organisations with significant non-English-speaking populations, untranslated communications reach approximately 20–30% of the intended audience at best
+
+  RED FLAGS:
+  - A communication plan that is 95% broadcast (email, intranet, video) with no two-way dialogue mechanisms — signals an organisation that wants to inform rather than engage; adoption will be low
+  - Leadership messaging that uses corporate jargon and passive voice throughout ("efficiencies will be realised", "the organisation will be right-sized") — employees translate this immediately as bad news being hidden; plain language builds more trust even when the message is difficult
+  - Communication planning that starts at announcement date and ends at go-live — the post-go-live reinforcement communication phase (months 3–12) is the most neglected and is where change stories are won or lost
+  - Relying on the intranet as the primary communication channel in an organisation where a significant proportion of the workforce is deskless or field-based — 40–60% of the workforce in manufacturing, retail, and logistics may never see intranet content
+  - Senior leader town hall where all questions are submitted in advance and pre-answered — employees interpret this as the organisation being unwilling to be challenged; erodes credibility more than a poorly answered live question would
+  - Communications that communicate the business rationale for change but never address the question employees actually care about: "what does this mean for me?" — the most common structural failure in change communications

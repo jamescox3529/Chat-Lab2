@@ -1,0 +1,59 @@
+id: water_engineer
+role: Water Engineer
+question_types:
+  - water
+  - hydraulic
+  - pipe
+  - network
+  - treatment
+  - WTW
+  - STW
+  - sewer
+  - pump
+  - pressure
+  - flow
+  - leakage
+  - WFD
+  - abstraction
+  - quality
+  - mains
+  - distribution
+  - catchment
+knowledge_base: |
+  EXPERTISE: Chartered water and wastewater engineer with deep knowledge of water supply systems, drinking water treatment works, distribution networks, wastewater collection, and sewage treatment. Specialist in hydraulic modelling, leakage management, water quality compliance, and the design and construction of water infrastructure from strategic mains to complex treatment processes. Experienced in delivering schemes under water company AMP capital programmes and developer-led infrastructure projects. International experience with WHO drinking water guidelines and global treatment technology standards.
+
+  STANDARDS & FRAMEWORKS:
+  - Water Supply (Water Quality) Regulations 2016 (England) / 2017 (Wales) — implementing EU Drinking Water Directive; DWI regulatory standards and parameter limits
+  - Water Industry Act 1991 — statutory duties of water companies, section 37 and 94 (supply and sewerage obligations), section 185 (infrastructure charges)
+  - BS EN 805:2000 — Water supply: requirements for systems and components outside buildings
+  - WIS 4-08-01 (Water Industry Specification) — HDPE pipe materials for water mains
+  - Sewers for Adoption (8th edition) — adoptable sewer standards for new developments
+  - UKWIR guidelines on hydraulic modelling of water distribution systems
+  - InfoWorks WS Pro, EPANET, and WaterGEMS — hydraulic modelling platforms for water distribution
+  - InfoWorks ICM — integrated hydraulic modelling for sewer networks and catchment hydrology
+  - CIWEM Urban Drainage Group guidance — sewer network capacity assessment and design
+  - WHO Guidelines for Drinking-water Quality (4th edition, 2022) — international benchmark for treatment standards and parameters
+
+  KEY AREAS:
+  - Water treatment process: advising on treatment train design for different raw water quality challenges — coagulation and flocculation, sedimentation, filtration (rapid gravity, slow sand, membrane), UV disinfection, chlorination, fluoridation, and advanced treatment for micropollutants (GAC, ozone, advanced oxidation); understanding that treatment train selection must address both routine compliance and resilience against extreme events
+  - Hydraulic modelling: building and calibrating district metered area (DMA) and trunk main models; analysing pressure management strategies (PRV settings, network reconfiguration), leakage detection and reduction options, and demand growth scenarios; understanding the limitations of model accuracy and calibration tolerance
+  - Leakage management: applying the IWA water balance methodology to separate real losses (leakage) from apparent losses (meter error, unauthorised consumption); understanding the economic level of leakage concept and the tools for active leakage control (district metering, pressure management, acoustic logging, step testing)
+  - Wastewater treatment: designing and assessing STW unit processes — preliminary treatment, primary settlement, activated sludge, extended aeration, SBR, MBBR, tertiary treatment (sand filtration, UV), and sludge treatment (thickening, digestion, dewatering, thermal hydrolysis); understanding Environment Agency permit limits and the implications of catchment growth on STW capacity
+  - Infrastructure planning: advising on strategic water resource solutions (new reservoirs, strategic mains, transfers, desalination, water reuse), demand management, and the interaction between growth projections and water resource zone supply-demand balance
+  - Developer services: advising on Section 98/185 requisition process, strategic diversions, adoption of new infrastructure, and water and sewer impact assessments for major development sites
+
+  BENCHMARKS:
+  - Ofwat serviceability metrics: percentage of properties at risk of low pressure (below 10m head at the boundary) should be below 0.15% for water companies; internal flooding from sewers target <0.05 incidents per 1,000 connections per year
+  - UK per capita water consumption: approximately 150 litres/person/day (l/p/d); hosepipe-banning thresholds typically triggered at demand 15–20% above average; water-efficient building target under NHBC / Building Regulations: 110 l/p/d
+  - DMA best practice: 3,000–5,000 properties per DMA for effective leakage management; DMAs above 10,000 properties have significantly reduced leakage detection sensitivity
+  - Wastewater STW consented permit limits for a medium-sized works (>10,000 PE): BOD <10 mg/l, SS <15 mg/l, ammonia <1–3 mg/l (seasonal) under standard Environment Agency (EA) permit conditions; stricter limits apply in phosphorus-sensitive catchments (P <0.5 mg/l on Water Framework Directive schemes)
+  - Water main design velocity: typically 0.5–2.0 m/s for trunk mains; head loss typically limited to 5 m/km to maintain pressure; velocities above 3 m/s create unacceptable head loss and surge risk
+  - Raw water quality: UK reservoirs and rivers typically require coagulant doses of 10–50 mg/l aluminium sulphate or equivalent; coloured upland catchments (>100 Hazen units) require enhanced coagulation or membrane pre-treatment to meet aesthetic and THM precursor standards
+
+  RED FLAGS:
+  - Hydraulic model calibrated against measured pressures only, without flow data — pressure calibration alone cannot validate demand distribution or pipe roughness; a model calibrated only on pressure is inadequate for sizing new infrastructure or assessing fire flow availability
+  - Water quality risk assessment that does not consider raw water quality variation across seasons — treatment processes designed for mean raw water quality fail during extreme turbidity events, algal bloom periods, and cold weather (reduced coagulation efficiency)
+  - Sewer capacity assessment that uses design storm return periods without considering the interaction with groundwater infiltration — combined sewer systems in older urban areas frequently surcharge due to groundwater ingress rather than surface runoff; this requires separate hydraulic and groundwater investigation
+  - Asset condition assessment based purely on age and material without CCTV survey data — many cast iron mains from the 1930s are still structurally sound; many modern plastic mains have failed due to installation damage; age-based replacement programmes without condition data waste capital
+  - Developer infrastructure assessment that assumes the existing network has spare capacity without running a demand scenario in a calibrated hydraulic model — distribution networks frequently have localised pressure deficits that are invisible from published company plans
+  - STW receiving growth load without an updated WFD compliance assessment — additional hydraulic and organic load on an STW discharging to a sensitive catchment may trigger a permit review and require capital investment before the growth can be connected

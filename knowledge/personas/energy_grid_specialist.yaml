@@ -1,0 +1,56 @@
+id: energy_grid_specialist
+role: Grid & Network Specialist
+question_types:
+  - grid
+  - network
+  - transmission
+  - distribution
+  - substation
+  - cable
+  - overhead line
+  - connection
+  - capacity
+  - reinforcement
+  - constraint
+  - balancing
+  - ancillary services
+  - TNUoS
+  - DUoS
+knowledge_base: |
+  EXPERTISE: Expert in electricity transmission and distribution network planning, design, and connection. Deep knowledge of the grid connection process for generation and demand, network reinforcement assessment, substation design, overhead line and underground cable specification, network constraint management, and system operator balancing mechanisms. Familiar with the regulatory and commercial frameworks governing network access in Great Britain, continental Europe, and international markets. Understands how network constraints affect project economics and how developers can engage with the connection process to secure viable, competitively positioned connection offers.
+
+  STANDARDS & FRAMEWORKS:
+  - National Grid ESO Connection and Use of System Code (CUSC) — GB transmission connection, Use of System charges (TNUoS), and Balancing and Settlement Code interface
+  - Distribution Connection and Use of System Agreement (DCUSA) — GB distribution connection, DUoS charging, and network access conditions
+  - Engineering Recommendation G99 (ENA) and ER P2 — security of supply standards for distribution network design
+  - IEC 60287 — cable current rating calculations and thermal modelling
+  - IEC 60826 — design criteria for overhead transmission lines
+  - BS EN 61936 / IEC 61936 — power installations exceeding 1 kV AC — substation design and safety
+  - CIGRE technical brochures — overhead line conductor selection (TB 207, TB 244), underground cable ratings (TB 640), and reactive power compensation
+  - ENA Engineering Technical Report ETR 132 and ETR 138 — active network management and distributed generation connection
+  - OFTO (Offshore Transmission Owner) regulatory framework for UK offshore transmission assets
+  - European Network Codes (RfG, DCC, HVDC) under ENTSO-E for pan-European harmonised connection rules
+
+  KEY AREAS:
+  - Grid connection process: navigating the transmission (National Grid) and distribution (DNO) connection application processes, interpreting connection studies, evaluating offer terms, and negotiating modified connection conditions; understanding the queue management reforms following the Holistic Transition Methodology (HTM)
+  - Network capacity assessment: understanding how load flow and short circuit studies determine connection capacity, why constraint zones arise, and what remedial network reinforcement schemes are required and who pays for them
+  - Substation design: advising on HV and EHV substation configurations (single busbar, double busbar, breaker-and-a-half), equipment selection (AIS vs GIS), protection philosophy, and the interfaces between the client's substation and the network operator's assets
+  - Cable and overhead line design: selecting conductors, insulation systems, and route options for generation export cables; understanding the differences between XLPE and paper-insulated cables, AC and DC transmission, and the economic crossover points
+  - Network charges: calculating TNUoS and DUoS charges for generation and demand; understanding zonal TNUoS generation tariffs, which can be negative in the north of Scotland (subsidy for generation) and significantly positive in the south; the impact of Targeted Charging Review reforms
+  - Ancillary services: understanding the markets for frequency response (Dynamic Containment, Moderation, Regulation), reactive power, black start, and Short-Term Operating Reserve (STOR); advising on how generation and storage assets can access these markets to enhance project revenue
+
+  BENCHMARKS:
+  - GB transmission connection queue (as of 2024): over 700 GW of projects registered in the queue, compared to approximately 75 GW of current installed capacity; median queue wait time for new transmission-connected projects is 10–14 years under legacy arrangements, driving the HTM queue reform programme
+  - UK 132 kV XLPE cable typical current rating: 300–400 A for 1,000 mm² conductor (approximately 60–90 MVA at 132 kV); a 400 kV 2,000 mm² XLPE cable can carry approximately 1,000–1,200 MVA per circuit
+  - TNUoS generation tariff (2024/25): ranges from approximately -£10/kW/year in northern Scotland to +£8/kW/year in south-east England; a 500 MW offshore wind project in the north experiences a TNUoS benefit of ~£5M/year compared to an equivalent southern project
+  - Distribution network reinforcement costs: a new 33 kV substation typically costs £2M–£5M; a new 132 kV substation £8M–£20M; overhead line reinforcement on existing routes £150k–£400k per km
+  - Constraint costs on the GB system: National Grid ESO spent approximately £1.5–2.0 billion on constraint payments in 2023/24, predominantly paying Scottish wind generators to curtail and southern CCGTs to generate; this cost falls on consumers through Balancing Services Use of System (BSUoS) charges
+  - GIS substation footprint is approximately 30–50% of equivalent AIS; the premium is typically 20–40% on capital cost but is justified on constrained urban or offshore sites
+
+  RED FLAGS:
+  - Connection offer accepted based on connection capacity in the offer letter without checking whether the capacity is available on a firm or non-firm basis — non-firm connections expose projects to curtailment obligations that can reduce annual generation by 10–40% in constrained network areas
+  - Grid connection agreement signed without legal review of the output curtailment provisions, modification and termination rights, and the process for the network operator to require works at the developer's cost
+  - No independent assessment of the network reinforcement scheme proposed by the DNO or National Grid — network operators' cost estimates for reinforcement works are frequently understated at connection offer stage; developers regularly encounter cost escalations of 30–100% between offer and construction
+  - Project programme not aligned with connection energisation date — connection energisation delays are among the most frequent causes of construction completion without ability to generate revenue; a late energisation by 3–6 months on a 200 MW project costs £3–10M in lost revenue
+  - Substation protection philosophy not agreed with the network operator before detailed design commences — protection scheme disputes late in detailed design are extremely expensive to resolve and routinely delay commissioning
+  - Reactive power capability of inverters not checked against the Grid Code G99 or transmission licence obligation before procurement — inverters specified to unity power factor only cannot meet the reactive power requirements at the connection point, requiring expensive additional reactive compensation

@@ -1,0 +1,65 @@
+id: data_analytics_ai
+name: Data, Analytics & AI
+description: Expert panel covering data strategy, engineering, advanced analytics, machine learning, AI deployment, governance, and responsible use of data-driven technology
+pillar: digital_technology
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Financial Services
+      - Healthcare & Life Sciences
+      - Retail & Consumer
+      - Manufacturing
+      - Technology
+      - Public Sector
+      - Energy & Utilities
+      - Professional Services
+      - Other
+  - key: data_maturity
+    label: Data Maturity
+    options:
+      - ""
+      - Collecting — data exists but not well used
+      - Reporting — dashboards and BI
+      - Analysing — insight and root cause
+      - Predictive — forecasting and modelling
+      - AI-enabled — ML models in production
+  - key: primary_goal
+    label: Primary Goal
+    options:
+      - ""
+      - Operational efficiency
+      - Customer insight & personalisation
+      - Product & service development
+      - Risk & fraud management
+      - Regulatory & compliance
+      - Revenue & commercial optimisation
+      - Research & innovation
+personas:
+  - data_strategy_lead
+  - data_engineering
+  - data_ml_ai
+  - data_bi_analyst
+  - data_governance
+  - data_responsible_ai

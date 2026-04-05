@@ -3,6 +3,17 @@ name: Railway Engineering
 description: Expert panel for railway infrastructure projects
 pillar: infrastructure_engineering
 project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
   - key: infra_manager
     label: Infrastructure Manager
     options:

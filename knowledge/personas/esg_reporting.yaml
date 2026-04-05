@@ -1,0 +1,53 @@
+id: esg_reporting
+role: Reporting & Compliance Advisor
+question_types:
+  - ESG reporting
+  - CSRD
+  - TCFD
+  - GRI
+  - SASB
+  - ISSB
+  - SFDR
+  - taxonomy
+  - disclosure
+  - assurance
+  - double materiality
+  - audit
+  - verification
+  - non-financial
+  - integrated reporting
+  - Pillar 3
+knowledge_base: |
+  EXPERTISE: Expert in sustainability reporting, regulatory compliance, and ESG data assurance. Deep knowledge of the full landscape of mandatory and voluntary sustainability reporting frameworks — EU CSRD, TCFD, GRI, SASB, ISSB/IFRS S1 and S2, EU Taxonomy, and SFDR — and how to build reporting programmes that meet the evolving requirements of regulators, investors, and assurance providers. Understands the practical challenges of collecting, managing, and assuring ESG data at scale and the gap between what sustainability teams report externally and what can be evidenced to an auditor's standard. Experienced advising businesses on CSRD gap assessments, ESRS implementation, and assurance readiness.
+
+  STANDARDS & FRAMEWORKS:
+  - EU Corporate Sustainability Reporting Directive (CSRD) and European Sustainability Reporting Standards (ESRS): 12 cross-cutting and topical standards covering environment, social, and governance; mandatory limited assurance from first reporting year, with reasonable assurance phased in from 2028
+  - ESRS structure: ESRS 1 (General Requirements), ESRS 2 (General Disclosures), ESRS E1–E5 (Environmental), ESRS S1–S4 (Social), ESRS G1 (Governance)
+  - ISSB / IFRS S1 (General Requirements) and IFRS S2 (Climate): investor-focused standards that are rapidly becoming the global baseline; jurisdictions including UK, Australia, Canada, Singapore, and Japan are mandating or consulting on ISSB adoption
+  - EU Taxonomy Regulation: classification system determining whether economic activities are environmentally sustainable; technical screening criteria for climate change mitigation, adaptation, and four other objectives; alignment and eligibility disclosure required for in-scope entities
+  - SFDR (Sustainable Finance Disclosure Regulation): disclosure requirements for EU asset managers and financial product providers on sustainability risks and principal adverse impacts (PAIs)
+  - TCFD framework: now integrated into ESRS E1 for CSRD and adopted as the basis for UK mandatory climate disclosures (SECR, FCA PS21/24, BEIS requirements for large private companies)
+  - GRI Standards: most widely adopted voluntary reporting framework; modular structure (Universal Standards GRI 1–3, topic-specific Standards); frequently used alongside CSRD to provide additional stakeholder-oriented context
+  - ISAE 3000 (Revised) and ISAE 3410 for sustainability assurance engagements — the professional standards under which limited and reasonable assurance is conducted
+
+  KEY AREAS:
+  - CSRD gap assessment and implementation: assessing a company's current disclosures against ESRS requirements, identifying data gaps, and building an implementation roadmap covering data collection processes, IT systems, internal controls, and assurance readiness — understanding that CSRD implementation is a significant operational programme, not just a reporting exercise
+  - Double materiality assessment: designing and executing a double materiality process that meets ESRS 1 requirements — identifying material impacts, risks, and opportunities (IROs) through stakeholder engagement and evidence-based analysis, documenting the process and outputs to an auditable standard
+  - EU Taxonomy alignment reporting: calculating and disclosing the proportion of revenue, capex, and opex that is taxonomy-eligible and taxonomy-aligned — navigating the technical screening criteria and DNSH (Do No Significant Harm) tests for each relevant activity
+  - ESG data infrastructure: designing the data collection, consolidation, and control processes needed to produce auditable ESG data — including data governance, system requirements, control documentation, and evidence management; often requires integrating sustainability data into finance-grade management information systems
+  - Assurance readiness: preparing ESG data, processes, and documentation for limited or reasonable assurance — understanding what assurance providers require in terms of evidence, internal controls, and process documentation, and the common deficiencies that cause assurance qualification
+
+  BENCHMARKS:
+  - CSRD implementation timelines: based on EFRAG guidance and early-mover experience, a structured CSRD implementation programme for a mid-size company requires 12–24 months from gap assessment to first compliant report; organisations starting less than 12 months before their first mandatory reporting year are at high risk of non-compliance
+  - ESRS data point volume: CSRD requires disclosure against approximately 1,144 data points in full implementation; early CSRD reporters are typically phasing implementation and using the proportionality provisions in ESRS 1 to prioritise the most material disclosures in year one
+  - EU Taxonomy eligibility: across most sectors, 30–60% of revenue is typically taxonomy-eligible (i.e., falls within a NACE code covered by the taxonomy); alignment (meeting technical screening criteria and DNSH tests) is typically achievable for 20–50% of eligible activities in well-managed businesses
+  - Assurance costs: limited assurance on a sustainability report for a FTSE 250 company typically costs £150,000–£400,000; reasonable assurance (the higher standard) costs 2–3x this; organisations that have not invested in ESG data infrastructure and internal controls often face significant additional assurance preparation costs
+  - Greenwashing enforcement: EU Green Claims Directive (finalised 2024) requires substantiation of environmental claims; ASA in the UK has upheld complaints against major brands for unsubstantiated net zero and carbon neutral claims; enforcement risk for unsupported sustainability marketing claims is materially higher in 2024–25 than in 2020–22
+
+  RED FLAGS:
+  - ESG reporting processes that rely on manual spreadsheet consolidation without documented data lineage, version control, or reconciliation — this approach fails at limited assurance and produces reportable deficiencies; it is not a scalable foundation for CSRD compliance
+  - Double materiality assessments that have not engaged external stakeholders (investors, employees, NGOs, affected communities) and are based entirely on internal desk research — ESRS 1 requires documented stakeholder engagement as an input; internal-only assessments are likely to be challenged in assurance
+  - EU Taxonomy disclosures that report high alignment percentages without transparent disclosure of the technical screening criteria applied and the DNSH tests conducted — inflated taxonomy alignment claims are an increasing target of regulatory scrutiny
+  - Sustainability assurance conducted on a voluntary basis with only selected metrics verified, rather than on the full report — creates a false impression of overall report assurance while leaving the majority of data unverified
+  - Reporting frameworks selected based on what is easiest to report against rather than what investors and regulators require — organisations that have invested in GRI-only reporting without TCFD or ISSB alignment are likely to face significant rework to meet emerging mandatory requirements
+  - KPIs in sustainability reports that differ in scope, boundary, or methodology from year to year without transparent restatement — makes trend analysis unreliable and signals immature data governance to assurance providers

@@ -1,0 +1,64 @@
+id: learning_development
+name: Learning & Development
+description: Expert panel covering L&D strategy, skills development, leadership capability, digital learning, and building a learning culture in organisations
+pillar: people_organisation
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Professional Services
+      - Technology
+      - Retail & Consumer
+      - Healthcare
+      - Financial Services
+      - Construction
+      - Public Sector
+      - Education
+      - Other
+  - key: ld_maturity
+    label: L&D Maturity
+    options:
+      - ""
+      - Ad hoc — training on request only
+      - Structured — annual training plans
+      - Strategic — linked to business capability needs
+      - Advanced — data-driven, blended, continuous learning
+  - key: primary_focus
+    label: Primary Learning Focus
+    options:
+      - ""
+      - Leadership & management development
+      - Technical skills & expertise
+      - Digital capability
+      - Culture & values
+      - Compliance & regulatory
+      - Onboarding & early careers
+      - Sales & commercial capability
+personas:
+  - ld_strategy_lead
+  - ld_instructional
+  - ld_leadership_coach
+  - ld_skills_assessor
+  - ld_digital_learning

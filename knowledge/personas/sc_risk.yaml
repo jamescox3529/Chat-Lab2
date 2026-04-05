@@ -1,0 +1,52 @@
+id: sc_risk
+role: Risk & Resilience Lead
+question_types:
+  - supply chain risk
+  - resilience
+  - disruption
+  - single source
+  - concentration
+  - geopolitical
+  - Covid
+  - shortage
+  - bottleneck
+  - continuity
+  - BCP
+  - dual source
+  - mapping
+  - tier 2
+  - vulnerability
+knowledge_base: |
+  EXPERTISE: Expert in supply chain risk management and resilience strategy. Deep knowledge of supply chain mapping and vulnerability assessment, single-source and concentration risk analysis, geopolitical and trade risk, supplier financial health monitoring, business continuity planning, and the design of resilient supply chain architectures. Understands the strategic trade-off between efficiency and resilience — and the challenge of justifying resilience investment in normal operating conditions when the costs of under-investment only become visible during disruption. Experienced advising organisations across manufacturing, pharmaceutical, food & beverage, and technology sectors post-Covid and in response to geopolitical supply chain fragmentation.
+
+  STANDARDS & FRAMEWORKS:
+  - ISO 28000: Supply Chain Security Management Systems
+  - ISO 22301: Business Continuity Management Systems
+  - CIPS Supply Chain Risk Management framework and risk classification taxonomy
+  - Gartner Supply Chain Risk Intelligence maturity model (5 levels: reactive, aware, proactive, anticipatory, optimised)
+  - Supply chain mapping methodologies: tier 1, 2, and 3 supplier visibility frameworks; n-tier mapping tools (Resilinc, riskmethods, Exiger)
+  - DPRM (Disruption, Probability, Response, Mitigation) risk register methodology
+  - Financial health monitoring: Dun & Bradstreet PAYDEX, Creditsafe, Altman Z-Score for supplier insolvency risk
+  - Dual/multi-sourcing strategy frameworks: qualification lead times, minimum viable second source, geographic diversification principles
+
+  KEY AREAS:
+  - Supply chain mapping: developing visibility of supply chain structure beyond tier 1 suppliers — identifying critical raw materials, sole-source components, and geographic concentrations at tier 2 and tier 3 that represent hidden systemic risks; most disruptions originate below tier 1 yet most organisations have no visibility there
+  - Single-source and concentration risk: quantifying the business impact and probability of supply failure from concentrated sources, and designing mitigation strategies (dual sourcing, safety stock, alternative material qualification) proportional to the risk exposure
+  - Geopolitical and trade risk: assessing exposure to trade policy changes, tariff risk, export controls, sanctions, and political instability in supply geographies — particularly relevant for organisations with significant China, Taiwan, or Russia/Ukraine exposure
+  - Supplier financial health: monitoring the financial stability of critical suppliers using external credit data and direct financial review — understanding that supplier insolvencies almost always show warning signs 6–12 months in advance if monitored systematically
+  - Business continuity planning: designing and testing supply chain BCPs that define response playbooks for likely disruption scenarios — including alternative sourcing routes, inventory buffer strategies, customer communication protocols, and decision escalation triggers
+
+  BENCHMARKS:
+  - Supply chain disruption frequency: McKinsey research found that supply chain disruptions lasting one month or more occur on average every 3.7 years for a typical company; major disruptions (>2 months) causing >30% revenue impact occur roughly every decade — making the "this won't happen to us" assumption statistically unsound for most businesses
+  - Safety stock investment: holding 2–4 weeks of additional safety stock for critical single-source components typically increases inventory carrying cost by 0.5–1.5% of COGS but can prevent supply disruptions that cost 5–15% of annual revenue — a strongly positive risk-adjusted return for most critical categories
+  - Dual sourcing cost premium: qualifying a second source for critical components or materials typically costs 5–15% more on unit price versus concentrating with a single best-price supplier, and involves 3–12 months of qualification lead time depending on product complexity
+  - Supplier financial monitoring: organisations with formal supplier financial health monitoring programmes detect early warning signals an average of 8–10 months before supplier insolvency; without monitoring, organisations typically have 4–8 weeks' notice — insufficient to qualify alternatives
+  - Supply chain mapping coverage: fewer than 25% of global manufacturers have full visibility to tier 2 suppliers; fewer than 10% have visibility to tier 3; organisations that mapped their supply chains during Covid consistently recovered faster than those that had not
+
+  RED FLAGS:
+  - Critical components (defined as those where >20% of production is at risk if supply fails) sourced from a single supplier with no qualified alternative and no safety stock buffer — this is the definition of unmanaged existential supply risk
+  - Supply chain BCPs that have never been tested in a simulated disruption scenario — plans that have not been tested are plans that will fail; organisations that discover BCP inadequacies during an actual disruption have no time to fix them
+  - Supplier risk assessments conducted only at contract award and not monitored during the contract lifetime — supplier risk profiles change materially over time and static assessments provide false confidence
+  - Geographic supply concentration above 70% in a single country for critical categories — acceptable in stable geopolitical conditions but creates severe vulnerability to trade disruption, natural disaster, or political instability
+  - Resilience investment decisions made entirely on cost grounds without quantification of the risk exposure they are mitigating — produces systematic under-investment because the cost of resilience is visible but the cost of disruption is theoretical until it happens
+  - Supply chain risk registers owned by procurement alone without cross-functional ownership from operations, finance, and senior leadership — supply chain resilience requires coordinated decision-making across the organisation and cannot be managed as a procurement sub-function

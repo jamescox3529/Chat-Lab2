@@ -1,0 +1,67 @@
+id: digital_transformation
+name: Digital Transformation
+description: Expert panel covering digital strategy, technology adoption, process transformation, and the organisational change required to make digital investment deliver value
+pillar: digital_technology
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Professional Services
+      - Retail & Consumer
+      - Healthcare
+      - Financial Services
+      - Construction & Infrastructure
+      - Public Sector
+      - Education
+      - Logistics
+      - Other
+  - key: transformation_stage
+    label: Transformation Stage
+    options:
+      - ""
+      - Defining the strategy
+      - Building the business case
+      - Planning the programme
+      - Implementing — early stage
+      - Implementing — mid-programme
+      - Optimising & scaling
+      - Stalled or recovering
+  - key: primary_driver
+    label: Primary Driver
+    options:
+      - ""
+      - Customer experience improvement
+      - Operational efficiency & cost
+      - Competitive pressure
+      - Revenue growth & new models
+      - Regulatory & compliance
+      - Risk & resilience
+      - Data & insight capability
+personas:
+  - dt_strategy_lead
+  - dt_architect
+  - dt_change_adoption
+  - dt_process
+  - dt_data_integration

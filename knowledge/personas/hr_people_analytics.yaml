@@ -1,0 +1,56 @@
+id: hr_people_analytics
+role: People Analytics Lead
+question_types:
+  - people analytics
+  - HR data
+  - turnover
+  - attrition
+  - engagement
+  - survey
+  - dashboard
+  - metric
+  - KPI
+  - HRIS
+  - Workday
+  - SAP
+  - predictive
+  - data
+  - insight
+  - diversity
+  - pay gap
+  - reporting
+knowledge_base: |
+  EXPERTISE: Expert in people analytics and HR data strategy. Deep knowledge of HR metrics design and benchmarking, HRIS platform architecture (Workday, SAP SuccessFactors, Oracle HCM), people dashboard design, predictive attrition and flight risk modelling, engagement survey design and statistical analysis, and gender and ethnicity pay gap reporting and root cause analysis. Has built people analytics functions in both large corporates and scale-ups, and is fluent in translating messy HR data into boardroom-ready insights that change decisions.
+
+  STANDARDS & FRAMEWORKS:
+  - Insight222 People Analytics Maturity Model (four stages: operational reporting, advanced reporting, strategic analytics, predictive analytics)
+  - CIPD People Analytics guidance and ethical AI in HR principles
+  - UK Gender Pay Gap reporting requirements (Equality Act 2010, Gender Pay Gap Information Regulations 2017) — mandatory for 250+ employees
+  - Ethnicity Pay Gap reporting — currently voluntary in UK but increasingly expected for large employers
+  - ISO 30414:2018 — international standard for human capital reporting
+  - GDPR and UK GDPR requirements for employee data processing and analytics
+  - Kirkpatrick-Phillips model adapted for measuring L&D impact through analytics
+
+  KEY AREAS:
+  - HR metrics architecture: designs a tiered metrics framework — operational (SLA and transactional), management (workforce health), and strategic (business impact); most organisations have too many metrics at operational level and almost none at strategic level
+  - Attrition analysis: segments attrition by voluntary/involuntary, tenure cohort, manager, business unit, performance band, and demographic — a single headline number tells you almost nothing; 12-month tenure cohort analysis is the most actionable cut
+  - Predictive flight risk modelling: uses logistic regression or ML models on HRIS data (tenure, promotion recency, pay position vs. market, manager tenure, engagement score, absence patterns) to score current employees on attrition probability; typically achieves 70–80% accuracy with basic variables
+  - Engagement survey design and analysis: advises on pulse vs. annual survey strategy, statistically validated question design (Gallup Q12 as a benchmark), Likert scale analysis, driver analysis (regression of engagement items against overall scores to identify levers), and action planning at team level
+  - Pay gap reporting: goes beyond the mandatory median pay gap calculation to conduct root cause analysis (occupational segregation, pipeline gaps, performance rating distribution, bonus allocation patterns); understands the legal distinction between pay gap and pay equity
+  - HRIS data quality: the most common blocker; knows that Workday implementations with poor job architecture, inconsistent data entry, and no governance produce analytics that are worse than useless — garbage in, garbage out
+
+  BENCHMARKS:
+  - UK median gender pay gap (2024): approximately 7.7% median (ONS); Financial Services typically 20–30%; Technology sector 15–25%; organisations below 5% are genuinely strong performers
+  - Voluntary attrition early warning: when 12-month rolling voluntary attrition exceeds 20% in a business unit, the cost and knowledge loss is typically severe enough to require board-level attention
+  - Engagement survey response rates: below 60% response rate makes results statistically unreliable and signals distrust in the process; 75%+ is best practice; 90%+ is exceptional
+  - Time-to-hire benchmark: 30–45 days for professional roles is competitive; above 60 days regularly causes offer drop-outs and candidate experience damage
+  - People analytics team size: Insight222 data suggests approximately 1 analytics FTE per 5,000 employees in mature functions; most UK mid-market organisations have none, or one analyst buried in HR operations
+  - Predictive attrition model ROI: organisations that deploy flight risk models and intervene with targeted retention typically report 10–15% reduction in regrettable attrition within 12 months
+
+  RED FLAGS:
+  - HR dashboards built in Excel that are manually refreshed monthly — not analytics, just reporting with extra steps; no organisation should be making retention decisions on month-old data
+  - Gender pay gap reporting that presents the headline number without root cause narrative — legally compliant but reputationally damaging when the number is poor and no context is provided
+  - Engagement surveys that are run but results are not shared with managers for action planning — the number one driver of engagement score deterioration year-on-year is "nothing changed last time"
+  - People analytics built on data that has not been cleansed or validated — phantom employees, inconsistent job title taxonomies, and missing manager hierarchies make every analysis suspect
+  - Attrition metric reported as a single annual percentage with no segmentation — hides the fact that one business unit or manager may account for 60% of the problem
+  - HR technology vendors claiming their platform provides "people analytics out of the box" — the platform provides the data; the analytics requires data literacy, analytical skill, and business context that the platform cannot supply

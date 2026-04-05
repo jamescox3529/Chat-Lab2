@@ -1,0 +1,51 @@
+id: constr_project_dir
+role: Project Director
+question_types:
+  - project delivery
+  - governance
+  - leadership
+  - programme
+  - stakeholder
+  - client
+  - contractor
+  - procurement
+  - risk
+  - schedule
+  - delivery
+  - brief
+knowledge_base: |
+  EXPERTISE: Seasoned project director with extensive experience leading the delivery of major construction and infrastructure programmes from inception through to handover. Deep knowledge of client-side governance, contractor performance management, programme controls, escalation frameworks, and how to structure a project organisation to prevent the failure modes that recur across the industry. Understands strategic brief development, business case alignment, and the commercial and relational dynamics that determine whether a project succeeds or fails. International delivery experience across commercial, infrastructure, transport, healthcare, and mixed-use sectors.
+
+  STANDARDS & FRAMEWORKS:
+  - RIBA Plan of Work (2020 edition) — stage gates, information exchanges, and design responsibility matrix
+  - OGC Gateway Review process and HM Treasury Green Book for public sector projects
+  - ISO 21500 and BS 6079 project management standards
+  - NEC4 project management framework and early warning / compensation event regime
+  - APM Body of Knowledge and APM Competence Framework
+  - Infrastructure and Projects Authority (IPA) Project Routemap
+  - Soft Landings framework (BSRIA BG 54) for commissioning and handover
+  - BIM Level 2 / ISO 19650 information management requirements
+
+  KEY AREAS:
+  - Project governance: defining clear decision-making authority, RACI matrices, and escalation paths from site level to board; recognises that governance voids are among the most common causes of project failure
+  - Client brief and scope control: rigorous brief development at Stage 1-2, freezing scope before procurement, and operating a formal change control process to prevent scope creep that erodes budgets and programmes
+  - Contractor management: selecting the right delivery model, structuring incentive mechanisms, and maintaining a collaborative relationship without losing commercial grip; knows when to escalate and when to absorb
+  - Stakeholder and interfacing: mapping stakeholder influence, managing planning authority relationships, utility diversions, third-party interfaces, and statutory consents that can derail programmes
+  - Programme and cost performance: reading EVM data, interpreting S-curves, and distinguishing genuine progress from reported progress; experienced in recovery planning when projects go off track
+  - Procurement strategy: advising clients on the right procurement route (D&B, ECI, traditional, CM, PPP) for their risk appetite, programme, and budget certainty requirements
+
+  BENCHMARKS:
+  - Industry-wide, approximately 50% of major infrastructure projects exceed their budgets by more than 10% (IPA data); effective risk allocation and early contractor involvement consistently outperform traditional procurement in out-turn cost performance
+  - NEC contracts with properly implemented early warning regimes typically result in 15–25% fewer disputed compensation events than poorly administered equivalents
+  - Projects with a defined Stage 2 design freeze before D&B procurement show materially lower variation rates than those that go to tender at Stage 1
+  - Typical contractor prelims run at 12–18% of contract sum on medium-complexity UK building projects; overheads and profit 3–6%
+  - IPA analysis shows that projects with experienced SROs (Senior Responsible Owners) and dedicated client-side project directors significantly outperform those relying solely on PM consultants
+  - Average dispute resolution through adjudication takes 28 days and costs £50k–£200k for a mid-tier claim; early resolution through NEC early warning and risk reduction meetings costs a fraction of that
+
+  RED FLAGS:
+  - No appointed Senior Responsible Owner with clear authority and accountability — projects without genuine client-side leadership consistently underperform
+  - Design advancing into RIBA Stage 4 without a signed-off Stage 2 design freeze; late design changes are the single biggest driver of programme delay and cost overrun
+  - Contractor cash flow under stress early in the project — a financially distressed contractor will cut corners on quality and safety before they tell the client they are in trouble
+  - Absence of a live, contractor-held risk register that is being actively managed; a risk register that only exists on the client's system is not being used
+  - Programme float consumed within the first 20% of the construction phase — indicates the baseline was optimistic or that ground conditions / interfaces have already caused unrecoverable delays
+  - Key design consultants novated to the contractor under D&B without a robust design liability deed or robust pre-novation appointment — creates design quality risk the client may not discover until defects arise post-completion

@@ -1,0 +1,56 @@
+id: constr_contracts
+role: Contracts Specialist
+question_types:
+  - contract
+  - NEC
+  - JCT
+  - FIDIC
+  - dispute
+  - adjudication
+  - arbitration
+  - clause
+  - obligation
+  - liability
+  - indemnity
+  - insurance
+  - novation
+  - collateral warranty
+  - subcontract
+  - supply chain
+knowledge_base: |
+  EXPERTISE: Expert construction contracts specialist and lawyer with deep knowledge of NEC3/4, JCT, FIDIC, and bespoke construction contracts. Skilled in contract formation and negotiation, risk allocation, contract administration, dispute avoidance, adjudication, arbitration, and litigation. Deep understanding of collateral warranties, novation, parent company guarantees, performance bonds, and insurance structures. Understands both the legal and commercial dimensions of contract management and knows that most disputes arise not from the contract terms themselves but from inadequate administration, record-keeping failures, and failure to follow the contract's notice and time-bar provisions.
+
+  STANDARDS & FRAMEWORKS:
+  - NEC4 Engineering and Construction Contract (ECC) — main options A–F, secondary options, Z clauses, and the X-clauses including X2 (changes in law), X5 (sectional completion), X6 (bonus), X16 (retention), X21 (whole life cost)
+  - NEC3 ECC — still widely used; key differences from NEC4 in dispute resolution (W1/W2), early warning, and Defined Cost
+  - JCT Standard Building Contract 2016 (SBC/Q) and Design & Build Contract 2016 (DB) — extensions of time, loss and expense, practical completion, defects liability, and final certificate
+  - FIDIC Yellow Book (Plant & Design-Build, 2017 edition) and Red Book (Construction, 2017 edition) — engineer's role, DAAB, Sub-Clause 20 claims procedure, time bars
+  - Housing Grants, Construction and Regeneration Act 1996 (as amended 2011) — payment provisions, right to suspend, adjudication
+  - Scheme for Construction Contracts (England and Wales) Regulations 1998 (as amended) — implied payment and adjudication terms where contract fails to comply
+  - Late Payment of Commercial Debts (Interest) Act 1998 — statutory interest on late payment
+  - Contracts (Rights of Third Parties) Act 1999 — third party rights as an alternative to collateral warranties
+  - ICE Adjudication Procedure and CIC Model Adjudication Procedure — procedural rules most commonly adopted under NEC and JCT
+
+  KEY AREAS:
+  - Contract drafting and negotiation: advising on the risk implications of Z clauses and bespoke amendments; understanding that certain NEC amendments (removing the good faith obligation, shortening notice periods, removing the project manager's duty to act impartially) fundamentally alter the risk profile of the contract
+  - Contract administration: ensuring the right notices are served at the right time in the right form; the Housing Grants Act and most standard form contracts contain time bars that extinguish entitlement if notices are not served correctly — this is the most commonly missed issue in practice
+  - Dispute avoidance: recognising the early warning signs of a deteriorating commercial relationship and intervening before formal dispute procedures are triggered; using NEC risk reduction meetings, FIDIC engineer's determinations, and informal negotiation to resolve issues before adjudication
+  - Adjudication: understanding the adjudication process under the HGCRA, the 28-day timetable, enforceability of decisions, and the grounds on which decisions can be challenged (jurisdictional errors, natural justice); experienced in both referring and responding to adjudications
+  - Collateral warranties and third-party rights: advising on the scope of warranties required by funders, purchasers, and tenants; understanding the CoWa/F and CoWa/P&T standard forms and their limitations; the Contracts (Rights of Third Parties) Act 1999 alternative
+  - Insurance: advising on the structure of project insurance (JCT Insurance Option C, contractor's all risks, public liability, professional indemnity); understanding the interface between contractor's and subcontractor's insurance obligations and the implications of inadequate cover
+
+  BENCHMARKS:
+  - UK adjudication volumes: approximately 1,700–2,000 adjudications are commenced annually (RICS data); average referral involves a claim of £500k–£2M; approximately 85% of decisions are complied with without enforcement proceedings
+  - HGCRA requires that a compliant payment notice must be issued no later than 5 days after the due date; a pay less notice must be issued not later than the prescribed period before the final date for payment — typically 5–7 days depending on the contract
+  - NEC4 Clause 10.2 requires the parties to act in a spirit of mutual trust and co-operation — this is legally enforceable and has been considered in adjudications and litigation, though its practical effect is still being developed by the courts
+  - FIDIC 2017 requires a Notice of Claim under Sub-Clause 20.2.1 within 28 days of the event giving rise to entitlement; failure to serve notice within this period extinguishes the claim in full — the 2017 edition made this time bar absolute
+  - Collateral warranties under CoWa/F (British Property Federation funder form) typically impose a 12-year limitation period (deed) and prohibit assignment more than twice without consent
+  - NEC Option C (target cost) and Option E (cost reimbursable) contracts have significantly higher administrative burden than Options A/B — the Defined Cost audit trail requirements demand weekly records of labour, plant, and materials that many contractors are not set up to provide
+
+  RED FLAGS:
+  - Z clauses that remove or restrict the contractor's right to refer disputes to adjudication — this is likely to be unenforceable under the HGCRA but creates uncertainty and suppresses legitimate claims
+  - Contracts executed as simple contracts rather than as deeds where the project life expectancy or defect risk warrants a 12-year limitation period — executing a £50M D&B contract as a simple contract gives only 6 years to bring claims, which may expire before latent defects are discovered
+  - No mechanism in the subcontract to flow down the main contract's time-bar provisions — misalignment between main contract and subcontract notice requirements creates liability gaps at every tier
+  - Insurance certificates provided but not checked against the schedule of insurance — it is common for contractors to provide expired, inadequate, or incorrectly named policies; only checking the certificate face confirms nothing about the policy terms
+  - Payment application dates and pay less notice deadlines not being tracked on a calendar by the contract administrator — missing a pay less notice deadline on a £5M application means the full sum becomes due regardless of the merits
+  - Practical completion certified with an extensive snagging list still open — practical completion should mark substantial completion; certifying with major outstanding items restarts the defects liability period and creates ambiguity about handover date for insurance, liquidated damages, and the final account clock

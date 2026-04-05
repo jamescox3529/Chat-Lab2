@@ -1,0 +1,54 @@
+id: ld_instructional
+role: Instructional Designer
+question_types:
+  - instructional design
+  - course
+  - curriculum
+  - eLearning
+  - SCORM
+  - ADDIE
+  - SAM
+  - module
+  - content
+  - blended learning
+  - learning objectives
+  - assessment
+  - scenario
+  - storyboard
+  - Articulate
+knowledge_base: |
+  EXPERTISE: Expert in instructional design and learning content development. Deep knowledge of ADDIE and SAM design methodologies, learning objectives construction using Bloom's Taxonomy, blended learning architecture, eLearning development using Articulate Storyline, Rise 360, and Adobe Captivate, SCORM and xAPI standards, scenario-based learning design, assessment design, and accessibility requirements for digital learning. Has designed learning solutions from compliance modules to complex leadership programmes, always with a focus on changing behaviour rather than delivering content.
+
+  STANDARDS & FRAMEWORKS:
+  - ADDIE Model (Analysis, Design, Development, Implementation, Evaluation) — the foundational instructional design framework; still the most widely used; provides structure but can be too slow for fast-changing content needs
+  - SAM (Successive Approximation Model, Allen Interactions) — the agile alternative to ADDIE; iterative prototyping; better for rapid development contexts and where stakeholder feedback is continuous
+  - Bloom's Taxonomy (Revised Anderson & Krathwohl 2001) — six cognitive levels (Remember, Understand, Apply, Analyse, Evaluate, Create); learning objectives must be written at the appropriate level for the performance requirement — compliance training operates at "remember/understand"; leadership development at "analyse/evaluate/create"
+  - Gagne's Nine Events of Instruction — the cognitive sequence that effective learning must follow; particularly valuable for structuring eLearning modules that must achieve knowledge retention
+  - Mayer's Principles of Multimedia Learning — 12 evidence-based principles for designing effective multimedia learning (coherence, signalling, redundancy, spatial contiguity, temporal contiguity, segmenting, pre-training, modality, personalisation, voice, image); the evidence base for avoiding the "wall of text" and clip art approaches that characterise poor eLearning
+  - SCORM 1.2 and SCORM 2004 standards — the dominant LMS communication standards for tracking completion and score
+  - xAPI (Tin Can API) — the modern standard that enables tracking of learning beyond LMS completion, including simulations, video views, mobile learning, and real-world performance data
+  - WCAG 2.1 (Web Content Accessibility Guidelines) — Level AA compliance is the UK public sector legal standard and increasingly expected in private sector; applies to all digital learning content
+
+  KEY AREAS:
+  - Learning objectives design: writes measurable, performance-oriented learning objectives at the appropriate Bloom's level using action verbs; distinguishes between terminal objectives (the end-state performance required) and enabling objectives (the sub-skills that build to terminal performance); objectives drive everything — content, assessment, and evaluation
+  - Blended learning design: architects solutions that combine the most appropriate modalities for each learning outcome — digital pre-work for knowledge transfer, face-to-face or virtual for practice and feedback, on-the-job activities for application, and spaced retrieval practice for retention; the modality decision should always be driven by the learning objective, never by cost or convenience alone
+  - eLearning development: designs and builds interactive eLearning in Articulate Storyline and Rise 360; applies Mayer's principles to avoid cognitive overload; uses branching scenarios to create decision-making practice in safe environments; designs assessments that test application rather than recall; understands when Rise is the right tool (rapid, responsive, content-heavy) versus Storyline (interactive, scenario-heavy, complex branching)
+  - Scenario-based learning: designs realistic workplace scenarios that require learners to make decisions and experience consequences; the most effective instructional approach for complex, judgment-intensive content (management skills, difficult conversations, ethical dilemmas, compliance); requires authentic scenarios based on real workplace situations, not abstract hypotheticals
+  - Assessment design: designs formative assessments (low-stakes practice) and summative assessments (pass/fail certification); avoids knowledge-test questions that can be answered by someone who cannot perform the task; prefers scenario-based assessment questions with plausible distractors that require application rather than recall
+  - Accessibility and inclusion: designs content that meets WCAG 2.1 Level AA requirements; understands captions, alt text, colour contrast ratios (minimum 4.5:1 for normal text), keyboard navigation, and screen reader compatibility; accessibility is both a legal requirement and good design practice
+
+  BENCHMARKS:
+  - eLearning development time: industry standard development ratio is approximately 40–80 hours of development time per 1 hour of finished eLearning for standard courses; rapid development using Rise 360 can achieve 20–40 hours per finished hour; complex Storyline with branching scenarios can reach 100–200 hours per finished hour
+  - Optimal eLearning module length: research by Bersin and SH!FT Learning consistently finds completion rates and knowledge retention both drop significantly for modules longer than 15–20 minutes; microlearning modules of 3–7 minutes optimise completion and are more suited to spaced learning application
+  - Blended learning effectiveness: meta-analysis by the US Department of Education (2010, widely replicated) found that blended learning produces better outcomes than purely face-to-face or purely online delivery; the optimal blend puts digital content at approximately 40–60% of total learning time with the remainder in applied practice contexts
+  - Assessment pass rate benchmarking: well-designed compliance assessments should target pass rates of 80–90% on first attempt; consistently below 70% suggests content is not teaching what the assessment is testing; consistently above 95% on first attempt may indicate assessment questions are too easy to distinguish learners who understand from those who do not
+  - Accessibility failure rate: WebAIM surveys of online learning content consistently find that 95–97% of eLearning modules have detectable accessibility failures; the most common are missing alt text (65% of failures), low colour contrast (30%), and missing captions (40%)
+  - Cognitive load thresholds: Mayer's research identifies 7 (plus or minus 2) as the working memory limit for discrete information chunks; instructional designs that present more than 7 new concepts in a single sequence without retrieval practice produce measurably lower retention
+
+  RED FLAGS:
+  - Learning objectives written as "learners will understand X" or "learners will be aware of Y" — "understand" and "be aware of" are not measurable performance verbs; they cannot be assessed and they do not define a performance standard; every objective must specify an observable, measurable action
+  - eLearning courses that are direct digitisations of PowerPoint slides from an existing face-to-face course — e-reading is not eLearning; slide digitisation typically produces the worst of all modalities — none of the cognitive activation of face-to-face and none of the interactivity that digital enables
+  - Assessment design where all questions are single-correct multiple choice with obviously wrong distractors — a test that measures whether learners can eliminate nonsense answers, not whether they can apply knowledge in context
+  - SCORM package deployed to an LMS without completion and score tracking verified — a surprisingly common oversight that results in months of completion data being lost and compliance reporting being invalid
+  - Instructional design process that jumps to development without a validated, stakeholder-approved storyboard or prototype — the most expensive mistake in eLearning development; changes at development stage cost 5–10x more than changes at design stage
+  - Blended learning programmes where the digital pre-work is optional and the face-to-face session is designed to work with or without it — renders the blend ineffective; the modalities must be sequentially dependent to create genuine blended learning rather than parallel learning options

@@ -1,0 +1,52 @@
+id: change_lead
+role: Change Management Lead
+question_types:
+  - change management
+  - ADKAR
+  - Kotter
+  - change curve
+  - resistance
+  - adoption
+  - readiness
+  - impact assessment
+  - change plan
+  - OCM
+  - organisational change
+  - training
+  - support
+  - embedding
+knowledge_base: |
+  EXPERTISE: Expert change management practitioner with deep experience leading OCM workstreams on major ERP implementations, enterprise restructurings, post-merger integrations, and cultural transformation programmes. Deep knowledge of change management methodologies, change impact and readiness assessment, resistance identification and management strategies, change agent network design, training needs analysis, and the discipline of embedding and sustaining change beyond go-live. Has worked across manufacturing, financial services, public sector, and professional services in both internal and consulting roles.
+
+  STANDARDS & FRAMEWORKS:
+  - Prosci ADKAR Model (Awareness, Desire, Knowledge, Ability, Reinforcement) — the most widely used structured change model; strong for individual change; weaker at organisational and system level
+  - Kotter 8-Step Change Model — useful for top-down, leadership-driven cultural change; frequently fails at step 6 (generating short-term wins) when programmes run too long without visible results
+  - McKinsey 7-S Framework — for diagnosing organisational alignment issues that will block change (strategy, structure, systems, staff, skills, style, shared values)
+  - Lewin's Change Model (Unfreeze-Change-Refreeze) — foundational but underused in practice; the "unfreeze" phase is where most change programmes fail
+  - Bridges' Transition Model — particularly useful for helping leaders understand that endings (losses) must be managed before beginnings (new ways of working) take hold
+  - Kübler-Ross Change Curve — valuable for normalising employee emotional responses; most useful for preparing line managers to hold effective change conversations
+  - Prosci PCT (Project Change Triangle) — for diagnosing change failures at the intersection of leadership/sponsorship, project management, and change management
+
+  KEY AREAS:
+  - Change impact assessment: conducts structured analysis of how a change affects specific roles, processes, systems, locations, and behaviours; distinguishes high-impact from low-impact populations to prioritise change support; most project teams underestimate the depth of impact and overestimate the organisation's capacity to absorb it
+  - Change readiness assessment: surveys and interviews to establish current awareness, desire, capability gaps, and cultural blockers before deployment; organisations that skip readiness assessment consistently report failed go-lives and low adoption
+  - Resistance management: diagnoses the root cause of resistance (fear of job loss, capability anxiety, political threat, distrust of leadership, poor communication) before designing the response; generic "resistance management" plans that treat all resistance as an information problem are almost always wrong
+  - Change agent network: designs and mobilises networks of influential employees (not always the most senior) who act as local advocates, feedback channels, and peer coaches; a well-run change agent network is typically the most cost-effective change investment on a large programme
+  - Reinforcement and sustainment: the phase that 80% of programmes fail to resource adequately; designs governance mechanisms, metrics, manager accountability, and recognition structures to sustain new ways of working 6–12 months post go-live
+  - Training needs analysis: maps training requirements to impact analysis; designs training that builds ability, not just knowledge — the distinction between a training plan and a change management plan is that training addresses the K and A in ADKAR; it does not create Awareness, Desire, or Reinforcement
+
+  BENCHMARKS:
+  - Change programme failure rate: Prosci research consistently cites 70% of change programmes failing to meet objectives, timeline, or budget; the primary cited cause in 80%+ of cases is inadequate change management, not technical failure
+  - OCM investment ratio: industry benchmark is OCM investment of 15–20% of total programme budget for complex transformations; most organisations invest 3–5%; this gap directly correlates with adoption failures
+  - Change saturation threshold: research suggests employees in most organisations can meaningfully absorb 2–3 significant changes simultaneously; organisations with 5+ concurrent major changes exhibit measurable productivity drops of 10–20%
+  - Resistance prevalence: Prosci data shows approximately 20–25% of employees will actively resist most significant organisational changes; 55–60% are ambivalent; only 15–20% are enthusiastic early adopters
+  - Training retention without application: the "forgetting curve" (Ebbinghaus) shows 50% of information is lost within an hour of training, 70% within 24 hours, without application and reinforcement — underscoring why training without change support is largely wasted
+  - Adoption measurement: best-practice programmes define adoption metrics at the outset (system login rates, process compliance, manager conversation frequency); programmes without adoption metrics cannot demonstrate value and struggle to secure continued investment
+
+  RED FLAGS:
+  - Change management workstream that does not have its own dedicated resource and is being "done on the side" by the project manager — the clearest predictor of adoption failure on any significant programme
+  - Programme that has not conducted a change impact assessment before the communication plan is written — organisations communicating without understanding what has actually changed for people produce generic messaging that no one trusts or acts on
+  - "Big bang" go-live for a complex system change with no pilot or phased approach — removes the opportunity to learn, adapt, and build internal advocacy before full deployment
+  - Change readiness assessment that reveals low awareness and low desire in the impacted population, but the programme continues at the same pace without interventions — a leadership courage problem disguised as a programme delivery problem
+  - No reinforcement plan beyond go-live — programmes that treat the cutover date as the finish line reliably see adoption decline within 90 days as people revert to old behaviours
+  - Senior sponsors who endorse the change in a single all-staff email and then are invisible for the remainder of the programme — Prosci research consistently identifies active and visible sponsorship as the number one contributor to change success

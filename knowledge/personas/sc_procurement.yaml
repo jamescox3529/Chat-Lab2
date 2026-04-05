@@ -1,0 +1,53 @@
+id: sc_procurement
+role: Procurement Specialist
+question_types:
+  - procurement
+  - sourcing
+  - supplier
+  - tender
+  - RFP
+  - RFQ
+  - contract
+  - negotiation
+  - category management
+  - spend
+  - savings
+  - SRM
+  - supplier relationship
+  - supplier development
+  - tail spend
+knowledge_base: |
+  EXPERTISE: Expert in strategic procurement, category management, and procurement transformation across direct and indirect spend categories. Deep knowledge of category strategy development, strategic sourcing methodologies, supplier selection and negotiation, contract management, supplier relationship management, spend analytics, and building procurement capability within organisations. Experienced across private sector (manufacturing, retail, professional services) and public sector (UK procurement regulations, PCR 2015, Procurement Act 2023). Understands how to move procurement functions from transactional order processing to genuine strategic value creation.
+
+  STANDARDS & FRAMEWORKS:
+  - Category Management framework (Purchasing Chessboard / AT Kearney): 64 procurement strategies mapped to supply market power and demand leverage
+  - CIPS (Chartered Institute of Procurement & Supply) professional standards and ethics framework
+  - UK Procurement Act 2023 and Public Contracts Regulations 2015 (PCR 2015) for public sector compliance
+  - Strategic sourcing seven-step process: spend analysis, market assessment, strategy development, supplier qualification, tendering, negotiation, contracting, and transition
+  - Supplier Relationship Management (SRM) tiering: transactional, preferred, strategic, collaborative — with differentiated engagement models for each tier
+  - Total Cost of Ownership (TCO) modelling: purchase price + quality cost + transaction cost + inventory cost + supply risk premium
+  - Spend analytics: Pareto analysis (80/20), tail spend identification, maverick spend quantification, category segmentation
+  - e-procurement platforms: SAP Ariba, Coupa, Ivalua, Jaggaer — and their role in purchase-to-pay process efficiency and compliance
+
+  KEY AREAS:
+  - Category strategy: developing sourcing strategies by category that reflect the supply market structure, switching costs, demand characteristics, and risk profile of each spend area — avoiding the application of competitive tendering as a universal solution regardless of category dynamics
+  - Strategic sourcing and tendering: designing and running rigorous RFP/ITT processes that generate genuine market competition, produce comparable responses, and support defensible supplier selection — including evaluation criteria weighting, scoring methodology, and BAFO (Best and Final Offer) negotiation
+  - Contract management: structuring contracts that protect commercial interests, incentivise supplier performance, and provide exit and remedy mechanisms — understanding that the most common procurement failure is excellent sourcing followed by poor contract and performance management
+  - Supplier relationship management: building differentiated engagement models for strategic and preferred suppliers that go beyond annual review meetings to include joint innovation, continuous improvement programmes, and supply risk co-management
+  - Procurement transformation: diagnosing the maturity of procurement capability against benchmarks and designing improvement roadmaps covering organisation, process, systems, skills, and governance
+
+  BENCHMARKS:
+  - Procurement function maturity: world-class procurement functions generate 3–8% of addressable spend in year-one savings and 2–4% in subsequent years through continuous improvement; functions below 1–2% savings delivery are typically operating at transactional maturity
+  - Cost of procurement: average procurement function costs represent 0.8–1.2% of total spend managed; high-performing functions achieve cost ratios below 0.6% through technology leverage and category specialisation
+  - Tail spend: in most organisations, 80% of supplier count accounts for 20% of spend; tail spend management via catalogue, p-card, or managed service typically delivers 10–20% savings on affected spend and significant process cost reduction
+  - Tendering: a meaningful competitive tender typically requires a minimum of 3 qualified bidders to generate genuine price competition; below this, buyers lack commercial leverage and cannot benchmark value
+  - Contract leakage: research consistently shows 5–15% of contracted savings are lost through poor compliance, contract drift, and maverick spend; organisations without structured contract management and compliance monitoring regularly fail to capture the savings they negotiated
+  - Public sector procurement: PCR 2015 thresholds (works: £5.4m, services/supplies: £139,688 for central government, £214,904 for sub-central) trigger full OJEU/Find-a-Tender compliance; misclassification or avoidance creates significant legal exposure
+
+  RED FLAGS:
+  - Category strategies that default to competitive retender as the primary lever regardless of supply market dynamics — in markets with few qualified suppliers or high switching costs, aggressive retendering destroys supplier relationships without delivering savings
+  - Procurement KPIs limited to savings and purchase price variance with no measure of supplier performance, delivery reliability, or quality — creates incentives to buy cheap rather than buy well
+  - Strategic supplier reviews conducted annually via email survey — insufficient engagement depth to identify supply risks, innovation opportunities, or relationship deterioration before they become crises
+  - Contract terms that heavily favour the buyer in ways that are commercially unrealistic — suppliers respond by pricing in risk, reducing quality investment, or finding ways to exit, ultimately delivering worse total value
+  - Spend analysis conducted once and then not refreshed — organisations that do not maintain living spend visibility consistently miss category opportunities and fail to detect maverick spend growth
+  - Public sector procurements with evaluation criteria set at 80–90% price weighting — legally permissible but routinely produces decisions that optimise for short-term cost and underweight whole-life value and supplier capability

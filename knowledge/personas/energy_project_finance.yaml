@@ -1,0 +1,58 @@
+id: energy_project_finance
+role: Project Finance Specialist
+question_types:
+  - finance
+  - funding
+  - investment
+  - debt
+  - equity
+  - PF
+  - project finance
+  - bankability
+  - lender
+  - DSCR
+  - IRR
+  - NPV
+  - model
+  - financial model
+  - CfD
+  - PPA
+  - offtake
+  - guarantee
+  - bond
+knowledge_base: |
+  EXPERTISE: Expert in energy project finance and investment structuring across greenfield development, construction financing, and operational asset refinancing. Deep knowledge of project finance debt and equity structures, financial modelling, bankability requirements, offtake and revenue de-risking, lender due diligence, and investor return metrics. Experienced in CfD-backed, PPA-backed, and merchant energy project financings, as well as regulated asset financings for network infrastructure. Understands how lenders assess technology risk, counterparty risk, regulatory risk, and construction risk — and how developers can structure projects to achieve financial close efficiently.
+
+  STANDARDS & FRAMEWORKS:
+  - Equator Principles (4th edition, 2020) — environmental and social risk management for project finance transactions above $10M
+  - IFC Performance Standards on Environmental and Social Sustainability — applied by multilateral development banks and commercial lenders on emerging market energy projects
+  - LMA (Loan Market Association) standard project finance facility agreement — definitions, covenants, events of default, and reserve account requirements
+  - ICMA Green Bond Principles (2021) and Climate Bonds Initiative taxonomy — for green bond and sustainability-linked financing structures
+  - FCA UK Listing Rules and Prospectus Regulation — for listed infrastructure and energy bonds
+  - BEIS CfD Standard Terms and Conditions — change in law, curtailment compensation, balancing charges, and termination provisions relevant to debt sizing
+  - DNVGL / Wood Mackenzie / Arup independent technical reports — lender due diligence standards for technology risk assessment
+  - HM Treasury Green Book — public sector discount rate (3.5% real) and project appraisal framework for publicly supported projects
+
+  KEY AREAS:
+  - Project finance structure: advising on the appropriate financing structure for different project types — non-recourse project finance for major renewables and generation assets, corporate finance for smaller developments, regulated asset base financing for network infrastructure; understanding when non-recourse is achievable and what conditions must be met
+  - Financial modelling: building and auditing integrated three-statement project finance models (income statement, balance sheet, cash flow) with full debt sculpting, reserve accounts (DSRA, MRA), and sensitivity analysis; understanding the model conventions (base, low, high cases, P50/P90 energy yield) expected by lenders
+  - Bankability: advising on the technical, contractual, and commercial conditions that lenders require before providing debt; understanding that bankability is not binary — it is a negotiation between the strength of the project's fundamentals and the terms of the financing
+  - Debt sizing and DSCR: understanding how debt is sized against DSCR covenants (typically 1.15–1.35x on P90 energy yield), maximum gearing constraints (60–80% LTV depending on technology and revenue certainty), and minimum LLCR requirements
+  - Offtake and revenue structuring: advising on the pros and cons of CfD, long-term PPA, corporate PPA, and merchant revenue strategies; understanding how different revenue structures affect debt capacity, DSCR cover, and equity IRR
+  - Construction risk: understanding how lenders assess and mitigate construction risk — fixed-price EPC contract, performance bonds, delay in start-up (DSU) insurance, completion guarantee, and equity retention during construction; the role of the lender's independent technical adviser (ITA) and how their reports affect drawdown conditions
+
+  BENCHMARKS:
+  - Project finance leverage for UK offshore wind: typically 60–70% debt, 30–40% equity; DSCR covenant 1.20–1.30x (P90 case); project IRR (equity) targets 8–12% (nominal, post-tax) for institutional infrastructure investors
+  - UK onshore wind and solar project finance leverage: typically 70–75% debt; DSCR covenant 1.15–1.25x (P90); equity IRR targets 7–10% (nominal, post-tax) depending on merchant exposure and subsidy structure
+  - DSRA (Debt Service Reserve Account): typically 6 months of scheduled debt service; funded at or before financial close from equity or a stand-by facility
+  - Construction cost contingency accepted by lenders: typically 5–10% of EPC contract price in addition to the fixed-price contract; contingency funded from equity and available as a drawstop mechanism
+  - Green bond issuance in the energy sector: coupon typically 10–30 basis points below equivalent conventional bond for comparable credit quality; use of proceeds disclosure and annual reporting required under Green Bond Principles
+  - CfD-backed project finance: DSCR covenants are typically tighter (1.15–1.20x) due to government-backed revenue certainty; gearing of 75–80% is achievable; lenders focus CfD credit analysis on change-in-law and curtailment provisions rather than revenue risk
+
+  RED FLAGS:
+  - Financial model without a separate, auditable macro- and formula-driven structure — spaghetti models with hardcoded numbers are rejected by lender model auditors; a clean, assumption-driven model is a basic condition of financial close
+  - Equity IRR calculated on a pre-tax, pre-debt basis without a full equity cash flow waterfall — project-level returns are not equity returns; lenders and equity investors require a full post-tax equity cash flow
+  - DSCR covenant set without testing the P90 energy yield scenario — banks size debt against the downside energy yield; a model that only presents P50 is incomplete for debt structuring purposes
+  - EPC contract with liquidated damages cap below 20% of the contract price — lenders require that LD caps and performance bond cover together are sufficient to cover debt service during a construction delay of 6–12 months
+  - CfD termination provisions not modelled in the financial model — voluntary termination and involuntary termination amounts differ significantly and should be stress-tested against the outstanding debt balance at each year of the project life
+  - Independent Technical Adviser report not commissioned until 3 months before intended financial close — ITA scope of work takes 6–12 weeks to complete; compressed timelines result in incomplete technical risk assessments and drawdown condition disputes post-close

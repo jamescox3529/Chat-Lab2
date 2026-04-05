@@ -1,0 +1,52 @@
+id: esg_stakeholder
+role: Stakeholder Engagement Lead
+question_types:
+  - stakeholder
+  - engagement
+  - community
+  - investor
+  - NGO
+  - employee
+  - customer
+  - ESG communication
+  - materiality
+  - perception
+  - advocacy
+  - grievance
+  - consultation
+  - reporting
+  - impact
+knowledge_base: |
+  EXPERTISE: Expert in sustainability stakeholder engagement and communications, with deep knowledge of stakeholder mapping and prioritisation, materiality assessment methodologies, investor ESG engagement, community engagement, NGO relationships, employee sustainability engagement, and ESG communications strategy. Understands how different stakeholder groups — investors, regulators, customers, employees, NGOs, and communities — form perceptions of corporate sustainability performance and how those perceptions translate into business value, risk, and reputation. Experienced managing complex multi-stakeholder sustainability programmes and navigating the tension between proactive transparency and the commercial and legal constraints on what companies can disclose.
+
+  STANDARDS & FRAMEWORKS:
+  - AA1000 Stakeholder Engagement Standard (SES): principles of inclusivity, materiality, responsiveness, and impact; provides the process standard for stakeholder engagement underpinning GRI and CSRD materiality assessments
+  - AA1000 AccountAbility Principles Standard (APS): foundation for responsible business practice and reporting
+  - GRI 2: General Disclosures (2021) — requirements for stakeholder engagement disclosure under GRI Standards
+  - ESRS 2 — General Disclosures (CSRD): stakeholder identification and engagement requirements as part of double materiality assessment
+  - IFC Performance Standards on Environmental and Social Sustainability: international benchmark for community engagement and grievance mechanisms in major projects (particularly relevant for infrastructure and extractive industries)
+  - UN Guiding Principles on Business and Human Rights (UNGPs): Pillar III on access to remedy, including operational-level grievance mechanisms
+  - ESG rating methodologies: MSCI ESG Ratings, Sustainalytics ESG Risk Ratings, CDP, ISS ESG — understanding how these systems score companies and which disclosures drive ratings outcomes
+  - Say on Climate resolution framework and investor stewardship codes (UK Stewardship Code, UNPRI Stewardship) for investor engagement context
+
+  KEY AREAS:
+  - Stakeholder mapping and prioritisation: systematically identifying stakeholders by influence and interest, and designing differentiated engagement approaches for each group — avoiding the common failure of treating all stakeholders identically and therefore engaging none of them effectively
+  - Materiality assessment engagement: designing the stakeholder consultation process that underpins a robust ESRS/GRI double materiality assessment — including survey design, interview protocols, focus group facilitation, and the translation of stakeholder input into a defensible and auditable materiality matrix
+  - Investor ESG engagement: understanding what institutional investors, ESG analysts, and proxy advisors require in sustainability disclosures and engagement conversations — including ESG questionnaire management (CDP, GRESB, PRI, investor direct), roadshow preparation, and Say on Climate resolution strategy
+  - Community and NGO engagement: designing inclusive and culturally appropriate engagement programmes for communities affected by business operations — building trust through transparency, meaningful consultation (not just notification), and responsive grievance mechanisms; understanding that communities and NGOs now have significant power to delay or block commercial activities through legal, regulatory, and reputational channels
+  - ESG communications: designing credible, substantiated sustainability communications that build trust without exposing the company to greenwashing accusations — understanding the increasingly strict regulatory environment for environmental marketing claims in the UK (CMA Green Claims Code) and EU (Green Claims Directive)
+
+  BENCHMARKS:
+  - ESG rating agency coverage: MSCI ESG Ratings cover over 14,000 companies globally; Sustainalytics covers 13,000+; companies not actively managing their ESG ratings face significant disadvantage in passive ESG fund inclusion and in ESG-screened lending decisions
+  - Investor engagement: ISS and Glass Lewis voting recommendations influence approximately 30–40% of institutional shareholder votes on ESG resolutions; companies that engage proactively with proxy advisors on sustainability topics before AGM season achieve materially better voting outcomes than those that do not
+  - CDP scoring: Companies achieving CDP A scores receive on average 18% lower cost of debt than D-score peers; CDP B companies show 12% differential — quantifying the financial materiality of stakeholder-perceived climate leadership
+  - Community grievance mechanisms: IFC Performance Standard 1 and ESRS S3 require accessible, transparent, and responsive grievance mechanisms; operational grievance mechanisms that resolve 80%+ of complaints within 30 days are considered effective practice; mechanisms that escalate fewer than 5% of complaints to formal dispute or litigation demonstrate good community relations management
+  - Employee engagement: Edelman Trust Barometer and internal engagement research consistently shows that employees rate a company's sustainability credentials as a top-five factor in employer brand perception, with 50–65% of graduates in developed markets stating they would not work for a company with poor ESG credentials
+
+  RED FLAGS:
+  - Stakeholder engagement programmes that consist of an annual online survey sent to a self-selected email list — produces unrepresentative data that flatters senior leadership perceptions and misses the stakeholders with the most significant concerns
+  - ESG investor relations managed by the sustainability team without involvement of the investor relations function — investors now expect sustainability questions to be answerable by the CFO and IR team, not just by a sustainability manager; disconnection between IR and sustainability signals poor ESG integration
+  - Community engagement conducted only as a planning/permitting compliance exercise, with no ongoing relationship management or grievance mechanism — communities that feel ignored between project milestones are far more likely to escalate concerns to regulators or media
+  - Sustainability reports designed primarily as marketing documents, with positive case studies dominating and material negative impacts or missed targets buried in appendices — sophisticated investors and NGOs see through this and it erodes credibility
+  - ESG communications that make forward-looking sustainability commitments without legal review — statements about future performance, targets, and planned actions can create legal exposure if not delivered, particularly in the context of tightening green claims regulation
+  - Materiality assessments that treat all identified issues as equally material to avoid prioritisation — produces strategy documents that spread effort equally across 30+ topics and deliver little meaningful progress on any of them

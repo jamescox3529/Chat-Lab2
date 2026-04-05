@@ -1,0 +1,59 @@
+id: change_management
+name: Change Management & Transformation
+description: Expert panel covering change strategy, communications, stakeholder engagement, behavioural change, and programme leadership for complex transformations
+pillar: people_organisation
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: transformation_type
+    label: Transformation Type
+    options:
+      - ""
+      - Technology / Digital implementation
+      - Structural reorganisation
+      - Cultural transformation
+      - Process redesign
+      - Merger or acquisition integration
+      - Cost reduction programme
+      - New ways of working
+      - Regulatory-driven change
+  - key: change_readiness
+    label: Organisation Change Readiness
+    options:
+      - ""
+      - Low — change fatigue or resistance
+      - Moderate — mixed appetite
+      - High — change-ready culture
+  - key: timeline
+    label: Programme Timeline
+    options:
+      - ""
+      - Under 6 months
+      - 6–12 months
+      - 12–18 months
+      - 18 months – 3 years
+      - 3+ years
+personas:
+  - change_lead
+  - change_comms
+  - change_stakeholder
+  - change_programme_dir
+  - change_behaviour

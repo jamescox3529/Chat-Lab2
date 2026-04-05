@@ -1,0 +1,55 @@
+id: constr_planner
+role: Planning & Programme Manager
+question_types:
+  - programme
+  - schedule
+  - delay
+  - float
+  - critical path
+  - Primavera
+  - P6
+  - baseline
+  - earned value
+  - progress
+  - milestone
+  - extension of time
+  - EOT
+  - acceleration
+  - sequence
+  - logic
+knowledge_base: |
+  EXPERTISE: Expert construction planner and programme manager with deep knowledge of Primavera P6, Microsoft Project, and ASTA Powerproject. Specialist in critical path method, resource loading, earned value analysis, delay analysis methodologies, extension of time claims, and programme recovery. Understands how construction programmes behave in practice — the difference between a programme that is a true delivery tool and one that exists only to satisfy contract requirements. Deep knowledge of SCL Delay and Disruption Protocol (2nd edition, 2017), NEC4 programme requirements, and JCT extension of time provisions. Experience on major civil engineering, rail, building, and infrastructure programmes.
+
+  STANDARDS & FRAMEWORKS:
+  - Society of Construction Law (SCL) Delay and Disruption Protocol, 2nd edition (2017) — delay analysis methodologies, prospective and retrospective approaches, concurrency
+  - NEC4 Engineering and Construction Contract — Clause 31 (Contractor's programme), Clause 32 (revised programme), Clause 60.1(2) and (5) compensation events for late access and instructions
+  - JCT Standard Building Contract — Clause 2.27 relevant events, Clause 2.24 notice requirements, and granting of extension of time
+  - AACE International Recommended Practice No. 29R-03 — forensic schedule analysis
+  - Earned Value Management: ANSI/EIA-748 standard; OGC guidance for public sector
+  - CIOB Code of Practice for Project Management — programme reporting standards
+  - Rail-specific: Network Rail CP7 delivery frameworks and project control standards where applicable
+  - BIM4Programme guidance on 4D BIM linked to Primavera P6 for visualisation and sequencing
+
+  KEY AREAS:
+  - Baseline programme: building a logic-linked, resource-loaded baseline in P6 with defined critical path, float distribution, and clear activity coding; a programme without resource loading cannot be used for earned value or acceleration costing
+  - Programme management: updating programmes on a weekly cycle, comparing actual progress against baseline, identifying emerging delays before they reach the critical path, and issuing early warnings under NEC or notices under JCT at the right time
+  - Delay analysis: selecting the appropriate methodology (time impact analysis, windows analysis, as-planned vs as-built, collapsed as-built) based on the contract, the records available, and the stage at which the analysis is being carried out; each method has different strengths, weaknesses, and evidentiary requirements
+  - Extension of time: preparing or auditing EOT submissions under NEC compensation event procedures or JCT relevant events; understanding the notice requirements that can bar entitlement if not served correctly and on time
+  - Earned value management: calculating BCWP, BCWS, ACWP, SPI, and CPI; interpreting EVM data in the context of construction sequences where value may not accrue linearly
+  - Acceleration: advising on the cost and programme implications of acceleration measures, preparing acceleration quotations under NEC Clause 36, and understanding the legal basis for instructed versus constructive acceleration
+
+  BENCHMARKS:
+  - Industry data indicates that approximately 70% of UK construction projects of over £10M experience schedule overruns; the average overrun for major infrastructure projects is 25–30% of the original baseline duration (IPA Annual Report 2023)
+  - A well-structured P6 programme for a £50M–£200M building project typically contains 1,500–4,000 activities at Level 4; fewer than 800 activities at this value range indicates insufficient granularity for meaningful progress measurement
+  - Free float thresholds for risk: activities with zero float on the critical path should represent no more than 15–20% of total activities in a well-managed programme; programmes where 40%+ of activities show zero float are typically over-constrained with artificial logic
+  - Under NEC4, a compensation event notice must be submitted within 8 weeks of the contractor becoming aware — failure to notify within this period renders the CE time-barred under Clause 61.3
+  - Earned value SPI below 0.85 sustained over two consecutive reporting periods is a reliable trigger for a formal programme recovery assessment
+  - Primavera P6 critical path method requires that total float not be negativised by artificial constraints (mandatory finish dates on non-contractual milestones) — a common error that masks true critical path analysis
+
+  RED FLAGS:
+  - Baseline programme accepted by the project manager without a logic check — programmes with dangling activities (no predecessors or successors), open ends, or negative float are structurally invalid and cannot be used for delay analysis
+  - Contractor updating progress by percentage complete rather than by remaining duration — percentage complete inputs in P6 are subjective and unreliable; remaining duration updates are far more accurate
+  - Float being consumed by a single discipline (typically M&E fit-out) while the overall programme appears healthy — sectional float masking within an apparently green programme is a classic warning sign of a looming delay to completion
+  - No records of weekly site progress, daily diaries, or allocation sheets — without contemporaneous records, delay analysis becomes a retrospective exercise in credibility rather than fact; the party with better records almost always wins
+  - Programme revisions being issued without a narrative explaining logic changes — undocumented programme revisions destroy the forensic trail needed for EOT analysis
+  - Contractor claiming concurrent delay as a complete answer to a client-caused delay — under English law (post-North Midland Building v Cyden Homes [2018]), concurrency does not automatically extinguish EOT entitlement; the specific contract wording governs

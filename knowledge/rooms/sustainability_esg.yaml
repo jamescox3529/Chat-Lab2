@@ -1,0 +1,67 @@
+id: sustainability_esg
+name: Sustainability & ESG
+description: Expert panel covering ESG strategy, carbon and climate, sustainability reporting, stakeholder engagement, and sustainable finance
+pillar: strategy_advisory
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_type
+    label: Organisation Type
+    options:
+      - ""
+      - Listed company (public)
+      - Private company
+      - Public sector / Government
+      - NGO / Charity
+      - Academic / Research
+      - SME
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing & Industry
+      - Financial Services
+      - Energy & Utilities
+      - Technology
+      - Retail & Consumer
+      - Construction & Infrastructure
+      - Healthcare
+      - Food & Agriculture
+      - Transport
+      - Professional Services
+      - Other
+  - key: esg_maturity
+    label: ESG Maturity
+    options:
+      - ""
+      - Just starting — no formal programme
+      - Early stage — policies but limited action
+      - Developing — active programme, targets set
+      - Advanced — reporting, assurance, and integration
+      - Leading — sector benchmark
+  - key: primary_driver
+    label: Primary Driver
+    options:
+      - ""
+      - Regulatory compliance
+      - Investor / lender pressure
+      - Customer & market demand
+      - Employee & talent attraction
+      - Strategic commitment
+      - Net zero commitments
+      - Reporting requirements (CSRD, TCFD, etc.)
+personas:
+  - esg_strategy_lead
+  - esg_carbon
+  - esg_reporting
+  - esg_stakeholder
+  - esg_supply_chain

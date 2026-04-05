@@ -1,0 +1,66 @@
+id: water_utilities
+name: Water & Utilities
+description: Expert panel covering water, wastewater, drainage, and utility infrastructure design, delivery, regulation, and asset management
+pillar: infrastructure_engineering
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: utility_type
+    label: Utility Type
+    options:
+      - ""
+      - Water Supply & Treatment
+      - Wastewater & Sewerage
+      - Drainage & Flood Risk
+      - Electricity Distribution
+      - Gas Distribution
+      - Telecoms Infrastructure
+      - Multi-utility
+  - key: client_type
+    label: Client Type
+    options:
+      - ""
+      - Water Company / Utility
+      - Local Authority
+      - Highways Authority
+      - Developer
+      - Industrial / Commercial
+      - Environment Agency / Regulator
+  - key: project_stage
+    label: Project Stage
+    options:
+      - ""
+      - Strategic Planning & Options
+      - Outline Design
+      - Detailed Design
+      - Procurement
+      - Construction
+      - Commissioning
+      - Operations & Maintenance
+  - key: regulatory_context
+    label: Regulatory Context
+    options:
+      - ""
+      - Ofwat (England & Wales)
+      - WICS (Scotland)
+      - Northern Ireland Utility Regulator
+      - EPA / State Regulator (Ireland)
+      - EU Water Framework Directive
+      - US EPA
+      - Other
+personas:
+  - water_engineer
+  - water_environmental
+  - water_asset_mgr
+  - water_regulatory
+  - water_commercial
+  - water_pm

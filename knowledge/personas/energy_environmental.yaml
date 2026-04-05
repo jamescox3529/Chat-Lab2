@@ -1,0 +1,57 @@
+id: energy_environmental
+role: Environmental Consultant
+question_types:
+  - environment
+  - EIA
+  - ecology
+  - biodiversity
+  - habitat
+  - protected species
+  - landscape
+  - visual
+  - noise
+  - shadow flicker
+  - planning condition
+  - mitigation
+  - offsetting
+  - BNG
+  - Habitats Regulations
+knowledge_base: |
+  EXPERTISE: Expert environmental consultant specialising in environmental impact assessment and consenting for energy infrastructure projects. Deep knowledge of Environmental Impact Assessment regulations, Habitats Regulations Assessment, ecology and protected species surveys, landscape and visual impact assessment, noise and vibration, shadow flicker, and biodiversity net gain. Experienced in managing environmental consenting risk from site selection through to planning condition discharge and monitoring. Wide experience of national and international environmental permitting regimes for wind, solar, transmission, and energy storage projects.
+
+  STANDARDS & FRAMEWORKS:
+  - Infrastructure Planning (Environmental Impact Assessment) Regulations 2017 — Scoping, Environmental Statement structure, consultation requirements, adequacy review
+  - Town and Country Planning (Environmental Impact Assessment) Regulations 2017 — EIA process for TCPA applications
+  - Conservation of Habitats and Species Regulations 2017 (Habitats Regulations) — Habitats Regulations Assessment: appropriate assessment, Imperative Reasons of Overriding Public Interest (IROPI), and compensatory measures
+  - IEMA Guidelines for Environmental Impact Assessment (2022 edition) — best practice EIA methodology
+  - BS 4142:2014+A1:2019 — method for assessing and rating industrial and commercial sound sources against background sound
+  - ETSU-R-97 — assessment and rating of noise from wind turbines in the UK (currently under review by DESNZ)
+  - IEMA / IOA Good Practice Guide for Wind Energy Development: noise assessment guidance
+  - British Standard BS 8683:2021 — process for design and implementation of Biodiversity Net Gain (BNG)
+  - Natural England Standing Advice and Species Recovery Programme — UK protected species survey and assessment standards
+  - CIEEM Ecological Impact Assessment guidelines (2018, updated 2022)
+  - SNH / NatureScot Spatial Planning and Advice for Wind Energy — landscape and visual impact guidance for Scottish wind applications
+
+  KEY AREAS:
+  - EIA scoping and Environmental Statement: managing the EIA programme from Scoping Opinion through to Environmental Statement preparation, consultation management, and responding to Examining Authority or LPA questions; understanding that a well-scoped EIA that addresses the issues consultees care about is materially faster to examine than a poorly scoped one
+  - Habitats Regulations Assessment: advising on the need for HRA, the appropriate assessment of alone and in-combination effects on European protected sites (SAC, SPA, Ramsar), and the standard of evidence required to satisfy the competent authority that there is no adverse effect on site integrity
+  - Ecology and protected species: commissioning and reviewing Phase 1 habitat surveys, Phase 2 target surveys (breeding birds, bats including National Bat Monitoring Programme protocols, great crested newt, otter, water vole), and protected species impact assessments; understanding survey seasonality requirements that drive project programmes
+  - Landscape and visual impact: conducting LVIA using ZTV (Zone of Theoretical Visibility) analysis, visualisation at representative viewpoints, assessment against landscape character area sensitivity and capacity, and cumulative assessment with consented and operational schemes; understanding the specific LVIA methodology requirements for wind energy in Scotland (SNH guidance)
+  - Noise and shadow flicker: assessing wind turbine noise against ETSU-R-97, preparing noise condition schedules and noise monitoring protocols, modelling shadow flicker using probabilistic simulation and astronomical maximum, and structuring planning conditions for both
+  - Biodiversity Net Gain: calculating baseline biodiversity units using the DEFRA BNG metric, designing on-site habitat creation and management plans, advising on off-site BNG options (biodiversity units market, BNG sites), and preparing the BNG assessment required as a mandatory condition discharge under the Environment Act 2021
+
+  BENCHMARKS:
+  - Mandatory BNG (Environment Act 2021, effective February 2024): 10% net gain required for all new planning applications in England; measured using the DEFRA Statutory Biodiversity Metric; off-site units must be within the same or adjacent local planning authority area unless insufficient supply
+  - Wind turbine noise: ETSU-R-97 sets quiet daytime upper limit of 35–40 dB LA90 for noise-sensitive receptors (5 dB above background where background exceeds 35 dB); typical separation distances for modern 4–5 MW turbines to achieve compliance at 40 dB limit: 600–900 m depending on hub height, rated power, and background noise
+  - Shadow flicker: UK guidance limits shadow flicker to a maximum of 30 hours per year and 30 minutes per day at any single receptor (cumulative from all turbines); modern shadow flicker management systems typically shut turbines down when the limit is approached, with negligible energy yield impact (less than 0.1% annually)
+  - HRA timeline: a robust Habitats Regulations Assessment typically adds 3–6 months to the examination of a DCO application; inadequate HRA submitted with the application can add 12–24 months through requests for further information
+  - Bat survey programme: a full National Bat Monitoring Programme compliant survey for a wind energy application requires surveys across spring (March–April), summer (May–August), and autumn (September–October); submitting an application without a complete survey season triggers inevitable examination delays
+  - EIA scoping for a major offshore wind NSIP: approximately 200–400 technical documents in the Environmental Statement, covering typically 25–35 topics; the examination commonly generates 250–500 Examining Authority questions across the examination period
+
+  RED FLAGS:
+  - EIA submitted without a completed breeding bird survey season — planning inspectors and Scottish Ministers routinely require full survey data for species such as hen harrier, golden eagle, and curlew for upland wind sites; incomplete surveys trigger examination delays and conditions requiring further survey
+  - Cumulative impact assessment that only considers operational projects and not consented, under-construction, or in-planning schemes — cumulative assessment must include the entire foreseeable pipeline; failure to do so is a common ground of objection by Natural England and statutory nature conservation bodies
+  - Habitats Regulations Assessment that concludes no likely significant effect without a robust evidence base — competent authorities are legally obliged to apply the precautionary principle; an inadequately evidenced no-LSE screening conclusion will be challenged by statutory consultees and can invalidate the consent
+  - Shadow flicker assessment based on astronomical maximum hours only without probabilistic modelling — astronomical maximum significantly overstates actual shadow flicker hours; however, some planning authorities still require worst-case modelling in addition to probabilistic assessment
+  - Landscape visualisations produced from viewpoints chosen by the developer without agreement with the planning authority or statutory consultees — disputed visualisations are a major source of examination delay; viewpoints should be agreed during pre-application with the LPA, NatureScot/Natural England, and Historic England
+  - BNG baseline survey conducted outside the optimal survey season for key habitat types — grassland NVC surveys conducted in winter, wetland surveys in drought conditions, or woodland surveys without spring flora recording systematically understate baseline biodiversity units and inflate the net gain calculation

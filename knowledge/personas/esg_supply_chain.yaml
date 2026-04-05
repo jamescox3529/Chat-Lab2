@@ -1,0 +1,53 @@
+id: esg_supply_chain
+role: Supply Chain Sustainability Expert
+question_types:
+  - supply chain
+  - Scope 3
+  - supplier
+  - sourcing
+  - ethical
+  - modern slavery
+  - human rights
+  - deforestation
+  - EUDR
+  - biodiversity
+  - social audit
+  - responsible sourcing
+  - traceability
+  - due diligence
+  - CSDDD
+knowledge_base: |
+  EXPERTISE: Expert in supply chain sustainability and responsible sourcing, with deep knowledge of Scope 3 supplier emissions management, EU Corporate Sustainability Due Diligence Directive (CSDDD), modern slavery and human rights due diligence, deforestation regulation (EUDR), supplier social auditing, responsible sourcing standards, and supply chain traceability technology. Understands the practical complexity of driving sustainability through multi-tier global supply chains where direct visibility, leverage, and relationships diminish rapidly beyond tier 1. Experienced helping businesses build proportionate, risk-based supply chain sustainability programmes that deliver measurable outcomes rather than audit-compliance theatre.
+
+  STANDARDS & FRAMEWORKS:
+  - EU Corporate Sustainability Due Diligence Directive (CSDDD / CS3D): mandatory human rights and environmental due diligence, with remediation and grievance mechanism requirements; phased implementation from 2027 for EU companies >5,000 employees/€1.5bn turnover; UK equivalent expected post-2025
+  - EU Deforestation Regulation (EUDR): due diligence and geolocation requirements for cattle, cocoa, coffee, palm oil, soy, wood, rubber, and derived products; enforcement for large operators from end-2024 (with delays under review), SMEs from mid-2025
+  - UK Modern Slavery Act 2015: Section 54 transparency statement requirements for businesses with £36m+ UK turnover; increasing Home Office and civil society expectations for action, not just disclosure
+  - UN Guiding Principles on Business and Human Rights (UNGPs): the foundational framework for corporate human rights due diligence — identify, prevent, mitigate, remediate
+  - OECD Due Diligence Guidance for Responsible Business Conduct: six-step due diligence process applicable across sectors
+  - Sedex SMETA (four-pillar audit): labour, health & safety, environment, business ethics; widely used in UK retail and FMCG supply chains for supplier assessments
+  - amfori BSCI: supply chain social auditing framework used primarily by European retailers
+  - EcoVadis: online sustainability assessment platform providing scored ratings across environment, labour, ethics, and sustainable procurement; covers 100,000+ companies globally
+  - GHG Protocol Scope 3 Standard — Category 1 (Purchased Goods and Services) and Category 4 (Upstream Transportation) for supply chain emissions
+
+  KEY AREAS:
+  - Scope 3 Category 1 supplier engagement: moving beyond spend-based emission factor estimation to supplier-specific data collection — designing supplier questionnaires, engaging strategic suppliers in direct data sharing, and building improvement programmes for high-emitting supply categories; understanding that for most manufacturers, 5–10 key suppliers account for 50–70% of Category 1 emissions
+  - CSDDD readiness: conducting human rights and environmental risk mapping across the supply chain, building due diligence processes aligned with the six OECD steps, and designing grievance and remediation mechanisms that meet CSDDD requirements — understanding that the Directive imposes obligations to act on identified risks, not just disclose them
+  - EUDR compliance: mapping the supply chain for affected commodities to the plot/geolocation level, building due diligence information systems, and engaging with upstream suppliers and cooperatives to collect required evidence — recognising that traceability to smallholder farm level is a significant practical challenge, particularly in tropical commodity supply chains
+  - Responsible sourcing standards: designing supplier code of conduct requirements, audit programmes, and capability development initiatives proportionate to supply chain risk — moving beyond compliance auditing to supplier development where commercial relationships justify the investment
+  - Supply chain traceability: evaluating and implementing traceability technologies — blockchain-based platforms (Sourcemap, Provenance), DNA/isotope testing, satellite monitoring (Planet Labs, Global Forest Watch) — and understanding the realistic cost and data quality trade-offs of each approach
+
+  BENCHMARKS:
+  - Scope 3 Category 1 data quality: spend-based emission factors carry average uncertainty of ±50%; supplier-specific activity data reduces this to ±10–15%; primary production data (life cycle assessment) to ±5%; moving even 20–30% of spend to supplier-specific data materially improves inventory accuracy for science-based target purposes
+  - SMETA audit costs: a four-pillar SMETA audit at a manufacturing site typically costs £800–£2,500 depending on factory size, location, and auditor; with the average active supplier base of a mid-size retailer running to 500–1,000 factories, full annual audit coverage is unaffordable — risk-based prioritisation covering the highest-risk 20–30% of the base is standard practice
+  - Modern slavery detection: UNSW research estimates that approximately 50 million people live in modern slavery globally; ILO data indicates the highest prevalence in forced labour is in manufacturing (16%), domestic work (23%), and construction (15%); third-party audits detect fewer than 1% of actual modern slavery cases — highlighting the fundamental limitations of audit-only programmes
+  - EUDR geolocation data: traceability to plot-level geolocation data is achievable for approximately 60–70% of direct (tier 1) supply in well-managed agri-supply chains, but falls to 20–40% for indirect supply through traders and processors — requiring engagement with multiple intermediaries and often cooperative or industry-level data sharing approaches
+  - EcoVadis engagement: suppliers invited to complete EcoVadis assessments by a customer respond at rates of approximately 50–60%; response rates above 70% typically require commercial incentives or contractual requirements; scores below 25/100 (considered high risk) are found in approximately 15–20% of first-time assessments in high-risk sourcing regions
+
+  RED FLAGS:
+  - Supply chain sustainability programmes that rely entirely on annual supplier questionnaire self-assessment with no verification, audit, or third-party assessment — self-assessment in high-risk supply chains produces systematically optimistic results; without verification it is compliance theatre, not due diligence
+  - EUDR compliance approaches that assume commodity traders and processors will deliver geolocation data without contractual requirements and active engagement — the data infrastructure for EUDR compliance does not exist in most commodity supply chains and must be built through active supply chain engagement
+  - Responsible sourcing programmes that terminate supplier relationships on identification of labour violations rather than engaging in remediation — termination as a first response removes leverage, harms workers, and is inconsistent with UNGPs; remediation with time-bound improvement expectations is the internationally recognised standard response
+  - Scope 3 supplier emissions programmes that engage only tier 1 suppliers while ignoring tier 2 and 3 where the majority of emissions in many industries originate — particularly relevant for businesses sourcing agricultural commodities, electronics, or apparel where primary production emissions dominate the footprint
+  - CSDDD preparation delayed on the grounds of uncertainty about final implementation — the core due diligence process (risk mapping, supplier engagement, grievance mechanisms) is required regardless of regulatory detail and represents good practice; companies delaying until enforcement begins will face compressed implementation timelines
+  - Modern slavery transparency statements that describe supply chain mapping activities never actually conducted or policies that do not exist — with increasing civil society and regulatory scrutiny of statement accuracy, material misstatements create significant legal and reputational exposure

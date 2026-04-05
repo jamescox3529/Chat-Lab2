@@ -1,0 +1,61 @@
+id: energy_power
+name: Energy & Power Systems
+description: Expert panel covering generation, transmission, renewables, regulation, and project finance across the global energy sector
+pillar: infrastructure_engineering
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: energy_type
+    label: Energy Type
+    options:
+      - ""
+      - Transmission & Grid
+      - Electricity Distribution
+      - Solar PV
+      - Onshore Wind
+      - Offshore Wind
+      - Hydro & Pumped Storage
+      - Nuclear
+      - Oil & Gas
+      - Battery Storage & BESS
+      - Hydrogen
+      - Biomass & Waste-to-Energy
+      - Other
+  - key: project_stage
+    label: Project Stage
+    options:
+      - ""
+      - Feasibility & Options
+      - Development & Consenting
+      - Financial Close
+      - Construction
+      - Commissioning
+      - Operations & Maintenance
+      - Decommissioning
+  - key: ownership
+    label: Ownership Structure
+    options:
+      - ""
+      - Public / State-owned
+      - Private Developer
+      - IPP (Independent Power Producer)
+      - PPP / Concession
+      - Community Energy
+      - Utility
+      - Other
+personas:
+  - energy_systems_eng
+  - energy_grid_specialist
+  - energy_renewables
+  - energy_regulatory
+  - energy_project_finance
+  - energy_environmental

@@ -1,0 +1,67 @@
+id: business_strategy
+name: Business Strategy & Growth
+description: Expert panel covering competitive strategy, market positioning, financial performance, operations, and growth planning for businesses of all sizes
+pillar: strategy_advisory
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: business_size
+    label: Business Size
+    options:
+      - ""
+      - Startup / Pre-revenue
+      - SME under 50 staff
+      - SME 50–250 staff
+      - Mid-market 250–1000 staff
+      - Large enterprise 1000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Professional Services
+      - Technology
+      - Retail & Consumer
+      - Healthcare & Life Sciences
+      - Financial Services
+      - Construction & Infrastructure
+      - Hospitality & Leisure
+      - Education
+      - Not-for-profit
+      - Other
+  - key: business_stage
+    label: Business Stage
+    options:
+      - ""
+      - Early stage / Startup
+      - Growth phase
+      - Mature / Stable
+      - Declining / Turnaround
+      - Pre-exit / M&A
+  - key: primary_challenge
+    label: Primary Challenge
+    options:
+      - ""
+      - Revenue growth
+      - Market expansion
+      - Competitive pressure
+      - Cost reduction & efficiency
+      - New product or service
+      - Digital transformation
+      - Talent & capability
+      - Funding & investment
+personas:
+  - strat_consultant
+  - strat_market_analyst
+  - strat_financial_advisor
+  - strat_ops_strategist
+  - strat_innovation

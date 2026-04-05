@@ -3,6 +3,17 @@ name: Lean Manufacturing
 description: Continuous improvement experts combining Lean principles with real-world operational perspective — for any industry
 pillar: strategy_advisory
 project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
   - key: industry
     label: Industry / Sector
     options:

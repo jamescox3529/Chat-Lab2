@@ -1,0 +1,65 @@
+id: hr_strategy
+name: HR Strategy & Workforce Planning
+description: Expert panel covering people strategy, workforce planning, talent management, compensation, employment law, and HR transformation
+pillar: people_organisation
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Professional Services
+      - Technology
+      - Retail & Consumer
+      - Healthcare
+      - Financial Services
+      - Construction
+      - Public Sector
+      - Education
+      - Other
+  - key: hr_maturity
+    label: HR Maturity
+    options:
+      - ""
+      - Transactional / Admin-focused
+      - Developing — some strategic HR
+      - Strategic — HR at leadership table
+      - Advanced — data-driven people strategy
+  - key: primary_challenge
+    label: Primary Challenge
+    options:
+      - ""
+      - Talent retention
+      - Recruitment & attraction
+      - Capability & skills gaps
+      - Culture & engagement
+      - Cost & headcount
+      - Workforce planning
+      - Succession planning
+      - HR transformation
+personas:
+  - hr_strategy_dir
+  - hr_workforce_plan
+  - hr_people_analytics
+  - hr_comp_benefits
+  - hr_employment_law

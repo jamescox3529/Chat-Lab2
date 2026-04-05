@@ -1,0 +1,52 @@
+id: it_strategy
+name: IT Strategy & Architecture
+description: Expert panel covering IT strategy, enterprise architecture, cloud, vendor management, IT governance, and the leadership of technology functions
+pillar: digital_technology
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: current_environment
+    label: Current IT Environment
+    options:
+      - ""
+      - Legacy-heavy — on-premise, mixed old systems
+      - Transitioning — active cloud migration
+      - Hybrid — mix of cloud and on-prem
+      - Modern — primarily cloud-native
+      - SaaS-first — minimal own infrastructure
+  - key: primary_challenge
+    label: Primary Challenge
+    options:
+      - ""
+      - Cost reduction & efficiency
+      - Agility & speed of delivery
+      - Security & risk
+      - System integration & complexity
+      - Cloud migration
+      - IT talent & capability
+      - Vendor & contract management
+      - IT governance & compliance
+personas:
+  - it_strategy_dir
+  - it_enterprise_arch
+  - it_cloud_infra
+  - it_vendor_mgmt
+  - it_governance_risk

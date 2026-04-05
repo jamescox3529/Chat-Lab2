@@ -1,0 +1,65 @@
+id: cybersecurity
+name: Cybersecurity
+description: Expert panel covering security strategy, threat intelligence, architecture, compliance, and incident response for organisations of all sizes and sectors
+pillar: digital_technology
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Financial Services
+      - Healthcare
+      - Critical National Infrastructure
+      - Manufacturing
+      - Retail & Consumer
+      - Technology
+      - Public Sector
+      - Professional Services
+      - Other
+  - key: security_maturity
+    label: Security Maturity
+    options:
+      - ""
+      - Basic — minimal controls
+      - Developing — policies and AV in place
+      - Managed — SOC and monitoring
+      - Advanced — threat intelligence and red teaming
+      - Regulated & Certified — ISO 27001/SOC2/Cyber Essentials Plus
+  - key: primary_concern
+    label: Primary Concern
+    options:
+      - ""
+      - Compliance & certification
+      - Threat detection & prevention
+      - Incident response & recovery
+      - Security architecture review
+      - Cloud security
+      - Supply chain security
+      - Ransomware preparedness
+      - Third-party risk
+personas:
+  - cyber_ciso
+  - cyber_threat_intel
+  - cyber_compliance
+  - cyber_architecture
+  - cyber_incident

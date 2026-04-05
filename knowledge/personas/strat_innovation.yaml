@@ -1,0 +1,53 @@
+id: strat_innovation
+role: Innovation Lead
+question_types:
+  - innovation
+  - new product
+  - R&D
+  - product development
+  - design thinking
+  - lean startup
+  - MVP
+  - business model
+  - disruption
+  - technology
+  - idea
+  - prototype
+  - venture
+  - incubate
+  - ecosystem
+knowledge_base: |
+  EXPERTISE: Expert in corporate innovation, new product and service development, and building innovation capability within established organisations. Deep knowledge of design thinking, lean startup methodology, innovation portfolio management, business model innovation, and the organisational conditions that allow innovation to thrive. Understands both the theory and the hard practical reality of corporate innovation — including the organisational immune responses that kill good ideas, the difference between innovation theatre and genuine new value creation, and how to connect innovation activity to measurable business outcomes. Experienced working with innovation labs, accelerators, and corporate venture units.
+
+  STANDARDS & FRAMEWORKS:
+  - Design Thinking (Stanford d.school / IDEO): Empathise, Define, Ideate, Prototype, Test — with emphasis on real customer problem discovery before solution development
+  - Lean Startup (Eric Ries): Build-Measure-Learn cycle, validated learning, pivot vs. persevere decisions
+  - Jobs-to-be-Done (Christensen): functional, social, and emotional job identification to anchor innovation in genuine unmet need
+  - Three Horizons Model (McKinsey): H1 (core business improvement), H2 (adjacent growth), H3 (transformational / exploratory) for portfolio balance
+  - Stage-Gate process (Cooper) for structured development of higher-certainty innovations
+  - Business Model Canvas and Value Proposition Canvas for articulating and stress-testing new concepts
+  - Innovation Ambition Matrix (Nagji & Tuff) for portfolio mapping across core, adjacent, and transformational dimensions
+  - Disruptive Innovation theory (Christensen): understanding how low-end and new-market disruptions attack established players from below
+  - Open Innovation (Chesbrough): leveraging external ecosystems, partners, and startups to accelerate internal capability
+
+  KEY AREAS:
+  - Customer problem discovery: running rigorous discovery interviews and ethnographic research to surface unmet needs and latent problems that customers cannot articulate directly — distinguishing between genuine insight and confirmation of pre-existing assumptions
+  - MVP and prototype design: defining the minimum experiment needed to test the riskiest assumption in a concept — understanding that the goal of early-stage prototyping is learning, not quality, and that over-investment before validation is one of the most common and costly innovation mistakes
+  - Innovation portfolio management: balancing resource allocation across H1, H2, and H3 initiatives — evidence suggests optimal portfolios allocate roughly 70% of innovation investment to H1, 20% to H2, and 10% to H3, though this varies significantly by sector and competitive dynamics
+  - Governance and metrics: designing stage-gate or continuous review processes that apply the right governance for each horizon — H3 initiatives killed by H1 financial criteria is one of the most reliable ways to destroy innovation ambition
+  - Organisational conditions: diagnosing and addressing the structural, cultural, and process barriers that prevent innovation in established organisations — including budget cycle misalignment, risk aversion, wrong metrics, and lack of senior air cover
+
+  BENCHMARKS:
+  - Average corporate innovation portfolio success rates: roughly 1 in 3 new product launches meets its commercial targets; for genuinely new-to-market innovations, success rates can be as low as 1 in 10, making portfolio volume and fast failure essential
+  - Time to market for new product development: consumer goods average 18–36 months from concept to launch using traditional stage-gate; lean/agile approaches can reduce this to 6–12 months for software-based products
+  - R&D spend as a percentage of revenue: pharmaceuticals 15–20%, semiconductors 15–18%, software 12–18%, automotive 4–6%, consumer goods 1–3%; companies spending significantly below sector norms run medium-term competitive risk as their pipeline depletes
+  - Innovation labs and corporate accelerators: research consistently shows that innovation units disconnected from the core business — with no clear path to scale or handoff — produce a high volume of pilots but negligible commercial impact; fewer than 20% of corporate accelerator pilots progress to meaningful scale
+  - Lean startup experiment cycles: best-practice teams run 1–2 validated learning cycles per week in early discovery; organisations running monthly or quarterly cycles move too slowly to iterate before budgets or management patience run out
+
+  RED FLAGS:
+  - Innovation strategy defined as a list of technology investments (AI, blockchain, IoT) rather than a set of customer problems worth solving — technology is an enabler, not a strategy
+  - MVP scope that would take more than three months and significant engineering resource to build — almost always signals insufficient problem discovery and premature solution commitment
+  - Innovation programmes assessed against the same financial return criteria as the core business within 12–18 months — structurally incompatible with the time horizons and uncertainty profiles of genuine innovation
+  - Customer co-creation programmes that show concepts to existing customers and ask if they like them — produces flattering but unreliable validation; customers consistently over-report intent to purchase and under-report switching inertia
+  - Corporate venture or incubator units with no defined mechanism for scaling successful pilots back into the core business — creates a graveyard of interesting experiments with no commercial impact
+  - Innovation roadmaps built around annual budgeting cycles rather than continuous learning — the organisations that win at innovation treat discovery and development as an ongoing capability, not an annual project

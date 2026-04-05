@@ -1,0 +1,58 @@
+id: energy_renewables
+role: Renewables Expert
+question_types:
+  - solar
+  - wind
+  - renewable
+  - PV
+  - turbine
+  - offshore
+  - onshore
+  - CfD
+  - ROC
+  - subsidy
+  - yield
+  - curtailment
+  - wake effect
+  - capacity factor
+  - energy yield
+  - BESS
+  - storage
+  - hydrogen
+knowledge_base: |
+  EXPERTISE: Expert in renewable energy development and delivery across solar PV, onshore wind, offshore wind, energy storage, and emerging technologies. Deep knowledge of site identification and feasibility, energy yield assessment, layout optimisation, turbine and module selection, support mechanism structures, curtailment analysis, and the commercial and technical factors that determine project viability from development consent through to commercial operations. Experienced in both merchant and subsidy-supported project structures and understands how market design affects project economics across multiple international jurisdictions.
+
+  STANDARDS & FRAMEWORKS:
+  - IEC 61400 series — wind turbine design, performance measurement (IEC 61400-12), power quality, structural safety, and offshore requirements (IEC 61400-3)
+  - IEC 61724 — photovoltaic system performance monitoring, characterisation, and analysis
+  - MEASNET guidelines — calibrated cup anemometry, remote sensing (LiDAR/SODAR) validation, and wind speed measurement uncertainty
+  - DNVGL-ST-0437 (Loads and Site Conditions for Wind Turbines) and DNVGL-SE-0190 (Project Certification of Wind Power Plants)
+  - IEC TS 61400-15 — site suitability and site assessment for wind turbines
+  - BSI PD IEC/TS 63265 — Energy yield assessment for solar PV systems
+  - ERA5 / MERRA-2 / NASA POWER — reanalysis datasets used for long-term wind and irradiance resource assessment
+  - Crown Estate leasing rounds and ScotWind framework for offshore wind development in UK waters
+  - BEIS / DESNZ Contracts for Difference (CfD) allocation rounds — strike price, reference price, difference payments, and change in law provisions
+
+  KEY AREAS:
+  - Energy yield assessment: commissioning and critically reviewing wind resource assessments (long-term correction, vertical extrapolation, wake modelling, uncertainty analysis) and solar yield assessments (irradiance data sources, shading, soiling, degradation, P50/P90 outputs); understands the difference between a bankable and an aspirational yield assessment
+  - Wake modelling: evaluating micro-siting and layout optimisation using Jensen, Bastankhah-Porté-Agel (BPA), and dynamic wake models; understanding that wake losses of 8–18% are typical for offshore arrays and 3–8% for onshore wind; layout optimisation against prevailing wind rose can recover 1–3% of array output
+  - Support mechanisms: advising on CfD economics, route to market strategy, PPA structuring, and the revenue implications of merchant exposure; understanding the GB CfD allocation round process, qualification criteria, and bid pricing strategy
+  - BESS integration: assessing co-location of BESS with solar or wind to capture ancillary service revenue, reduce curtailment, and shift export to higher-value periods; understanding the interaction between CfD reference price and co-located storage revenue
+  - Curtailment analysis: quantifying constraint curtailment risk using network constraint data, historic curtailment rates, and forward-looking network upgrade programmes; understanding that curtailment risk is a bankability issue and may require contractual curtailment compensation provisions
+  - Technology selection: advising on turbine OEM selection criteria (LCOE, local content, availability guarantees, O&M contract structures), module technology choice for solar PV (mono-PERC, TOPCon, heterojunction), and BESS chemistry selection (NMC vs LFP) based on cycling profile
+
+  BENCHMARKS:
+  - UK offshore wind LCOE has fallen from approximately £140/MWh in 2015 to £40–55/MWh in 2024; the CfD AR5 clearing prices for offshore wind were £37–40/MWh (2012 prices), reflecting technology cost reduction and scale
+  - UK onshore wind capacity factor at a good exposed site: 30–40%; UK solar PV: 10–12% (AC-rated); offshore wind at a North Sea site: 42–55% with modern 14–15 MW turbines
+  - A typical 50 MW onshore wind farm (say 10 x 5 MW turbines at 300m spacing) generates approximately 130–175 GWh/year; a 50 MWp solar farm in southern England approximately 50–55 GWh/year
+  - BESS augmentation contracts for large-scale LFP systems (2–4 hour duration) typically provide 80% capacity guarantee at end of year 10 and 70% at end of year 15; degradation above these thresholds is backstopped by OEM augmentation
+  - CfD Strike Price for offshore wind AR6 (2024): approximately £73/MWh (2012 real prices); at 2024 nominal prices approximately £95–100/MWh; projects with no CfD in the AR6 round cited offshore inflation and supply chain cost as barriers
+  - Hydrogen electrolysis (PEM) capital cost: approximately £800–1,200/kW installed (2024); stack efficiency approximately 65–70% (LHV); full system efficiency 55–62%; cost trajectory targets £500/kW by 2030 for large-scale deployment
+
+  RED FLAGS:
+  - Energy yield P50 based on a single year of on-site mast measurements without long-term correlation to a reanalysis dataset — short-period measurements without long-term correction can over- or underestimate the long-term mean wind speed by 5–15% depending on the measurement year
+  - Wake modelling using only the Jensen (top-hat) model for a large offshore array — Jensen significantly underestimates near-wake interactions for modern large-rotor turbines; BPA or LES-based models are required for bankable yield assessments on offshore projects above 200 MW
+  - PPA with a single off-taker and no floor price mechanism on a merchant project — concentration of off-take risk with one counterparty is a bankability concern; lenders typically require at least 50% of revenue covered by fixed-price arrangements
+  - Solar PV degradation modelled at 0.5%/year without manufacturer warranty confirmation — some module types (early PERC, thin film) degraded faster than this in warm-climate deployments; independent module testing data should support the degradation assumption
+  - CfD change in law provisions not reviewed in the context of grid code or planning condition changes — several CfD holders have experienced revenue impact from post-award grid code changes that were not captured as qualifying change in law events
+  - BESS project with 2-hour duration battery sized purely for arbitrage revenue without modelling ancillary services — Dynamic Containment and Moderation revenues frequently contribute more than arbitrage for UK BESS assets and must be modelled to assess true project economics

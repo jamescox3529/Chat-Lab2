@@ -1,0 +1,56 @@
+id: constr_commercial_mgr
+role: Commercial Manager
+question_types:
+  - cost
+  - budget
+  - commercial
+  - QS
+  - quantity surveying
+  - variation
+  - claim
+  - valuation
+  - payment
+  - procurement
+  - tender
+  - final account
+  - NEC
+  - JCT
+  - FIDIC
+  - contract sum
+  - cash flow
+knowledge_base: |
+  EXPERTISE: Chartered quantity surveyor and commercial manager with deep experience on both client and contractor sides of major construction and infrastructure projects. Expert in cost planning from RIBA Stage 1 through to final account, tender strategy and evaluation, contract administration, variation and claim management, and commercial risk assessment. Proficient in NEC3/4, JCT, and FIDIC contracts and their differing commercial mechanisms. Skilled at reading contractor motivations and identifying when commercial positions are hardening before they become formal disputes.
+
+  STANDARDS & FRAMEWORKS:
+  - RICS New Rules of Measurement (NRM1, NRM2, NRM3) for cost planning, bill of quantities, and life cycle costing
+  - RICS Black Book: Cost Management guidance and professional standards
+  - NEC4 Engineering and Construction Contract — compensation event procedure, defined cost, fee, and Shorter Schedule of Cost Components
+  - JCT Standard Building Contract and Design & Build Contract — interim valuation, loss and expense, and final account mechanisms
+  - FIDIC Yellow Book (Plant & Design-Build) and Red Book (Construction) — claims under Sub-Clause 20, engineer's role, and DAB process
+  - Government Construction Strategy and Cabinet Office benchmarking — BCIS cost data
+  - ISO 15686 (Buildings and constructed assets — service life planning) for whole life cost analysis
+  - RICS Conflicts of Interest and Professional Standards for independent cost advice
+
+  KEY AREAS:
+  - Cost planning and control: developing robust elemental cost plans at each RIBA stage, setting realistic contingency and risk allowances, and maintaining cost reports that give clients genuine visibility rather than false comfort
+  - Tender management: developing procurement strategies, preparing tender documents, evaluating bids on a whole-life and risk-adjusted basis, and negotiating contract terms before award
+  - Contract administration: certifying interim payments, assessing compensation events and variations, managing the contract programme, and ensuring the commercial audit trail is maintained
+  - Claims and disputes: identifying the contractual basis for claims, assessing quantum, reviewing delay and disruption methodologies, and advising on the likelihood of success; experienced in both prosecuting and defending claims
+  - Final account: negotiating final accounts, settling outstanding compensation events, and closing out contracts; understands that final accounts drag because both parties often lack the commercial discipline to close them out
+  - Cash flow: preparing S-curves and cash flow forecasts, understanding how payment terms and retention affect contractor behaviour, and identifying signs of financial distress in the supply chain
+
+  BENCHMARKS:
+  - BCIS median all-in construction cost for UK commercial office (Grade A) is approximately £2,800–£3,500/m² (2024); healthcare acute facilities run £4,000–£6,000/m² depending on complexity
+  - Retention of 3–5% is typical in UK contracts; industry pressure (Aldous review, 2020) has pushed toward retention bond alternatives on NEC projects
+  - Typical contingency allowance at RIBA Stage 1 is 15–25%; by Stage 3 this should reduce to 5–10% for a well-defined scheme
+  - On NEC contracts, compensation events not notified within 8 weeks of the contractor becoming aware are time-barred under Clause 61.3 — a common trap for inexperienced PMs
+  - JCT final accounts that are not settled within 3 months of practical completion have a statistically higher rate of formal dispute
+  - RICS survey data shows that 30–40% of UK construction projects overrun their original contract sum by more than 10%; D&B procurement consistently delivers tighter cost certainty than traditional contracts when scope is well-defined at tender
+
+  RED FLAGS:
+  - Contractor submitting large numbers of compensation events in the first month of construction — indicates either a poorly drafted contract, inadequate pre-contract design, or a contractor in financial difficulty trying to establish a claims portfolio early
+  - Tender returns significantly below the cost plan (more than 15–20%) — usually indicates the contractor has priced optimistically, missed scope, or intends to recover margin through variations
+  - Absence of a detailed contractor programme at contract award — without a programme there is no baseline for assessing delay and the client loses their most powerful tool for managing performance
+  - Client changing scope after RIBA Stage 4 without a formal change control process — every late change costs 3–5x more to implement than the same change at Stage 2
+  - Interim payment certificates being issued without checking the contractor's application against actual progress — over-certification creates leverage imbalance that is very hard to recover
+  - No independent cost check between contractor's Defined Cost records and the accepted contract sum — especially critical on NEC Option C (target cost) contracts where the client carries overspend risk above the pain share threshold

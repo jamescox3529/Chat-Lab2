@@ -1,0 +1,65 @@
+id: supply_chain_logistics
+name: Supply Chain & Logistics
+description: Expert panel covering supply chain design, procurement, logistics, resilience, and sustainability for businesses managing complex product and service flows
+pillar: strategy_advisory
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: industry
+    label: Industry / Sector
+    options:
+      - ""
+      - Manufacturing
+      - Retail & FMCG
+      - Food & Beverage
+      - Pharmaceutical & Healthcare
+      - Automotive
+      - Technology & Electronics
+      - Construction
+      - Energy
+      - Other
+  - key: business_size
+    label: Business Size
+    options:
+      - ""
+      - SME under 50 staff
+      - SME 50–250 staff
+      - Mid-market 250–1000 staff
+      - Large enterprise 1000+ staff
+  - key: sc_type
+    label: Supply Chain Type
+    options:
+      - ""
+      - Manufacturing / Production
+      - Retail & Distribution
+      - Third-party Logistics (3PL)
+      - Procurement & Sourcing
+      - Service Delivery
+      - E-commerce / Direct-to-consumer
+  - key: primary_challenge
+    label: Primary Challenge
+    options:
+      - ""
+      - Cost reduction
+      - Supply chain resilience
+      - Sustainability & ESG
+      - Speed & lead time
+      - Visibility & data
+      - Supplier management
+      - Demand forecasting
+      - Inventory optimisation
+personas:
+  - sc_strategist
+  - sc_logistics
+  - sc_procurement
+  - sc_risk
+  - sc_sustainability

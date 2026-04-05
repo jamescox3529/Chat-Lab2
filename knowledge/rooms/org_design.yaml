@@ -1,0 +1,54 @@
+id: org_design
+name: Organisational Design
+description: Expert panel covering organisational structure, operating models, culture, process design, and integration for businesses going through structural change
+pillar: people_organisation
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: org_size
+    label: Organisation Size
+    options:
+      - ""
+      - Under 50 staff
+      - 50–250 staff
+      - 250–1000 staff
+      - 1000–5000 staff
+      - 5000+ staff
+  - key: design_trigger
+    label: Design Trigger
+    options:
+      - ""
+      - Business growth & scaling
+      - Merger or acquisition
+      - Strategy shift
+      - Cost reduction
+      - Performance issues
+      - Digital transformation
+      - Spin-off or divestiture
+      - New leadership
+  - key: current_structure
+    label: Current Structure
+    options:
+      - ""
+      - Functional
+      - Divisional / Business unit
+      - Matrix
+      - Flat / Agile
+      - Holding company
+      - Hybrid
+      - Not clearly defined
+personas:
+  - od_consultant
+  - od_hr_strategy
+  - od_process_design
+  - od_culture
+  - od_ma_integration

@@ -1,0 +1,80 @@
+id: construction_delivery
+name: Construction & Project Delivery
+description: Expert panel covering project controls, commercial management, design, safety, and contracts across the built environment
+pillar: infrastructure_engineering
+project_context:
+  - key: location
+    label: Location / Region
+    options:
+      - ""
+      - UK & Ireland
+      - Europe
+      - North America
+      - Asia-Pacific
+      - Middle East & Africa
+      - Latin America
+      - Global / International
+  - key: sector
+    label: Sector
+    options:
+      - ""
+      - Commercial
+      - Residential
+      - Industrial
+      - Infrastructure
+      - Healthcare
+      - Education
+      - Mixed-use
+  - key: contract_form
+    label: Contract Form
+    options:
+      - ""
+      - NEC4
+      - NEC3
+      - JCT Design & Build
+      - JCT Standard
+      - FIDIC Yellow Book
+      - FIDIC Red Book
+      - Bespoke
+      - Framework
+      - Other
+  - key: procurement_route
+    label: Procurement Route
+    options:
+      - ""
+      - Traditional
+      - Design & Build
+      - Management Contract
+      - Construction Management
+      - PPP / PFI
+      - Early Contractor Involvement
+      - Other
+  - key: project_stage
+    label: Project Stage
+    options:
+      - ""
+      - Feasibility / Options
+      - Concept Design (RIBA 1-2)
+      - Developed & Technical Design (RIBA 3-4)
+      - Procurement
+      - Construction
+      - Commissioning & Handover
+      - Post-completion
+  - key: project_value
+    label: Project Value
+    options:
+      - ""
+      - Under £1M
+      - £1M – £10M
+      - £10M – £50M
+      - £50M – £250M
+      - £250M – £1B
+      - Over £1B
+personas:
+  - constr_project_dir
+  - constr_commercial_mgr
+  - constr_design_mgr
+  - constr_hs_lead
+  - constr_planner
+  - constr_risk_mgr
+  - constr_contracts
