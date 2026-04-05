@@ -66,6 +66,20 @@ project_context:
       - Option D — Target (Bill of Quantities)
       - Option E — Cost Reimbursable
       - Option F — Management Contract
+  - key: grip_stage
+    label: GRIP Stage / Project Phase
+    options:
+      - ""
+      - GRIP 1 — Output Definition
+      - GRIP 2 — Feasibility
+      - GRIP 3 — Option Selection
+      - GRIP 4 — Single Option Development (Pre-tender)
+      - GRIP 5 — Detailed Design
+      - GRIP 6 — Construction, Test & Commission
+      - GRIP 7 — Scheme Handback
+      - GRIP 8 — Project Close Out
+      - Pre-GRIP / Early Feasibility
+      - Multiple Stages / Whole-Life
   - key: project_value
     label: Project Value
     options:
