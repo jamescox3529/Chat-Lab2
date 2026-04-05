@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { listConversations, deleteConversation, setAuthToken } from "@/lib/api";
-import { UserButton, useAuth } from "@clerk/nextjs";
+import { UserButton, useAuth, useUser } from "@clerk/nextjs";
 import { useTheme } from "@/lib/useTheme";
 import { useZoom } from "@/lib/useZoom";
 import type { ConversationSummary } from "@/lib/types";
@@ -25,6 +25,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const { dark, toggle } = useTheme();
   const { zoom, zoomIn, zoomOut } = useZoom();
   const { getToken, isLoaded } = useAuth();
+  const { user } = useUser();
 
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [deleting, setDeleting] = useState<string | null>(null);
@@ -239,7 +240,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
           {/* User */}
           <div className="p-4 border-t border-gray-300 dark:border-dark-border flex items-center gap-3 flex-shrink-0">
             <UserButton appearance={{ elements: { avatarBox: "w-7 h-7" } }} />
-            <span className="text-xs text-gray-500 dark:text-gray-500 truncate">Account</span>
+            <span className="text-xs text-gray-500 dark:text-gray-500 truncate">{user?.firstName ?? user?.username ?? "Account"}</span>
           </div>
         </div>
       )}

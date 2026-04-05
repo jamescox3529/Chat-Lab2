@@ -35,6 +35,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   const [status, setStatus] = useState("");
   const [streamingContent, setStreamingContent] = useState("");
   const [configCollapsed, setConfigCollapsed] = useState(false);
+  const [panelRoles, setPanelRoles] = useState<Record<string, string>>({});
 
   useEffect(() => {
     setOnNewChat(onNewChat);
@@ -54,7 +55,14 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         withToken(() => getRoom(c.room_id)).catch(() => null),
         withToken(() => getConfigOptions(c.room_id)).catch(() => null),
       ]).then(([room, options]) => {
-        if (room) setRoomName(room.name);
+        if (room) {
+          setRoomName(room.name);
+          if (room.personas) {
+            const map: Record<string, string> = {};
+            for (const p of room.personas) map[p.id] = p.role;
+            setPanelRoles(map);
+          }
+        }
         if (options) setConfigOptions(options);
       });
     });
@@ -85,8 +93,6 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     setAuthToken(token);
     return fn();
   }
-
-  const panelRoles: Record<string, string> = {};
 
   async function handleSend() {
     const text = input.trim();
