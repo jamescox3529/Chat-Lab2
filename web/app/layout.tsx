@@ -4,8 +4,8 @@ import AuthProvider from "@/components/AuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Chat-Lab",
-  description: "Railway engineering expert panel",
+  title: "Roundtable",
+  description: "Your expert panel, on demand.",
 };
 
 const themeScript = `

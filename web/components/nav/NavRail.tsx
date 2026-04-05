@@ -160,7 +160,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
                 className="text-sm font-semibold text-gray-600 dark:text-gray-400 tracking-wide hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 title="Home"
               >
-                Chat-Lab
+                Roundtable
               </button>
               <div className="flex items-center gap-1">
                 <button onClick={zoomOut} disabled={zoom === "normal"} className="p-1.5 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-30" title="Smaller text">
