@@ -147,10 +147,8 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
               </p>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
                 {formatDate(conv.updated_at)}
-                {conv.message_count > 0 && (
-                  <span className="ml-2">
-                    {conv.message_count} {conv.message_count === 1 ? "message" : "messages"}
-                  </span>
+                {conv.room_name && (
+                  <span className="ml-2">{conv.room_name}</span>
                 )}
               </p>
               <button

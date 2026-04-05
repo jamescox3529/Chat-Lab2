@@ -192,6 +192,10 @@ def list_convs(room_id: str = "", user_id: str = Depends(get_current_user_id)):
     convs = list_conversations(user_id=user_id)
     if room_id:
         convs = [c for c in convs if c.get("room_id") == room_id]
+    # Enrich with room name (rooms are in-memory from YAML, no extra DB query)
+    for c in convs:
+        room = get_room(c.get("room_id", ""))
+        c["room_name"] = room.name if room else ""
     return convs
 
 

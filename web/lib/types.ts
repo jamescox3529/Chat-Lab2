@@ -62,6 +62,7 @@ export interface ConversationSummary {
   id: string;
   title: string;
   room_id: string;
+  room_name: string;
   created_at: string;
   updated_at: string;
   message_count: number;
