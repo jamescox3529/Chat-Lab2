@@ -36,7 +36,7 @@ from api.conversations.store import (
     delete_conversation,
     append_message,
 )
-from api.documents.store import create_document, get_document, delete_document
+from api.documents.store import create_document, get_document, list_documents, delete_document
 from api.documents.extract import extract_text
 from api.pipeline.pipeline import run_pipeline
 from api.pipeline.prompts import build_project_context, build_user_profile_instruction
@@ -324,6 +324,13 @@ async def chat(
 # =============================================================================
 # Documents
 # =============================================================================
+
+@app.get("/api/documents")
+def fetch_documents(ids: str = "", user_id: str = Depends(get_current_user_id)):
+    """Return document metadata (no content) for a comma-separated list of IDs."""
+    id_list = [i.strip() for i in ids.split(",") if i.strip()]
+    return list_documents(id_list, user_id=user_id)
+
 
 @app.post("/api/documents", status_code=201)
 async def upload_document(

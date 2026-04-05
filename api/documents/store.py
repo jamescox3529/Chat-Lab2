@@ -41,6 +41,20 @@ def get_document(doc_id: str, user_id: str) -> Optional[dict]:
     return result.data or None
 
 
+def list_documents(doc_ids: list[str], user_id: str) -> list[dict]:
+    if not doc_ids:
+        return []
+    db = get_db()
+    result = (
+        db.table("documents")
+        .select("id, name, char_count, uploaded_at")
+        .eq("user_id", user_id)
+        .in_("id", doc_ids)
+        .execute()
+    )
+    return result.data or []
+
+
 def delete_document(doc_id: str, user_id: str) -> bool:
     db = get_db()
     result = (

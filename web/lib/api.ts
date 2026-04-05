@@ -104,6 +104,9 @@ export const uploadDocument = async (file: File): Promise<Document> => {
   return res.json();
 };
 
+export const getDocuments = (ids: string[]): Promise<Document[]> =>
+  ids.length ? req(`/api/documents?ids=${ids.join(",")}`) : Promise.resolve([]);
+
 export const deleteDocument = (id: string): Promise<void> =>
   req(`/api/documents/${id}`, { method: "DELETE" });
 

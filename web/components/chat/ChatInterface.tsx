@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
-import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions } from "@/lib/api";
+import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
 import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown } from "./MessageBubble";
 import StatusBar from "./StatusBar";
@@ -51,10 +51,12 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
       setConv(c);
       setMessages(c.messages);
       setConfig(c.config ?? EMPTY_CONFIG);
+      const docIds = (c.config?.document_ids ?? []) as string[];
       Promise.all([
         withToken(() => getRoom(c.room_id)).catch(() => null),
         withToken(() => getConfigOptions(c.room_id)).catch(() => null),
-      ]).then(([room, options]) => {
+        docIds.length ? withToken(() => getDocuments(docIds)).catch(() => []) : Promise.resolve([]),
+      ]).then(([room, options, docs]) => {
         if (room) {
           setRoomName(room.name);
           if (room.personas) {
@@ -64,6 +66,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
           }
         }
         if (options) setConfigOptions(options);
+        if (docs && (docs as Document[]).length) setDocuments(docs as Document[]);
       });
     });
   }, [convId]);
