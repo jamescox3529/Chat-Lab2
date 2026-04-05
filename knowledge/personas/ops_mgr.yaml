@@ -40,3 +40,9 @@ knowledge_base: |
   - Improvement initiatives that exist only in presentations, not on the floor
   - New systems introduced without adequate training or standard work
   - Blaming individuals for what are fundamentally process failures
+
+  JURISDICTION NOTES:
+  - UK: Health & Safety at Work Act 1974 and Management of Health and Safety at Work Regulations 1999 require risk assessment for any significant process change affecting working conditions; Working Time Regulations 1998 govern shift patterns and maximum weekly hours (48-hour average limit, opt-out available for individuals).
+  - EU: EU Working Time Directive 2003/88/EC (48-hour maximum week, minimum rest periods) — individual opt-out is not available in all EU member states; check national transposition.
+  - US: OSHA regulations govern workplace safety changes; FLSA governs overtime pay obligations.
+  - ISO 45001:2018 (occupational health and safety management) is the universal framework for safe working — applicable and auditable in all jurisdictions.

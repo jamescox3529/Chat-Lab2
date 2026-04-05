@@ -8,37 +8,41 @@ question_types:
   - lighting
   - power
 knowledge_base: |
-  M&E STANDARDS:
-  - Building Regulations Parts F, L, P
-  - BS 7671 (Wiring Regulations)
-  - CIBSE Guides A-M
-  - TfL M&E Design Standards
-  - Network Rail standards (NR/L2 series)
+  EXPERTISE:
+  Chartered mechanical and electrical engineer (CEng, MCIBSE or MIET) with rail station and infrastructure experience across HV/LV electrical distribution, tunnel ventilation, HVAC, fire detection, emergency lighting, and energy management. Has designed and delivered M&E packages on station refurbishments, new stations, and underground infrastructure for Network Rail and TfL, and understands the interface between M&E systems, structural engineers, fire strategy consultants, and DNO supply application processes that must be managed from GRIP 3 onwards.
 
-  MECHANICAL SYSTEMS:
-  - HVAC (heating, ventilation, cooling)
-  - Tunnel ventilation
-  - Fire suppression systems
-  - Plumbing and drainage
-  - Lifts and escalators (integration)
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Building Regulations Parts F (ventilation), L (conservation of fuel and power), and P (electrical safety)
+  - Part L 2021 — conservation of fuel and power; requires 27% CO2 reduction versus the 2013 baseline for new build
+  - BS 7671:2018+A2:2022 — IET Wiring Regulations (18th edition); the primary UK standard for electrical installation design
+  - BS 5266-1:2016 — Emergency lighting — code of practice; defines maintained and non-maintained luminaire requirements and 1 lux minimum at floor level in escape routes
+  - CIBSE Guides A through M — the primary references for HVAC, lighting, and energy design in the UK
+  - TfL M&E Design Standards — applicable on TfL and London Underground infrastructure
+  - Network Rail standards (NR/L2 series) — M&E aspects of Network Rail construction requirements
 
-  ELECTRICAL SYSTEMS:
-  - LV distribution (400V/230V)
-  - Lighting (platform, tunnel, emergency)
-  - Small power and containment
-  - Fire alarm and detection
-  - Security systems
-  - Communications backbone
+  EUROPE / INTERNATIONAL:
+  - IEC 60364 series — Low-voltage electrical installations; the international standard base from which BS 7671 is derived
+  - EN 54 series — Fire detection and fire alarm systems; European standard underpinning UK fire detection system design and testing requirements
+
+  KEY AREAS:
+  - HV supply design and DNO application: 11kV or 33kV incoming supply applications to the DNO must be submitted at GRIP 3; DNO lead times from application to energisation are typically 12-24 months and will be on the critical path if not started early.
+  - LV distribution design: the LV distribution network (400V TPN) must be sized to the full connected and diversity-corrected load; single line diagrams must be produced before detailed design commences to coordinate containment routes and spatial requirements.
+  - Emergency lighting design: BS 5266 requires 1 lux minimum at floor level in escape routes; the emergency lighting system must be a standalone installation that operates independently of the main power supply; integration with the main lighting circuit is a compliance failure.
+  - Tunnel ventilation design: underground stations require ventilation systems designed for both normal passenger operations and emergency smoke extraction; the design method (longitudinal, transverse, or semi-transverse) depends on tunnel geometry and fire strategy.
+  - Energy management and Part L compliance: an energy model must be prepared before RIBA Stage 3 (equivalent to GRIP 4) to demonstrate Part L compliance; energy modelling after detailed design is complete leads to redesign.
+  - BMS/BEMS integration: building energy management systems must be specified with interoperability and long-term maintenance in mind; proprietary systems without open protocols create maintenance and upgrade problems.
 
   BENCHMARKS:
-  - M&E cost: 25-40% of building total
-  - Lighting: £150-400 per luminaire installed
-  - HVAC: £200-500/m² floor area
-  - Electrical distribution: £50-150/m² GIA
+  - M&E cost: typically 30-45% of total station refurbishment cost.
+  - Emergency lighting minimum illuminance: 1 lux at floor level in escape routes (BS 5266-1:2016).
+  - HVAC in underground stations: TfL operational standard targets temperatures below 30°C in passenger areas; this is challenging on deep-level tube lines and is a design constraint.
+  - DNO supply application to energisation: 12-24 months typical; this timeline must be shown on the programme from GRIP 3.
+  - LV switchgear design life: typically 25-35 years; should be specified to match the planned asset life.
 
   RED FLAGS:
-  - Load calculations missing
-  - No single line diagrams
-  - Lighting design not provided
-  - Maintenance access not considered
-  - Energy efficiency not addressed
+  - DNO application not submitted at GRIP 3 — the DNO lead time is long and largely outside the project team's control; a late application will delay energisation and construction completion.
+  - No single line diagrams produced before detailed design — single line diagrams are prerequisite documents for space planning, containment routing, and structural coordination; their absence causes major coordination problems.
+  - HV supply capacity not confirmed with DNO before detailed design — the DNO may not be able to provide the required capacity at the desired voltage level; this must be confirmed early, not assumed.
+  - Emergency lighting designed as an extension of the main lighting circuit rather than a standalone system — this fails BS 5266 and Building Regulations and will not pass building control inspection.
+  - Energy model not prepared before RIBA Stage 3/GRIP 4 equivalent — demonstrating Part L compliance after detailed design is complete requires redesign; the cost and programme impact of late energy compliance discovery is significant.

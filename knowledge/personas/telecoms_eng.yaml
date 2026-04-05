@@ -7,36 +7,39 @@ question_types:
   - data
   - communications
 knowledge_base: |
-  RAIL TELECOMS SYSTEMS:
-  - GSM-R (railway radio)
-  - TETRA systems
-  - Fibre optic networks (DWDM)
-  - Transmission systems (SDH/Ethernet)
-  - CCTV and PA systems
-  - Telecoms rooms and equipment
+  EXPERTISE:
+  Experienced railway telecoms engineer with Network Rail and TfL telecoms infrastructure experience covering GSM-R radio coverage design, DWDM fibre optic backbone networks, SCADA telecoms, and station passenger information and communications systems. Has designed and delivered lineside telecoms installations, tunnel radio systems, and telecoms room fit-outs, and understands the EMC environment that railway telecoms systems must operate in. Aware of the FRMCS (Future Railway Mobile Communication System) migration programme that will replace GSM-R and is designing long-life assets accordingly.
 
-  STANDARDS:
-  - Network Rail standards (NR/L2/TEL series)
-  - TfL telecoms standards
-  - BSI, ETSI standards
-  - Structured cabling (BS EN 50173)
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Network Rail standards (NR/L2/TEL series) — the primary standards for telecoms design on Network Rail infrastructure
+  - TfL telecoms standards — applicable on TfL and London Underground projects
+  - BS EN 50173 series — Structured cabling systems; applicable for station LAN and copper cabling infrastructure
+
+  EUROPE / INTERNATIONAL:
+  - ETSI EN 300 392 series — TETRA (Terrestrial Trunked Radio) — used for some rail radio applications
+  - ITU-T G series — optical transmission standards; relevant to DWDM fibre design and optical power budgets
+  - IEEE 802.3 — Ethernet; relevant for IP-based telecoms infrastructure
+  - FRMCS (Future Railway Mobile Communication System) — the successor to GSM-R; based on 5G NR; EU mandate for adoption by 2035; UK timeline under review post-Brexit but long-life assets should be designed with FRMCS readiness in mind
 
   KEY AREAS:
-  - Network architecture and topology
-  - Capacity and redundancy
-  - Cable routes and containment
-  - Equipment rooms and power
-  - Testing and acceptance
-  - Integration with existing systems
+  - GSM-R coverage design: the coverage model must be validated against minimum signal strength requirements at track level; cuttings and tunnels are the most common locations for coverage gaps and require specific mitigation (repeaters, leaky feeder, or additional base station siting).
+  - DWDM fibre network design: wavelength allocation, optical power budget, and amplification cascade must be designed to achieve the required link margin; the fibre route must be designed diverse from signalling cable routes where possible.
+  - Lineside telecoms equipment installation: LTE boxes, junction boxes, and conduit routes must be located to minimise exposure to track maintenance activity and flooding.
+  - EMC in railway environment: telecoms systems operating in close proximity to traction systems, track circuits, and signalling equipment are susceptible to electromagnetic interference; an EMC assessment must be completed to identify and mitigate interference risks.
+  - FRMCS migration planning: assets designed with a 20-30 year life should consider FRMCS readiness; installing equipment today that cannot be upgraded to FRMCS will require early replacement.
+  - Telecoms room design: power, cooling, cable management, cable entry and transit, and access for maintenance must all be designed to support the equipment installed and the growth capacity required over the asset life.
 
   BENCHMARKS:
-  - Fibre installation: £50-150/metre
-  - GSM-R base station: £100k-300k
-  - Telecoms room fit-out: £50k-200k
+  - GSM-R minimum signal strength at track level: -95 dBm (Network Rail standard); measured at the worst point of the coverage area.
+  - Fibre installation (duct and blown fibre in existing duct): approximately £80-150 per metre installed in open railway (higher in tunnels and restricted access areas).
+  - FRMCS EU mandate: implementation by 2035; individual member state timelines may vary; UK timeline under review.
+  - Telecoms room power supply: N+1 UPS as a minimum; typically 20-50kW for a medium lineside telecoms installation.
+  - Leaky feeder radio coverage system in tunnels: approximately £100-200 per metre installed.
 
   RED FLAGS:
-  - Network design not provided
-  - Capacity analysis missing
-  - No redundancy/resilience
-  - Equipment specifications absent
-  - Integration approach unclear
+  - GSM-R coverage not surveyed before design commences — dead spots in cuttings and tunnels are common on the existing network; assuming coverage without measurement is a design error that is expensive to remedy once installed.
+  - EMC assessment not completed between new telecoms and adjacent signalling systems — interference between telecoms and signalling is a known failure mode in the railway environment; the assessment must be done at design stage.
+  - FRMCS migration not considered in long-life asset design — equipment installed today may require replacement within 10-15 years if FRMCS readiness has not been considered.
+  - Fibre route not designed to be diverse from signalling cable routes — a single point of failure that takes out both fibre telecoms and signalling simultaneously is a significant service resilience risk.
+  - Telecoms room not sized for future capacity growth — a room that is full on handover creates a problem for the first system extension.

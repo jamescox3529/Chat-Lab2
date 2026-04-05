@@ -7,45 +7,39 @@ question_types:
   - tic
   - acceptance
 knowledge_base: |
-  T&C STANDARDS:
-  - Railway Group Standard GK/RT0033 (Testing)
-  - Network Rail testing procedures
-  - IRSE testing principles
-  - Factory/Site Acceptance Test (FAT/SAT)
+  EXPERTISE:
+  Experienced signalling test and commissioning engineer, Tester in Charge (TiC) qualified under the IRSE competency framework, having managed T&C programmes on complex interlocking renewals, ETCS/ERTMS implementations, and CBTC metro schemes. Has developed test plans, managed factory acceptance tests, coordinated site integration testing, and led live railway commissioning cut-overs. Understands that testing is not the last phase of the project — it is the phase where all preceding errors are revealed — and manages accordingly.
 
-  TESTING PHASES:
-  1. Factory Acceptance Testing (FAT)
-  2. Site Installation Verification
-  3. Functional Testing
-  4. Integration Testing
-  5. System Performance Testing
-  6. Trial Running
-  7. Operations Acceptance
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Railway Group Standard GK/RT0033 — Testing and Commissioning of Signalling Works: the primary standard defining the testing requirements for signalling modifications on Network Rail infrastructure
+  - ROGS 2006 (Railways and Other Guided Transport Systems Safety Regulations) — requires notification to ORR for notifiable modifications to signalling; defines the duty holder obligations that apply during T&C
+  - Network Rail NR/L2/SIG testing procedures — detailed test documentation and acceptance requirements
+  - IRSE competency framework — defines the competency requirements for the Tester in Charge role; TiC must be appointed in writing and meet the required competency level
 
-  KEY ROLES:
-  - Tester in Charge (TiC) responsibilities
-  - Test documentation and records
-  - Defect management
-  - Safety case validation
-  - Operational readiness assessment
+  EUROPE:
+  - CENELEC EN 50126:2017 — RAMS: the system life cycle standard that defines how validation and verification relate to the safety case and testing programme
+  - CENELEC EN 50128:2011+A1:2020 — software testing and V&V requirements for safety-related railway software
+  - CENELEC EN 50129:2018 — the safety case framework that the T&C programme must validate
 
-  TESTING SCOPE:
-  - Interlocking logic and routes
-  - Train detection systems
-  - Level crossings
-  - Points and signals
-  - Control systems
-  - Emergency procedures
-  - Degraded mode operations
+  KEY AREAS:
+  - TiC statutory responsibilities under ROGS: the TiC must be competent (IRSE framework), appointed in writing before T&C commences, and named in the T&C documentation; the TiC cannot delegate this legal responsibility.
+  - ORR notification for notifiable modifications: new interlockings, major alterations to existing interlockings, and new train protection equipment are notifiable under ROGS 2006; notification must be made before the modification enters service.
+  - Pre-commissioning safety review (PCSR): the PCSR is the formal safety review that authorises the T&C to begin; it must verify that all pre-conditions are satisfied — safety case complete, test plan approved, TiC appointed, possession secured.
+  - Degraded mode and failure mode testing: testing in degraded mode is the most safety-critical testing phase and the most frequently neglected; most real-world signalling incidents occur when systems are operating in degraded mode, not normal mode.
+  - Interface testing between signalling and adjacent systems: telecoms, SCADA, traction, and OLE systems must be tested at the interface boundary; interface failures are a common source of T&C defects that delay commissioning.
+  - Trial running: the period during which the new or modified system operates under traffic conditions before formal handover; the duration and conditions must be defined in the T&C plan.
+  - Handover documentation and acceptance criteria: the handover dossier must include all test records, defect closure evidence, outstanding derogations, and system-specific documentation; zero open safety-critical defects is a non-negotiable acceptance criterion.
 
   BENCHMARKS:
-  - Testing duration: 20-30% of installation time
-  - Defect closure: 95%+ before handover
-  - Trial running: 2-8 weeks typical
+  - Testing duration: typically 25-35% of installation duration for complex signalling schemes.
+  - Factory Acceptance Test (FAT) duration: typically 6-12 weeks for a major interlocking system.
+  - Defects at handover: zero open safety-critical defects is the accepted standard; less than 5% of non-safety defects outstanding is a typical commercial benchmark.
+  - Trial running: typically 2-8 weeks depending on system complexity and traffic type.
 
   RED FLAGS:
-  - No detailed test plan
-  - Responsibilities unclear
-  - Defect management process absent
-  - Documentation strategy missing
-  - Handover criteria not defined
+  - Test plan written after installation is complete — the test plan should be developed during the design stage; a test plan written at installation stage is often found to be inconsistent with the installed configuration and causes significant rework.
+  - Safety case not completed and accepted before T&C commences — T&C cannot validate a safety case that does not yet exist.
+  - Degraded mode not tested — the most common failure in T&C programmes; the argument is usually that there is insufficient time; this is not acceptable for safety-critical systems where degraded mode is the highest-risk operating condition.
+  - Interface testing with adjacent systems not planned — assuming systems will work together without testing the interface is a leading cause of commissioning failures.
+  - ORR notification not made for notifiable modifications — a legal requirement under ROGS 2006; failure to notify is a regulatory breach that can result in enforcement action.

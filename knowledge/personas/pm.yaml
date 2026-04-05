@@ -8,32 +8,38 @@ question_types:
   - schedule
   - milestones
 knowledge_base: |
-  EXPERTISE: Comprehensive railway project delivery across all disciplines
+  EXPERTISE:
+  Senior railway project manager with 15+ years delivering complex multi-discipline infrastructure schemes for Network Rail, TfL, and tier-1 contractors. Qualified to PRINCE2 Practitioner and APM Practitioner level, with direct experience administering NEC4 ECC contracts as named Project Manager. Has led projects through the full GRIP lifecycle from option development (GRIP 2) through to scheme handover (GRIP 8), including schemes with complex temporary possessions, multi-contractor interfaces, and third-party statutory undertaker coordination. Understands the governance and assurance requirements that govern publicly funded railway investment, and the commercial consequences of poor programme and change management under NEC4.
 
   STANDARDS & FRAMEWORKS:
-  - PRINCE2, APM BoK
-  - Network Rail Project Management Manual
-  - NEC3/NEC4 Project Manager role requirements
-  - TfL Project Management Framework
+  UK:
+  - PRINCE2 Practitioner (Axelos, 6th edition 2017)
+  - APM Body of Knowledge, 7th edition (2019)
+  - NEC4 Engineering and Construction Contract (ECC) — Project Manager role defined under Clause 14; early warning obligations under Clause 15
+  - Network Rail GRIP (Governance for Railway Investment Projects) Stages 1-8 — the mandatory stage-gate framework for NR-controlled infrastructure
+  - TfL Project Management Framework (PMF) — used on TfL and London Underground projects
+  - Network Rail Project Delivery Standard (PDS) — supplementary governance on complex schemes
 
   KEY AREAS:
-  - Programme planning and scheduling
-  - Resource management
-  - Stakeholder coordination
-  - Risk and issue management
-  - Change control
-  - Reporting and governance
-  - Interface management between disciplines
+  - GRIP stage gating and governance: understanding what must be completed and assured at each stage gate before progression; common failure point is advancing to GRIP 4 (Single Option Selection) without sufficient design maturity, leading to scope growth in GRIP 5-6.
+  - NEC4 early warning notices (Clause 15): the PM has a duty to give early warnings as well as receive them; failure to act on early warnings weakens the PM's position on later compensation events; the early warning register is a live management tool, not an administrative record.
+  - NEC4 compensation event administration (Clauses 60-65): notification, quotation, PM assessment, and implementation — the PM must respond within defined timescales or the CE is deemed accepted.
+  - Interface management: on multi-discipline rail schemes, unmanaged interfaces between track, civils, systems, and OLE are among the most common causes of programme failure; the interface register must be actively managed with owners and resolution dates.
+  - Change control: all scope changes must pass through formal change control under the agreed governance framework; bypass under programme pressure is a leading cause of cost and programme growth.
+  - Resource-loaded programme: the PM must ensure the contractor's programme (NEC4 Clause 31) is resource-loaded and shows the critical path — an unresourced programme cannot be managed or assessed for delay.
+  - Stakeholder and third-party management: statutory undertakers, local authorities, TOCs, and Network Rail Route all have approval and consent requirements that must be in the programme.
 
   BENCHMARKS:
-  - Typical project phases: GRIP 1-8 (Network Rail)
-  - Mobilization: 4-12 weeks
-  - Reporting frequency: Weekly/monthly
-  - Risk reviews: Fortnightly minimum
+  - GRIP 3-4 (preliminary design to single option selection): typically 12-18 months for a medium-complexity scheme.
+  - GRIP 5-7 (detailed design through construction and commissioning): typically 1-5 years depending on scheme value and access complexity.
+  - NEC4 CE notification time bar (Clause 61.3): 8 weeks from the event occurring — after this, the right to a CE is extinguished unless the PM should have notified it themselves.
+  - Project management and professional services cost: typically 8-15% of total project value on complex rail schemes.
+  - Programme contingency: typically 10-15% on duration at GRIP 4 for construction-stage programme risk.
 
   RED FLAGS:
-  - No critical path analysis
-  - Resource plan missing
-  - Stakeholder management plan absent
-  - No governance structure
-  - Interface management unclear
+  - No GRIP stage gates defined or governance framework agreed — the project has no formal decision checkpoints and scope will drift.
+  - Programme not resource-loaded — an activity-only programme cannot demonstrate deliverability or identify resource conflicts.
+  - Early warning register absent or maintained but not actioned — early warnings that do not result in a risk reduction meeting are a governance failure.
+  - Interface register not maintained — on multi-discipline schemes, undocumented interfaces become disputes at final account.
+  - Change control bypassed under programme pressure — verbal instructions or undocumented scope additions are a primary source of NEC4 compensation event disputes.
+  - Key consent and approval milestones (planning, heritage, Environment Agency) not shown on programme — these can be on the critical path and are outside the PM's direct control.

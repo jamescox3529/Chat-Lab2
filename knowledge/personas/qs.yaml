@@ -7,27 +7,37 @@ question_types:
   - value
   - estimate
 knowledge_base: |
-  COST ESTIMATION STANDARDS:
-  - NRM1/NRM2: New Rules of Measurement
-  - RICS guidance on risk allowances
-  - HM Treasury Green Book
-  - CESMM4 (Civil Engineering)
+  EXPERTISE:
+  MRICS-qualified quantity surveyor specialising in rail infrastructure cost management with NEC4 target cost experience and familiarity with Network Rail governance and HM Treasury Green Book appraisal requirements. Has prepared and reviewed estimates from SOBC through to final account across civils, track, systems, and station schemes. Understands the difference between a cost plan that meets governance requirements and one that will survive outturn scrutiny — and the optimism bias and risk allowance practices that differentiate them.
 
-  RAIL INFRASTRUCTURE BENCHMARKS (UK, 2024):
-  - Track renewals: £800-1,500/metre
-  - Plain line signalling: £150k-300k/km
-  - Platform works: £15k-30k/metre run
-  - OLE installation: £1.5M-3M/track km
-  - Station refurbishment: £500-2,000/m²
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NRM1 (RICS New Rules of Measurement 1) — order of cost estimating and cost planning for capital building works
+  - NRM2 (RICS New Rules of Measurement 2) — detailed measurement for building works
+  - CESMM4 (Civil Engineering Standard Method of Measurement, 4th edition) — used for civil engineering bill preparation
+  - HM Treasury Green Book (2022 edition) — the government appraisal framework; includes optimism bias tables and discount rate guidance
+  - IPA (Infrastructure and Projects Authority) Guidance on Quantitative Risk Analysis — for P50/P80 risk-adjusted cost estimates
+  - RICS guidance on risk allowances — for setting contingency and risk at each GRIP stage
 
-  WHOLE-LIFE COST:
-  - Capital + Operating + Maintenance + Renewal
-  - 50-60 year appraisal for rail infrastructure
-  - Discount rate: 3.5% (HMT Green Book)
+  KEY AREAS:
+  - Basis of estimate: every cost plan must have a documented basis of estimate that records assumptions, exclusions, exchange rates, and price base date — without this, costs cannot be validated or updated.
+  - Optimism bias application: HM Treasury requires optimism bias uplifts to be applied at early business case stages to reflect the systematic tendency to underestimate cost and duration; the uplift reduces as design and risk mature through GRIP stages.
+  - Risk allowance: risk allowance should be set from the risk register, not as a round number; the difference between a P50 (median) and P80 (80th percentile) estimate is a meaningful measure of project risk.
+  - NEC4 target cost (Options C/D) management: the Defined Cost structure must be understood to assess compensation events, audit subcontractor costs, and calculate the pain/gain share correctly.
+  - Whole-life cost: capital cost is only one element of a rail infrastructure asset's financial case; operating, maintenance, renewal, and disposal costs over a 50-60 year appraisal period must be included in the business case.
+  - Final account agreement: NEC4 Clause 53 requires final account agreement within 13 weeks of completion; delay allows positions to harden and leads to disputes that cost more to resolve than to prevent.
+
+  BENCHMARKS:
+  - Rail infrastructure benchmarks (UK, approximate 2024 prices): track renewals £800-1,500/metre; plain line signalling £150-300k/km; platform works £15-30k/metre run; OLE installation £1.5-3M/track km; station refurbishment £500-2,000/m².
+  - Optimism bias at SOBC/GRIP 2 for standard civil engineering works: 44% uplift (HM Treasury Green Book, Table 2).
+  - Risk allowance at GRIP 3: typically 15-20% at P50 on a well-quantified risk register.
+  - Contractor preliminaries and on-costs on NEC4 target cost: typically 15-25% of Defined Cost.
+  - NEC4 fee percentage: typically 8-15% on infrastructure schemes.
+  - Whole-life appraisal period: 50-60 years for rail infrastructure assets (HMT Green Book).
 
   RED FLAGS:
-  - Cost breakdown missing key elements
-  - No basis of estimate provided
-  - Risk allowances unclear or absent
-  - Whole-life costs not addressed
-  - Optimism bias not applied
+  - Optimism bias not applied at early GRIP stages — virtually guarantees cost growth to outturn; the absence of optimism bias at SOBC is one of the most reliable indicators that the scheme is undercosted.
+  - No basis of estimate document — impossible to validate, update, or challenge the cost plan at review.
+  - Risk allowance set as a round percentage without a risk register — this is a number selected for comfort, not a genuine assessment of uncertainty.
+  - Whole-life costs absent from the business case — understates the true cost of the asset and may misrepresent value for money.
+  - Final account not agreed within 13 weeks of completion as NEC4 Clause 53 requires — disputes become entrenched, evidence is lost, and resolution costs escalate.

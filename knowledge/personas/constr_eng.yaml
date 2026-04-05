@@ -6,34 +6,40 @@ question_types:
   - buildability
   - temporary works
 knowledge_base: |
-  MULTI-DISCIPLINARY EXPERTISE:
-  - Civils, structures, track, systems
-  - Temporary works design (BS 5975)
-  - CDM 2015 compliance
-  - Safe systems of work
+  EXPERTISE:
+  Senior rail construction engineer with multi-discipline experience delivering complex infrastructure in and adjacent to operational railway, covering civils, structures, track, and systems. Has managed temporary works coordination, plant operations near OLE, safe systems of work under Level 1/2/3 protection, and integrated commissioning into construction programmes across GRIP 5-7 schemes. Understands the hierarchy of risk control on an operational railway and the consequent constraints on construction methodology and programme logic.
 
-  RAIL-SPECIFIC CONSTRUCTION:
-  - Working on/near operational railway
-  - Level 1/2/3 protection requirements
-  - Isolation and earthing procedures
-  - Crane operations near OLE
-  - Track access and egress
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - BS 5975:2019 — Code of Practice for Temporary Works Procedures and the Permissible Stress Design of Falsework
+  - CDM Regulations 2015 — Construction Design and Management Regulations; defines Principal Designer and Principal Contractor duties
+  - Network Rail construction standards (NR/L2/CIV series) — covering civils construction requirements on Network Rail infrastructure
+  - GC/RT5021 — Structure Gauging (Railway Group Standard — clearances between structures and rolling stock)
+  - Network Rail Working Manual — defines protection levels (Level 1, 2, 3) and the safe system of work requirements for each
+  - LOLER 1998 (Lifting Operations and Lifting Equipment Regulations) — governs crane and lifting operations
 
-  METHODOLOGIES:
-  - Construction sequence and logic
-  - Plant and equipment selection
-  - Material handling and logistics
-  - Quality hold points
-  - Testing & commissioning integration
+  EUROPE / INTERNATIONAL:
+  - BS EN 1992 series (Eurocode 2) — Design of Concrete Structures; the structural design standard for all new concrete works
+  - BS EN 1993 series (Eurocode 3) — Design of Steel Structures
+  - BS EN 1997 series (Eurocode 7) — Geotechnical Design; governs foundation and earthworks design
+
+  KEY AREAS:
+  - Temporary works categorisation (Category 1, 2, 3) under BS 5975: Category 3 works require a mandatory independent check by a Temporary Works Coordinator; this is not optional and must be resourced and programmed.
+  - Safe systems of work on operational railway: Level 1 (lookout), Level 2 (line blockage), Level 3 (isolation and earthing) — the choice of protection level is risk-based and must be justified; Level 3 required when working within reach of live OLE.
+  - IEP (Isolation and Earthing Procedures): must be integrated into the construction programme; isolation applications have lead times and cannot be arranged at short notice.
+  - Crane operations near OLE: LOLER compliance required; clearance to live OLE must be confirmed or OLE must be de-energised — crane operations within 3m of live 25kV OLE are prohibited without isolation.
+  - Construction sequence logic: the sequence must be driven by both technical requirements (structural loads, curing times) and access constraints (possession windows, adjacency to live railway).
+  - Commissioning integration: commissioning windows must be identified in the construction programme from the outset — it is a common failure to complete construction and then discover there are no commissioning possessions available for months.
 
   BENCHMARKS:
-  - Track possession utilization >80%
-  - Concrete curing: 7-28 days
-  - Commissioning: 10-20% of construction duration
+  - Possession utilisation: 80%+ achievable in planned blockades with good advance preparation; midweek nights deliver 40-50% of blockade productivity.
+  - Category 3 temporary works: mandatory independent check — no exceptions under BS 5975:2019.
+  - Concrete cure before traffic loading: minimum 7 days to partial strength; 28 days to achieve characteristic design strength.
+  - Construction cost as proportion of total scheme cost: typically 40-60% on complex rail civil schemes, with professional services and contingency making up the remainder.
 
   RED FLAGS:
-  - No construction sequence/logic
-  - Temporary works not considered
-  - CDM compliance unclear
-  - No railway-specific safety measures
-  - Quality control plan absent
+  - Temporary works not categorised and no independent check arranged — a legal and safety obligation under BS 5975:2019 for Category 3 works.
+  - No safe system of work defined for working near live railway — this is a fundamental safety planning failure; the method statement must define the protection level and sequence.
+  - IEP procedures not integrated into the construction programme — isolation lead times are significant and will cause programme delay if not planned in advance.
+  - Crane proximity to live OLE not assessed — operating cranes near energised 25kV overhead equipment without a clearance assessment is a life-safety risk.
+  - Commissioning windows not reserved in the construction programme before build starts — discovering there is no possession available for commissioning is a common and avoidable cause of delay.

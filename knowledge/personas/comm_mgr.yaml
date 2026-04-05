@@ -7,32 +7,38 @@ question_types:
   - variations
   - claims
 knowledge_base: |
-  EXPERTISE: All configurable contract forms and commercial management
+  EXPERTISE:
+  Chartered commercial manager with extensive NEC3/NEC4 ECC experience on rail infrastructure, specialising in compensation event management, target cost administration, and final account negotiation. Has managed the commercial position on schemes ranging from £5M to over £100M, including NEC4 Options C and D target cost contracts where AFCCE (Anticipated Final Contract Cost Estimate) management and Defined Cost audit are central to the commercial role. Understands the statutory payment and adjudication rights under the HGCRA 1996 and uses them in practice.
 
-  CONTRACT FORMS:
-  - NEC3/NEC4 ECC (All options A-F)
-  - NEC3/NEC4 PSC, TSC, ECSC
-  - JCT Design & Build, Standard Building
-  - Network Rail standard forms
-  - TfL bespoke contracts
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NEC4 ECC (all Options A-F) and their commercial mechanisms — the dominant contract form on Network Rail and TfL infrastructure
+  - NEC4 guidance notes and flow charts — published by ICE/NEC; essential reference for CE procedure timescales
+  - Housing Grants, Construction and Regeneration Act 1996 (Construction Act) — payment provisions (notified sum, pay-less notices) and the statutory right to adjudication
+  - RICS NRM2 — for measurement of compensation events where bills of quantities are used
 
-  PAYMENT MECHANISMS:
-  - Option A/B: Priced (lump sum/BoQ)
-  - Option C/D: Target cost (activity schedule/BoQ)
-  - Option E: Cost reimbursable
-  - Option F: Management contract
+  EUROPE / INTERNATIONAL:
+  - FIDIC Red Book (Conditions of Contract for Construction) and Yellow Book (Plant and Design-Build) — used on international and some UK rail projects; different CE mechanism to NEC4
 
   KEY AREAS:
-  - Contract administration
-  - Change management (compensation events)
-  - Payment assessment and certification
-  - Claims and disputes
-  - Final accounts
-  - Insurance and bonds
+  - NEC4 compensation event procedure (Clauses 60-65): every CE must be notified, quoted (3-week deadline from instruction or notification), responded to by the PM (2-week deadline), and implemented; missing these timescales has contractual consequences.
+  - Time bar under Clause 61.3: if the contractor fails to notify a CE within 8 weeks of becoming aware, the right is extinguished — this is a hard deadline, not a target; the commercial team must have a notification tracking system.
+  - Target cost pain/gain share (Options C/D): the pain/gain calculation depends on the target cost being correctly updated to include all accepted CEs; an outdated target produces a wrong pain/gain result that cannot be retrospectively corrected without dispute.
+  - Defined Cost and Schedule of Cost Components: Defined Cost must be supported by contemporaneous records; costs claimed without records are at risk of disallowance at PM audit.
+  - AFCCE management: on Options C/D, the AFCCE must be updated monthly as the most current forecast of the outturn; an unmanaged AFCCE means the commercial position is unknown until the job is over.
+  - Adjudication under HGCRA 1996: the right to refer a dispute to adjudication cannot be contractually excluded; the adjudicator must decide within 28 days of referral (extendable to 42 days with consent); the decision is temporarily binding pending final determination.
+  - Final account agreement (NEC4 Clause 53): the final account must be agreed within 13 weeks of completion; leaving it open allows positions to harden and evidence to be lost.
+
+  BENCHMARKS:
+  - NEC4 CE quotation submission deadline: 3 weeks from PM instruction or notification of the event.
+  - PM response to quotation: 2 weeks — failure to respond within 2 weeks means the PM is deemed to have accepted the quotation.
+  - Adjudication decision: 28 days from referral (extendable to 42 days with consent of the referring party).
+  - Commercial management cost: typically 1-3% of project value.
+  - AFCCE update frequency: monthly on NEC Options C/D contracts — any less frequent leaves the commercial position unmanaged.
 
   RED FLAGS:
-  - Payment mechanism not understood
-  - No compensation event process
-  - Claims procedure missing
-  - Insurance requirements not addressed
-  - No programme liability understanding
+  - Compensation events notified late — NEC4 Clause 61.3 has an 8-week time bar that extinguishes the right to a CE; the commercial team must track notifications systematically against this deadline.
+  - No AFCCE maintained on Options C/D — the commercial position is unknown until the job is complete; cost growth becomes visible only when it cannot be managed.
+  - Target cost not updated to reflect accepted CEs — the pain/gain calculation will be wrong; correcting it retrospectively requires agreement that is difficult to achieve at final account.
+  - Defined Cost not supported by contemporaneous records — costs without records are at risk of disallowance; recreating records after the event is not accepted by PM auditors.
+  - Final account left open beyond 13 weeks — disputes become entrenched, witnesses move on, and resolution costs escalate; NEC4 is clear on the timescale for a reason.

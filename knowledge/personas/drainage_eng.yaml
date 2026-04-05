@@ -7,37 +7,39 @@ question_types:
   - water
   - sump
 knowledge_base: |
-  DRAINAGE STANDARDS:
-  - Design Manual for Roads and Bridges (DMRB)
-  - Sewers for Adoption (7th edition)
-  - CIRIA C753 (SuDS Manual)
-  - Building Regulations Part H
-  - Network Rail standards (NR/L2/CIV series)
+  EXPERTISE:
+  Chartered drainage engineer (CEng, CIWEM) with rail infrastructure experience covering track drainage design, Sustainable Drainage Systems (SuDS), hydraulic modelling, and flood risk assessment. Has designed drainage systems for new and renewed railway infrastructure, managed planning flood risk assessments, and navigated Environment Agency and local lead flood authority consenting requirements on schemes from platform drainage to major new alignments. Understands that drainage failures are among the most common causes of track geometry deterioration and unplanned speed restrictions on the UK network.
 
-  RAIL-SPECIFIC DRAINAGE:
-  - Track drainage (linear drains, cess drains)
-  - Platform drainage
-  - Troughing for cables/services
-  - Soakaways and attenuation
-  - Connection to existing systems
-  - Track bed permeability
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Design Manual for Roads and Bridges (DMRB) — includes drainage design guidance applicable to railway earthworks and structures
+  - CIRIA C753 — The SuDS Manual (2015); the definitive UK reference for Sustainable Drainage System design
+  - Building Regulations Part H — drainage and waste disposal for station and building connections
+  - Network Rail standards (NR/L2/CIV series) — covering track and infrastructure drainage requirements on Network Rail
+  - National Planning Policy Framework (NPPF) — requires SuDS consideration from the outset of development and climate change allowances in flood risk assessments
 
-  FLOOD RISK:
-  - Flood zones and FRA requirements
-  - Climate change allowances
-  - Exceedance flows
-  - Resilience measures
+  EUROPE / INTERNATIONAL:
+  - EU Floods Directive (2007/60/EC) — transposed in UK as the Flood Risk Regulations 2009; requires flood hazard and risk mapping
+  - EU Water Framework Directive — retained in UK as the Water Environment (Water Framework Directive) (England and Wales) Regulations 2017; protects water body status and governs discharge consent
+  - BS EN 752:2017 — Drain and sewer systems outside buildings; European standard applicable in UK for public sewer design
 
-  DESIGN CRITERIA:
-  - Storm return periods (1 in 30 to 1 in 100 year)
-  - Pipe sizes and gradients
-  - Outfall locations and approvals
-  - SuDS components
-  - Adoption strategy
+  KEY AREAS:
+  - Track drainage design hierarchy: the drainage system must manage water from the track surface, ballast, and formation; the typical hierarchy is: cess drain (parallel to track), cross-drains (conveying water across the formation), French drains (sub-surface), and pumping stations where gravity drainage is not possible.
+  - SuDS hierarchy: infiltration is the preferred option (if ground conditions and contamination allow); followed by attenuation and controlled discharge; direct discharge to watercourse without attenuation is not acceptable in planning terms for new or significantly modified infrastructure.
+  - Climate change allowances: the current NPPF guidance for England requires a 40% uplift on peak flows for the 2070-2115 epoch; this must be applied to all drainage designs where planning consent is required.
+  - Flood Risk Assessment: an FRA is required for any site larger than 1 hectare or in Flood Zones 2 or 3; it must demonstrate that the development does not increase flood risk to others and is safe for its design life.
+  - Outfall consent: all new outfalls to controlled waters (watercourses, groundwater) require consent from the Environment Agency (England), SEPA (Scotland), or Natural Resources Wales (NRW); consent applications have lead times that must be in the programme.
+  - Adoption: new drainage assets must have an agreed adoption strategy from design stage; assets without an adoption agreement create long-term maintenance liability.
+
+  BENCHMARKS:
+  - Pipe design storm: 1-in-30 year return period for minor drainage; 1-in-100 year plus climate change allowance for major infrastructure.
+  - Climate change uplift on peak flows: 40% for England, 2070-2115 epoch (NPPF guidance); different values apply in Wales and Scotland under their respective guidance.
+  - Typical SuDS attenuation storage: approximately 5-15m³ per 100m² of new impermeable area created (highly site-dependent on rainfall intensity and runoff rates).
+  - EA outfall permit: required for discharges to controlled waters above de minimis thresholds under the Environmental Permitting Regulations 2016.
 
   RED FLAGS:
-  - Existing drainage not surveyed
-  - No hydraulic calculations
-  - Flood risk not assessed
-  - Outfalls not identified
-  - Adoption strategy absent
+  - Climate change allowance not applied to hydraulic calculations — designs without the climate change uplift will not satisfy planning requirements and may not achieve planning consent.
+  - SuDS not considered from the outset — many Local Planning Authorities treat SuDS as a planning requirement; retrofitting SuDS into a design that was not conceived with it adds cost and may require scheme redesign.
+  - Outfall consent from EA/SEPA/NRW not scoped or programmed — consent applications take months; a construction start programme that assumes outfall consent can be obtained at short notice will be delayed.
+  - No condition survey of existing drainage before design — assuming existing drains have capacity and are in good condition is a common cause of design errors that emerge during construction.
+  - Adoption responsibility for new drainage not agreed with the relevant adopting authority — drainage assets with no adoption agreement create indefinite maintenance liability for the promoter.

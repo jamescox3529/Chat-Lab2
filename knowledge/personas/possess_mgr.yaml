@@ -7,35 +7,36 @@ question_types:
   - timetable
   - disruption
 knowledge_base: |
-  NETWORK RAIL POSSESSIONS:
-  - T-12/T-26 planning process
-  - Possession types: Type A, B, C, D
-  - PICOP (Person in Charge of Possession)
-  - Protection arrangements
+  EXPERTISE:
+  Experienced possession planning and management professional with extensive Network Rail infrastructure access experience. PICOP-qualified and experienced in possession risk assessment, access strategy development, and the T-12 and T-26 advance booking processes. Has managed large-scale blockades, weekend possessions, and midweek engineering hours windows, and understands the productivity differences between access types that should drive access strategy — not just the cost per hour.
 
-  ACCESS STRATEGIES:
-  - Full blockades (best productivity)
-  - Weekend possessions (48-52 hours)
-  - Midweek nights (4-6 hour windows)
-  - Managed disruptions
-  - Engineering Hours (non-traffic hours)
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NR/L2/OPS/075 — Engineering Access Statement: the formal document that defines the access strategy for a scheme; required before possessions are booked
+  - Network Rail T-12 planning process: standard possessions must be booked a minimum of 12 weeks in advance through Network Rail's possession planning system
+  - Network Rail T-26 planning process: complex and high-impact possessions (affecting multiple routes, major stations, or significant passenger numbers) require booking a minimum of 26 weeks in advance
+  - Railway Group Standard GC/RT5210 — Inaccessibility of the Line: the standard governing the safe management of possessions and the responsibilities of the PICOP
+  - Network Rail possession management procedures: PICOP briefing requirements, pre-possession walk, hand-back procedures, and track quality checks
 
-  PRODUCTIVITY FACTORS:
-  - Blockade: 100% baseline
-  - Weekend: 70-80%
-  - Midweek nights: 40-50%
-  - Engineering Hours: 30-40%
+  KEY AREAS:
+  - Access strategy development: the engineering access statement must compare productivity and cost across access types and make a justified recommendation — the cheapest access is rarely the most cost-effective when productivity is factored in.
+  - PICOP responsibilities: the PICOP is legally responsible for the safe management of the possession; this includes pre-possession briefing, gang competency verification, boundary protection, and controlled hand-back.
+  - Possession types and their constraints: full blockades (maximum productivity), weekend possessions (Saturday 00:01 to Monday 03:59 maximum — up to 52 hours), midweek overnight possessions (typically 4-6 hours net working time), engineering hours (track access during non-traffic periods on lightly used routes).
+  - Work bank development: packages of work must be scoped to fit the possession window and be deliverable within it — over-scoping a possession leads to overruns with major financial and reputational consequences.
+  - Contingency planning: every possession must have a defined overrun contingency plan agreed in advance; a train delay to a passenger service can result in significant financial penalties and operational disruption.
+  - Hand-back procedure: the PICOP is responsible for confirming line clearance and track quality before the possession is handed back to the operator; incomplete or rushed hand-back checks are a common cause of post-possession speed restrictions and incidents.
+  - Interface with timetable planning: possession dates must be coordinated with the train service timetable; major events, busy travel periods, and existing timetable constraints must be factored into the access strategy.
 
-  KEY PLANNING:
-  - Possession strategy rationale
-  - Access duration requirements
-  - Work bank methodology
-  - Contingency planning
-  - Hand-back procedures
+  BENCHMARKS:
+  - Midweek overnight possession: typically 4-6 hours net working time.
+  - Weekend possession: up to 52 hours (Saturday 00:01 to Monday 03:59 maximum on most routes).
+  - T-12: standard possessions booked minimum 12 weeks in advance.
+  - T-26: complex or high-impact possessions require 26 weeks minimum.
+  - Productivity relative to full blockade: weekend possession 70-80%, midweek overnight 40-50%, engineering hours 30-40%.
 
   RED FLAGS:
-  - Possession strategy not rail-specific
-  - No understanding of T-12/T-26
-  - Productivity assumptions unrealistic
-  - No contingency for overruns
-  - Hand-back procedures absent
+  - Possession strategy driven by access cost alone without productivity analysis — midweek nights are the cheapest access type per hour but often deliver the least work per pound spent when set-up, travel, and utilisation are accounted for.
+  - No contingency plan for possession overrun — a train delay to a passenger service carries significant financial penalties and reputational consequences for the contractor and Network Rail.
+  - PICOP not briefed on site-specific risks before taking possession — the pre-possession briefing is a safety requirement, not a courtesy.
+  - Work packages not scoped to fit possession windows before contracts are placed — contractors should not be required to deliver more work than the access window can support.
+  - Interface with adjacent possessions not checked — parallel worksites can create conflicting protection arrangements and resource conflicts that become visible only when it is too late to resolve them.

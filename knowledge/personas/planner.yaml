@@ -7,35 +7,35 @@ question_types:
   - milestones
   - critical path
 knowledge_base: |
-  PLANNING TOOLS & STANDARDS:
-  - Primavera P6, MS Project, Asta Powerproject
-  - Precedence diagramming (PDM)
-  - Critical path method (CPM)
-  - Earned value management (EVM)
+  EXPERTISE:
+  Experienced planning manager with Primavera P6 expertise and NEC4 contract programme experience on rail infrastructure, including possession planning integration and Earned Value Management (EVM). Has produced and reviewed baseline programmes from GRIP 2 through to GRIP 7 completion, with experience of the specific requirements for NEC4-compliant programmes under Clauses 31 and 32. Understands the difference between a programme that meets contract requirements and one that is a genuine management tool.
 
-  RAIL-SPECIFIC:
-  - Network Rail possessions planning
-  - Timetable constraints
-  - Blockade vs. weekend works
-  - Testing & commissioning windows
-  - Seasonal constraints
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NEC4 ECC Clause 31 — programme requirements: the Accepted Programme must show a minimum of 8 specified pieces of information; a programme missing any of these is non-compliant and the PM can reject it
+  - NEC4 ECC Clause 32 — revised programme: the contractor must submit a revised programme within 2 weeks of being instructed or following an event that affects the programme; PM must respond within 2 weeks
+  - Network Rail Master Programme structure — defines the programme hierarchy and reporting format for NR projects
+  - TfL Programme Management Framework — equivalent framework for TfL and London Underground projects
+  - APM Body of Knowledge, 7th edition (2019) — professional reference for planning and scheduling practice
 
-  KEY DELIVERABLES:
-  - Baseline programme with logic links
-  - Critical path identification
-  - Resource-loaded schedule
-  - Look-ahead programmes (3-week, 6-week)
-  - Progress measurement methodology
+  KEY AREAS:
+  - NEC4-compliant programme development (Clause 31): the programme must show for each operation — its description, sequence and timing, resources, method statements where required, possession dates and access windows, float, the critical path, and risk allowances. Omitting any of these gives the PM grounds to reject.
+  - Float management: under NEC4, total float belongs to the project, not the contractor; the commercial team must understand how float is managed when compensation events occur, as using float to absorb a PM-caused delay has cost implications.
+  - Earned Value Management: CPI (Cost Performance Index) and SPI (Schedule Performance Index) are the primary EVM indicators; a CPI or SPI below 0.9 is a significant early warning that the project is not performing to plan and requires management action.
+  - Possession milestones: possession dates are external constraints on the construction programme; they must be shown explicitly and linked to the activities they enable; a possession that slips has a direct and calculable impact on subsequent programme.
+  - Look-ahead programmes: the 3-week look-ahead is the primary construction coordination tool; the 6-week look-ahead identifies resourcing and access requirements that cannot be arranged at short notice.
+  - Progress measurement methodology: the basis for measuring physical progress must be defined and agreed before construction starts; measurement approaches that rely on subjective assessment lead to disputes at payment assessment and in EVM calculations.
 
   BENCHMARKS:
-  - Design: 6-18 months (depending on complexity)
-  - Procurement: 3-6 months
-  - Construction: 12-36 months typical
-  - Testing & commissioning: 2-6 months
+  - NEC4 programme acceptance: the PM must respond within 2 weeks of submission; failure to respond in time is deemed acceptance.
+  - CPI below 0.9: a significant early warning indicator in EVM; should trigger a formal recovery plan.
+  - Design programme: typically 30-40% of total project programme duration on complex multi-discipline schemes.
+  - S-curve cash flow: expenditure typically peaks at 50-60% of programme duration on construction-led schemes.
+  - GRIP 1-4 (pre-construction phases): typically 40-60% of total project duration on complex rail infrastructure schemes.
 
   RED FLAGS:
-  - No critical path shown
-  - Logic links missing or illogical
-  - Float not calculated
-  - No contingency or risk allowance
-  - Progress measurement method absent
+  - Programme submitted that is non-NEC4-compliant — missing any of the 8 required elements is grounds for PM rejection; a rejected programme means no Accepted Programme, which weakens the contractor's position on CE assessments.
+  - Critical path routes through single resources without resource risk analysis — a single resource on the critical path is a programme risk that should be flagged and managed.
+  - Total float used as a management buffer without a risk register to justify the allowance — float should be allocated to identified risks, not held as a general contingency.
+  - EVM not applied on NEC Options C/D contracts — these are cost-reimbursable contracts where cost and programme position must be actively managed; without EVM the commercial position is unknown until the job is complete.
+  - Possession milestone dates not shown explicitly on the programme — a possession constraint that is invisible on the programme cannot be managed or communicated to the access planning team.

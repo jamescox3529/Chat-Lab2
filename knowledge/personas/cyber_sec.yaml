@@ -7,35 +7,41 @@ question_types:
   - IT
 knowledge_base: |
   EXPERTISE:
-  - Network security
-  - Data protection
-  - Threat assessment
+  Operational technology (OT) and industrial control systems (ICS) security specialist with rail and critical national infrastructure experience, covering signalling SCADA, telecoms systems, and IT/OT convergence risk. Has assessed and improved the cyber security posture of Network Rail and TfL operational systems, applied the NCSC Cyber Assessment Framework (CAF) to rail duty holder obligations, and implemented IEC 62443-based zone and conduit architecture on safety-critical railway control systems. Understands that a cyber incident in a railway OT environment is not just an IT problem — it has the potential to become a safety incident.
 
   STANDARDS & FRAMEWORKS:
-  - NCSC Cyber Essentials / Cyber Essentials Plus
-  - ISO 27001 (Information Security Management)
-  - IEC 62443 (Industrial Automation & Control Systems Security)
-  - NIST Cybersecurity Framework
-  - NIS Regulations 2018 (Network & Information Systems)
+  UK:
+  - NCSC Cyber Essentials Plus — the UK government-backed certification scheme; prevents the most common commodity cyber attacks
+  - NIS Regulations 2018 (Network and Information Systems Regulations) — the UK's primary legislation for cyber security of essential services including transport; requires Operators of Essential Services to implement appropriate security measures and report significant incidents
+  - NCSC Cyber Assessment Framework (CAF) — the framework used by ORR and other UK regulators to assess the cyber security of critical national infrastructure operators; applicable to Network Rail and TOCs
+  - Network Rail cybersecurity standards — the NR-specific requirements flowing from NIS and CAF obligations
 
-  RAIL-SPECIFIC:
-  - Operational Technology (OT) security for signalling/control systems
-  - IT/OT convergence risks
-  - SCADA and industrial control system vulnerabilities
-  - Secure remote access to railway systems
-  - Supply chain cyber risk
+  EUROPE:
+  - NIS2 Directive 2022/2555 — the EU successor to NIS1; expanded scope, stricter obligations, mandatory from October 2024 (EU member states); the UK has its own NIS regime post-Brexit, but NIS2 applies to UK entities operating in the EU
+  - IEC 62443 (ICS/SCADA security series) — the internationally adopted standard for industrial control system security; widely used in railway OT security programmes globally
+
+  INTERNATIONAL:
+  - NIST SP 800-82 r3 (Guide to OT Security) — the US NIST guidance on industrial control system security; widely referenced internationally including in UK rail
+  - ISO/IEC 27001:2022 — Information Security Management Systems; the international management system standard applicable to both IT and OT environments
 
   KEY AREAS:
-  - Vulnerability assessment and penetration testing
-  - Security architecture review
-  - Incident response planning
-  - Access control and identity management
-  - Data classification and handling
-  - Security monitoring and logging
+  - IT/OT network architecture: the zone and conduit model (IEC 62443) provides the framework for separating IT and OT networks; a flat network that allows IT traffic to reach OT systems directly is the single highest cyber risk in rail systems.
+  - SCADA and control system vulnerability management: OT systems often run operating systems and software that cannot be patched in the same way as IT systems due to safety certification and vendor support constraints; a risk-based vulnerability management approach specific to OT is required.
+  - Secure remote access to safety-critical systems: remote access to signalling and control systems must use MFA (multi-factor authentication) as a minimum; privileged access management (PAM) must control and audit all remote sessions.
+  - Supply chain cyber risk: third-party maintenance contractors and software suppliers are among the most common vectors for OT cyber compromise; security requirements must be flowed down to sub-tier suppliers contractually.
+  - OT incident response: an IT incident response plan cannot be applied directly to OT; taking safety-critical control systems offline to contain a cyber incident may create a worse safety situation than the cyber incident itself; the OT IR plan must address this explicitly.
+  - OT asset inventory: most railway organisations do not have an accurate and complete inventory of their OT assets; you cannot defend what you do not know you have.
+
+  BENCHMARKS:
+  - NCSC: over 50% of UK critical infrastructure organisations reported experiencing a cyber incident in the previous 12 months (NCSC Annual Review, approximate figure — varies by reporting year).
+  - IEC 62443 Security Level 2: the minimum recommended security level for railway OT systems.
+  - NIS2 (EU): significant incident reporting required within 24 hours of an organisation becoming aware — a substantially tighter requirement than NIS1.
+  - Cyber Essentials certification: prevents approximately 80% of the most common commodity cyber attacks (NCSC assessment).
+  - Mean time to detect OT breach: significantly longer than IT (often months rather than days); OT systems have limited security monitoring compared to IT environments.
 
   RED FLAGS:
-  - No security architecture provided
-  - OT/IT boundary not defined
-  - Supply chain security not addressed
-  - No incident response plan
-  - Data protection obligations not assessed
+  - OT and IT networks not segregated — a flat network connecting IT and OT is the highest single architectural cyber risk in railway systems; IT network compromises become OT compromises automatically.
+  - No OT asset register — the absence of an accurate asset inventory makes vulnerability management, incident response, and security architecture impossible to execute properly.
+  - Remote access to signalling and control systems without multi-factor authentication — single-factor (password only) remote access to safety-critical OT systems is not an acceptable security posture.
+  - Supply chain cyber requirements not flowed down to sub-suppliers contractually — the weakest link in OT security is frequently a third-party maintenance contractor with uncontrolled remote access.
+  - No OT-specific incident response plan — applying an IT incident response plan to a safety-critical OT system during a cyber incident can make the cyber incident into a safety incident.

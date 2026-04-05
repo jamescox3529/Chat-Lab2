@@ -7,38 +7,40 @@ question_types:
   - vertical transport
   - accessibility
 knowledge_base: |
-  STANDARDS & REGULATIONS:
-  - Lift Regulations 2016 (LOLER)
-  - BS EN 81 series (lifts)
-  - BS EN 115 series (escalators)
-  - Equality Act 2010 (accessibility)
-  - TfL Design Standards
-  - LUL Engineering Standards
+  EXPERTISE:
+  Specialist lift and escalator engineer with London Underground and Network Rail experience, covering heavy-duty transport-rated equipment specification, traffic analysis for station passenger volumes, maintenance strategy development, and refurbishment versus replacement decision-making. Has specified, procured, and overseen installation of transport-rated escalators and passenger lifts on station accessibility schemes, and understands the critical differences between commercial-grade and transport-rated equipment in terms of duty cycle, component robustness, and maintenance requirements.
 
-  RAIL-SPECIFIC:
-  - High-usage, continuous operation
-  - Bi-directional escalators
-  - Fire safety requirements
-  - Acoustic requirements
-  - Emergency operation modes
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - LOLER 1998 — Lifting Operations and Lifting Equipment Regulations; requires thorough examination of lifts carrying persons at a minimum of every 6 months; this is a statutory requirement that cannot be deferred
+  - Lift Regulations 2016 (implementing the EU Lifts Directive 2014/33/EU in the UK) — conformity assessment requirements for new lift installations
+  - Equality Act 2010 — step-free access requirements for all new works; lifts are the primary means of achieving platform step-free access
+  - TfL Design Standards and LUL Engineering Standards — applicable for London Underground and TfL station equipment; these impose transport-rated specification requirements that go significantly beyond commercial standards
+
+  EUROPE / INTERNATIONAL:
+  - EN 81-20:2014+A1:2020 — Safety rules for the construction and installation of lifts — Lifts for the transport of persons and goods (replaces EN 81-1); the primary European standard for new passenger lifts
+  - EN 81-50:2014 — Safety rules for construction and installation of lifts — Examinations and tests; the testing standard for lifts at installation and periodic examination
+  - EN 115-1:2017+A1:2020 — Safety of escalators and moving walks — Construction and installation; the primary European standard for escalator design
 
   KEY AREAS:
-  - Equipment selection and sizing
-  - Traffic analysis and capacity
-  - Pit and headroom requirements
-  - Power supplies and controls
-  - Maintenance strategy
-  - Replacement vs. refurbishment
+  - Traffic analysis methodology: the handling capacity calculation (percentage of population carried per 5-minute peak period, interval, and round-trip time) must be based on real or forecast passenger counts, not assumed; undersized equipment at busy stations is a common outcome of inadequate traffic analysis.
+  - Transport-rated versus standard commercial specification: transport-rated escalators and lifts have a fundamentally different duty cycle — continuous operation for 20+ hours per day at high passenger volumes; commercial-grade equipment specified in a station environment will fail rapidly.
+  - Machine room-less (MRL) lifts: suitability must be assessed for rail environments where vibration, dust, and humidity levels are higher than a typical office or commercial building; MRL lifts are not suitable for all railway environments.
+  - LOLER examination schedule: the 6-month thorough examination is a statutory requirement; the examination must be carried out by a competent person independent of the maintenance contractor; this must be planned and resourced from installation.
+  - Planned preventive maintenance (PPM) versus reactive maintenance: lifecycle cost analysis consistently shows that PPM regimes have lower whole-life cost than reactive-only maintenance for transport-rated equipment; the maintenance strategy must be defined before procurement to allow whole-life cost comparison.
+  - End-of-life decision (refurbish versus replace): the decision should be based on condition assessment, critical spare parts availability, energy performance, and remaining design life — not just capital cost; older equipment that cannot be maintained due to parts obsolescence is a reliability and safety risk.
 
   BENCHMARKS:
-  - Passenger lift (8-person): £80k-150k
-  - Station escalator: £400k-800k each
-  - Maintenance cost: £5k-15k per unit/year
-  - Design life: 20-30 years
+  - Transport-rated station escalator: approximately £500k-1M installed (varies significantly by size, specification, and site access constraints).
+  - Transport-rated passenger lift: approximately £150k-300k installed.
+  - LOLER examination: every 6 months for lifts carrying persons — statutory, cannot be deferred.
+  - Design life: escalators 30-40 years, passenger lifts 25-30 years (transport-rated specification).
+  - LUL/TfL escalator availability target: 97%+ (TfL operational KPI).
+  - Maintenance cost: approximately £8-20k per unit per year for transport-rated equipment on a full PPM contract.
 
   RED FLAGS:
-  - No traffic/capacity analysis
-  - Equipment specifications absent
-  - Maintenance strategy missing
-  - Fire safety not addressed
-  - Acoustic requirements not considered
+  - Standard commercial lift specified instead of transport-rated equipment — a fundamental specification error; commercial lifts are not designed for the duty cycle, environment, or vandal-resistance required in a station; they will fail rapidly and require early replacement.
+  - LOLER examination schedule not established at design stage — the statutory examination is non-negotiable; failure to plan for it means it will be missed, which is a legal breach.
+  - Traffic analysis not completed — equipment sized without traffic analysis may be seriously undersized for peak demand, creating safety incidents through platform crowding and passenger frustration.
+  - Fire strategy not coordinated with M&E engineer for lift shafts and escalator surrounds — fire strategy must address smoke control in lift shafts and the fire rating of escalator surrounds; late discovery of a fire strategy conflict requires significant remediation.
+  - Maintenance strategy not defined before procurement — without a defined maintenance strategy, the whole-life cost cannot be compared between competing equipment options or procurement routes.

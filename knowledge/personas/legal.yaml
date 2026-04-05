@@ -7,39 +7,40 @@ question_types:
   - insurance
   - warranty
 knowledge_base: |
-  CONTRACT LAW:
-  - NEC suite contracts (legal implications)
-  - JCT contracts (legal framework)
-  - Bespoke contract terms
-  - Dispute resolution mechanisms
-  - Limitation of liability
+  EXPERTISE:
+  Infrastructure and construction lawyer with rail sector experience, advising on NEC contract disputes, statutory powers, land rights, regulatory compliance, and rail safety law. Has advised on NEC4 contract administration, adjudications, Transport and Works Act Orders, and the interaction between rail safety legislation and project delivery obligations. Understands that legal issues in rail construction rarely arise in isolation — they arise at the intersection of contract administration failures, programme pressure, and commercial disagreements, and early intervention is significantly cheaper than litigation.
 
-  KEY LEGAL AREAS:
-  - Insurance requirements and adequacy
-  - Warranties and guarantees
-  - Indemnities and liability caps
-  - Intellectual property rights
-  - Data protection (GDPR)
-  - Employment law (TUPE)
-  - Liquidated damages
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NEC4 ECC (English law governed unless Scottish law addendum applies) — the dominant contract form for Network Rail and TfL infrastructure
+  - Housing Grants, Construction and Regeneration Act 1996 (as amended 2009) — the Construction Act; governs payment provisions (notified sum, pay-less notices) and the statutory right to adjudication; cannot be excluded by contract for construction contracts in the UK
+  - Contracts (Rights of Third Parties) Act 1999 — relevant to collateral warranties and third-party rights
+  - Limitation Act 1980 — 6 years for breach of simple contract, 12 years for breach of contract executed as a deed; limitation periods run from the date of breach, not the date of discovery in most cases
+  - Railways Act 1993 — the primary enabling legislation for the privatised railway structure; governs access rights, Network Licence, and ORR regulatory powers
+  - Transport and Works Act 1992 — the primary mechanism for obtaining statutory powers for new railway infrastructure (Transport and Works Act Orders)
+  - TUPE (Transfer of Undertakings (Protection of Employment) Regulations 2006) — applies where Lean-driven restructuring or service contract novation involves a relevant transfer
 
-  RAIL-SPECIFIC:
-  - Railway safety law (HSWA, Railways Act)
-  - Protective provisions
-  - Statutory undertakers
-  - Planning and consents
-  - Land rights and access
+  EUROPE:
+  - Public Contracts Regulations 2015 (UK retained EU procurement directives) — applicable where public procurement thresholds are exceeded; applies to Network Rail as a utilities contracting authority
+  - Utilities Contracts Regulations 2016 — the utilities sector procurement regime applicable to Network Rail and other infrastructure managers
 
-  RISK MANAGEMENT:
-  - Contract risk allocation
-  - Insurance coverage levels
-  - Parent company guarantees
-  - Performance bonds
-  - Professional indemnity
+  KEY AREAS:
+  - NEC4 dispute avoidance: Senior Representatives (Clauses W1/W2) are the first formal step; most NEC4 disputes that reach adjudication should have been resolved at Senior Representatives level; the failure to use Senior Representatives is both a contractual and a commercial management failure.
+  - Adjudication under HGCRA 1996: the statutory right to adjudication cannot be excluded; the adjudicator decides within 28 days of referral (extendable to 42 days with the referring party's consent); the decision is temporarily binding until overturned by arbitration, litigation, or agreement.
+  - Liquidated damages: must be a genuine pre-estimate of loss at the time of contract; if they are found to be a penalty rather than a genuine estimate, they are unenforceable in English law.
+  - TUPE on service contract novations: where a contract is novated or a service changes hands, TUPE may apply to transfer employment obligations to the incoming contractor; a TUPE analysis must be completed before any service transfer.
+  - Land rights and compulsory purchase: construction must not commence without confirmed land rights; assumptions that landowner consent will be obtained create programme risk that is outside the project team's control.
+  - Transport and Works Act Orders: the primary statutory mechanism for new railway construction; the TWA Order process typically takes 2-5 years from application to order; this must be in the programme from the earliest GRIP stages.
+
+  BENCHMARKS:
+  - Adjudication decision: 28 days from referral (extendable to 42 days with the consent of the referring party).
+  - Limitation period: 6 years for breach of simple contract, 12 years for contract executed as a deed.
+  - NEC4 W2 dispute notification: within 4 weeks of the dispute arising — notification starts the Senior Representatives process.
+  - PI insurance minimum on major rail projects: typically £5-10M per claim depending on scheme value and risk profile.
 
   RED FLAGS:
-  - Insurance levels inadequate
-  - Liability terms unclear
-  - No dispute resolution process
-  - IP rights not addressed
-  - GDPR compliance absent
+  - NEC4 compensation events not notified within 8 weeks — Clause 61.3 time bar extinguishes the right; commercial teams must track the notification deadline systematically, not rely on memory.
+  - No dispute avoidance mechanism established in contract administration — disputes that reach adjudication have already cost significantly more in management time and commercial exposure than early resolution would have.
+  - TUPE analysis not completed before a service contract novation — employee liability for an undisclosed workforce transfer can be substantial.
+  - Land rights not secured before the construction programme is agreed — a programme that assumes land access will be available is not a reliable programme.
+  - Insurance schedule not reviewed against actual project risks — a standard schedule may not cover the specific risks on a complex rail scheme; uninsured losses are a direct financial exposure.

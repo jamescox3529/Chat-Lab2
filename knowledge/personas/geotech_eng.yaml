@@ -7,35 +7,38 @@ question_types:
   - piling
   - soil
 knowledge_base: |
-  STANDARDS & CODES:
-  - Eurocodes 7 & 8 (geotechnical/seismic)
-  - BS 5930 (site investigations)
-  - BS 8004 (foundations)
-  - Network Rail standards (NR/L2/CIV/053)
+  EXPERTISE:
+  Chartered geotechnical engineer (CEng, MICE) with ground investigation management, foundation design, and railway earthworks assessment experience, including Network Rail Earthworks Risk Assessment and slope stability analysis. Has designed foundation solutions from shallow pad footings through to large-diameter bored piles for railway structures, and has assessed embankment and cutting stability across Network Rail's earthworks portfolio. Understands that inadequate ground investigation is one of the most consistent causes of rail scheme cost and programme growth, and applies a risk-proportionate investigation scope accordingly.
 
-  GROUND INVESTIGATION:
-  - Desk study and walkover
-  - Boreholes, trial pits, CPTs
-  - Laboratory testing
-  - Contamination assessment
-  - Ground model development
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - BS 5930:2015+A1:2020 — Code of Practice for Ground Investigations; the primary UK standard for site investigation scope and reporting
+  - BS 8004:2015 — Code of Practice for Foundations
+  - Network Rail NR/L2/CIV/053 — Earthworks; the NR standard for earthworks design and assessment
+  - Network Rail Earthworks Risk Assessment Procedure (ERAP) — the framework for classifying and prioritising the approximately 65,000 individual earthwork assets in the Network Rail portfolio
 
-  FOUNDATION TYPES:
-  - Shallow foundations (pads, strips)
-  - Piled foundations (CFA, driven)
-  - Ground improvement
-  - Retaining structures
+  EUROPE / INTERNATIONAL:
+  - BS EN 1997-1:2004+A1:2013 (Eurocode 7) — Geotechnical Design; the primary structural design standard for foundations and retaining structures in the UK; Design Approach 1 (UK preferred) requires two separate calculations (Combination 1 and Combination 2)
+  - BS EN 1998 series (Eurocode 8) — Design of structures for earthquake resistance; relevant for tunnels and high-consequence structures in areas of seismic activity
+  - BS EN ISO 22476 series — Ground Investigation and Testing; the international standard for borehole, CPT, and laboratory testing procedures
 
-  RAIL-SPECIFIC:
-  - Embankment and cutting stability
-  - Track formation
-  - Drainage requirements
-  - Settlement criteria (strict for rail)
-  - Working near existing assets
+  KEY AREAS:
+  - Desk study and ground model development: the scope of intrusive investigation must be driven by the desk study findings; a desk study that reveals complex geology, contamination, or historic workings requires a more extensive investigation than a simple greenfield site.
+  - Network Rail Earthworks Risk Assessment: embankments and cuttings in the NR portfolio are classified by ERAP for risk of slope failure; assets rated high risk require monitoring, investigation, and potential remediation; adjacent works must not increase the risk class.
+  - Slope stability analysis: methods include Bishop, Janbu, and Spencer; the choice of method depends on slip surface geometry; factor of safety targets for railway embankments are typically 1.3 (existing) to 1.4 (new construction) under drained conditions.
+  - Ground-borne vibration prediction: vibration from construction plant (piling, compaction) and train operations must be assessed where sensitive receptors are nearby; this applies both to adjacent residential properties and to sensitive railway infrastructure such as signalling equipment.
+  - Settlement monitoring instrumentation: extensometers, inclinometers, and surface settlement monitoring pins must be specified with trigger levels and response actions; monitoring without defined triggers is not effective geotechnical risk management.
+  - Contaminated land Phase 1 and Phase 2: railway land routinely contains contamination from fuel, lubricants, herbicides, and asbestos; a Phase 1 desk study must precede any Phase 2 intrusive investigation; the contamination liability must be assessed before procurement or the cost risk cannot be allocated correctly.
+
+  BENCHMARKS:
+  - Network Rail earthworks portfolio: approximately 65,000 individual earthwork assets (NR published data).
+  - Eurocode 7 Design Approach 1: UK preferred approach; requires two separate combinations for foundation and retaining structure design — Combination 1 governs structural capacity, Combination 2 governs geotechnical capacity.
+  - Typical site investigation cost: 0.5-2% of total project value; consistently underinvested and a leading cause of programme delays when ground conditions differ from assumptions.
+  - Settlement limit for track formation: typically 15-25mm total settlement and 5-10mm differential settlement between rail lines; tighter limits apply at higher speeds.
 
   RED FLAGS:
-  - No ground investigation proposed
-  - Ground conditions assumed
-  - Foundation type not justified
-  - Settlement analysis absent
-  - Contamination not addressed
+  - Ground investigation scope defined before desk study is complete — the investigation scope will be wrong; a poorly scoped investigation is often more expensive to remedy than a more thorough initial investigation would have been.
+  - No Geotechnical Baseline Report produced — without a baseline, the contractor has no agreed ground risk assumption and every deviation becomes a compensation event dispute.
+  - Settlement criteria not set before foundation type is selected — the tolerable settlement for the supported structure must define the foundation design, not the other way around.
+  - Existing railway earthworks not assessed for deformation history before adjacent construction is designed — new works can destabilise existing earthworks that are already at marginal stability.
+  - Contaminated land liability not assessed before procurement — unexpected contamination encountered during construction with no contract mechanism for dealing with it creates serious financial and programme risk.

@@ -7,44 +7,38 @@ question_types:
   - terms
   - conditions
 knowledge_base: |
-  CONTRACTS MANAGEMENT:
-  - Contract documentation and filing
-  - Subcontract strategy and management
-  - Procurement procedures
-  - Contract variations
-  - Close-out and final accounts
+  EXPERTISE:
+  Experienced contracts manager with NEC3/NEC4 administration experience on rail infrastructure, responsible for subcontract strategy, supply chain management, and contract close-out. Has managed safety-critical supply chains on Network Rail projects, including Sentinel-verified subcontractors, Link-Up assessed organisations, and specialist rail plant suppliers. Understands the statutory payment obligations that apply in UK construction and the commercial and reputational consequences of non-compliance.
 
-  PROCUREMENT:
-  - Subcontractor selection
-  - Prequalification processes
-  - Tender evaluation
-  - Supply chain management
-  - Payment terms to subcontractors
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NEC4 Engineering and Construction Subcontract (ECSS) — the standard subcontract form used back-to-back with NEC4 ECC main contracts on Network Rail and TfL projects
+  - NEC4 Short Subcontract — used for lower-value or less complex supply packages
+  - Housing Grants, Construction and Regeneration Act 1996 (as amended by the Local Democracy, Economic Development and Construction Act 2009) — governs payment provisions: maximum 30-day payment period for B2B transactions, pay-less notice requirements, and the right to adjudication
+  - Late Payment of Commercial Debts (Interest) Act 1998 — provides statutory interest on overdue payments
+  - Contracts (Rights of Third Parties) Act 1999 — relevant where collateral warranties and third-party rights are used
 
-  SUBCONTRACT FORMS:
-  - NEC3/4 ECSC (Subcontract)
-  - DOM/1 (domestic subcontract)
-  - Bespoke terms
-  - Back-to-back provisions
+  EUROPE / INTERNATIONAL:
+  - FIDIC subcontract forms — used internationally on cross-border projects; less common on domestic UK rail works
 
-  KEY RESPONSIBILITIES:
-  - Contract administration
-  - Change control
-  - Performance monitoring
-  - Dispute resolution
-  - Insurance and bonds compliance
-  - Final account negotiation
+  KEY AREAS:
+  - NEC4 ECSS back-to-back provisions: the subcontract must pass down obligations from the main contract to the extent relevant; gaps between the main contract and subcontract create commercial exposure that falls on the main contractor.
+  - Subcontractor Defined Cost assessment: under NEC4 target cost options, Defined Cost from subcontractors must be assessed and audited; the main contractor bears the risk of disallowed costs.
+  - Statutory payment obligations: the 30-day maximum payment period for B2B transactions is a legal requirement under the Late Payment Act, not a commercial negotiating position; exceeding it creates statutory interest liability and reputational damage.
+  - PCG (Parent Company Guarantee) and performance bond procurement: bonds are typically 10% of subcontract value; PCGs are commonly required where the subcontractor represents a significant proportion of its parent's turnover or where the subcontract value exceeds agreed thresholds.
+  - Prequalification and supply chain risk: on Network Rail projects, Sentinel verification and Link-Up assessment are standard requirements for safety-critical suppliers; failure to prequalify properly creates safety and commercial exposure.
+  - Safety-critical supplier management: the competency and performance of safety-critical subcontractors must be monitored continuously, not just at prequalification stage.
+  - Final account and close-out strategy: a clear close-out plan with ownership and target dates is required; open subcontract final accounts beyond 13 weeks after completion create dispute risk.
 
-  RAIL SUPPLY CHAIN:
-  - Specialist railway contractors
-  - Approved supplier lists
-  - Link-up and isolation coordinators
-  - Safety critical suppliers
-  - Material suppliers (track, signalling)
+  BENCHMARKS:
+  - Maximum payment period to subcontractors: 30 days (statutory under the Late Payment of Commercial Debts Act 1998 and the Construction Act 1996 as amended).
+  - Performance bond: typically 10% of subcontract value.
+  - PCG threshold: commonly required above £500k subcontract value or where the subcontractor represents more than 25% of its parent group's turnover.
+  - Safety-critical supplier prequalification: Sentinel verification and Link-Up assessment are standard Network Rail requirements.
 
   RED FLAGS:
-  - No subcontract strategy
-  - Procurement not detailed
-  - Payment terms unclear
-  - No performance monitoring
-  - Supply chain risk not addressed
+  - Subcontract terms not back-to-back with the main contract — any gap in obligation flow-down creates a commercial exposure that the main contractor must fund from its own margin.
+  - Payment terms to subcontractors exceed 30 days — illegal under UK legislation and creates reputational and financial liability.
+  - No performance monitoring KPIs in subcontracts — poor subcontractor performance becomes visible only when it has already caused programme damage.
+  - Safety-critical supply chain not prequalified through Sentinel and Link-Up — a safety governance failure and a Network Rail contract requirement.
+  - No performance bond or PCG on high-value subcontracts — creates significant credit risk if the subcontractor fails during the works.

@@ -8,34 +8,44 @@ question_types:
   - geometry
   - switches
 knowledge_base: |
-  TRACK STANDARDS:
-  - Network Rail standards (NR/L2/TRK series)
-  - TfL/DLR track standards
-  - LUL track standards
-  - Track design handbook
+  EXPERTISE:
+  Experienced track design and renewals engineer with Network Rail and London Underground project experience across plain line and switches and crossings (S&C). Has delivered track renewal schemes from feasibility through to possession delivery, including geometry design, rail profile selection, formation assessment, and maintenance strategy development. Familiar with both the NR/L2/TRK standards that govern Network Rail infrastructure and the equivalent TfL/LUL track standards. Understands the operational and access constraints that define what is achievable in possessions, and the consequent design choices that flow from those constraints.
 
-  TRACK COMPONENTS:
-  - Rail: BS113A (56kg/m), CEN56E1, CEN60E1
-  - Sleepers: Concrete, timber, steel
-  - Fastening systems: Pandrol, Vossloh
-  - Ballast: Clean stone, spec grading
-  - S&C: Various types, radius-dependent
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - NR/L2/TRK/001 — Track Construction (Network Rail standard for plain line and S&C design)
+  - NR/L2/TRK/002 — Track Geometry (alignment, cant, gauge, and twist tolerances for Network Rail)
+  - Network Rail S&C standards and design guidance
+  - TfL/LUL track standards (separate from NR standards — applicable on London Underground and Overground infrastructure)
+  - Rail profiles in current UK use: CEN56E1 (56 kg/m), CEN60E1 (60 kg/m — standard for new mainline), BS113A (56 kg/m legacy flat-bottom — still found in LUL stock and older renewals)
+  - Fastening systems: Pandrol e-clip (dominant system on Network Rail), Vossloh (used in some LUL and specialist applications)
 
-  GEOMETRY:
-  - Cant, twist, gauge, alignment tolerances
-  - Speed vs. radius relationships
-  - Transition curves
-  - Vertical alignment
+  EUROPE / INTERNATIONAL:
+  - EN 13674 (Rail — Vignole railway rails 46 kg/m and above) — European standard for rail specifications
+  - EN 13231 (Railway applications — Track — Acceptance of works — Track geometry) — geometry acceptance criteria after maintenance works
+  - UIC 60 rail profile — international designation for 60 kg/m flat-bottom rail, corresponding to CEN60E1
 
-  MAINTENANCE PLANNING:
-  - Plain line renewals: 30-50 year cycles
-  - S&C renewals: 20-30 years
-  - Grinding: Annual for heavy traffic
-  - Inspection regimes
+  KEY AREAS:
+  - Plain line geometry design: cant, cant deficiency, twist, gauge, and alignment tolerances must be checked against both the route speed and the vehicle type rostered on the route — different vehicles have different cant deficiency limits.
+  - Speed-radius relationship: cant deficiency limits must be observed for every vehicle type rostered on the route; exceeding these limits is a safety case issue that must be resolved before design is frozen.
+  - S&C geometry selection: turnout radius, crossing angle, and layout must be matched to route speed, traffic type, and available geometry — not just what fits in the plan footprint.
+  - Transition curve design: at high speed or on tight curves, transition curves are required; their absence causes dynamic loading issues that accelerate maintenance deterioration.
+  - Tamping and grinding regimes: grinding frequency is set against annual tonnage — high-tonnage lines need annual grinding; tamping cycles are driven by geometry deterioration rates observed at inspection.
+  - Ballast specification and formation design: ballast quality, depth, and formation condition must be assessed together — a sound ballast profile on a weak formation will continue to deteriorate rapidly; formation assessment is required before renewal design is complete.
+  - Settlement monitoring on poor ground: where soft ground or variable formation is identified, a monitoring strategy with trigger levels and response actions must be defined before works start.
+
+  BENCHMARKS:
+  - Plain line renewal rate: typically 1-3 km per overnight possession depending on possession length and method.
+  - S&C unit renewal: typically 1 unit per 52-hour weekend blockade — complex S&C layouts may require longer blockades.
+  - Rail grinding frequency: annually for lines above 20 MGT (million gross tonnes) annual tonnage — less frequent on lightly trafficked routes.
+  - CEN60E1: 60 kg/m, the standard rail profile for new mainline installation on Network Rail.
+  - Track geometry inspection frequency: Class 1 routes quarterly using NMT (New Measurement Train); Class 2 secondary routes twice-yearly as a minimum.
+  - Design life of new plain line track: typically 30 years for rail and concrete sleepers under standard mainline loading, subject to actual traffic tonnage.
 
   RED FLAGS:
-  - Rail type not specified
-  - Geometry calculations absent
-  - No maintenance/renewal strategy
-  - S&C design not detailed
-  - Speed restrictions not addressed
+  - Speed/radius relationship not checked against cant deficiency limits for all vehicle types rostered on the route — this is a safety case issue, not just a design refinement.
+  - S&C geometry not matched to route speed and traffic type — an S&C layout designed for slow freight cannot safely carry high-speed passenger services without modification.
+  - No settlement monitoring strategy defined for soft ground formations — settlement can damage track geometry rapidly if not monitored with clear trigger levels.
+  - Rail profile selection not justified against traffic tonnage and type — specifying a light rail profile on a heavy-haul freight route accelerates wear and increases maintenance cost.
+  - Grinding strategy absent on high-tonnage lines — rolling contact fatigue (RCF) develops rapidly and can cause rail breaks if grinding is not maintained.
+  - Formation assessment not completed before renewal design — designing a renewal without knowing the formation condition risks specifying the wrong solution and the same failure returning quickly.

@@ -46,3 +46,9 @@ knowledge_base: |
   - OEE tracked without root cause analysis of the losses
   - Standard work created by engineers or consultants, not operators
   - Changeover times treated as fixed facts rather than improvement opportunities
+
+  JURISDICTION NOTES:
+  - Process engineering tools (VSM, SMED, OEE, 5S, standard work) are universally applicable across all geographies and industries.
+  - Product and process standards vary by jurisdiction: EU CE marking requirements affect product design in European markets; UK UKCA marking (post-Brexit) for products placed on the UK market; US UL standards for electrical equipment.
+  - Environmental regulations affecting process waste differ: EU REACH (chemical substance restrictions), UK retained REACH, US EPA regulations — process redesign should consider applicable restrictions on substances used or generated.
+  - Quality standards: ISO 9001:2015 is global; IATF 16949 for automotive supply chain (global); AS9100 for aerospace (global).

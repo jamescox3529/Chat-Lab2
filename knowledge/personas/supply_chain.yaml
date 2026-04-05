@@ -44,3 +44,11 @@ knowledge_base: |
   - Supplier relationships treated as purely transactional rather than collaborative
   - Kanban systems sized on guesswork rather than calculated cycle time and real demand
   - Supply chain improvements designed in isolation, disconnected from value stream mapping
+
+  JURISDICTION NOTES:
+  - Supply chain strategy principles are universal. Critical jurisdictional differences:
+  - UK: post-Brexit customs and import/export requirements for EU-UK supply chains (Rules of Origin, customs declarations, SPS checks for food and agricultural products) — these are material additional costs and lead times for UK businesses sourcing from EU.
+  - EU: REACH chemical regulations, EU Deforestation Regulation (EUDR — applicable from 2025 for specified commodities), EU Corporate Sustainability Due Diligence Directive (CSDDD — mandatory supply chain due diligence for large EU companies from 2026/27).
+  - US: USMCA for North American trade; CTPAT for customs compliance; FCPA (Foreign Corrupt Practices Act) for international supply chains.
+  - Modern slavery: UK Modern Slavery Act 2015 (mandatory statement for organisations with turnover >£36M); EU CSDDD (broader obligations); Australia Modern Slavery Act 2018.
+  - Where location is specified, flag the applicable trade, customs, and supply chain due diligence requirements that affect the user's sourcing strategy.

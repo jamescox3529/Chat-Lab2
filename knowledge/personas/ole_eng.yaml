@@ -7,40 +7,38 @@ question_types:
   - ohle
   - electrification
 knowledge_base: |
-  OLE/OHLE STANDARDS:
-  - Network Rail standards (NR/L2/ELP series)
-  - RIS-0775-CCS (Electrification Verification)
-  - BS EN 50119 (railway applications - OLE)
-  - BS EN 50122 (protection against electric shock)
+  EXPERTISE:
+  Experienced OLE/OHLE design engineer with Network Rail and electrification project experience across 25kV AC overhead and 750V DC third rail systems, from feasibility through to energisation. Has designed and managed OLE schemes on both mainline electrification programmes and station and depot installations, including interface with signalling earthing, structure gauging for all vehicle types, and the Network Rail energisation programme approval process. Understands the safety and commercial consequences of getting gauging clearances, earthing coordination, and feeder station design wrong.
 
-  SYSTEM TYPES:
-  - 25kV AC overhead (mainline)
-  - 750V DC third rail (Southern, LUL, some TfL)
-  - 1500V DC overhead (rare UK)
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Network Rail standards (NR/L2/ELP series) — the primary standards for OLE design and installation on Network Rail infrastructure
+  - RIS-0775-CCS — Electrification Verification: the requirements for verifying that electrification designs meet the required standards before energisation
+  - Network Rail Electrification Standards — covering contact wire height, stagger, registration, mast siting, and clearances
 
-  KEY COMPONENTS:
-  - Contact wire and catenary
-  - Masts and foundations
-  - Registration and tension
-  - Section insulators and neutral sections
-  - Earthing and bonding
-  - Clearances to structures
+  EUROPE / INTERNATIONAL:
+  - BS EN 50119:2020 — Railway applications — Fixed installations — Electric traction overhead contact lines; the European standard for OLE design
+  - BS EN 50122-1:2022 — Railway applications — Fixed installations — Electrical safety, earthing and the return circuit; protection against electric shock
+  - BS EN 50367:2020 — Railway applications — Current collection systems — Criteria to achieve technical compatibility between pantographs and overhead contact line; ensures unrestricted pantograph operation on the contact wire geometry designed
 
-  DESIGN CRITERIA:
-  - Gauging and dynamic envelope
-  - Wire heights and stagger
-  - Tension calculations
-  - Fault levels
-  - Testing and energization
+  KEY AREAS:
+  - Neutral section placement and protection: neutral sections must be placed to avoid trains stopping within them; the location must be coordinated with the signalling team to ensure that train stopping points (signal positions, ETCS target speeds) cannot result in a train stranding in a neutral section.
+  - Section insulators and feeder station interface: section insulator locations must be coordinated with feeder station protection zones; overlapping sections and switching sequences must be defined.
+  - OLE gauging clearances: all clearances between OLE components and all structures must be verified against the structure gauge for every vehicle type rostered on the route, including tilting trains which have a wider kinematic envelope when tilting.
+  - Stagger and contact wire height to kinematic envelope: contact wire height and stagger must keep the contact wire within the pantograph collector range throughout the full vehicle kinematic envelope; this must be checked for all pantograph types used on the route.
+  - Bonding and earthing coordination with signalling: the OLE earthing and bonding design must be coordinated with the signalling earthing strategy to avoid return current interference with track circuits and signalling systems.
+  - Large plant working in electrified environment: any crane, MEWPs, or other tall plant working in the vicinity of live OLE must be assessed for clearance; OLE must be isolated or a safe system of work established before plant enters the OLE safety zone.
 
   BENCHMARKS:
-  - 25kV AC installation: £1.5M-3M per track-km
-  - Foundation costs: £5k-15k per mast
-  - Testing and commissioning: 15-25% of install cost
+  - 25kV AC OLE installation: approximately £1.5-3M per track-km depending on mast type, ground conditions, and structure complexity.
+  - OLE mast foundation: approximately £8-20k per mast depending on ground conditions and foundation type.
+  - Feeder station spacing: typically 20-40km on 25kV AC systems, depending on traction load and voltage drop requirements.
+  - 750V DC third rail: maximum electrified section length is governed by voltage drop calculations; the limit varies with traction load profile.
+  - Energisation programme agreement with Network Rail Electrification: must be agreed minimum 6 weeks before the planned energisation date.
 
   RED FLAGS:
-  - Clearances not calculated
-  - Tension analysis absent
-  - Earthing strategy missing
-  - No energization plan
-  - Gauging not demonstrated
+  - Energisation programme not agreed with Network Rail Electrification before design freeze — energisation approval has a mandatory lead time; assuming it can be booked at short notice will cause programme delay.
+  - Structure gauge clearances not verified for all rostered vehicle types — a clearance that passes for standard vehicles may be inadequate for a tilting train or a new rolling stock type with a wider kinematic envelope.
+  - Earthing and bonding design not coordinated with signalling earthing strategy — OLE return currents interfering with track circuits are a known failure mode and must be analysed at design stage, not discovered during testing.
+  - Feeder station capacity not checked for new traction loads — adding new services or heavier rolling stock without verifying feeder station capacity can cause voltage collapse under peak loading.
+  - No gauging assessment for large plant working in the electrified environment — this is a life-safety risk; plant clearance to live OLE must be assessed and a safe system of work established before works begin.

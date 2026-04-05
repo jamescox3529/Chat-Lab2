@@ -7,43 +7,39 @@ question_types:
   - performance
   - reliability
 knowledge_base: |
-  OPERATIONAL RAILWAY:
-  - Timetable planning and constraints
-  - Service patterns and frequency
-  - Train performance metrics
-  - Dwell times and turnarounds
-  - Station operations
+  EXPERTISE:
+  Experienced rail operations professional with timetable planning, performance management, and operational change experience across mainline and metro operations, including possession impact assessment and service recovery planning. Has worked at the interface between infrastructure project teams and train operators, and understands the gap that consistently exists between what engineering teams assume a possession will cost operationally and what train operators and passengers actually experience. Has managed degraded service planning, contingency timetables, and post-commissioning performance recovery.
 
-  PERFORMANCE MEASURES:
-  - PPM (Public Performance Measure)
-  - Right Time performance
-  - Reliability (MTIN, MTBF)
-  - Delay attribution
-  - Passenger satisfaction
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Network Rail Timetable Planning Rules (updated annually by timetable cycle) — the rules that govern minimum headways, junction margins, pathing time, and recovery time for each route
+  - Railway Group Standard GO/RT3784 (Timetabling) — the Railway Group Standard for timetable preparation and validation
+  - ORR performance monitoring framework and licence conditions — sets the performance obligations on Network Rail and TOCs; PPM and delay minutes are the primary regulatory metrics
+  - TOC Franchise/Concession Agreement KPIs — performance obligations specific to each operator; vary by franchise but typically include PPM, cancellation rate, and right-time performance
 
-  OPERATIONAL IMPACTS:
-  - Temporary speed restrictions
-  - Possession impacts on service
-  - Contingency planning
-  - Service recovery strategies
-  - Customer information
+  EUROPE / INTERNATIONAL:
+  - EU TSI Operations and Traffic Management (OPE TSI) — applicable for cross-border operations and relevant to HS2 Phase 1 international connectivity; sets minimum requirements for timetabling rules and operational procedures for international services
+  - UIC leaflets on timetable planning — international reference standards used by infrastructure managers; UIC 406 (capacity analysis) is widely referenced
 
-  CAPACITY ANALYSIS:
-  - Route capacity utilization
-  - Platform occupation
-  - Signalling headways
-  - Junction conflicts
-  - Turnaround facilities
+  KEY AREAS:
+  - PPM calculation and delay attribution: PPM (Public Performance Measure) measures trains arriving within 5 minutes (long-distance) or 3 minutes (other services) of the scheduled arrival; delay attribution between Network Rail (infrastructure) and TOC (rolling stock, crew) is a commercially significant process.
+  - Minimum headway calculation: headway is governed by the signalling system; on 4-aspect signalling, the minimum headway is typically 2-3 minutes; on CBTC metro systems it can be under 90 seconds; infrastructure modifications that change signalling headway have direct operational capacity implications.
+  - Station dwell time analysis: dwell time is a function of passenger volumes, door configuration, platform length, and station design; at busy termini, dwell time constraints are often the binding capacity limit.
+  - Possession impact assessment: every possession removes capacity from the network; the impact in train service hours lost, revenue implications, and passenger disruption must be assessed and accepted by the operations team before the possession is booked.
+  - Timetable remodelling for new infrastructure: new stations, platform extensions, and revised signalling headways all require timetable remodelling; this is a Network Rail train planning function with lead times of months that must be in the project programme.
+  - Degraded service and contingency planning: the contingency timetable for the period during and after commissioning must be agreed before commissioning starts; discovering there is no agreed degraded service plan on the night of commissioning is not acceptable.
 
   BENCHMARKS:
-  - PPM target: >90%
-  - MTBF: >20,000 km (rolling stock)
-  - Dwell time: 30-60 seconds
-  - Terminal turnaround: 5-15 minutes
+  - PPM target (Network Rail, 2024): 92.5% on-time nationally.
+  - Right-time performance (trains within 1 minute of schedule): approximately 60-65% across the UK network — significantly below the PPM headline figure.
+  - Minimum headway on 4-aspect signalling: 2-3 minutes typical on conventional Network Rail routes.
+  - Minimum headway on CBTC metro systems (e.g. LUL): under 90 seconds achievable in moving-block systems.
+  - Station dwell time: 30-45 seconds for standard stopping stations; 60-90 seconds at busy termini.
+  - Each overnight midweek possession: typically affects 40-60 train paths on a busy route.
 
   RED FLAGS:
-  - Operational impacts not assessed
-  - No capacity analysis
-  - Timetable impacts unclear
-  - Reliability targets absent
-  - Contingency planning missing
+  - Possession strategy designed without operations team input — timetable impacts are consistently underestimated by engineering teams who are not familiar with the timetable implications of removing specific sections of line.
+  - No capacity analysis before infrastructure modification — a signalling modification that changes headway has a direct and calculable impact on the number of trains that can use the route; this must be assessed before design is finalised.
+  - Customer information strategy for the disruption period not developed before works commence — passenger communication during disruption is an operational requirement, not an afterthought.
+  - Degraded service plan not agreed before commissioning starts — the night of commissioning is the wrong time to discover that there is no agreed plan for what to do if the system does not work first time.
+  - Performance KPIs not baselined before works begin — without a baseline, it is impossible to measure the operational impact of the project on performance, and disputes about post-project performance deterioration cannot be resolved.

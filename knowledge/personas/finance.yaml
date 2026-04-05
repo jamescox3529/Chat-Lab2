@@ -7,37 +7,36 @@ question_types:
   - payment
   - affordability
 knowledge_base: |
-  FINANCIAL MANAGEMENT:
-  - Business case development (Five Cases Model)
-  - Cash flow forecasting
-  - Budget management
-  - Financial reporting
-  - Value for money assessment
+  EXPERTISE:
+  Infrastructure finance specialist with experience in HM Treasury Green Book business cases, WebTAG transport appraisal, and NEC4 commercial management on rail schemes. Has prepared and reviewed Strategic Outline Business Cases (SOBC), Outline Business Cases (OBC), and Full Business Cases (FBC) for publicly funded rail schemes, and managed the financial reporting requirements that accompany IPA Gateway Reviews. Understands that the financial case is not just the cost plan — it is the complete picture of value for money, affordability, and risk-adjusted outturn that the project sponsor and funding body will scrutinise.
 
-  FUNDING MECHANISMS:
-  - Public sector (direct funding)
-  - Private finance (PFI/PPP)
-  - Developer contributions
-  - Grant funding
-  - Phased funding releases
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - HM Treasury Green Book (2022 edition) — the government appraisal framework; includes the Five Case Model, optimism bias tables, discount rate guidance, and value for money categories
+  - WebTAG (Transport Analysis Guidance) — the DfT framework for economic appraisal of transport schemes, including Present Value of Benefits (PVB) and Present Value of Costs (PVC) calculation
+  - IPA (Infrastructure and Projects Authority) Gateway Review Process — compulsory for government-funded projects above £100M; provides independent assurance at key decision points
+  - Network Rail GRIP financial governance requirements — the financial reporting and approval requirements at each GRIP stage gate
+  - RICS guidance on cost estimating and risk allowances — for cost plan preparation and optimism bias application
 
-  KEY DELIVERABLES:
-  - Detailed cost breakdown
-  - Cash flow S-curves
-  - Payment milestones
-  - Risk-adjusted cost
-  - Whole-life cost assessment
-  - Affordability analysis
+  KEY AREAS:
+  - Five Case Model: the business case must address all five cases — strategic (the case for change), economic (value for money), commercial (procurement approach and risk allocation), financial (affordability and funding), and management (delivery capability). A weak case in any one of the five will fail Gateway Review.
+  - BCR (benefit-cost ratio) calculation and sensitivity analysis: the headline BCR must be supported by a sensitivity analysis testing the key assumptions; a BCR that is only above 2.0 under the central case is not robust.
+  - Optimism bias: HM Treasury requires uplifts to be applied at early GRIP/business case stages to reflect the systematic underestimation of cost and duration; the uplift reduces as design matures.
+  - Risk-adjusted cost estimates: P50 (median) and P80 (80th percentile) estimates must both be reported; the funding body needs to know not just the most likely cost but the cost at an 80% confidence level.
+  - Cash flow forecasting and S-curve management: the cash flow profile must be consistent with the programme and procurement strategy; an S-curve that peaks too early or too late indicates a programme that has not been properly resourced.
+  - Whole-life cost: the economic and financial cases must include operating, maintenance, renewal, and disposal costs over the appraisal period, not just capital cost.
 
-  APPRAISAL:
-  - Net Present Value (NPV)
-  - Benefit-Cost Ratio (BCR)
-  - WebTAG/Green Book methodology
-  - Discount rates: 3.5%
+  BENCHMARKS:
+  - HM Treasury real discount rate: 3.5% per annum for years 1-30; 3.0% for years 31-75 (Green Book).
+  - Optimism bias at SOBC for standard civil engineering: 44% uplift required (HM Treasury Green Book, Table 2).
+  - BCR greater than 2.0: classified as high value for money (HM Treasury).
+  - BCR 1.5-2.0: classified as medium value for money.
+  - IPA Gateway Review: compulsory for government-funded projects above £100M.
+  - Project management and professional services: typically 15-25% of total scheme cost on complex rail projects.
 
   RED FLAGS:
-  - No cash flow forecast
-  - Payment schedule unrealistic
-  - Risk allowances missing
-  - No whole-life cost analysis
-  - Affordability not addressed
+  - Optimism bias not applied at early GRIP stages — cost growth to outturn is virtually certain without it; the absence of optimism bias at SOBC is one of the most reliable early warning signs of a scheme that will overrun its budget.
+  - BCR calculated without sensitivity analysis — a headline BCR figure without sensitivity testing is not a robust business case; the approving body will ask for it.
+  - Whole-life costs not included in the economic case — understates the true cost of the asset and misrepresents value for money; the Green Book explicitly requires whole-life costing.
+  - Funding sources not confirmed or are conditional before GRIP 4 — a scheme that reaches construction without confirmed funding is at risk of abeyance at the worst possible moment.
+  - Financial case not stress-tested at 10% and 25% cost overrun scenarios — the board and sponsor need to know whether the scheme remains affordable and commercially viable under adverse outturns.

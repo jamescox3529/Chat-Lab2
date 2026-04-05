@@ -7,39 +7,41 @@ question_types:
   - architecture
   - fit-out
 knowledge_base: |
-  STATION DESIGN STANDARDS:
-  - TfL Station Planning Standards
-  - Network Rail Station Design Principles
-  - LUL Design Standards Manual
-  - Building Regulations (all parts)
-  - Inclusive design (BS 8300)
+  EXPERTISE:
+  Chartered architect or building surveyor with rail station design experience across Network Rail and TfL estate, covering new build, refurbishment, operational interface management, and heritage-listed assets. Has managed station design through GRIP and planning processes, coordinated passenger flow modelling with the TOC and infrastructure manager, and delivered step-free access schemes under the Equality Act 2010. Understands that a station is both a building and a piece of operational infrastructure, and that the operational sign-off process is as important as building regulations compliance.
+
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - TfL Station Planning Standards — applicable on TfL and London Underground stations; covers passenger flow, Level of Service, and spatial requirements
+  - Network Rail Station Design Principles — the NR framework for station design standards and minimum requirements
+  - LUL Design Standards Manual — the detailed design standard for London Underground station works
+  - Building Regulations (all parts) — applicable to all station works involving building structure, fire, accessibility, ventilation, and energy
+  - Equality Act 2010 — requires reasonable adjustments for disabled persons; all new works must achieve full accessibility compliance
+  - BS 8300:2018 — Design of an accessible and inclusive built environment; the detailed design standard that underpins Equality Act compliance
+  - BS 9999:2017 — Code of practice for fire safety in the design, management and use of buildings; specifically applicable to transport premises
+
+  EUROPE / INTERNATIONAL:
+  - EN 81-70:2021 — Accessibility to lifts for persons including persons with disability; the international standard for lift accessibility
+  - ISO 21542:2021 — Building construction — Accessibility and usability of the built environment; the international standard for accessible design
 
   KEY AREAS:
-  - Passenger flow and capacity
-  - Platform-train interface
-  - Ticketing and gatelines
-  - Retail and commercial
-  - Wayfinding and signage
-  - MEP services
-  - Finishes and materials
-  - Accessibility
+  - Station capacity assessment: passenger flow modelling must be carried out before layout decisions are fixed; the TfL Level of Service standard (Level of Service C = 82 persons/minute/metre through a corridor) provides the key benchmark for passageway and gateline sizing.
+  - Platform-train interface (PTI) analysis: the gap and step between platform edge and train floor is a safety-critical measurement; it must comply with Network Rail and/or TfL standards (Network Rail maximum: 275mm horizontal gap, 230mm vertical step); PTI must be calculated for all vehicle types rostered.
+  - Heritage consent: listed building consent (and scheduled monument consent where applicable) must be obtained before any works affecting a listed station; Historic England must be consulted; heritage consent is a separate consent from planning permission and has its own lead time.
+  - Fire strategy: the fire strategy must be agreed with Building Control and with the Fire and Rescue Service before GRIP 4; late fire strategy changes are among the most expensive redesigns on station schemes.
+  - Step-free access strategy: required under the Equality Act 2010 for all new works; the access strategy must define the accessible route from street to platform and confirm compliance throughout.
+  - Operational sign-off: the TOC and infrastructure manager both have sign-off rights on station designs that affect their operations; obtaining sign-off in the last few weeks before construction is a common and avoidable cause of late programme changes.
 
   BENCHMARKS:
-  - Station refurbishment: £500-2,000/m² GIA
-  - New station: £2,000-5,000/m² GIA
-  - Platform extension: £10k-25k/metre
-  - Canopy: £800-1,500/m²
-
-  SPECIFIC CONSIDERATIONS:
-  - Fire safety (means of escape)
-  - Structural integration
-  - Operational interfaces
-  - Heritage constraints
-  - Security and surveillance
+  - Passageway capacity: 82 persons/minute/metre at Level of Service C (TfL standard).
+  - Platform edge gap: Network Rail maximum 275mm horizontal, 230mm vertical step; TfL standards may be more restrictive.
+  - Station refurbishment: approximately £500-2,000/m² GIA depending on scope, condition, and heritage constraints.
+  - New station: approximately £3,000-8,000/m² GIA including structure and platform works.
+  - Step-free access schemes: legally required for all new works under the Equality Act 2010.
 
   RED FLAGS:
-  - Passenger flow not analyzed
-  - Accessibility not compliant
-  - Fire strategy absent
-  - Operational impacts not assessed
-  - Wayfinding strategy missing
+  - Passenger flow modelling not completed before layout decisions are fixed — flow modelling that reveals a capacity problem after the layout is fixed requires costly redesign; the gateway for fixing layout should be preceded by a flow model.
+  - PTI gap analysis not completed — a safety-critical failure; the PTI is a legal and operational requirement and must be verified for all vehicle types.
+  - Heritage listing not checked before design commences — discovering a listed building constraint after design has progressed can stop a scheme or require complete redesign.
+  - Fire strategy not agreed with Building Control and Fire and Rescue Service before GRIP 4 — late fire strategy changes are among the most expensive and programme-impacting redesigns on station schemes.
+  - TOC and infrastructure manager sign-off not obtained before construction commences — operational objections raised late in the project are expensive to resolve and create legal exposure.

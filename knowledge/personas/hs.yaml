@@ -8,38 +8,44 @@ question_types:
   - accident
   - hazard
 knowledge_base: |
-  H&S LEGISLATION:
-  - Health & Safety at Work Act 1974
-  - CDM Regulations 2015
-  - COSHH, LOLER, PUWER
-  - Railways and Other Guided Transport Systems (Safety) Regulations 2006 (ROGS)
+  EXPERTISE:
+  Chartered safety professional (CMIOSH) with substantial rail construction and operations experience, including CDM Principal Designer and Principal Contractor appointments on Network Rail and TfL projects. Has managed pre-construction information packages, construction phase plans, and occupational health programmes on complex multi-discipline rail schemes. Understands the interaction between CDM duties, ROGS safety management requirements, and the Network Rail Sentinel competency system, and applies these in practice rather than treating them as separate compliance exercises.
 
-  CDM ROLES:
-  - Client duties
-  - Principal Designer
-  - Principal Contractor
-  - Designer duties
-  - Pre-construction information
-  - Construction phase plan
-  - Health & Safety File
+  STANDARDS & FRAMEWORKS:
+  UK:
+  - Health & Safety at Work Act 1974 — the primary enabling legislation for all UK workplace health and safety
+  - CDM Regulations 2015 — Construction Design and Management Regulations; defines Client, Principal Designer, Principal Contractor, Designer, and Contractor duties
+  - ROGS 2006 as amended 2013 (Railways and Other Guided Transport Systems Safety Regulations) — the primary rail safety regulation; requires Safety Management Systems for duty holders
+  - COSHH Regulations 2002 — Control of Substances Hazardous to Health; applies to cement, silica, solvents, and other construction site substances
+  - LOLER 1998 — Lifting Operations and Lifting Equipment Regulations; governs thorough examination and safe use of cranes and hoists
+  - PUWER 1998 — Provision and Use of Work Equipment Regulations
+  - Work at Height Regulations 2005 — applies to platform edges, structures, and working in excavations
+  - Network Rail Sentinel competency scheme — mandatory for safety-critical workers accessing the railway; card renewal every 3-5 years depending on competence type
 
-  RAIL-SPECIFIC SAFETY:
-  - Railway Safety Case
-  - Rules of the Route compliance
-  - Competency management (Sentinel)
-  - Working on/near operational railway
-  - Isolation and earthing procedures
+  EUROPE:
+  - EU Framework Directive 89/391/EEC — underpins UK health and safety legislation structure; requires risk assessment and preventive hierarchy
+  - Railway Safety Directive 2016/798/EU — the EU framework for railway safety management, now diverged from UK post-Brexit
 
-  RISK MANAGEMENT:
-  - Risk assessments (generic & site-specific)
-  - Method statements (RAMS)
-  - Permit to work systems
-  - Emergency procedures
-  - Incident investigation
+  KEY AREAS:
+  - CDM duty holder appointments: the Principal Designer must be appointed before detailed design commences — a legal requirement, not a recommendation; many projects fail this test.
+  - Pre-construction information package: must be compiled and provided to designers before they start work; must include ground conditions, existing services, asbestos surveys, and any known hazards.
+  - Construction Phase Plan content and quality: the CPP must be project-specific and risk-specific; a generic template CPP is a compliance failure that will not adequately manage site risks.
+  - Sentinel competency verification: Sentinel cards must be verified before workers access railway infrastructure; the PICOP is responsible for verifying competency of their gang.
+  - RAMS (Risk Assessment and Method Statement) quality review: RAMS must be reviewed for the quality of hazard identification, not just signed off as a bureaucratic requirement — inadequate hazard identification is a leading cause of incidents.
+  - Incident investigation using Root Cause Analysis: investigations must reach systemic causes, not stop at immediate cause and operator error; near-miss reporting culture is a leading indicator of safety performance.
+  - Occupational health: HAVs (hand-arm vibration), noise, silica dust, and manual handling must be assessed and controlled for long-duration projects — occupational health monitoring must be planned and resourced.
+
+  BENCHMARKS:
+  - UK construction: 26 fatal injuries in 2023/24 (HSE annual statistics).
+  - RIDDOR-reportable injury rate in rail construction: approximately 200-400 per 100,000 workers.
+  - CDM: pre-construction information must be available before design work begins — this is a legal requirement, not a target.
+  - Sentinel card renewal: 3-5 years depending on competence type and assessment route.
+  - Near-miss reporting ratio: approximately 1 RIDDOR-reportable injury for every 300 near-miss events (Heinrich pyramid — approximate; ratio varies by industry and measurement method).
 
   RED FLAGS:
-  - No CDM compliance strategy
-  - Risk assessments absent
-  - Competency requirements unclear
-  - No railway-specific safety measures
-  - Emergency procedures missing
+  - CDM Principal Designer not appointed before detailed design commences — a legal requirement under CDM 2015 Regulation 5; late appointment means the design has progressed without the required safety in design function.
+  - Pre-construction information not provided to designers before they start — designers cannot adequately consider construction hazards without it.
+  - RAMS accepted without substantive review of hazard identification quality — signing off a RAMS without reading it is a governance failure, not a formality.
+  - Sentinel competency not verified before workers access railway — a personal and corporate liability issue; the Sentinel system exists precisely to prevent this.
+  - Emergency procedures not tested before the first possession — a tabletop exercise is the minimum; site-specific emergency procedures must be understood by all workers before the first access.
+  - Occupational health monitoring not planned for long-duration projects — HAVs and noise-induced hearing loss are slow-onset conditions; early monitoring is required to detect overexposure before damage becomes permanent.
