@@ -6,8 +6,10 @@ Application-wide constants and configuration values.
 
 import os
 
-# Claude model
+# Claude models
 MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+# Fast/cheap model for lightweight tasks (dispatcher, title generation)
+FAST_MODEL = os.getenv("ANTHROPIC_FAST_MODEL", "claude-haiku-4-5-20250514")
 
 # Document limits
 DOC_CHAR_LIMIT = 50_000

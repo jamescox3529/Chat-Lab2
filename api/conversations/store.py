@@ -7,21 +7,22 @@ All queries are scoped to the authenticated user_id.
 from __future__ import annotations
 
 import os
+import threading
 from datetime import datetime, timezone
 from typing import Optional
 
 import anthropic
 
-from api.config import MODEL
+from api.config import FAST_MODEL
 from api.db import get_db
 
 
-def _generate_title(text: str) -> str:
-    """Ask Claude for a 5-7 word summary title. Falls back to truncation on any error."""
+def _generate_and_save_title(conv_id: str, text: str) -> None:
+    """Generate a title with Claude and save it. Runs in a background thread."""
     try:
         client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
         response = client.messages.create(
-            model=MODEL,
+            model=FAST_MODEL,
             max_tokens=20,
             messages=[{
                 "role": "user",
@@ -32,9 +33,13 @@ def _generate_title(text: str) -> str:
                 ),
             }],
         )
-        return response.content[0].text.strip().strip('"').strip("'")
+        title = response.content[0].text.strip().strip('"').strip("'")
     except Exception:
-        return text[:60] + ("…" if len(text) > 60 else "")
+        title = text[:60] + ("…" if len(text) > 60 else "")
+    try:
+        get_db().table("conversations").update({"title": title}).eq("id", conv_id).execute()
+    except Exception:
+        pass
 
 
 def _now() -> str:
@@ -146,10 +151,13 @@ def append_message(conv_id: str, message: dict, user_id: str) -> Optional[dict]:
         "timestamp": message.get("timestamp", _now()),
     }).execute()
 
-    # Auto-title from first user message
+    # Auto-title from first user message — runs in background so it never delays streaming
     if not conv_result.data.get("title") and message["role"] == "user":
-        title = _generate_title(message.get("content", ""))
-        db.table("conversations").update({"title": title}).eq("id", conv_id).execute()
+        threading.Thread(
+            target=_generate_and_save_title,
+            args=(conv_id, message.get("content", "")),
+            daemon=True,
+        ).start()
 
     return get_conversation(conv_id, user_id)
 

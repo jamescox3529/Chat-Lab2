@@ -13,6 +13,7 @@ Yields server-sent event dicts:
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import uuid
@@ -20,7 +21,7 @@ from typing import AsyncIterator, Dict, List
 
 import anthropic
 
-from api.config import MODEL
+from api.config import MODEL, FAST_MODEL
 from api.personas.loader import load_personas, Persona
 from api.rooms.loader import get_room
 from api.pipeline.prompts import (
@@ -80,7 +81,7 @@ def _dispatch(
     api_history.append({"role": "user", "content": user_message})
 
     response = client.messages.create(
-        model=MODEL,
+        model=FAST_MODEL,
         max_tokens=64,
         system=system,
         messages=api_history,
@@ -189,14 +190,22 @@ async def run_pipeline(
     yield {"type": "status", "content": "Consulting panel..."}
     selected_ids = _dispatch(client, user_message, history, room_personas, project_context, room_name=room.name)
 
-    # Stage 2
-    persona_responses: Dict[str, str] = {}
-    for pid in selected_ids:
+    # Stage 2 — call all selected personas in parallel
+    roles_label = ", ".join(room_personas[pid].role for pid in selected_ids)
+    yield {"type": "status", "content": f"Asking {roles_label}…"}
+
+    loop = asyncio.get_running_loop()
+
+    async def _call_async(pid: str) -> tuple[str, str]:
         persona = room_personas[pid]
-        yield {"type": "status", "content": f"Consulting {persona.role}..."}
-        persona_responses[pid] = _call_persona(
-            client, persona, user_message, history, project_context, user_instruction, room_name=room.name
+        response = await loop.run_in_executor(
+            None, _call_persona,
+            client, persona, user_message, history, project_context, user_instruction, room.name,
         )
+        return pid, response
+
+    results = await asyncio.gather(*[_call_async(pid) for pid in selected_ids])
+    persona_responses: Dict[str, str] = dict(results)
 
     # Stage 3
     yield {"type": "status", "content": "Synthesising response..."}
