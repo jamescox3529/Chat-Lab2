@@ -106,14 +106,20 @@ def update_conversation(conv_id: str, patch: dict, user_id: str) -> Optional[dic
 
 def delete_conversation(conv_id: str, user_id: str) -> bool:
     db = get_db()
-    result = (
+    # Check ownership first (Supabase DELETE returns empty data even on success)
+    check = (
         db.table("conversations")
-        .delete()
+        .select("id")
         .eq("id", conv_id)
         .eq("user_id", user_id)
         .execute()
     )
-    return bool(result.data)
+    if not check.data:
+        return False
+    # Delete messages first to avoid foreign-key constraint issues
+    db.table("messages").delete().eq("conversation_id", conv_id).execute()
+    db.table("conversations").delete().eq("id", conv_id).eq("user_id", user_id).execute()
+    return True
 
 
 def append_message(conv_id: str, message: dict, user_id: str) -> Optional[dict]:
