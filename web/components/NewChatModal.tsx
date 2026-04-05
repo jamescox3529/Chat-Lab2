@@ -100,25 +100,25 @@ export default function NewChatModal({ roomId, onClose, onCreated }: NewChatModa
               <div className="space-y-3">
                 <SelectField
                   label="Your relationship to this subject"
-                  options={["", ...options.experience.map((o) => o.label)]}
+                  options={options.experience.map((o) => o.label)}
                   value={config.user_profile.experience ?? ""}
                   onChange={(v) => setProfile("experience", v)}
                 />
                 <SelectField
                   label="What are you trying to do?"
-                  options={["", ...options.task.map((o) => o.label)]}
+                  options={options.task.map((o) => o.label)}
                   value={config.user_profile.task ?? ""}
                   onChange={(v) => setProfile("task", v)}
                 />
                 <SelectField
                   label="How to handle uncertainty?"
-                  options={["", ...options.uncertainty.map((o) => o.label)]}
+                  options={options.uncertainty.map((o) => o.label)}
                   value={config.user_profile.uncertainty ?? ""}
                   onChange={(v) => setProfile("uncertainty", v)}
                 />
                 <SelectField
                   label="What will you do with the answer?"
-                  options={["", ...options.use.map((o) => o.label)]}
+                  options={options.use.map((o) => o.label)}
                   value={config.user_profile.use ?? ""}
                   onChange={(v) => setProfile("use", v)}
                 />
@@ -143,7 +143,7 @@ export default function NewChatModal({ roomId, onClose, onCreated }: NewChatModa
                     <SelectField
                       key={field.key}
                       label={field.label}
-                      options={["", ...field.options]}
+                      options={field.options}
                       value={config.project_config[field.key] ?? ""}
                       onChange={(v) => setProject(field.key, v)}
                     />
@@ -194,10 +194,10 @@ function SelectField({
         onChange={(e) => onChange(e.target.value)}
         className="w-full text-xs rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-dark-bubble px-2 py-1.5 text-gray-800 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600"
       >
+        {/* Disabled placeholder — visible when nothing is selected, hidden in the open list */}
+        <option value="" disabled>— not set —</option>
         {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt === "" ? "— not set —" : opt}
-          </option>
+          <option key={opt} value={opt}>{opt}</option>
         ))}
       </select>
     </div>
