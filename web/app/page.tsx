@@ -45,7 +45,7 @@ export default function HomePage() {
           </p>
 
           {/* Practice areas */}
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Practice areas</p>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Consult</p>
           <div className="space-y-3">
             {pillars.length === 0 && (
               <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
