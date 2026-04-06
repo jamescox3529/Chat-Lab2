@@ -427,6 +427,7 @@ class DebateCreate(BaseModel):
     persona_ids: list[str]
     depth: str = "standard"
     document_ids: list[str] = []
+    context: dict = {}
 
 
 @app.post("/api/debates", status_code=201)
@@ -439,6 +440,7 @@ def create_debate_route(
         persona_ids=body.persona_ids,
         depth=body.depth,
         document_ids=body.document_ids,
+        context=body.context,
         user_id=user_id,
     )
 
@@ -480,7 +482,14 @@ async def stream_debate_route(
         if doc:
             documents.append(doc)
 
-    project_context = build_project_context(config={}, documents=documents)
+    debate_context = debate.get("context") or {}
+    debate_context_labels = {
+        "location": "Location",
+        "industry": "Industry",
+        "organisation_size": "Organisation Size",
+        "additional_context": "Additional Context",
+    }
+    project_context = build_project_context(config=debate_context, documents=documents, field_labels=debate_context_labels)
 
     async def event_stream():
         full_response = []

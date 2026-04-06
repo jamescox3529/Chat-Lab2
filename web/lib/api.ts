@@ -123,6 +123,7 @@ export const createDebate = (body: {
   persona_ids: string[];
   depth: string;
   document_ids: string[];
+  context?: Record<string, string>;
 }): Promise<Debate> => req("/api/debates", { method: "POST", body: JSON.stringify(body) });
 
 export const getDebate = (id: string): Promise<Debate> => req(`/api/debates/${id}`);

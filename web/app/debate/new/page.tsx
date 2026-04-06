@@ -20,6 +20,12 @@ export default function NewDebatePage() {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [context, setContext] = useState<Record<string, string>>({
+    location: "",
+    industry: "",
+    organisation_size: "",
+    additional_context: "",
+  });
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -69,12 +75,17 @@ export default function NewDebatePage() {
     if (!q || selectedPersonas.length < 2 || submitting) return;
     setSubmitting(true);
     try {
+      // Strip empty values from context before sending
+      const contextPayload = Object.fromEntries(
+        Object.entries(context).filter(([, v]) => v.trim() !== "")
+      );
       const debate = await withToken(() =>
         createDebate({
           question: q,
           persona_ids: selectedPersonas,
           depth,
           document_ids: documents.map((d) => d.id),
+          context: contextPayload,
         })
       );
       router.push(`/debate/${debate.id}`);
@@ -138,6 +149,71 @@ export default function NewDebatePage() {
               Depth
             </label>
             <DepthSelector value={depth} onChange={setDepth} />
+          </section>
+
+          {/* Context */}
+          <section>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              Context <span className="text-xs font-normal text-gray-400 dark:text-gray-500">(optional)</span>
+            </label>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+              Help the panel understand your situation.
+            </p>
+            <div className="space-y-3">
+              {/* Location */}
+              <div>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Location / Region</label>
+                <select
+                  value={context.location}
+                  onChange={(e) => setContext((prev) => ({ ...prev, location: e.target.value }))}
+                  className="w-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600"
+                >
+                  <option value="">Select…</option>
+                  {["UK & Ireland","Europe","North America","Asia-Pacific","Middle East & Africa","Latin America","Global / International"].map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+              </div>
+              {/* Industry */}
+              <div>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Industry / Sector</label>
+                <select
+                  value={context.industry}
+                  onChange={(e) => setContext((prev) => ({ ...prev, industry: e.target.value }))}
+                  className="w-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600"
+                >
+                  <option value="">Select…</option>
+                  {["Manufacturing","Retail & FMCG","Food & Beverage","Pharmaceutical & Healthcare","Automotive","Technology & Electronics","Construction","Energy","Financial Services","Professional Services","Other"].map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+              </div>
+              {/* Organisation size */}
+              <div>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Organisation Size</label>
+                <select
+                  value={context.organisation_size}
+                  onChange={(e) => setContext((prev) => ({ ...prev, organisation_size: e.target.value }))}
+                  className="w-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600"
+                >
+                  <option value="">Select…</option>
+                  {["SME under 50 staff","SME 50–250 staff","Mid-market 250–1000 staff","Large enterprise 1000+ staff"].map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+              </div>
+              {/* Additional context */}
+              <div>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Additional context</label>
+                <textarea
+                  value={context.additional_context}
+                  onChange={(e) => setContext((prev) => ({ ...prev, additional_context: e.target.value }))}
+                  placeholder="Any other relevant background…"
+                  rows={3}
+                  className="w-full text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-600 bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600 resize-none"
+                />
+              </div>
+            </div>
           </section>
 
           {/* Documents */}

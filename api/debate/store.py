@@ -52,6 +52,7 @@ def create_debate(
     depth: str,
     document_ids: list[str],
     user_id: str,
+    context: dict | None = None,
 ) -> dict:
     db = get_db()
     result = (
@@ -62,6 +63,7 @@ def create_debate(
             "depth": depth,
             "persona_ids": persona_ids,
             "document_ids": document_ids,
+            "context": context or {},
             "user_id": user_id,
         })
         .execute()
