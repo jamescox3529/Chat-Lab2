@@ -368,8 +368,26 @@ def remove_document(doc_id: str, user_id: str = Depends(get_current_user_id)):
 
 @app.get("/api/personas")
 def get_all_personas():
-    """Return all personas from all rooms, deduplicated, with first sentence of expertise."""
+    """Return all personas from all rooms, deduplicated, with expertise and pillar grouping."""
     from api.personas.loader import load_personas as _load
+    from api.rooms.loader import load_rooms as _load_rooms
+
+    pillar_names = {
+        "infrastructure_engineering": "Infrastructure & Engineering",
+        "strategy_advisory": "Strategy & Advisory",
+        "people_organisation": "People & Organisation",
+        "digital_technology": "Digital & Technology",
+    }
+
+    # Build persona -> (room_name, pillar_id) from rooms
+    rooms = _load_rooms()
+    persona_pillar: dict[str, str] = {}
+    persona_room: dict[str, str] = {}
+    for room in rooms.values():
+        for pid in room.personas:
+            persona_pillar[pid] = room.pillar
+            persona_room[pid] = room.name
+
     all_personas = _load()
     result = []
     for pid, persona in all_personas.items():
@@ -378,7 +396,6 @@ def get_all_personas():
         expertise = ""
         if "EXPERTISE:" in kb:
             after = kb.split("EXPERTISE:", 1)[1].strip()
-            # Take up to first period or newline
             for char in after:
                 if char in (".", "\n"):
                     break
@@ -386,9 +403,18 @@ def get_all_personas():
             expertise = expertise.strip()
         if not expertise:
             expertise = persona.role
-        result.append({"id": pid, "role": persona.role, "expertise": expertise})
-    # Sort by role name for consistent ordering
-    result.sort(key=lambda x: x["role"])
+
+        pillar_id = persona_pillar.get(pid, "")
+        result.append({
+            "id": pid,
+            "role": persona.role,
+            "expertise": expertise,
+            "pillar": pillar_id,
+            "pillar_name": pillar_names.get(pillar_id, "Other"),
+            "room_name": persona_room.get(pid, ""),
+        })
+
+    result.sort(key=lambda x: (x["pillar_name"], x["role"]))
     return result
 
 

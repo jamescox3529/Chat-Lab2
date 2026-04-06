@@ -101,7 +101,10 @@ export type SSEEvent =
 export interface DebatePersona {
   id: string;
   role: string;
-  expertise: string; // first sentence of expertise block
+  expertise: string;
+  pillar: string;
+  pillar_name: string;
+  room_name: string;
 }
 
 export interface DebateSummary {
