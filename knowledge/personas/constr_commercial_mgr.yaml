@@ -1,5 +1,5 @@
 id: constr_commercial_mgr
-role: Commercial Manager
+role: Construction Commercial Manager
 question_types:
   - cost
   - budget
