@@ -34,6 +34,9 @@ web/.vercel/
 *.swp
 *.swo
 
+# Local data files (migrated to Supabase)
+api/data/
+
 # Supabase migration scratchpad
 supabase_phase5.sql
 supabase_schema.sql
