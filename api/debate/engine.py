@@ -38,8 +38,8 @@ from api.debate.prompts import (
     build_synthesis_user,
 )
 
-PERSONA_MAX_TOKENS = 600
-SYNTHESIS_MAX_TOKENS = 1500
+PERSONA_MAX_TOKENS = 900
+SYNTHESIS_MAX_TOKENS = 2500
 
 
 def _get_client() -> anthropic.Anthropic:
