@@ -23,7 +23,7 @@ export default function PersonaPicker({ selected, onChange, min, max }: PersonaP
   const [personas, setPersonas] = useState<DebatePersona[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [openPillars, setOpenPillars] = useState<Set<string>>(new Set(PILLAR_ORDER));
+  const [openPillars, setOpenPillars] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     getAllPersonas()
@@ -98,7 +98,7 @@ export default function PersonaPicker({ selected, onChange, min, max }: PersonaP
         <p className="text-sm text-gray-400 dark:text-gray-600 py-4">Loading specialists…</p>
       ) : isSearching ? (
         /* ── Search results (flat) ── */
-        <div className="grid grid-cols-2 gap-2 max-h-96 overflow-y-auto pr-1">
+        <div className="grid grid-cols-2 gap-2">
           {filtered.map((p) => (
             <PersonaCard
               key={p.id}
@@ -117,7 +117,7 @@ export default function PersonaPicker({ selected, onChange, min, max }: PersonaP
         </div>
       ) : (
         /* ── Grouped by pillar ── */
-        <div className="space-y-2 max-h-[480px] overflow-y-auto pr-1">
+        <div className="space-y-2">
           {pillars.map((pillar) => {
             const isOpen = openPillars.has(pillar);
             const items = grouped[pillar] || [];
