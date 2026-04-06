@@ -1,11 +1,15 @@
 - id: infrastructure_engineering
   name: Infrastructure & Engineering
+  description: Specialists in the design, delivery and operation of physical infrastructure — railways, construction, energy, water and utilities.
 
 - id: strategy_advisory
   name: Strategy & Advisory
+  description: Advisors on business strategy, supply chain, sustainability and operational improvement through Lean and continuous improvement.
 
 - id: people_organisation
   name: People & Organisation
+  description: Experts in the human side of organisations — HR strategy, change management, organisational design and learning & development.
 
 - id: digital_technology
   name: Digital & Technology
+  description: Practitioners in digital transformation, cybersecurity, data analytics, AI and IT strategy.

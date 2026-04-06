@@ -21,6 +21,7 @@ _cache: List["Pillar"] | None = None
 class Pillar:
     id: str
     name: str
+    description: str = ""
 
 
 def load_pillars() -> List[Pillar]:
@@ -30,7 +31,7 @@ def load_pillars() -> List[Pillar]:
 
     try:
         data = yaml.safe_load(PILLARS_FILE.read_text(encoding="utf-8")) or []
-        _cache = [Pillar(id=p["id"], name=p["name"]) for p in data]
+        _cache = [Pillar(id=p["id"], name=p["name"], description=p.get("description", "")) for p in data]
     except Exception as exc:
         print(f"Warning: failed to load pillars.yaml: {exc}")
         _cache = []
@@ -43,4 +44,4 @@ def get_pillar(pillar_id: str) -> Optional[Pillar]:
 
 
 def list_pillars() -> List[Dict]:
-    return [{"id": p.id, "name": p.name} for p in load_pillars()]
+    return [{"id": p.id, "name": p.name, "description": p.description} for p in load_pillars()]

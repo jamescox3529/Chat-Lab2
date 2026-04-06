@@ -40,10 +40,12 @@ export default function HomePage() {
               ? `, ${user.username}`
               : ""}.
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mb-10">
+          <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
             Select a practice area to get started.
           </p>
 
+          {/* Practice areas */}
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Practice areas</p>
           <div className="space-y-3">
             {pillars.length === 0 && (
               <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
@@ -54,11 +56,16 @@ export default function HomePage() {
                 onClick={() => router.push(`/pillar/${pillar.id}`)}
                 className="w-full text-left p-5 rounded-xl border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-white dark:bg-dark-bubble transition-all group"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    {pillar.name}
-                  </h2>
-                  <svg className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-0.5">
+                      {pillar.name}
+                    </h2>
+                    {pillar.description && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{pillar.description}</p>
+                    )}
+                  </div>
+                  <svg className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 mt-0.5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -68,16 +75,23 @@ export default function HomePage() {
 
           {pillars.length > 0 && (
             <>
-              <div className="border-t border-gray-200 dark:border-dark-border mt-6 mb-4" />
+              <div className="mt-8 mb-3">
+                <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Tools</p>
+              </div>
               <button
                 onClick={() => router.push("/debate/new")}
                 className="w-full text-left p-5 rounded-xl border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-white dark:bg-dark-bubble transition-all group"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    Debate
-                  </h2>
-                  <svg className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-0.5">
+                      Debate
+                    </h2>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Put a question to a panel of specialists and reach a structured, reasoned conclusion.
+                    </p>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 mt-0.5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>

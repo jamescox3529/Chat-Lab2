@@ -1,6 +1,7 @@
 export interface Pillar {
   id: string;
   name: string;
+  description: string;
 }
 
 export interface PillarDetail extends Pillar {
