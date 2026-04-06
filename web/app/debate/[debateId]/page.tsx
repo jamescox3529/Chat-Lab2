@@ -1,0 +1,177 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { getDebate, streamDebate, getAllPersonas, setAuthToken } from "@/lib/api";
+import type { Debate, DebatePersona } from "@/lib/types";
+import DebateProgress from "@/components/debate/DebateProgress";
+import DebateResultView from "@/components/debate/DebateResultView";
+import { renderMarkdown } from "@/components/chat/MessageBubble";
+import { useNavContext } from "@/context/NavContext";
+
+export default function DebatePage() {
+  const params = useParams();
+  const router = useRouter();
+  const debateId = params?.debateId as string;
+  const { getToken } = useAuth();
+  const { setOnNewChat, triggerNavRefresh } = useNavContext();
+
+  const [debate, setDebate] = useState<Debate | null>(null);
+  const [personas, setPersonas] = useState<DebatePersona[]>([]);
+  const [status, setStatus] = useState("");
+  const [streaming, setStreaming] = useState(false);
+  const [streamingContent, setStreamingContent] = useState("");
+  const [finalResult, setFinalResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const streamStarted = useRef(false);
+
+  useEffect(() => {
+    setOnNewChat(() => router.push("/"));
+  }, []);
+
+  async function withToken<T>(fn: () => Promise<T>): Promise<T> {
+    const token = await getToken();
+    if (!token) throw new Error("Not authenticated");
+    setAuthToken(token);
+    return fn();
+  }
+
+  // Load debate and personas
+  useEffect(() => {
+    if (!debateId) return;
+
+    Promise.all([
+      withToken(() => getDebate(debateId)),
+      withToken(() => getAllPersonas()),
+    ]).then(([d, ps]) => {
+      setDebate(d);
+      setPersonas(ps);
+
+      if (d.result) {
+        // Already completed — show stored result
+        setFinalResult(d.result);
+      } else if (!streamStarted.current) {
+        // Start streaming
+        streamStarted.current = true;
+        startStream();
+      }
+    }).catch((err) => {
+      setError("Failed to load debate: " + String(err));
+    });
+  }, [debateId]);
+
+  async function startStream() {
+    setStreaming(true);
+    let accumulated = "";
+
+    try {
+      const token = await getToken();
+      setAuthToken(token);
+
+      for await (const event of streamDebate(debateId)) {
+        if (event.type === "status") {
+          setStatus(event.content);
+        } else if (event.type === "token") {
+          accumulated += event.content;
+          setStreamingContent(accumulated);
+        } else if (event.type === "done") {
+          setFinalResult(accumulated);
+          setStreamingContent("");
+          setStatus("");
+          triggerNavRefresh();
+        } else if (event.type === "error") {
+          setError(event.content);
+        }
+      }
+    } catch (err) {
+      setError("Connection error. Is the backend running?");
+    } finally {
+      setStreaming(false);
+    }
+  }
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [streamingContent, finalResult, status]);
+
+  // Resolve persona role names from IDs
+  const personaRoles: string[] = (debate?.persona_ids ?? []).map((pid) => {
+    const found = personas.find((p) => p.id === pid);
+    return found ? found.role : pid;
+  });
+
+  if (error) {
+    return (
+      <div className="flex-1 flex items-center justify-center bg-white dark:bg-dark-chat">
+        <p className="text-sm text-red-500">{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white dark:bg-dark-chat">
+
+      {/* Header */}
+      <div className="px-6 py-3 border-b border-gray-200 dark:border-dark-border flex items-center justify-between flex-shrink-0">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-300 truncate">
+              {debate?.title || "Debate"}
+            </h1>
+            <span className="text-xs text-gray-400 dark:text-gray-500 flex-shrink-0">Debate</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+
+        {/* Show question */}
+        {debate && (
+          <div className="flex justify-end">
+            <div className="max-w-[78%] bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-2xl rounded-tr-sm px-4 py-2.5">
+              <p className="text-sm leading-relaxed whitespace-pre-wrap">{debate.question}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Streaming in progress */}
+        {(streaming || streamingContent) && !finalResult && (
+          <div className="flex justify-start">
+            <div className="max-w-[85%] bg-white dark:bg-dark-bubble border border-gray-200 dark:border-dark-border rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+              {streamingContent ? (
+                <div
+                  className="prose text-sm text-gray-800 dark:text-gray-200 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(streamingContent + "▌") }}
+                />
+              ) : (
+                <DebateProgress status={status} />
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Final result */}
+        {finalResult && (
+          <div className="flex justify-start">
+            <div className="max-w-[85%]">
+              <DebateResultView content={finalResult} personas={personaRoles} />
+            </div>
+          </div>
+        )}
+
+        {/* Loading state before debate is fetched */}
+        {!debate && !error && (
+          <div className="flex items-center justify-center h-32">
+            <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
+          </div>
+        )}
+
+        <div ref={bottomRef} />
+      </div>
+    </div>
+  );
+}

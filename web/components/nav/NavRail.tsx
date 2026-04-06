@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { listConversations, deleteConversation, setAuthToken } from "@/lib/api";
+import { listConversations, deleteConversation, listDebates, deleteDebate, setAuthToken } from "@/lib/api";
 import { UserButton, useAuth, useUser } from "@clerk/nextjs";
 import { useTheme } from "@/lib/useTheme";
 import { useZoom } from "@/lib/useZoom";
-import type { ConversationSummary } from "@/lib/types";
+import type { ConversationSummary, DebateSummary, NavItem } from "@/lib/types";
 
 const DEFAULT_WIDTH = 240;
 const MIN_WIDTH = 180;
@@ -21,13 +21,14 @@ interface NavRailProps {
 export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const router = useRouter();
   const params = useParams();
-  const activeId = params?.convId as string | undefined;
+  const activeConvId = params?.convId as string | undefined;
+  const activeDebateId = params?.debateId as string | undefined;
   const { dark, toggle } = useTheme();
   const { zoom, zoomIn, zoomOut } = useZoom();
   const { getToken, isLoaded } = useAuth();
   const { user } = useUser();
 
-  const [conversations, setConversations] = useState<ConversationSummary[]>([]);
+  const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [deleting, setDeleting] = useState<string | null>(null);
 
   // Width & collapse state — persisted to localStorage
@@ -92,8 +93,25 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
 
   async function load() {
     try {
-      const data = await withToken(() => listConversations());
-      setConversations(data);
+      const [convs, debates] = await Promise.all([
+        withToken(() => listConversations()),
+        withToken(() => listDebates()),
+      ]);
+
+      const convItems: NavItem[] = convs.map((c: ConversationSummary) => ({
+        kind: "conversation" as const,
+        ...c,
+      }));
+      const debateItems: NavItem[] = debates.map((d: DebateSummary) => ({
+        kind: "debate" as const,
+        ...d,
+      }));
+
+      // Merge and sort by updated_at desc
+      const merged = [...convItems, ...debateItems].sort(
+        (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+      );
+      setNavItems(merged);
     } catch {}
   }
 
@@ -102,13 +120,18 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     load();
   }, [isLoaded, refreshTrigger]);
 
-  async function handleDelete(e: React.MouseEvent, id: string) {
+  async function handleDelete(e: React.MouseEvent, item: NavItem) {
     e.stopPropagation();
-    setDeleting(id);
+    setDeleting(item.id);
     try {
-      await withToken(() => deleteConversation(id));
-      setConversations((prev) => prev.filter((c) => c.id !== id));
-      if (activeId === id) router.push("/");
+      if (item.kind === "conversation") {
+        await withToken(() => deleteConversation(item.id));
+        if (activeConvId === item.id) router.push("/");
+      } else {
+        await withToken(() => deleteDebate(item.id));
+        if (activeDebateId === item.id) router.push("/");
+      }
+      setNavItems((prev) => prev.filter((i) => i.id !== item.id));
     } finally {
       setDeleting(null);
     }
@@ -120,6 +143,27 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     if (diff < 86400000) return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     if (diff < 7 * 86400000) return d.toLocaleDateString([], { weekday: "short" });
     return d.toLocaleDateString([], { month: "short", day: "numeric" });
+  }
+
+  function getItemLabel(item: NavItem): string {
+    if (item.kind === "conversation") return item.room_name || "";
+    return "Debate";
+  }
+
+  function isActive(item: NavItem): boolean {
+    if (item.kind === "conversation") return activeConvId === item.id;
+    return activeDebateId === item.id;
+  }
+
+  function navigateTo(item: NavItem) {
+    if (item.kind === "conversation") router.push(`/chat/${item.id}`);
+    else router.push(`/debate/${item.id}`);
+  }
+
+  function getTitle(item: NavItem): string {
+    if (item.title) return item.title;
+    if (item.kind === "conversation") return "New conversation";
+    return "New debate";
   }
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -201,31 +245,31 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
             </button>
           </div>
 
-          {/* Conversation list */}
+          {/* Nav item list */}
           <div className="flex-1 overflow-y-auto py-2 min-h-0">
-            {conversations.length === 0 ? (
+            {navItems.length === 0 ? (
               <p className="text-xs text-gray-400 dark:text-gray-600 px-4 py-3">No conversations yet</p>
             ) : (
-              conversations.map((conv) => (
+              navItems.map((item) => (
                 <div
-                  key={conv.id}
-                  onClick={() => router.push(`/chat/${conv.id}`)}
+                  key={`${item.kind}-${item.id}`}
+                  onClick={() => navigateTo(item)}
                   className={`group relative mx-2 my-0.5 rounded-lg px-3 py-2.5 cursor-pointer transition-colors ${
-                    activeId === conv.id
+                    isActive(item)
                       ? "bg-white dark:bg-dark-bubble shadow-sm border border-gray-300 dark:border-dark-border"
                       : "hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
                 >
                   <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate pr-6 leading-snug">
-                    {conv.title || "New conversation"}
+                    {getTitle(item)}
                   </p>
                   <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 truncate pr-6">
-                    {formatDate(conv.updated_at)}
-                    {conv.room_name && <span className="ml-2">{conv.room_name}</span>}
+                    {formatDate(item.updated_at)}
+                    {getItemLabel(item) && <span className="ml-2">{getItemLabel(item)}</span>}
                   </p>
                   <button
-                    onClick={(e) => handleDelete(e, conv.id)}
-                    disabled={deleting === conv.id}
+                    onClick={(e) => handleDelete(e, item)}
+                    disabled={deleting === item.id}
                     className="absolute right-2 top-2.5 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-gray-300 dark:hover:bg-gray-700 transition-opacity"
                   >
                     <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -8,6 +8,10 @@ import type {
   Document,
   ConfigOptions,
   SSEEvent,
+  DebatePersona,
+  Debate,
+  DebateSummary,
+  DebateSSEEvent,
 } from "./types";
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -109,6 +113,59 @@ export const getDocuments = (ids: string[]): Promise<Document[]> =>
 
 export const deleteDocument = (id: string): Promise<void> =>
   req(`/api/documents/${id}`, { method: "DELETE" });
+
+// Personas (for debate picker)
+export const getAllPersonas = (): Promise<DebatePersona[]> => req("/api/personas");
+
+// Debates
+export const createDebate = (body: {
+  question: string;
+  persona_ids: string[];
+  depth: string;
+  document_ids: string[];
+}): Promise<Debate> => req("/api/debates", { method: "POST", body: JSON.stringify(body) });
+
+export const getDebate = (id: string): Promise<Debate> => req(`/api/debates/${id}`);
+export const listDebates = (): Promise<DebateSummary[]> => req("/api/debates");
+export const deleteDebate = (id: string): Promise<void> => req(`/api/debates/${id}`, { method: "DELETE" });
+
+export async function* streamDebate(debateId: string): AsyncGenerator<DebateSSEEvent> {
+  const res = await fetch(`${BASE}/api/debates/${debateId}/stream`, {
+    method: "GET",
+    headers: {
+      ...authHeaders(),
+    },
+  });
+
+  if (!res.ok || !res.body) {
+    throw new Error(`Debate stream failed: ${res.status}`);
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+
+    for (const line of lines) {
+      if (line.startsWith("data: ")) {
+        const raw = line.slice(6).trim();
+        if (!raw) continue;
+        try {
+          yield JSON.parse(raw) as DebateSSEEvent;
+        } catch {
+          // malformed line — skip
+        }
+      }
+    }
+  }
+}
 
 // Streaming chat
 export async function* streamChat(

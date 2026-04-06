@@ -40,6 +40,14 @@ from api.documents.store import create_document, get_document, list_documents, d
 from api.documents.extract import extract_text
 from api.pipeline.pipeline import run_pipeline
 from api.pipeline.prompts import build_project_context, build_user_profile_instruction
+from api.debate.engine import run_debate
+from api.debate.store import (
+    create_debate,
+    get_debate,
+    save_debate_result,
+    list_debates,
+    delete_debate as delete_debate_record,
+)
 
 app = FastAPI(title="Chat-Lab2 API", version="1.0.0")
 
@@ -352,3 +360,127 @@ async def upload_document(
 def remove_document(doc_id: str, user_id: str = Depends(get_current_user_id)):
     if not delete_document(doc_id, user_id=user_id):
         raise HTTPException(status_code=404, detail="Document not found")
+
+
+# =============================================================================
+# Personas (all rooms, for debate picker)
+# =============================================================================
+
+@app.get("/api/personas")
+def get_all_personas():
+    """Return all personas from all rooms, deduplicated, with first sentence of expertise."""
+    from api.personas.loader import load_personas as _load
+    all_personas = _load()
+    result = []
+    for pid, persona in all_personas.items():
+        # Extract first sentence of EXPERTISE block
+        kb = persona.knowledge_base
+        expertise = ""
+        if "EXPERTISE:" in kb:
+            after = kb.split("EXPERTISE:", 1)[1].strip()
+            # Take up to first period or newline
+            for char in after:
+                if char in (".", "\n"):
+                    break
+                expertise += char
+            expertise = expertise.strip()
+        if not expertise:
+            expertise = persona.role
+        result.append({"id": pid, "role": persona.role, "expertise": expertise})
+    # Sort by role name for consistent ordering
+    result.sort(key=lambda x: x["role"])
+    return result
+
+
+# =============================================================================
+# Debates
+# =============================================================================
+
+class DebateCreate(BaseModel):
+    question: str
+    persona_ids: list[str]
+    depth: str = "standard"
+    document_ids: list[str] = []
+
+
+@app.post("/api/debates", status_code=201)
+def create_debate_route(
+    body: DebateCreate,
+    user_id: str = Depends(get_current_user_id),
+):
+    return create_debate(
+        question=body.question,
+        persona_ids=body.persona_ids,
+        depth=body.depth,
+        document_ids=body.document_ids,
+        user_id=user_id,
+    )
+
+
+@app.get("/api/debates")
+def list_debates_route(user_id: str = Depends(get_current_user_id)):
+    return list_debates(user_id=user_id)
+
+
+@app.get("/api/debates/{debate_id}")
+def get_debate_route(debate_id: str, user_id: str = Depends(get_current_user_id)):
+    debate = get_debate(debate_id, user_id=user_id)
+    if debate is None:
+        raise HTTPException(status_code=404, detail="Debate not found")
+    return debate
+
+
+@app.delete("/api/debates/{debate_id}", status_code=204)
+def delete_debate_route(debate_id: str, user_id: str = Depends(get_current_user_id)):
+    if not delete_debate_record(debate_id, user_id=user_id):
+        raise HTTPException(status_code=404, detail="Debate not found")
+
+
+@app.get("/api/debates/{debate_id}/stream")
+async def stream_debate_route(
+    debate_id: str,
+    user_id: str = Depends(get_current_user_id),
+):
+    debate = get_debate(debate_id, user_id=user_id)
+    if debate is None:
+        raise HTTPException(status_code=404, detail="Debate not found")
+
+    document_ids = debate.get("document_ids", [])
+
+    # Resolve documents (scoped to same user)
+    documents = []
+    for doc_id in document_ids:
+        doc = get_document(doc_id, user_id=user_id)
+        if doc:
+            documents.append(doc)
+
+    project_context = build_project_context(project_config={}, documents=documents)
+
+    async def event_stream():
+        full_response = []
+
+        async for event in run_debate(
+            debate_id=debate_id,
+            question=debate["question"],
+            persona_ids=debate.get("persona_ids", []),
+            depth=debate.get("depth", "standard"),
+            project_context=project_context,
+        ):
+            if event["type"] == "token":
+                full_response.append(event["content"])
+            elif event["type"] == "done":
+                # Save result before yielding done
+                if full_response:
+                    save_debate_result(debate_id, "".join(full_response), user_id)
+
+            yield f"data: {json.dumps(event)}\n\n"
+            yield ": ping\n\n"
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )

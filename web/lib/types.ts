@@ -95,3 +95,38 @@ export type SSEEvent =
   | { type: "token"; content: string }
   | { type: "done"; panel: string[]; message_id: string }
   | { type: "error"; content: string };
+
+// ── Debate types ────────────────────────────────────────────────────────────
+
+export interface DebatePersona {
+  id: string;
+  role: string;
+  expertise: string; // first sentence of expertise block
+}
+
+export interface DebateSummary {
+  id: string;
+  title: string;
+  question: string;
+  depth: string;
+  persona_ids: string[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Debate extends DebateSummary {
+  document_ids: string[];
+  result: string | null; // full markdown text, null if not yet complete
+}
+
+// Nav item — conversations and debates unified
+export type NavItem =
+  | ({ kind: "conversation" } & ConversationSummary)
+  | ({ kind: "debate" } & DebateSummary);
+
+// SSE event for debate stream
+export type DebateSSEEvent =
+  | { type: "status"; content: string }
+  | { type: "token"; content: string }
+  | { type: "done"; debate_id: string }
+  | { type: "error"; content: string };
