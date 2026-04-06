@@ -71,17 +71,12 @@ export default function HomePage() {
               <div className="border-t border-gray-200 dark:border-dark-border mt-6 mb-4" />
               <button
                 onClick={() => router.push("/debate/new")}
-                className="w-full text-left p-5 rounded-xl border-l-4 border-l-gray-400 dark:border-l-gray-500 border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-gray-50 dark:bg-dark-bubble transition-all group"
+                className="w-full text-left p-5 rounded-xl border border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm bg-white dark:bg-dark-bubble transition-all group"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-0.5">
-                      Debate
-                    </h2>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      Put a question to a panel of specialists and reach a reasoned conclusion.
-                    </p>
-                  </div>
+                  <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    Debate
+                  </h2>
                   <svg className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
