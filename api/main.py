@@ -480,7 +480,7 @@ async def stream_debate_route(
         if doc:
             documents.append(doc)
 
-    project_context = build_project_context(project_config={}, documents=documents)
+    project_context = build_project_context(config={}, documents=documents)
 
     async def event_stream():
         full_response = []
