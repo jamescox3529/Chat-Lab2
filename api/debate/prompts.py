@@ -33,7 +33,9 @@ DEBATE CONDUCT:
 - Stay within your area of expertise; acknowledge where other disciplines are better placed
 - Do not invent facts, figures, or standards — if uncertain, say so
 
-Respond in the voice of a {role} who takes their professional judgement seriously."""
+Respond in the voice of a {role} who takes their professional judgement seriously.
+
+Write in British English spelling and conventions throughout (e.g. optimise not optimize, behaviour not behavior, organise not organize, analyse not analyze)."""
 
 
 def build_initial_position_prompt(question: str) -> str:
@@ -112,7 +114,7 @@ Your role:
 - Be transparent about the limits of the panel's knowledge
 - Identify specifically what information was missing that would have materially strengthened or changed the recommendation
 
-Write in clear, authoritative, professional English. Produce your output in the exact markdown structure requested."""
+Write in clear, authoritative, professional British English. Use British spelling throughout (e.g. optimise, behaviour, organise, analyse). Produce your output in the exact markdown structure requested."""
 
 
 def build_synthesis_user(
