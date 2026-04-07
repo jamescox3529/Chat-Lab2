@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser, useAuth } from "@clerk/nextjs";
-import { getPillars, setAuthToken } from "@/lib/api";
+import { getPillars, getPillar, setAuthToken } from "@/lib/api";
 import type { Pillar } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
 import Logo from "@/components/Logo";
-import useSWR from "swr";
+import useSWR, { preload } from "swr";
 
 const GREETINGS = [
   (name: string) => `Good to see you, ${name}.`,
@@ -47,6 +47,15 @@ export default function HomePage() {
     () => withToken(() => getPillars()),
     { revalidateOnFocus: false }
   );
+
+  // Once pillars are loaded, prefetch each pillar's detail into the SWR cache
+  // so navigating to a pillar page feels instant.
+  useEffect(() => {
+    if (!pillars.length) return;
+    for (const pillar of pillars) {
+      preload(`pillar-${pillar.id}`, () => withToken(() => getPillar(pillar.id)));
+    }
+  }, [pillars]);
 
   return (
     <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start px-8 py-12 bg-white dark:bg-dark-chat relative">
