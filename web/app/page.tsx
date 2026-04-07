@@ -25,15 +25,11 @@ export default function HomePage() {
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
   const [pillars, setPillars] = useState<Pillar[]>([]);
-  const [greeting, setGreeting] = useState<string>("");
+  const [greetingFn, setGreetingFn] = useState<(name: string) => string>(() => GREETINGS[0]);
 
   useEffect(() => {
-    if (user) {
-      const name = user.firstName ?? user.username ?? "there";
-      const template = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
-      setGreeting(template(name));
-    }
-  }, [user?.id]);
+    setGreetingFn(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)]);
+  }, []);
 
   useEffect(() => {
     setOnNewChat(() => router.push("/"));
@@ -58,7 +54,7 @@ export default function HomePage() {
         </button>
         <div className="w-full max-w-xl">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
-            {user ? greeting(user.firstName ?? user.username ?? "there") : ""}
+            {user ? greetingFn(user.firstName ?? user.username ?? "there") : ""}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
             Select a Consult Room, or a Tool to get started.
