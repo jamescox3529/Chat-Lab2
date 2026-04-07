@@ -10,7 +10,7 @@ import { useZoom } from "@/lib/useZoom";
 import type { ConversationSummary, DebateSummary, NavItem } from "@/lib/types";
 
 const DEFAULT_WIDTH = 240;
-const MIN_WIDTH = 180;
+const MIN_WIDTH = 220;
 const MAX_WIDTH = 480;
 const COLLAPSED_WIDTH = 40;
 
@@ -208,7 +208,9 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
           {/* Header */}
           <div className="p-4 border-b border-gray-300 dark:border-dark-border flex-shrink-0">
             <div className="flex items-center justify-between mb-3">
-              <div
+              <button
+                onClick={() => router.push("/")}
+                title="Home"
                 style={{ width: 20, height: 20, borderRadius: "50%", backgroundColor: "#2A7A72", flexShrink: 0 }}
               />
               <div className="flex items-center gap-1">
