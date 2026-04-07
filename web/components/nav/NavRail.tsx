@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, usePathname } from "next/navigation";
 import { listConversations, deleteConversation, listDebates, deleteDebate, setAuthToken } from "@/lib/api";
 import useSWR from "swr";
 import { UserButton, useAuth, useUser } from "@clerk/nextjs";
@@ -23,8 +23,10 @@ interface NavRailProps {
 export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const router = useRouter();
   const params = useParams();
+  const pathname = usePathname();
   const activeConvId = params?.convId as string | undefined;
   const activeDebateId = params?.debateId as string | undefined;
+  const newChatDisabled = pathname === "/";
   const { dark, toggle } = useTheme();
   const { zoom, zoomIn, zoomOut } = useZoom();
   const { getToken, isLoaded } = useAuth();
@@ -245,7 +247,12 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
 
             <button
               onClick={onNewChat}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg border border-gray-400 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              disabled={newChatDisabled}
+              className={`w-full flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg border transition-colors ${
+                newChatDisabled
+                  ? "text-gray-400 dark:text-gray-600 border-gray-300 dark:border-gray-800 cursor-not-allowed opacity-50"
+                  : "text-gray-700 dark:text-gray-300 border-gray-400 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+              }`}
             >
               <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
