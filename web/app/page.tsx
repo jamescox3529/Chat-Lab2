@@ -45,7 +45,7 @@ export default function HomePage() {
               : ""}.
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
-            Select a practice area to get started.
+            Select a Consult Room, or a Tool to get started.
           </p>
 
           {/* Practice areas */}
