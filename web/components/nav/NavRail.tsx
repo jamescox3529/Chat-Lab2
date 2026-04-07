@@ -30,6 +30,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
 
   const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<NavItem | null>(null);
 
   // Width & collapse state — persisted to localStorage
   const [navWidth, setNavWidth] = useState(DEFAULT_WIDTH);
@@ -120,9 +121,19 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     load();
   }, [isLoaded, refreshTrigger]);
 
-  async function handleDelete(e: React.MouseEvent, item: NavItem) {
+  function handleDeleteClick(e: React.MouseEvent, item: NavItem) {
     e.stopPropagation();
+    const hasContent = item.kind === "conversation" ? item.message_count > 0 : true;
+    if (hasContent) {
+      setConfirmDelete(item);
+    } else {
+      executeDelete(item);
+    }
+  }
+
+  async function executeDelete(item: NavItem) {
     setDeleting(item.id);
+    setConfirmDelete(null);
     try {
       if (item.kind === "conversation") {
         await withToken(() => deleteConversation(item.id));
@@ -261,7 +272,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
                     {getItemLabel(item) && <span className="ml-2">{getItemLabel(item)}</span>}
                   </p>
                   <button
-                    onClick={(e) => handleDelete(e, item)}
+                    onClick={(e) => handleDeleteClick(e, item)}
                     disabled={deleting === item.id}
                     className="absolute right-2 top-2.5 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-gray-300 dark:hover:bg-gray-700 transition-opacity"
                   >
@@ -269,6 +280,30 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
+
+                  {/* Confirm delete overlay */}
+                  {confirmDelete?.id === item.id && (
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute inset-0 flex items-center justify-between px-3 rounded-lg bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border z-10"
+                    >
+                      <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">Are you sure?</span>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => setConfirmDelete(null)}
+                          className="text-xs px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                        >
+                          No
+                        </button>
+                        <button
+                          onClick={() => executeDelete(item)}
+                          className="text-xs px-2 py-1 rounded bg-red-500 text-white hover:bg-red-600 transition-colors"
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))
             )}
