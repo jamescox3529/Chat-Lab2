@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { getRoom, getPillar, listConversations, deleteConversation, setAuthToken } from "@/lib/api";
-import type { Room, ConversationSummary } from "@/lib/types";
+import type { Room, PillarDetail, ConversationSummary } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
 import NewChatModal from "@/components/NewChatModal";
+import useSWR from "swr";
 
 export default function RoomPage() {
   const router = useRouter();
@@ -15,8 +16,6 @@ export default function RoomPage() {
   const { setOnNewChat, triggerNavRefresh } = useNavContext();
   const roomId = params?.roomId as string;
 
-  const [room, setRoom] = useState<Room | null>(null);
-  const [pillarName, setPillarName] = useState<string>("");
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
@@ -32,21 +31,24 @@ export default function RoomPage() {
     return fn();
   }
 
+  const { data: room, isLoading: roomLoading } = useSWR<Room>(
+    isLoaded && roomId ? `room-${roomId}` : null,
+    () => withToken(() => getRoom(roomId)),
+    { revalidateOnFocus: false }
+  );
+
+  // Pillar is already in SWR cache from the pillar page visit — renders instantly
+  const { data: pillar } = useSWR<PillarDetail>(
+    room?.pillar ? `pillar-${room.pillar}` : null,
+    () => withToken(() => getPillar(room!.pillar)),
+    { revalidateOnFocus: false }
+  );
+
+  // Conversations change frequently — not worth caching
   useEffect(() => {
     if (!isLoaded || !roomId) return;
-    Promise.all([
-      withToken(() => getRoom(roomId)),
-      withToken(() => listConversations(roomId)),
-    ])
-      .then(([r, convs]) => {
-        setRoom(r);
-        setConversations(convs);
-        if (r.pillar) {
-          withToken(() => getPillar(r.pillar))
-            .then((p) => setPillarName(p.name))
-            .catch(() => {});
-        }
-      })
+    withToken(() => listConversations(roomId))
+      .then(setConversations)
       .catch(() => {});
   }, [isLoaded, roomId]);
 
@@ -84,40 +86,50 @@ export default function RoomPage() {
               Home
             </button>
             <span>/</span>
-            {pillarName && room?.pillar && (
+            {pillar && room?.pillar && (
               <>
                 <button
                   onClick={() => router.push(`/pillar/${room.pillar}`)}
                   className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
                 >
-                  {pillarName}
+                  {pillar.name}
                 </button>
                 <span>/</span>
               </>
             )}
-            <span className="text-gray-600 dark:text-gray-400">{room?.name ?? "…"}</span>
+            <span className="text-gray-600 dark:text-gray-400">{room?.name ?? (roomLoading ? "…" : "")}</span>
           </nav>
 
           {/* Title + New Chat button */}
-          <div className="flex items-start justify-between gap-4 mb-8">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
-                {room?.name ?? "Loading…"}
-              </h1>
-              {room?.description && (
-                <p className="text-gray-500 dark:text-gray-400 text-sm">{room.description}</p>
-              )}
+          {roomLoading ? (
+            <div className="flex items-start justify-between gap-4 mb-8 animate-pulse">
+              <div>
+                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-40 mb-2" />
+                <div className="h-3.5 bg-gray-100 dark:bg-gray-800 rounded w-64" />
+              </div>
+              <div className="h-9 bg-gray-200 dark:bg-gray-700 rounded-lg w-24 flex-shrink-0" />
             </div>
-            <button
-              onClick={() => setShowModal(true)}
-              className="flex-shrink-0 flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              New chat
-            </button>
-          </div>
+          ) : (
+            <div className="flex items-start justify-between gap-4 mb-8">
+              <div>
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                  {room?.name}
+                </h1>
+                {room?.description && (
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">{room.description}</p>
+                )}
+              </div>
+              <button
+                onClick={() => setShowModal(true)}
+                className="flex-shrink-0 flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                New chat
+              </button>
+            </div>
+          )}
 
           {/* Recent conversations */}
           {conversations.length > 0 && (

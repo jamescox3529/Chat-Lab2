@@ -3,10 +3,10 @@
 import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { getPillar, setAuthToken } from "@/lib/api";
+import { getPillar, getRoom, setAuthToken } from "@/lib/api";
 import type { PillarDetail } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
-import useSWR from "swr";
+import useSWR, { preload } from "swr";
 
 export default function PillarPage() {
   const router = useRouter();
@@ -31,6 +31,14 @@ export default function PillarPage() {
     () => withToken(() => getPillar(pillarId)),
     { revalidateOnFocus: false }
   );
+
+  // Once rooms are known, prefetch each room's detail into the SWR cache
+  useEffect(() => {
+    if (!pillar?.rooms.length) return;
+    for (const room of pillar.rooms) {
+      preload(`room-${room.id}`, () => withToken(() => getRoom(room.id)));
+    }
+  }, [pillar]);
 
   return (
     <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
