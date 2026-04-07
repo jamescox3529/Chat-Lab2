@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roundtable — Logo Export</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 80px;
+      padding: 80px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .wordmark {
+      color: #111111;
+    }
+
+    .dot {
+      border-radius: 50%;
+      background: #2A7A72;
+      flex-shrink: 0;
+    }
+
+    /* Transparent background version */
+    .on-dark {
+      background: #1a1a1a;
+      padding: 60px 80px;
+      border-radius: 24px;
+    }
+
+    .on-dark .wordmark {
+      color: #ffffff;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      margin-bottom: 24px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .variant {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media print {
+      body { gap: 60px; padding: 60px; }
+      .label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Light / white background -->
+  <div class="variant">
+    <div class="label">Light</div>
+    <div class="logo" style="font-size: 200px;">
+      <span class="wordmark">Roundtable</span>
+      <span class="dot" style="width: 92px; height: 92px; margin-left: 10px;"></span>
+    </div>
+  </div>
+
+  <!-- Dark background -->
+  <div class="variant">
+    <div class="label">Dark</div>
+    <div class="on-dark">
+      <div class="logo" style="font-size: 200px;">
+        <span class="wordmark" style="color: #ffffff;">Roundtable</span>
+        <span class="dot" style="width: 92px; height: 92px; margin-left: 10px;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    HOW TO EXPORT:
+    - PNG/JPEG: Open in Chrome, zoom to 100%, take a screenshot or use browser DevTools > Capture screenshot
+    - High-res PNG: In Chrome DevTools Console, run:
+        document.querySelector('.logo').style.fontSize = '400px'
+      then screenshot just that element
+    - PDF (vector): File > Print > Save as PDF (Chrome renders Poppins correctly)
+    - SVG: For true vector SVG with outlined text, paste into Figma (it will import as text with Poppins if installed)
+
+    Dot diameter: 92px at 200px wordmark (46% of wordmark size)
+    Dot gap: 10px (5% of wordmark size)
+    Dot colour: #2A7A72
+    Wordmark colour: #111111 (light) / #ffffff (dark)
+  -->
+
+</body>
+</html>
