@@ -5,6 +5,7 @@ import { useAuth } from "@clerk/nextjs";
 import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
 import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown, parseQuestions } from "./MessageBubble";
+import Link from "next/link";
 import Logo from "@/components/Logo";
 import StatusBar from "./StatusBar";
 import QuestionsBubble from "./QuestionsBubble";
@@ -167,7 +168,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
           <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
             {roomName || conv?.title || ""}
           </h1>
-          <Logo size={22} />
+          <Link href="/" title="Home"><Logo size={22} /></Link>
         </div>
 
         {/* Messages */}

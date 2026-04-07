@@ -33,9 +33,9 @@ export default function HomePage() {
 
   return (
     <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-8 py-12 bg-white dark:bg-dark-chat relative">
-        <div className="absolute top-8 right-8">
+        <button onClick={() => router.push("/")} className="absolute top-8 right-8" title="Home">
           <Logo size={28} />
-        </div>
+        </button>
         <div className="w-full max-w-xl">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
             Good to see you{user?.firstName

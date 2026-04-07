@@ -199,14 +199,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
 
           {/* Header */}
           <div className="p-4 border-b border-gray-300 dark:border-dark-border flex-shrink-0">
-            <div className="flex items-center justify-between mb-3">
-              <button
-                onClick={() => router.push("/")}
-                className="text-sm font-semibold text-gray-600 dark:text-gray-400 tracking-wide hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                title="Home"
-              >
-                Roundtable
-              </button>
+            <div className="flex items-center justify-end mb-3">
               <div className="flex items-center gap-1">
                 <button onClick={zoomOut} disabled={zoom === "normal"} className="p-1.5 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-30" title="Smaller text">
                   <span className="text-xs font-semibold leading-none text-gray-600 dark:text-gray-400">A−</span>
