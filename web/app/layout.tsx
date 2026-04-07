@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import AuthProvider from "@/components/AuthProvider";
 import { NavContextProvider } from "@/context/NavContext";
 import AppShell from "@/components/AppShell";
 import "./globals.css";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Roundtable",
@@ -32,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className="h-full" suppressHydrationWarning>
+      <html lang="en" className={`h-full ${poppins.variable}`} suppressHydrationWarning>
         <head>
           <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         </head>

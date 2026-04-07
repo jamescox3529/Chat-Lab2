@@ -7,6 +7,9 @@ const config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["var(--font-poppins)", "sans-serif"],
+      },
       colors: {
         "dark-nav":    "#111113",
         "dark-chat":   "#1c1c1f",

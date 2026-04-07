@@ -49,7 +49,7 @@ export default function HomePage() {
           </p>
 
           {/* Practice areas */}
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Consult</p>
+          <p className="text-sm font-semibold text-white uppercase tracking-wider mb-3 font-poppins">Consult</p>
           <div className="space-y-3">
             {pillars.length === 0 && (
               <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
@@ -80,7 +80,7 @@ export default function HomePage() {
           {pillars.length > 0 && (
             <>
               <div className="mt-8 mb-3">
-                <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Tools</p>
+                <p className="text-sm font-semibold text-white uppercase tracking-wider font-poppins">Tools</p>
               </div>
               <button
                 onClick={() => router.push("/debate/new")}
