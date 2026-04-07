@@ -6,7 +6,6 @@ import { listConversations, deleteConversation, listDebates, deleteDebate, setAu
 import { UserButton, useAuth, useUser } from "@clerk/nextjs";
 import { useTheme } from "@/lib/useTheme";
 import { useZoom } from "@/lib/useZoom";
-import Logo from "@/components/Logo";
 import type { ConversationSummary, DebateSummary, NavItem } from "@/lib/types";
 
 const DEFAULT_WIDTH = 240;
@@ -203,10 +202,10 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
             <div className="flex items-center justify-between mb-3">
               <button
                 onClick={() => router.push("/")}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                className="text-sm font-semibold text-gray-600 dark:text-gray-400 tracking-wide hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 title="Home"
               >
-                <Logo size={20} />
+                Roundtable
               </button>
               <div className="flex items-center gap-1">
                 <button onClick={zoomOut} disabled={zoom === "normal"} className="p-1.5 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-30" title="Smaller text">

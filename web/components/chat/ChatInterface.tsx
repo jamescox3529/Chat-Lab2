@@ -5,6 +5,7 @@ import { useAuth } from "@clerk/nextjs";
 import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
 import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown, parseQuestions } from "./MessageBubble";
+import Logo from "@/components/Logo";
 import StatusBar from "./StatusBar";
 import QuestionsBubble from "./QuestionsBubble";
 import ConfigPanel from "@/components/config/ConfigPanel";
@@ -162,10 +163,11 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white dark:bg-dark-chat">
 
         {/* Header */}
-        <div className="px-6 py-3 border-b border-gray-200 dark:border-dark-border flex items-center flex-shrink-0">
+        <div className="px-6 py-3 border-b border-gray-200 dark:border-dark-border flex items-center justify-between flex-shrink-0">
           <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
             {roomName || conv?.title || ""}
           </h1>
+          <Logo size={22} />
         </div>
 
         {/* Messages */}

@@ -6,6 +6,7 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import { getPillars, setAuthToken } from "@/lib/api";
 import type { Pillar } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
+import Logo from "@/components/Logo";
 
 export default function HomePage() {
   const router = useRouter();
@@ -31,7 +32,10 @@ export default function HomePage() {
   }, [isLoaded]);
 
   return (
-    <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-8 py-12 bg-white dark:bg-dark-chat">
+    <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-8 py-12 bg-white dark:bg-dark-chat relative">
+        <div className="absolute top-8 right-8">
+          <Logo size={28} />
+        </div>
         <div className="w-full max-w-xl">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
             Good to see you{user?.firstName
