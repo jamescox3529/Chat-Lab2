@@ -25,7 +25,15 @@ export default function HomePage() {
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
   const [pillars, setPillars] = useState<Pillar[]>([]);
-  const [greeting] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)]);
+  const [greeting, setGreeting] = useState<string>("");
+
+  useEffect(() => {
+    if (user) {
+      const name = user.firstName ?? user.username ?? "there";
+      const template = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+      setGreeting(template(name));
+    }
+  }, [user?.id]);
 
   useEffect(() => {
     setOnNewChat(() => router.push("/"));
