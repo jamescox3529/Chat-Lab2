@@ -19,7 +19,7 @@ export default function Logo({ size = 52, dotColor = "#2A7A72" }: LogoProps) {
       className={poppins.className}
       style={{
         display: "inline-flex",
-        alignItems: "center",
+        alignItems: "flex-end",
         fontWeight: 600,
         fontSize: size,
         lineHeight: 1,
