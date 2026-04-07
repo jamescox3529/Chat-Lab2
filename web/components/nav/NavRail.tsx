@@ -214,7 +214,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
                 title="Home"
                 className="text-gray-700 dark:text-gray-300 hover:opacity-70 transition-opacity leading-none"
               >
-                <LogoMark size={20} />
+                <LogoMark size={30} />
               </button>
               <div className="flex items-center gap-1">
                 <button onClick={zoomOut} disabled={zoom === "normal"} className="p-1.5 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-30" title="Smaller text">
