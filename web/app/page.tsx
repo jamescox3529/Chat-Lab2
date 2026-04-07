@@ -8,12 +8,24 @@ import type { Pillar } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
 import Logo from "@/components/Logo";
 
+const GREETINGS = [
+  (name: string) => `Good to see you, ${name}.`,
+  (name: string) => `Welcome back, ${name}.`,
+  (name: string) => `Hello again, ${name}.`,
+  (name: string) => `Great to have you here, ${name}.`,
+  (name: string) => `Ready when you are, ${name}.`,
+  (name: string) => `Good to have you back, ${name}.`,
+  (name: string) => `Let's get to work, ${name}.`,
+  (name: string) => `What problem are we solving today, ${name}?`,
+];
+
 export default function HomePage() {
   const router = useRouter();
   const { user } = useUser();
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
   const [pillars, setPillars] = useState<Pillar[]>([]);
+  const [greeting] = useState(() => GREETINGS[Math.floor(Math.random() * GREETINGS.length)]);
 
   useEffect(() => {
     setOnNewChat(() => router.push("/"));
@@ -38,11 +50,7 @@ export default function HomePage() {
         </button>
         <div className="w-full max-w-xl">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
-            Good to see you{user?.firstName
-              ? `, ${user.firstName}`
-              : user?.username
-              ? `, ${user.username}`
-              : ""}.
+            {user ? greeting(user.firstName ?? user.username ?? "there") : ""}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
             Select a Consult Room, or a Tool to get started.
