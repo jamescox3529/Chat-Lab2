@@ -32,8 +32,8 @@ export default function HomePage() {
   }, [isLoaded]);
 
   return (
-    <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-8 py-12 bg-white dark:bg-dark-chat relative">
-        <button onClick={() => router.push("/")} className="absolute top-8 right-8" title="Home">
+    <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start px-8 py-12 bg-white dark:bg-dark-chat relative">
+        <button onClick={() => router.push("/")} className="absolute top-12 right-8" title="Home">
           <Logo size={28} />
         </button>
         <div className="w-full max-w-xl">
