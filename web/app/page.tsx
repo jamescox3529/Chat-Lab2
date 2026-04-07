@@ -25,6 +25,7 @@ export default function HomePage() {
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
   const [pillars, setPillars] = useState<Pillar[]>([]);
+  const [loading, setLoading] = useState(true);
   const [greetingFn, setGreetingFn] = useState<(name: string) => string>(() => GREETINGS[0]);
 
   useEffect(() => {
@@ -44,7 +45,10 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!isLoaded) return;
-    withToken(() => getPillars()).then(setPillars).catch(() => {});
+    withToken(() => getPillars())
+      .then(setPillars)
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, [isLoaded]);
 
   return (
@@ -63,8 +67,15 @@ export default function HomePage() {
           {/* Practice areas */}
           <p className="text-sm font-semibold text-gray-400 dark:text-white uppercase tracking-wider mb-3 font-poppins">Consult</p>
           <div className="space-y-3">
-            {pillars.length === 0 && (
-              <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
+            {loading && (
+              <>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-full p-5 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bubble animate-pulse">
+                    <div className="h-3.5 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-2" />
+                    <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded w-2/3" />
+                  </div>
+                ))}
+              </>
             )}
             {pillars.map((pillar) => (
               <button

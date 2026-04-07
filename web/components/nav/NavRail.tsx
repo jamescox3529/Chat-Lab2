@@ -29,6 +29,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const { user } = useUser();
 
   const [navItems, setNavItems] = useState<NavItem[]>([]);
+  const [navLoading, setNavLoading] = useState(true);
   const [deleting, setDeleting] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<NavItem | null>(null);
 
@@ -113,7 +114,9 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
         (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
       );
       setNavItems(merged);
-    } catch {}
+    } catch {} finally {
+      setNavLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -251,7 +254,16 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
 
           {/* Nav item list */}
           <div className="flex-1 overflow-y-auto py-2 min-h-0">
-            {navItems.length === 0 ? (
+            {navLoading ? (
+              <div className="px-2 py-1 space-y-1 animate-pulse">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="mx-0 my-0.5 rounded-lg px-3 py-2.5">
+                    <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-4/5 mb-1.5" />
+                    <div className="h-2.5 bg-gray-200 dark:bg-gray-800 rounded w-2/5" />
+                  </div>
+                ))}
+              </div>
+            ) : navItems.length === 0 ? (
               <p className="text-xs text-gray-400 dark:text-gray-600 px-4 py-3">No conversations yet</p>
             ) : (
               navItems.map((item) => (

@@ -14,6 +14,7 @@ export default function PillarPage() {
   const { setOnNewChat } = useNavContext();
   const pillarId = params?.pillarId as string;
   const [pillar, setPillar] = useState<PillarDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setOnNewChat(() => router.push("/"));
@@ -28,7 +29,10 @@ export default function PillarPage() {
 
   useEffect(() => {
     if (!isLoaded || !pillarId) return;
-    withToken(() => getPillar(pillarId)).then(setPillar).catch(() => {});
+    withToken(() => getPillar(pillarId))
+      .then(setPillar)
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, [isLoaded, pillarId]);
 
   return (
@@ -44,15 +48,35 @@ export default function PillarPage() {
             <span className="text-gray-600 dark:text-gray-400">{pillar?.name ?? "…"}</span>
           </nav>
 
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
-            {pillar?.name ?? "Loading…"}
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
-            Select a room to start a conversation with the expert panel.
-          </p>
+          {loading ? (
+            <div className="animate-pulse mb-8">
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-2" />
+              <div className="h-3.5 bg-gray-100 dark:bg-gray-800 rounded w-2/3" />
+            </div>
+          ) : (
+            <>
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                {pillar?.name}
+              </h1>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
+                Select a room to start a conversation with the expert panel.
+              </p>
+            </>
+          )}
 
           <div className="space-y-3">
-            {pillar && pillar.rooms.length === 0 && (
+            {loading && (
+              <>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-full p-5 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bubble animate-pulse">
+                    <div className="h-3.5 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-2" />
+                    <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded w-3/5 mb-1.5" />
+                    <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded w-1/5" />
+                  </div>
+                ))}
+              </>
+            )}
+            {!loading && pillar && pillar.rooms.length === 0 && (
               <p className="text-sm text-gray-400 dark:text-gray-600">No rooms in this pillar yet.</p>
             )}
             {pillar?.rooms.map((room) => (

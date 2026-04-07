@@ -165,8 +165,13 @@ export default function DebatePage() {
 
         {/* Loading state before debate is fetched */}
         {!debate && !error && (
-          <div className="flex items-center justify-center h-32">
-            <p className="text-sm text-gray-400 dark:text-gray-600">Loading…</p>
+          <div className="animate-pulse space-y-4">
+            <div className="flex justify-end">
+              <div className="h-9 bg-gray-200 dark:bg-gray-700 rounded-2xl rounded-tr-sm w-64" />
+            </div>
+            <div className="flex justify-start">
+              <div className="h-32 bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-sm w-80" />
+            </div>
           </div>
         )}
 
