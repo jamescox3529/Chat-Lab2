@@ -7,6 +7,7 @@ import { getPillars, setAuthToken } from "@/lib/api";
 import type { Pillar } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
 import Logo from "@/components/Logo";
+import useSWR from "swr";
 
 const GREETINGS = [
   (name: string) => `Good to see you, ${name}.`,
@@ -24,8 +25,6 @@ export default function HomePage() {
   const { user } = useUser();
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
-  const [pillars, setPillars] = useState<Pillar[]>([]);
-  const [loading, setLoading] = useState(true);
   const [greetingFn, setGreetingFn] = useState<(name: string) => string>(() => GREETINGS[0]);
 
   useEffect(() => {
@@ -43,13 +42,11 @@ export default function HomePage() {
     return fn();
   }
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    withToken(() => getPillars())
-      .then(setPillars)
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, [isLoaded]);
+  const { data: pillars = [], isLoading: loading } = useSWR<Pillar[]>(
+    isLoaded ? "pillars" : null,
+    () => withToken(() => getPillars()),
+    { revalidateOnFocus: false }
+  );
 
   return (
     <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start px-8 py-12 bg-white dark:bg-dark-chat relative">

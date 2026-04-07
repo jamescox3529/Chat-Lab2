@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { listConversations, deleteConversation, listDebates, deleteDebate, setAuthToken } from "@/lib/api";
+import useSWR from "swr";
 import { UserButton, useAuth, useUser } from "@clerk/nextjs";
 import { useTheme } from "@/lib/useTheme";
 import { useZoom } from "@/lib/useZoom";
@@ -28,8 +29,6 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
   const { getToken, isLoaded } = useAuth();
   const { user } = useUser();
 
-  const [navItems, setNavItems] = useState<NavItem[]>([]);
-  const [navLoading, setNavLoading] = useState(true);
   const [deleting, setDeleting] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<NavItem | null>(null);
 
@@ -93,36 +92,31 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
     return fn();
   }
 
-  async function load() {
-    try {
-      const [convs, debates] = await Promise.all([
-        withToken(() => listConversations()),
-        withToken(() => listDebates()),
-      ]);
-
-      const convItems: NavItem[] = convs.map((c: ConversationSummary) => ({
-        kind: "conversation" as const,
-        ...c,
-      }));
-      const debateItems: NavItem[] = debates.map((d: DebateSummary) => ({
-        kind: "debate" as const,
-        ...d,
-      }));
-
-      // Merge and sort by updated_at desc
-      const merged = [...convItems, ...debateItems].sort(
-        (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-      );
-      setNavItems(merged);
-    } catch {} finally {
-      setNavLoading(false);
-    }
+  async function fetchNavItems(): Promise<NavItem[]> {
+    const [convs, debates] = await Promise.all([
+      withToken(() => listConversations()),
+      withToken(() => listDebates()),
+    ]);
+    const convItems: NavItem[] = convs.map((c: ConversationSummary) => ({
+      kind: "conversation" as const,
+      ...c,
+    }));
+    const debateItems: NavItem[] = debates.map((d: DebateSummary) => ({
+      kind: "debate" as const,
+      ...d,
+    }));
+    return [...convItems, ...debateItems].sort(
+      (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+    );
   }
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    load();
-  }, [isLoaded, refreshTrigger]);
+  // refreshTrigger in the key forces a fresh fetch after sending a message;
+  // all other navigations serve instantly from the SWR cache.
+  const { data: navItems = [], isLoading: navLoading, mutate } = useSWR<NavItem[]>(
+    isLoaded ? `nav-items-${refreshTrigger}` : null,
+    fetchNavItems,
+    { revalidateOnFocus: false }
+  );
 
   function handleDeleteClick(e: React.MouseEvent, item: NavItem) {
     e.stopPropagation();
@@ -145,7 +139,7 @@ export default function NavRail({ onNewChat, refreshTrigger }: NavRailProps) {
         await withToken(() => deleteDebate(item.id));
         if (activeDebateId === item.id) router.push("/");
       }
-      setNavItems((prev) => prev.filter((i) => i.id !== item.id));
+      mutate(navItems.filter((i) => i.id !== item.id), false);
     } finally {
       setDeleting(null);
     }

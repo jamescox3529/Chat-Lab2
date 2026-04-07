@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { getPillar, setAuthToken } from "@/lib/api";
 import type { PillarDetail } from "@/lib/types";
 import { useNavContext } from "@/context/NavContext";
+import useSWR from "swr";
 
 export default function PillarPage() {
   const router = useRouter();
@@ -13,8 +14,6 @@ export default function PillarPage() {
   const { getToken, isLoaded } = useAuth();
   const { setOnNewChat } = useNavContext();
   const pillarId = params?.pillarId as string;
-  const [pillar, setPillar] = useState<PillarDetail | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setOnNewChat(() => router.push("/"));
@@ -27,13 +26,11 @@ export default function PillarPage() {
     return fn();
   }
 
-  useEffect(() => {
-    if (!isLoaded || !pillarId) return;
-    withToken(() => getPillar(pillarId))
-      .then(setPillar)
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, [isLoaded, pillarId]);
+  const { data: pillar, isLoading: loading } = useSWR<PillarDetail>(
+    isLoaded && pillarId ? `pillar-${pillarId}` : null,
+    () => withToken(() => getPillar(pillarId)),
+    { revalidateOnFocus: false }
+  );
 
   return (
     <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat">
@@ -45,7 +42,7 @@ export default function PillarPage() {
               Home
             </button>
             <span>/</span>
-            <span className="text-gray-600 dark:text-gray-400">{pillar?.name ?? "…"}</span>
+            <span className="text-gray-600 dark:text-gray-400">{pillar?.name ?? (loading ? "…" : "")}</span>
           </nav>
 
           {loading ? (
