@@ -43,7 +43,7 @@ export default function PillarPage() {
 
   return (
     <div className="flex-1 overflow-y-auto px-8 py-10 bg-white dark:bg-dark-chat relative">
-        <button onClick={() => router.push("/")} className="absolute top-10 right-8" title="Home">
+        <button onClick={() => router.push("/")} className="absolute top-12 right-8" title="Home">
           <Logo size={28} />
         </button>
         <div className="w-full max-w-xl mx-auto">

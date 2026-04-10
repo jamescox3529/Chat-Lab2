@@ -100,7 +100,7 @@ export default function NewDebatePage() {
 
   return (
     <div className="flex-1 overflow-y-auto bg-white dark:bg-dark-chat relative">
-      <button onClick={() => router.push("/")} className="absolute top-10 right-8" title="Home">
+      <button onClick={() => router.push("/")} className="absolute top-12 right-8" title="Home">
         <Logo size={28} />
       </button>
       <div className="max-w-2xl mx-auto px-8 py-10">
