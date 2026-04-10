@@ -183,7 +183,7 @@ export default function NewDebatePage() {
                   className="w-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-dark-bubble border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600"
                 >
                   <option value="">Select…</option>
-                  {["Manufacturing","Retail & FMCG","Food & Beverage","Pharmaceutical & Healthcare","Automotive","Technology & Electronics","Construction","Energy","Financial Services","Professional Services","Other"].map((o) => (
+                  {["Construction & Civil Engineering","Energy & Power","Rail & Public Transport","Water & Utilities","Manufacturing","Automotive","Pharmaceutical & Healthcare","Technology & Electronics","Retail & FMCG","Food & Beverage","Financial Services","Professional Services","Other"].map((o) => (
                     <option key={o} value={o}>{o}</option>
                   ))}
                 </select>
