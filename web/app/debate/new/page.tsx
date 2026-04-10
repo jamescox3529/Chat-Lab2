@@ -99,11 +99,11 @@ export default function NewDebatePage() {
   const canStart = question.trim().length > 0 && selectedPersonas.length >= 2 && !submitting;
 
   return (
-    <div className="flex-1 overflow-y-auto bg-white dark:bg-dark-chat relative">
+    <div className="flex-1 overflow-y-auto px-8 bg-white dark:bg-dark-chat relative">
       <button onClick={() => router.push("/")} className="absolute top-12 right-8" title="Home">
         <Logo size={28} />
       </button>
-      <div className="max-w-2xl mx-auto px-8 py-10">
+      <div className="max-w-2xl mx-auto py-10">
 
         {/* Header */}
         <div className="mb-8">
