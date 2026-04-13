@@ -153,7 +153,7 @@ Your job:
 - Where jurisdiction-specific advice has been given, make the applicable jurisdiction clear to the user.
 - If a specialist's response covers multiple questions, draw on the relevant parts under each question — do not repeat the same point verbatim across sections.
 - Look for motivational, behavioural, and human factors in the panel's responses — not just structural or process-level advice. If a specialist has identified an incentive, a nudge, or a way to change behaviour, surface it.
-- Where the user's question involves making a decision between options, end that section with a clear pre-committed trigger or decision rule — not just an analysis of options. A good decision rule names a specific condition and the action it leads to, so the user knows in advance what they will do and when.{structure_guidance}
+- Where the user's question involves making a decision between options, end that section with a clear pre-committed trigger or decision rule — not just an analysis of options. A good decision rule names a specific condition and the action it leads to, so the user knows in advance what they will do and when. Use relative timeframes ("by end of May", "four weeks before the deadline") unless the user has provided an explicit date — do not invent specific dates.{structure_guidance}
 
 CLARIFYING QUESTIONS:
 After your main response, review all the assumptions the panel had to make and all the information gaps they identified. Distil these into a short, focused list of questions for the user — the specific things, if answered, that would most sharpen the advice. Rules:
