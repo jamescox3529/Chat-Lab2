@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1306 240" width="1306" height="240">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Wordmark: Poppins SemiBold 200px, measured width 1184px -->
+  <text
+    x="0"
+    y="200"
+    font-family="Poppins, sans-serif"
+    font-weight="600"
+    font-size="200"
+    fill="#111111"
+  >Roundtable</text>
+  <!-- Dot: diameter 92px (46% of 200px), baseline-aligned (cy = cap height midpoint ≈ 152) -->
+  <circle cx="1240" cy="152" r="46" fill="#2A7A72"/>
+</svg>
