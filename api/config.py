@@ -8,10 +8,19 @@ import os
 
 # Claude models
 MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
-# Fast/cheap model for lightweight tasks (dispatcher, title generation).
+# Fast/cheap model for lightweight tasks (planner, title generation).
 # Defaults to MODEL so it always works — set ANTHROPIC_FAST_MODEL in env
 # to a valid Haiku model ID to get the speed benefit.
 FAST_MODEL = os.getenv("ANTHROPIC_FAST_MODEL", MODEL)
+# Powerful model for high-complexity synthesis. Defaults to MODEL if not set.
+POWER_MODEL = os.getenv("ANTHROPIC_POWER_MODEL", MODEL)
+
+# Token budgets by complexity tier: persona = per-expert response, synthesiser = final output
+TOKEN_BUDGETS: dict[str, dict[str, int]] = {
+    "low":      {"persona": 600,  "synthesiser": 1500},
+    "standard": {"persona": 900,  "synthesiser": 2500},
+    "high":     {"persona": 1500, "synthesiser": 5000},
+}
 
 # Document limits
 DOC_CHAR_LIMIT = 50_000

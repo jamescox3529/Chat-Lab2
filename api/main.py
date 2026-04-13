@@ -297,6 +297,7 @@ async def chat(
             history=history,
             project_context=project_context,
             user_instruction=user_instruction,
+            user_profile=user_profile,
         ):
             if event["type"] == "token":
                 full_response.append(event["content"])

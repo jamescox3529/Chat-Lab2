@@ -1,9 +1,14 @@
 """
 Three-Stage Pipeline
 ====================
-Stage 1: Dispatcher   — selects 1-4 relevant persona IDs
-Stage 2: Persona calls — each selected persona responds independently
-Stage 3: Synthesiser  — combines responses, streams token-by-token via SSE
+Stage 0: Planner      — decomposes questions, assigns personas per question (Haiku)
+Stage 1: Persona calls — each persona answers their assigned questions in parallel (Sonnet)
+Stage 2: Synthesiser  — combines structured responses, streams token-by-token (Sonnet or Opus)
+
+Complexity tiers (detected from message + user profile):
+  low      → short single question, conversational use
+  standard → moderate depth, single clear question
+  high     → multi-question, long problem statement, decision/document output
 
 Yields server-sent event dicts:
   {"type": "status",  "content": "..."}
@@ -16,20 +21,29 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 import uuid
+from dataclasses import dataclass, field
 from typing import AsyncIterator, Dict, List
 
 import anthropic
 
-from api.config import MODEL, FAST_MODEL
+from api.config import MODEL, FAST_MODEL, POWER_MODEL, TOKEN_BUDGETS
 from api.personas.loader import load_personas, Persona
 from api.rooms.loader import get_room
 from api.pipeline.prompts import (
-    build_dispatcher_system,
+    build_planner_system,
     build_persona_system,
     build_synthesiser_system,
     build_synthesiser_user_message,
 )
+
+
+@dataclass
+class PlannedQuestion:
+    id: str
+    summary: str
+    personas: List[str]
 
 
 def _get_client() -> anthropic.Anthropic:
@@ -37,17 +51,6 @@ def _get_client() -> anthropic.Anthropic:
     if not api_key:
         raise RuntimeError("ANTHROPIC_API_KEY environment variable not set")
     return anthropic.Anthropic(api_key=api_key)
-
-
-def _history_to_messages(history: list[dict]) -> list[dict]:
-    messages = []
-    for turn in history:
-        messages.append({"role": "user", "content": turn["content"] if turn.get("role") == "user" else turn.get("user", "")})
-        if turn.get("role") == "user":
-            pass
-        else:
-            messages.append({"role": "assistant", "content": turn.get("content", "")})
-    return messages
 
 
 def _build_api_history(messages: list[dict]) -> list[dict]:
@@ -62,42 +65,111 @@ def _build_api_history(messages: list[dict]) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Stage 1: Dispatcher
+# Complexity detection (no AI call — pure heuristics)
 # ---------------------------------------------------------------------------
 
-def _dispatch(
+def _detect_complexity(user_message: str, user_profile: dict) -> str:
+    """
+    Returns 'low', 'standard', or 'high'.
+    Reads message signals (length, question count) and profile selections (task, use).
+    """
+    score = 0
+
+    word_count = len(user_message.split())
+    if word_count > 200:
+        score += 2
+    elif word_count > 80:
+        score += 1
+
+    # Numbered or labelled questions
+    markers = re.findall(
+        r'(?:^|\n)\s*(?:question\s+\d+|q\d+|\d+[.)]\s+|[a-z][.)]\s+)',
+        user_message,
+        re.IGNORECASE | re.MULTILINE,
+    )
+    if len(markers) >= 3:
+        score += 2
+    elif len(markers) >= 2:
+        score += 1
+
+    if user_message.count("?") >= 3:
+        score += 1
+
+    task = user_profile.get("task", "")
+    use = user_profile.get("use", "")
+
+    if "Produce something" in task or "Write something up" in use:
+        score += 2
+    elif "Make a decision" in task or "Brief someone" in use:
+        score += 1
+    elif "Have a conversation" in use or "Understand something" in task:
+        score -= 1
+
+    if score >= 4:
+        return "high"
+    if score >= 2:
+        return "standard"
+    return "low"
+
+
+# ---------------------------------------------------------------------------
+# Stage 0: Planner
+# ---------------------------------------------------------------------------
+
+def _plan(
     client: anthropic.Anthropic,
     user_message: str,
     history: list[dict],
     room_personas: Dict[str, Persona],
     project_context: str,
     room_name: str = "",
-) -> List[str]:
-    fallback = next(iter(room_personas)) if room_personas else "pm"
+) -> List[PlannedQuestion]:
+    """
+    Returns a list of PlannedQuestion — one per distinct question in the message,
+    each with its own persona assignment.
+    Falls back to a single question covering all personas if parsing fails.
+    """
     panel_map = {pid: p.role for pid, p in room_personas.items()}
-    system = build_dispatcher_system(panel_map, project_context, room_name=room_name)
+    system = build_planner_system(panel_map, project_context, room_name=room_name)
 
     api_history = _build_api_history(history)
     api_history.append({"role": "user", "content": user_message})
 
     response = client.messages.create(
         model=FAST_MODEL,
-        max_tokens=64,
+        max_tokens=512,
         system=system,
         messages=api_history,
     )
 
     raw = response.content[0].text.strip()
     try:
-        ids = json.loads(raw)
-        valid = [pid for pid in ids if pid in room_personas]
-        return valid if valid else [fallback]
-    except (json.JSONDecodeError, TypeError):
-        return [fallback]
+        data = json.loads(raw)
+        questions: List[PlannedQuestion] = []
+        for q in data.get("questions", []):
+            valid_personas = [p for p in q.get("personas", []) if p in room_personas]
+            if not valid_personas:
+                valid_personas = [next(iter(room_personas))]
+            questions.append(PlannedQuestion(
+                id=q.get("id", f"q{len(questions) + 1}"),
+                summary=q.get("summary", ""),
+                personas=valid_personas,
+            ))
+        if questions:
+            return questions
+    except (json.JSONDecodeError, TypeError, KeyError):
+        pass
+
+    # Fallback: single question, all room personas up to 4
+    return [PlannedQuestion(
+        id="q1",
+        summary=user_message[:120],
+        personas=list(room_personas.keys())[:4],
+    )]
 
 
 # ---------------------------------------------------------------------------
-# Stage 2: Persona calls
+# Stage 1: Persona calls
 # ---------------------------------------------------------------------------
 
 def _call_persona(
@@ -108,6 +180,9 @@ def _call_persona(
     project_context: str,
     user_instruction: str,
     room_name: str = "",
+    assigned_questions: List[PlannedQuestion] | None = None,
+    complexity: str = "standard",
+    token_budget: int = 900,
 ) -> str:
     system = build_persona_system(
         role=persona.role,
@@ -115,6 +190,8 @@ def _call_persona(
         project_context=project_context,
         user_instruction=user_instruction,
         room_name=room_name,
+        assigned_questions=[{"id": q.id, "summary": q.summary} for q in (assigned_questions or [])],
+        complexity=complexity,
     )
 
     api_history = _build_api_history(history)
@@ -122,7 +199,7 @@ def _call_persona(
 
     response = client.messages.create(
         model=MODEL,
-        max_tokens=512,
+        max_tokens=token_budget,
         system=system,
         messages=api_history,
     )
@@ -131,25 +208,35 @@ def _call_persona(
 
 
 # ---------------------------------------------------------------------------
-# Stage 3: Synthesiser (streaming)
+# Stage 2: Synthesiser (streaming)
 # ---------------------------------------------------------------------------
 
 async def _stream_synthesiser(
     client: anthropic.Anthropic,
     user_message: str,
-    persona_responses: Dict[str, str],
+    questions: List[PlannedQuestion],
+    persona_responses: Dict[str, Dict[str, str]],
     persona_roles: Dict[str, str],
     user_instruction: str,
     room_name: str = "",
+    token_budget: int = 2500,
+    model: str = MODEL,
 ) -> AsyncIterator[str]:
-    system = build_synthesiser_system(user_instruction, room_name=room_name)
+    system = build_synthesiser_system(
+        user_instruction,
+        room_name=room_name,
+        multi_question=len(questions) > 1,
+    )
     user_content = build_synthesiser_user_message(
-        user_message, persona_responses, persona_roles
+        user_message,
+        [{"id": q.id, "summary": q.summary} for q in questions],
+        persona_responses,
+        persona_roles,
     )
 
     with client.messages.stream(
-        model=MODEL,
-        max_tokens=1024,
+        model=model,
+        max_tokens=token_budget,
         system=system,
         messages=[{"role": "user", "content": user_content}],
     ) as stream:
@@ -167,6 +254,7 @@ async def run_pipeline(
     history: list[dict],
     project_context: str,
     user_instruction: str,
+    user_profile: dict | None = None,
 ) -> AsyncIterator[dict]:
     """
     Async generator that yields SSE event dicts:
@@ -187,38 +275,69 @@ async def run_pipeline(
     client = _get_client()
 
     try:
-        # Stage 1
-        yield {"type": "status", "content": "Consulting panel..."}
-        selected_ids = _dispatch(client, user_message, history, room_personas, project_context, room_name=room.name)
+        # Detect complexity and select budgets/model
+        complexity = _detect_complexity(user_message, user_profile or {})
+        budgets = TOKEN_BUDGETS[complexity]
+        synth_model = POWER_MODEL if complexity == "high" else MODEL
 
-        # Stage 2 — call all selected personas in parallel
-        roles_label = ", ".join(room_personas[pid].role for pid in selected_ids)
-        yield {"type": "status", "content": f"Asking {roles_label}…"}
+        # Stage 0: Plan — decompose questions and assign personas
+        yield {"type": "status", "content": "Analysing your question..."}
+        questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name)
+
+        # Build persona → assigned questions map (deduplicated)
+        persona_question_map: Dict[str, List[PlannedQuestion]] = {}
+        for question in questions:
+            for pid in question.personas:
+                persona_question_map.setdefault(pid, []).append(question)
+
+        # Stage 1: Persona calls (parallel)
+        roles_label = ", ".join(
+            room_personas[pid].role
+            for pid in persona_question_map
+            if pid in room_personas
+        )
+        yield {"type": "status", "content": f"Consulting {roles_label}..."}
 
         loop = asyncio.get_running_loop()
 
-        async def _call_async(pid: str) -> tuple[str, str]:
+        async def _call_async(pid: str, assigned_qs: List[PlannedQuestion]) -> tuple[str, List[str], str]:
             persona = room_personas[pid]
             response = await loop.run_in_executor(
                 None, _call_persona,
-                client, persona, user_message, history, project_context, user_instruction, room.name,
+                client, persona, user_message, history, project_context,
+                user_instruction, room.name, assigned_qs, complexity, budgets["persona"],
             )
-            return pid, response
+            return pid, [q.id for q in assigned_qs], response
 
-        results = await asyncio.gather(*[_call_async(pid) for pid in selected_ids])
-        persona_responses: Dict[str, str] = dict(results)
+        results = await asyncio.gather(*[
+            _call_async(pid, assigned_qs)
+            for pid, assigned_qs in persona_question_map.items()
+            if pid in room_personas
+        ])
 
-        # Stage 3
+        # Build structured responses: question_id → persona_id → response
+        structured_responses: Dict[str, Dict[str, str]] = {}
+        for pid, q_ids, response in results:
+            for q_id in q_ids:
+                structured_responses.setdefault(q_id, {})[pid] = response
+
+        # Stage 2: Synthesise
         yield {"type": "status", "content": "Synthesising response..."}
-        persona_roles = {pid: room_personas[pid].role for pid in selected_ids}
+        persona_roles = {
+            pid: room_personas[pid].role
+            for pid in persona_question_map
+            if pid in room_personas
+        }
 
         async for token in _stream_synthesiser(
-            client, user_message, persona_responses, persona_roles, user_instruction, room_name=room.name
+            client, user_message, questions, structured_responses,
+            persona_roles, user_instruction, room_name=room.name,
+            token_budget=budgets["synthesiser"], model=synth_model,
         ):
             yield {"type": "token", "content": token}
 
         message_id = str(uuid.uuid4())
-        yield {"type": "done", "panel": selected_ids, "message_id": message_id}
+        yield {"type": "done", "panel": list(persona_question_map.keys()), "message_id": message_id}
 
     except Exception as exc:
         yield {"type": "error", "content": f"Pipeline error: {exc}"}

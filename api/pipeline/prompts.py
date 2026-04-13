@@ -5,34 +5,49 @@ Prompt builders for the three-stage pipeline.
 from __future__ import annotations
 
 import json
-from typing import Dict
+from typing import Dict, List
 
 
-def build_dispatcher_system(room_personas: Dict[str, str], project_context: str, room_name: str = "") -> str:
+# ---------------------------------------------------------------------------
+# Stage 0: Planner
+# ---------------------------------------------------------------------------
+
+def build_planner_system(
+    room_personas: Dict[str, str],
+    project_context: str,
+    room_name: str = "",
+) -> str:
     panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
-    panel_ids = list(room_personas.keys())
-    example_ids = panel_ids[:3] if len(panel_ids) >= 3 else panel_ids
     panel_label = room_name if room_name else "expert panel"
-    base = f"""\
-You are a dispatcher for the {panel_label}.
+    valid_ids = json.dumps(list(room_personas.keys()))
 
-The panel consists of these specialists:
+    base = f"""\
+You are the planning stage for the {panel_label}.
+
+Available specialists:
 {panel_lines}
 
-Read the user's message and conversation history. Decide which 1 to 4 panel \
-members are genuinely relevant to this specific question.
+Read the user's message carefully.
 
-Return ONLY a JSON array of persona IDs. Nothing else. No explanation. No markdown.
+Step 1 — Identify distinct questions or topics:
+- If the message contains only one question or topic, return a single entry.
+- If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
 
-Examples:
-{json.dumps(example_ids[:2])}
-{json.dumps(example_ids[:3])}
-{json.dumps([example_ids[0]])}
-"""
+Step 2 — For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Only assign a specialist if they have real expertise to contribute. A specialist may appear in multiple questions if they are relevant to each.
+
+Only use IDs from this list: {valid_ids}
+
+Return ONLY valid JSON in this exact format — no explanation, no markdown, no preamble:
+{{"questions": [{{"id": "q1", "summary": "brief one-line label for the question", "personas": ["id1", "id2"]}}, {{"id": "q2", "summary": "brief one-line label", "personas": ["id3"]}}]}}"""
+
     if project_context:
         return f"{project_context}\n\n{base}"
     return base
 
+
+# ---------------------------------------------------------------------------
+# Stage 1: Personas
+# ---------------------------------------------------------------------------
 
 def build_persona_system(
     role: str,
@@ -40,6 +55,8 @@ def build_persona_system(
     project_context: str,
     user_instruction: str,
     room_name: str = "",
+    assigned_questions: list[dict] | None = None,
+    complexity: str = "standard",
 ) -> str:
     context_block = (
         f"\n\nPROJECT CONTEXT:\nYou have been provided with the following project "
@@ -50,16 +67,37 @@ def build_persona_system(
     style_block = f"\n\n{user_instruction}" if user_instruction else ""
     panel_label = room_name if room_name else "expert panel"
 
+    depth_instructions = {
+        "low": "Be concise and focused — 2 to 3 short paragraphs.",
+        "standard": "Be practical and thorough — address each assigned question clearly, "
+                    "2 to 4 paragraphs per question.",
+        "high": "Be comprehensive — address each assigned question fully from your specialist "
+                "perspective. Do not truncate your analysis. Depth and completeness matter here.",
+    }
+    depth_instruction = depth_instructions.get(complexity, depth_instructions["standard"])
+
+    if assigned_questions and len(assigned_questions) > 1:
+        q_lines = "\n".join(f"- {q['summary']}" for q in assigned_questions)
+        questions_block = (
+            f"\n\nASSIGNED QUESTIONS:\n"
+            f"You are asked to address the following questions from your specialist perspective:\n"
+            f"{q_lines}\n\n"
+            f"Address each question in turn. Skip any questions not listed here."
+        )
+    elif assigned_questions:
+        questions_block = f"\n\nFocus your response on: {assigned_questions[0]['summary']}"
+    else:
+        questions_block = ""
+
     return f"""\
 You are a {role}.
 
 YOUR KNOWLEDGE BASE:
 {knowledge_base}
-{context_block}{style_block}
+{context_block}{style_block}{questions_block}
 
-You are part of the {panel_label}. Respond \
-from your specialist perspective only. Be concise and practical — 2 to 4 short \
-paragraphs. Focus on what matters most from your discipline. Do not add \
+You are part of the {panel_label}. Respond from your specialist perspective only. \
+{depth_instruction} Focus on what matters most from your discipline. Do not add \
 preamble like "As a {role}..." — just answer directly.
 
 Write in British English spelling and conventions throughout (e.g. optimise not optimize, behaviour not behavior, organise not organize, analyse not analyze).
@@ -77,8 +115,25 @@ JURISDICTION AWARENESS:
 - Do not default silently to one jurisdiction's standards when others may apply — surface the difference if it matters."""
 
 
-def build_synthesiser_system(user_instruction: str, room_name: str = "") -> str:
+# ---------------------------------------------------------------------------
+# Stage 2: Synthesiser
+# ---------------------------------------------------------------------------
+
+def build_synthesiser_system(
+    user_instruction: str,
+    room_name: str = "",
+    multi_question: bool = False,
+) -> str:
     panel_label = room_name if room_name else "expert panel"
+
+    structure_guidance = (
+        "\n\nSTRUCTURING YOUR RESPONSE:\n"
+        "The user has asked multiple distinct questions. Structure your response with a clear "
+        "section for each question, using a bold heading that names the question. Address each "
+        "question fully before moving to the next. Do not blend answers across questions."
+        if multi_question else ""
+    )
+
     base = f"""\
 You are synthesising advice from the {panel_label} \
 into a single, clear response for the user.
@@ -96,6 +151,7 @@ Your job:
 - Synthesise only from what the panel has provided. Do not introduce facts, figures, standards, or recommendations not present in their responses.
 - Where panel members have expressed uncertainty or flagged the limits of their knowledge, preserve that in your synthesis — do not smooth over it with confident language.
 - Where jurisdiction-specific advice has been given, make the applicable jurisdiction clear to the user.
+- If a specialist's response covers multiple questions, draw on the relevant parts under each question — do not repeat the same point verbatim across sections.{structure_guidance}
 
 CLARIFYING QUESTIONS:
 After your main response, review all the assumptions the panel had to make and all the information gaps they identified. Distil these into a short, focused list of questions for the user — the specific things, if answered, that would most sharpen the advice. Rules:
@@ -115,22 +171,52 @@ After your main response, review all the assumptions the panel had to make and a
 
 def build_synthesiser_user_message(
     user_message: str,
-    persona_responses: Dict[str, str],
+    questions: list[dict],
+    persona_responses: Dict[str, Dict[str, str]],
     persona_roles: Dict[str, str],
 ) -> str:
-    panel_input = "\n\n".join(
-        f"--- {persona_roles.get(pid, pid)} ---\n{response}"
-        for pid, response in persona_responses.items()
+    """
+    Build the synthesiser user message from structured per-question responses.
+
+    questions: [{"id": "q1", "summary": "..."}]
+    persona_responses: {question_id: {persona_id: response_text}}
+    persona_roles: {persona_id: role_label}
+    """
+    sections = []
+    for q in questions:
+        q_id = q["id"]
+        q_summary = q.get("summary", q_id)
+        responses = persona_responses.get(q_id, {})
+
+        header = f"--- {q_id.upper()}: {q_summary} ---"
+        response_blocks = []
+        for pid, response in responses.items():
+            role = persona_roles.get(pid, pid)
+            response_blocks.append(f"[{role}]:\n{response}")
+
+        sections.append(header + "\n" + "\n\n".join(response_blocks))
+
+    panel_input = "\n\n".join(sections)
+
+    closing = (
+        "Please synthesise these into a structured response for the user, addressing each question in turn."
+        if len(questions) > 1
+        else "Please synthesise these into a single response for the user."
     )
+
     return f"""\
-ORIGINAL QUESTION:
+ORIGINAL MESSAGE:
 {user_message}
 
-PANEL RESPONSES:
+PANEL RESPONSES BY QUESTION:
 {panel_input}
 
-Please synthesise these into a single response for the user."""
+{closing}"""
 
+
+# ---------------------------------------------------------------------------
+# Helpers (used by main.py)
+# ---------------------------------------------------------------------------
 
 def build_project_context(
     config: dict,
