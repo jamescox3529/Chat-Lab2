@@ -8,6 +8,7 @@ import type { Document } from "@/lib/types";
 import PersonaPicker from "@/components/debate/PersonaPicker";
 import DepthSelector from "@/components/debate/DepthSelector";
 import { useNavContext } from "@/context/NavContext";
+import Logo from "@/components/Logo";
 
 export default function NewDebatePage() {
   const router = useRouter();
