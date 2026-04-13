@@ -283,6 +283,7 @@ async def chat(
         "content": user_message,
         "panel": [],
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "_title_context": project_context,
     }
     append_message(conv_id, user_msg, user_id=user_id)
 

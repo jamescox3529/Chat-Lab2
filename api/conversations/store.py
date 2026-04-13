@@ -17,10 +17,16 @@ from api.config import FAST_MODEL
 from api.db import get_db
 
 
-def _generate_and_save_title(conv_id: str, text: str) -> None:
+def _generate_and_save_title(conv_id: str, text: str, context: str = "") -> None:
     """Generate a title with Claude and save it. Runs in a background thread."""
     try:
         client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
+        # If the user's message is too short to be meaningful (e.g. "See attached"),
+        # enrich with document/project context so the title reflects the actual question.
+        if len(text.split()) < 8 and context:
+            source = f"{text}\n\nContext: {context[:600]}"
+        else:
+            source = text[:500]
         response = client.messages.create(
             model=FAST_MODEL,
             max_tokens=20,
@@ -29,7 +35,7 @@ def _generate_and_save_title(conv_id: str, text: str) -> None:
                 "content": (
                     "Write a short title for this question — 5 to 7 words, "
                     "sentence case, no punctuation at the end, no quotes. "
-                    "Reply with only the title:\n\n" + text[:500]
+                    "Reply with only the title:\n\n" + source
                 ),
             }],
         )
@@ -155,7 +161,7 @@ def append_message(conv_id: str, message: dict, user_id: str) -> Optional[dict]:
     if not conv_result.data.get("title") and message["role"] == "user":
         threading.Thread(
             target=_generate_and_save_title,
-            args=(conv_id, message.get("content", "")),
+            args=(conv_id, message.get("content", ""), message.get("_title_context", "")),
             daemon=True,
         ).start()
 
