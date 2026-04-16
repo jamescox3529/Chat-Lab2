@@ -268,7 +268,7 @@ def generate_docx(
         lp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         lp.paragraph_format.space_before = Pt(0)
         lp.paragraph_format.space_after = Pt(0)
-        lp.add_run().add_picture(logo_path, width=Cm(3.5))
+        lp.add_run().add_picture(logo_path, width=Cm(5.0))
 
     # Whitespace
     for _ in range(7):
@@ -452,7 +452,7 @@ def generate_pdf(
 
     # Logo — right-aligned, aspect-ratio correct
     if logo_path and os.path.exists(logo_path):
-        logo_w, logo_h = _logo_dimensions(logo_path, 3.5)
+        logo_w, logo_h = _logo_dimensions(logo_path, 5.0)
         img = Image(logo_path, width=logo_w, height=logo_h)
         img.hAlign = "RIGHT"
         story.append(img)
