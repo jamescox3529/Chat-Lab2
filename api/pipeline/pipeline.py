@@ -290,7 +290,7 @@ async def run_pipeline(
             for pid in question.personas:
                 persona_question_map.setdefault(pid, []).append(question)
 
-        # Stage 1: Persona calls (parallel)
+        # Stage 1: Persona calls (parallel, with keep-alive pings)
         roles_label = ", ".join(
             room_personas[pid].role
             for pid in persona_question_map
@@ -309,11 +309,20 @@ async def run_pipeline(
             )
             return pid, [q.id for q in assigned_qs], response
 
-        results = await asyncio.gather(*[
-            _call_async(pid, assigned_qs)
+        # Run persona calls as tasks so we can yield keep-alive events while waiting.
+        # Without this, the generator goes silent for potentially 30-60s and the
+        # connection is dropped by Vercel/Fastly before any response appears.
+        tasks = [
+            asyncio.ensure_future(_call_async(pid, assigned_qs))
             for pid, assigned_qs in persona_question_map.items()
             if pid in room_personas
-        ])
+        ]
+        pending = set(tasks)
+        while pending:
+            done, pending = await asyncio.wait(pending, timeout=8.0)
+            if pending:
+                yield {"type": "status", "content": f"Consulting {roles_label}..."}
+        results = [t.result() for t in tasks]
 
         # Build structured responses: question_id → persona_id → response
         structured_responses: Dict[str, Dict[str, str]] = {}
