@@ -373,6 +373,32 @@ class _PDFDoc(BaseDocTemplate):
     logo_path: str | None = None
 
 
+def build_debate_markdown(
+    rounds: list[dict],
+    synthesis: str,
+) -> str:
+    """
+    Assemble a debate transcript + synthesis into a single markdown string
+    compatible with _parse_md().  Each round becomes an h1 section; each
+    persona within a round becomes an h2.  The synthesis follows with its
+    own h1 sub-sections (Recommendation, Key Reasoning, etc.).
+    """
+    parts: list[str] = []
+
+    for round_data in rounds:
+        parts.append(f"## Round {round_data['round']}: {round_data['label']}")
+        for response in round_data.get("responses", []):
+            parts.append(f"### {response['role']}")
+            parts.append(response["content"])
+            parts.append("")
+
+    parts.append("## Panel Verdict")
+    parts.append("")
+    parts.append(synthesis)
+
+    return "\n\n".join(parts)
+
+
 def generate_pdf(
     content: str,
     title: str,

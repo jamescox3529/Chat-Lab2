@@ -6,6 +6,7 @@ All queries are scoped to the authenticated user_id.
 
 from __future__ import annotations
 
+import json
 import os
 import threading
 from datetime import datetime, timezone
@@ -95,12 +96,17 @@ def get_debate(debate_id: str, user_id: str) -> Optional[dict]:
     return result.data
 
 
-def save_debate_result(debate_id: str, result_text: str, user_id: str) -> None:
+def save_debate_result(
+    debate_id: str,
+    result_text: str,
+    user_id: str,
+    rounds: list | None = None,
+) -> None:
     db = get_db()
-    db.table("debates").update({
-        "result": result_text,
-        "updated_at": _now(),
-    }).eq("id", debate_id).eq("user_id", user_id).execute()
+    payload: dict = {"result": result_text, "updated_at": _now()}
+    if rounds is not None:
+        payload["transcript"] = json.dumps(rounds)
+    db.table("debates").update(payload).eq("id", debate_id).eq("user_id", user_id).execute()
 
 
 def list_debates(user_id: str) -> list[dict]:

@@ -51,6 +51,7 @@ from api.debate.store import (
     list_debates,
     delete_debate as delete_debate_record,
 )
+from api.report.generator import build_debate_markdown
 
 app = FastAPI(title="Chat-Lab2 API", version="1.0.0")
 
@@ -567,9 +568,14 @@ async def stream_debate_route(
             if event["type"] == "token":
                 full_response.append(event["content"])
             elif event["type"] == "done":
-                # Save result before yielding done
+                # Save result and transcript before yielding done
                 if full_response:
-                    save_debate_result(debate_id, "".join(full_response), user_id)
+                    save_debate_result(
+                        debate_id,
+                        "".join(full_response),
+                        user_id,
+                        rounds=event.get("rounds"),
+                    )
 
             yield f"data: {json.dumps(event)}\n\n"
             yield ": ping\n\n"
@@ -581,4 +587,49 @@ async def stream_debate_route(
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
         },
+    )
+
+
+@app.get("/api/debates/{debate_id}/report/{fmt}")
+async def download_debate_report(
+    debate_id: str,
+    fmt: str,
+    user_id: str = Depends(get_current_user_id),
+):
+    debate = get_debate(debate_id, user_id=user_id)
+    if debate is None:
+        raise HTTPException(status_code=404, detail="Debate not found")
+    synthesis = debate.get("result") or ""
+    if not synthesis:
+        raise HTTPException(status_code=400, detail="Debate has no completed result yet")
+    raw_transcript = debate.get("transcript") or "[]"
+    try:
+        rounds = json.loads(raw_transcript)
+    except Exception:
+        rounds = []
+    from api.personas.loader import load_personas as _load_personas
+    all_personas = _load_personas()
+    participants = [
+        all_personas[pid].role if pid in all_personas else pid
+        for pid in debate.get("persona_ids", [])
+    ]
+    title = debate.get("title") or "Debate Report"
+    date = datetime.now(timezone.utc).strftime("%-d %B %Y")
+    content = build_debate_markdown(rounds, synthesis)
+    fmt = fmt.lower()
+    if fmt == "pdf":
+        file_bytes = generate_pdf(content, title, "Debate", ", ".join(participants), date)
+        media_type = "application/pdf"
+        ext = "pdf"
+    else:
+        file_bytes = generate_docx(content, title, "Debate", ", ".join(participants), date)
+        media_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ext = "docx"
+    safe = re.sub(r"[^\w\s\-]", "", title).strip()
+    safe = re.sub(r"\s+", "_", safe)
+    filename = f"{safe}.{ext}"
+    return Response(
+        content=file_bytes,
+        media_type=media_type,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )

@@ -97,6 +97,8 @@ async def run_debate(
 
     # running_context accumulates all round output for context in later rounds
     running_context_parts: List[str] = []
+    # structured_rounds is saved to DB for report generation
+    structured_rounds: List[dict] = []
 
     try:
         # ── Round 1: Initial Positions ────────────────────────────────────────
@@ -117,11 +119,19 @@ async def run_debate(
         results_r1 = await asyncio.gather(*[_initial_async(pid) for pid in personas])
         responses_r1: Dict[str, str] = dict(results_r1)
 
-        # Append round 1 to running context
         running_context_parts.append("=== ROUND 1: INITIAL POSITIONS ===")
         for pid, response in responses_r1.items():
             role = personas[pid].role
             running_context_parts.append(f"\n--- {role} ---\n{response}")
+
+        structured_rounds.append({
+            "round": 1,
+            "label": "Initial Positions",
+            "responses": [
+                {"role": personas[pid].role, "content": responses_r1[pid]}
+                for pid in personas
+            ],
+        })
 
         # ── Round 2: Challenge (standard + thorough) ──────────────────────────
 
@@ -132,7 +142,6 @@ async def run_debate(
 
             async def _challenge_async(pid: str) -> tuple[str, str]:
                 persona = personas[pid]
-                # Build others_text: all responses from round 1 except this persona
                 others_parts = []
                 for other_pid, other_resp in responses_r1.items():
                     if other_pid != pid:
@@ -158,6 +167,15 @@ async def run_debate(
             for pid, response in responses_r2.items():
                 role = personas[pid].role
                 running_context_parts.append(f"\n--- {role} ---\n{response}")
+
+            structured_rounds.append({
+                "round": 2,
+                "label": "Challenge",
+                "responses": [
+                    {"role": personas[pid].role, "content": responses_r2[pid]}
+                    for pid in personas
+                ],
+            })
 
         # ── Round 3: Convergence (thorough only) ──────────────────────────────
 
@@ -187,6 +205,15 @@ async def run_debate(
                 role = personas[pid].role
                 running_context_parts.append(f"\n--- {role} ---\n{response}")
 
+            structured_rounds.append({
+                "round": 3,
+                "label": "Convergence",
+                "responses": [
+                    {"role": personas[pid].role, "content": responses_r3[pid]}
+                    for pid in personas
+                ],
+            })
+
         # ── Synthesis (streaming) ─────────────────────────────────────────────
 
         yield {"type": "status", "content": "Synthesising debate outcome…"}
@@ -206,7 +233,7 @@ async def run_debate(
             for text in stream.text_stream:
                 yield {"type": "token", "content": text}
 
-        yield {"type": "done", "debate_id": debate_id}
+        yield {"type": "done", "debate_id": debate_id, "rounds": structured_rounds}
 
     except Exception as exc:
         yield {"type": "error", "content": f"Debate error: {exc}"}
