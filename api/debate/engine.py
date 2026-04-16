@@ -27,7 +27,7 @@ from typing import AsyncIterator, Dict, List
 
 import anthropic
 
-from api.config import MODEL, POWER_MODEL, TOKEN_BUDGETS
+from api.config import MODEL
 from api.personas.loader import load_personas
 from api.debate.prompts import (
     build_debate_persona_system,
@@ -38,13 +38,8 @@ from api.debate.prompts import (
     build_synthesis_user,
 )
 
-# Token budgets per depth tier — mirrors the pipeline complexity tiers.
-# thorough = high: more room for each round + Opus synthesis.
-_DEBATE_BUDGETS = {
-    "quick":    {"persona": TOKEN_BUDGETS["low"]["persona"],      "synthesis": TOKEN_BUDGETS["low"]["synthesiser"]},
-    "standard": {"persona": TOKEN_BUDGETS["standard"]["persona"], "synthesis": TOKEN_BUDGETS["standard"]["synthesiser"]},
-    "thorough": {"persona": TOKEN_BUDGETS["high"]["persona"],     "synthesis": TOKEN_BUDGETS["high"]["synthesiser"]},
-}
+PERSONA_MAX_TOKENS = 900
+SYNTHESIS_MAX_TOKENS = 2500
 
 
 def _get_client() -> anthropic.Anthropic:
@@ -61,13 +56,12 @@ def _call_persona_round(
     knowledge_base: str,
     project_context: str,
     prompt: str,
-    token_budget: int = 900,
 ) -> tuple[str, str]:
     """Call a persona for a single debate round. Returns (persona_id, response)."""
     system = build_debate_persona_system(role, knowledge_base, project_context)
     response = client.messages.create(
         model=MODEL,
-        max_tokens=token_budget,
+        max_tokens=PERSONA_MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
     )
@@ -101,12 +95,6 @@ async def run_debate(
     client = _get_client()
     loop = asyncio.get_running_loop()
 
-    # Resolve token budgets and synthesis model from depth
-    budgets = _DEBATE_BUDGETS.get(depth, _DEBATE_BUDGETS["standard"])
-    persona_tokens = budgets["persona"]
-    synthesis_tokens = budgets["synthesis"]
-    synthesis_model = POWER_MODEL if depth == "thorough" else MODEL
-
     # running_context accumulates all round output for context in later rounds
     running_context_parts: List[str] = []
 
@@ -124,7 +112,6 @@ async def run_debate(
                 None,
                 _call_persona_round,
                 client, pid, persona.role, persona.knowledge_base, project_context, prompt_r1,
-                persona_tokens,
             )
 
         results_r1 = await asyncio.gather(*[_initial_async(pid) for pid in personas])
@@ -145,6 +132,7 @@ async def run_debate(
 
             async def _challenge_async(pid: str) -> tuple[str, str]:
                 persona = personas[pid]
+                # Build others_text: all responses from round 1 except this persona
                 others_parts = []
                 for other_pid, other_resp in responses_r1.items():
                     if other_pid != pid:
@@ -161,7 +149,6 @@ async def run_debate(
                     None,
                     _call_persona_round,
                     client, pid, persona.role, persona.knowledge_base, project_context, prompt_r2,
-                    persona_tokens,
                 )
 
             results_r2 = await asyncio.gather(*[_challenge_async(pid) for pid in personas])
@@ -190,7 +177,6 @@ async def run_debate(
                     None,
                     _call_persona_round,
                     client, pid, persona.role, persona.knowledge_base, project_context, prompt_r3,
-                    persona_tokens,
                 )
 
             results_r3 = await asyncio.gather(*[_convergence_async(pid) for pid in personas])
@@ -212,8 +198,8 @@ async def run_debate(
         user_msg = build_synthesis_user(question, full_context, roles)
 
         with client.messages.stream(
-            model=synthesis_model,
-            max_tokens=synthesis_tokens,
+            model=MODEL,
+            max_tokens=SYNTHESIS_MAX_TOKENS,
             system=system,
             messages=[{"role": "user", "content": user_msg}],
         ) as stream:
