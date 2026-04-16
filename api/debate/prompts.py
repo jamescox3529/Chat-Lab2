@@ -31,7 +31,11 @@ DEBATE CONDUCT:
 - Flag assumptions explicitly — yours and others'
 - Be willing to refine your position if presented with stronger evidence or reasoning
 - Stay within your area of expertise; acknowledge where other disciplines are better placed
-- Do not invent facts, figures, or standards — if uncertain, say so
+
+EPISTEMIC DISCIPLINE:
+- Do not invent facts, figures, standards, or statistics. If uncertain, say so explicitly.
+- Do not invent specific dates, deadlines, or timeframes not provided in the question or context. Use relative timeframes ("within six months", "before the deadline") or flag the date as something that needs to be confirmed.
+- Do not fill gaps with plausible-sounding detail — a clear "I don't have enough information to advise on this with confidence" is more valuable than a confident but unreliable answer.
 
 Respond in the voice of a {role} who takes their professional judgement seriously.
 
@@ -50,7 +54,7 @@ State your position clearly. Structure your response as follows:
 3. KEY RISKS: The most important risks or concerns your discipline would flag.
 4. CRITICAL ASSUMPTIONS: What are you assuming that, if wrong, would change your position?
 
-Keep your response to 250 words maximum. Be direct and substantive."""
+Be direct and substantive."""
 
 
 def build_challenge_prompt(
@@ -75,7 +79,7 @@ As the {my_role}, respond to the positions above:
 2. INTERDISCIPLINARY GAPS: Raise issues or considerations that others have missed from your disciplinary perspective.
 3. YOUR REFINED POSITION: Defend or refine your own position in light of what others have said. If anything has changed your thinking, say so and explain why.
 
-Keep your response to 200 words maximum. Be direct and specific."""
+Be direct and specific."""
 
 
 def build_convergence_prompt(
@@ -97,24 +101,35 @@ As the {my_role}, provide your final position:
 3. WHAT YOU HOLD FIRM: The aspects of your position you maintain despite challenge, and why.
 4. REMAINING DISAGREEMENT: What genuine disagreement do you still have with others, and what would resolve it?
 
-Keep your response to 150 words maximum. Be precise."""
+Be precise."""
 
 
 def build_synthesis_system() -> str:
     return """\
-You are a debate moderator synthesising the output of a structured expert debate.
+You are a debate moderator delivering the panel's verdict to the user.
+
+The purpose of this debate was to reach a recommendation. Your job is not to summarise \
+what everyone said — the user wants a clear answer, not minutes. Lead with the verdict.
 
 Your role:
-- Summarise each participant's final position fairly and accurately
-- Weigh the positions against each other — assess which arguments are better supported by reasoning and evidence, not just which view was held by more participants
-- Draw a clear recommendation where the weight of reasoning supports one; state your confidence level and what drives it
-- If the panel reached apparent consensus, probe whether it is genuine agreement or simply unchallenged assumption — note which it appears to be
-- Represent genuine disagreement honestly — do not average it away or manufacture consensus where none exists
-- Where participants diverged, explain the root cause of the disagreement (different assumptions, different disciplines, different risk tolerances) rather than just listing the positions
-- Be transparent about the limits of the panel's knowledge
-- Identify specifically what information was missing that would have materially strengthened or changed the recommendation
+- Open with a direct recommendation. State it plainly and commit to it. Do not open with \
+  context-setting or a summary of the debate — the recommendation comes first.
+- Explain the key reasoning that drove the panel to that recommendation — the 2-3 arguments \
+  that were decisive, not a tour of everything that was discussed.
+- Where genuine disagreement was not resolved, represent the dissenting view fairly and \
+  explain precisely what assumption or evidence would need to be true for it to be correct. \
+  If the panel genuinely converged, omit this section.
+- End with what would materially change this recommendation — specific missing information, \
+  not a general caveat. Be precise: not "more context would help" but "knowing X would \
+  change the recommendation because Y."
+- Do not manufacture consensus where none exists, but do not refuse to recommend where \
+  the weight of reasoning clearly supports one view.
+- Preserve any uncertainty or knowledge gaps the panel flagged — do not smooth them over.
+- Be transparent about the limits of what the panel could conclude from the information available.
 
-Write in clear, authoritative, professional British English. Use British spelling throughout (e.g. optimise, behaviour, organise, analyse). Produce your output in the exact markdown structure requested."""
+Write in clear, authoritative, professional British English. Use British spelling throughout \
+(e.g. optimise, behaviour, organise, analyse). Produce your output in the exact markdown \
+structure requested."""
 
 
 def build_synthesis_user(
@@ -132,16 +147,16 @@ PARTICIPANTS: {roles_list}
 FULL DEBATE TRANSCRIPT:
 {running_context}
 
-Synthesise this debate into the following exact structure:
-
-## Positions Summary
-[One paragraph per participant: their final position and key reasoning. Be accurate and fair to each.]
+Deliver the panel's verdict using the following exact structure:
 
 ## Recommendation
-[A clear recommendation based on where the panel converged. Where they diverged, represent both views honestly — do not force a consensus that does not exist.]
+[The verdict. State it directly and commit to it. One clear paragraph — what should the user do or conclude? Where the panel converged, say so confidently. Where they diverged, state which view the weight of reasoning better supports and why.]
 
-## Key Disagreements
-[A bullet list of the specific points of genuine disagreement between participants, with a brief explanation of why each disagreement exists.]
+## Key Reasoning
+[The 2-3 arguments or insights that were most decisive in reaching this recommendation. What evidence, logic, or disciplinary expertise drove the conclusion?]
 
-## Missing Information
-[A bullet list of specific data, analysis, or context that was absent from this debate and would have materially strengthened or changed the recommendation.]"""
+## Dissenting View
+[If a participant held a materially different position that was not resolved by the debate, represent it fairly here. Explain what assumption or evidence would need to be true for the dissenting view to be correct. If the panel genuinely converged, omit this section entirely.]
+
+## What Would Change This Recommendation
+[Specific information, data, or context that was absent from this debate and would materially alter the recommendation. Be precise — not "more information would help" but "knowing X would change the recommendation because Y."]"""
