@@ -127,6 +127,7 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     let fullContent = "";
     let finalPanel: string[] = [];
     let messageId = "";
+    let pipelineError = "";
 
     try {
       const token = await getToken();
@@ -135,10 +136,10 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         if (event.type === "status")      setStatus(event.content);
         else if (event.type === "token")  { fullContent += event.content; setStreamingContent(fullContent); }
         else if (event.type === "done")   { finalPanel = event.panel; messageId = event.message_id; }
-        else if (event.type === "error")  setStatus("Error: " + event.content);
+        else if (event.type === "error")  pipelineError = event.content;
       }
     } catch {
-      setStatus("Connection error. Is the backend running?");
+      pipelineError = "Connection error — please try again.";
     }
 
     if (fullContent) {
@@ -152,7 +153,9 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     }
 
     setStreamingContent("");
-    setStatus("");
+    // Show errors persistently in the status bar rather than clearing immediately.
+    // Previously setStatus("") wiped error messages before the user could read them.
+    setStatus(pipelineError ? `Error: ${pipelineError}` : "");
     setStreaming(false);
     triggerNavRefresh();
   }

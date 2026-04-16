@@ -314,15 +314,19 @@ async def chat(
             # Keep-alive comment to prevent proxy/CDN timeouts (e.g. Fastly 60s)
             yield ": ping\n\n"
 
-        # Save assistant message
-        assistant_msg = {
-            "id": message_id or str(uuid.uuid4()),
-            "role": "assistant",
-            "content": "".join(full_response),
-            "panel": panel_ids,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-        }
-        append_message(conv_id, assistant_msg, user_id=user_id)
+        # Only save if there is actual content — an empty assistant message
+        # would corrupt future conversation history (Anthropic API rejects
+        # messages with empty content, causing all subsequent turns to fail).
+        content = "".join(full_response)
+        if content:
+            assistant_msg = {
+                "id": message_id or str(uuid.uuid4()),
+                "role": "assistant",
+                "content": content,
+                "panel": panel_ids,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            }
+            append_message(conv_id, assistant_msg, user_id=user_id)
 
     return StreamingResponse(
         event_stream(),

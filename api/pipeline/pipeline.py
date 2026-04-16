@@ -22,6 +22,7 @@ import asyncio
 import json
 import os
 import re
+import sys
 import uuid
 from dataclasses import dataclass, field
 from typing import AsyncIterator, Dict, List
@@ -54,12 +55,18 @@ def _get_client() -> anthropic.Anthropic:
 
 
 def _build_api_history(messages: list[dict]) -> list[dict]:
-    """Convert stored message list to alternating user/assistant pairs for Claude API."""
+    """Convert stored message list to alternating user/assistant pairs for Claude API.
+
+    Skips messages with empty content — these can occur if a previous pipeline
+    run failed before synthesis and saved an empty assistant turn. Including them
+    causes the Anthropic API to reject the request with a 400 error, breaking all
+    subsequent turns in the conversation.
+    """
     api_messages = []
     for msg in messages:
         role = msg.get("role")
-        content = msg.get("content", "")
-        if role in ("user", "assistant"):
+        content = msg.get("content", "").strip()
+        if role in ("user", "assistant") and content:
             api_messages.append({"role": role, "content": content})
     return api_messages
 
@@ -349,4 +356,5 @@ async def run_pipeline(
         yield {"type": "done", "panel": list(persona_question_map.keys()), "message_id": message_id}
 
     except Exception as exc:
+        print(f"[pipeline] ERROR conv={room_id}: {type(exc).__name__}: {exc}", file=sys.stderr, flush=True)
         yield {"type": "error", "content": f"Pipeline error: {exc}"}
