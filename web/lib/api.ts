@@ -168,6 +168,28 @@ export async function* streamDebate(debateId: string): AsyncGenerator<DebateSSEE
   }
 }
 
+// Report generation
+export async function generateReport(
+  convId: string,
+  title: string,
+  format: "docx" | "pdf",
+  userName: string,
+): Promise<Blob> {
+  const res = await fetch(`${BASE}/api/conversations/${convId}/report`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...authHeaders(),
+    },
+    body: JSON.stringify({ title, format, user_name: userName }),
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => res.statusText);
+    throw new Error(`${res.status} ${text}`);
+  }
+  return res.blob();
+}
+
 // Streaming chat
 export async function* streamChat(
   convId: string,

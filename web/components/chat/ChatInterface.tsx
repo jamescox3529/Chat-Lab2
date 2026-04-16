@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "@clerk/nextjs";
-import { getConversation, updateConversation, streamChat, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
+import { useAuth, useUser } from "@clerk/nextjs";
+import { getConversation, updateConversation, streamChat, generateReport, setAuthToken, getRoom, getConfigOptions, getDocuments } from "@/lib/api";
 import type { Conversation, ConversationConfig, ConfigOptions, Document, Message } from "@/lib/types";
 import MessageBubble, { renderMarkdown, parseQuestions } from "./MessageBubble";
 import Link from "next/link";
@@ -26,6 +26,7 @@ const EMPTY_CONFIG: ConversationConfig = {
 
 export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: ChatInterfaceProps) {
   const { getToken } = useAuth();
+  const { user } = useUser();
   const { setOnNewChat, triggerNavRefresh } = useNavContext();
   const [conv, setConv] = useState<Conversation | null>(null);
   const [roomName, setRoomName] = useState<string>("");
@@ -39,6 +40,8 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
   const [streamingContent, setStreamingContent] = useState("");
   const [configCollapsed, setConfigCollapsed] = useState(false);
   const [panelRoles, setPanelRoles] = useState<Record<string, string>>({});
+  const [generating, setGenerating] = useState(false);
+  const [generateError, setGenerateError] = useState<string | null>(null);
 
   useEffect(() => {
     setOnNewChat(onNewChat);
@@ -158,6 +161,32 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
   }
 
+  const assistantMessageCount = messages.filter((m) => m.role === "assistant").length;
+
+  async function handleGenerateReport(title: string, format: "docx" | "pdf") {
+    setGenerating(true);
+    setGenerateError(null);
+    try {
+      const userName = user?.fullName || user?.firstName || "Roundtable User";
+      const token = await getToken();
+      setAuthToken(token);
+      const blob = await generateReport(convId, title, format, userName);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const safeName = title.replace(/[^\w\s\-]/g, "").trim().replace(/\s+/g, "_");
+      a.href = url;
+      a.download = `${safeName}.${format}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch {
+      setGenerateError("Report generation failed. Please try again.");
+    } finally {
+      setGenerating(false);
+    }
+  }
+
   if (!conv) {
     return (
       <>
@@ -196,6 +225,8 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
           onToggle={() => setConfigCollapsed((c) => !c)}
           options={configOptions}
           readOnly
+          assistantMessageCount={0}
+          roomName=""
         />
       </>
     );
@@ -306,6 +337,11 @@ export default function ChatInterface({ convId, onNewChat, navRefreshTrigger }: 
         onToggle={() => setConfigCollapsed((c) => !c)}
         options={configOptions}
         readOnly
+        assistantMessageCount={assistantMessageCount}
+        roomName={roomName}
+        onGenerateReport={handleGenerateReport}
+        generating={generating}
+        generateError={generateError}
       />
     </>
   );

@@ -9,13 +9,14 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import Depends, FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel
 
 from api.auth import get_current_user_id
@@ -40,6 +41,8 @@ from api.documents.store import create_document, get_document, list_documents, d
 from api.documents.extract import extract_text
 from api.pipeline.pipeline import run_pipeline
 from api.pipeline.prompts import build_project_context, build_user_profile_instruction
+from api.report.synthesiser import synthesise_report
+from api.report.generator import generate_docx, generate_pdf
 from api.debate.engine import run_debate
 from api.debate.store import (
     create_debate,
@@ -328,6 +331,60 @@ async def chat(
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
         },
+    )
+
+
+# =============================================================================
+# Report generation
+# =============================================================================
+
+class ReportRequest(BaseModel):
+    title: str
+    format: str = "docx"   # "docx" or "pdf"
+    user_name: str = "Roundtable User"
+
+
+@app.post("/api/conversations/{conv_id}/report")
+async def generate_report(
+    conv_id: str,
+    body: ReportRequest,
+    user_id: str = Depends(get_current_user_id),
+):
+    conv = get_conversation(conv_id, user_id=user_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    messages = conv.get("messages", [])
+    room = get_room(conv.get("room_id", ""))
+    room_name = room.name if room else ""
+    date = datetime.now(timezone.utc).strftime("%-d %B %Y")
+
+    content = await synthesise_report(
+        messages=messages,
+        room_name=room_name,
+        title=body.title,
+        user_name=body.user_name,
+        date=date,
+    )
+
+    fmt = body.format.lower()
+    if fmt == "pdf":
+        file_bytes = generate_pdf(content, body.title, room_name, body.user_name, date)
+        media_type = "application/pdf"
+        ext = "pdf"
+    else:
+        file_bytes = generate_docx(content, body.title, room_name, body.user_name, date)
+        media_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ext = "docx"
+
+    safe = re.sub(r"[^\w\s\-]", "", body.title).strip()
+    safe = re.sub(r"\s+", "_", safe)
+    filename = f"{safe}.{ext}"
+
+    return Response(
+        content=file_bytes,
+        media_type=media_type,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
 
