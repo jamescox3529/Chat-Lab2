@@ -618,11 +618,17 @@ async def download_debate_report(
     content = build_debate_markdown(rounds, synthesis)
     fmt = fmt.lower()
     if fmt == "pdf":
-        file_bytes = generate_pdf(content, title, "Debate", ", ".join(participants), date)
+        file_bytes = generate_pdf(
+            content, title, "Debate", ", ".join(participants), date,
+            subtitle="Debate Report", participants_label="Panel",
+        )
         media_type = "application/pdf"
         ext = "pdf"
     else:
-        file_bytes = generate_docx(content, title, "Debate", ", ".join(participants), date)
+        file_bytes = generate_docx(
+            content, title, "Debate", ", ".join(participants), date,
+            subtitle="Debate Report", participants_label="Panel",
+        )
         media_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ext = "docx"
     safe = re.sub(r"[^\w\s\-]", "", title).strip()

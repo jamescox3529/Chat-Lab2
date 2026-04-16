@@ -218,6 +218,8 @@ def generate_docx(
     room_name: str,
     user_name: str,
     date: str,
+    subtitle: str = "Consult Room Report",
+    participants_label: str = "Prepared for",
 ) -> bytes:
     # Use Poppins for headings/titles if font is present; fall back to Arial.
     heading_font = "Poppins" if os.path.exists(_POPPINS_BOLD) else "Arial"
@@ -281,7 +283,7 @@ def generate_docx(
               space_before=0, space_after=6, font_name=heading_font)
 
     # Subtitle (13pt teal)
-    _add_para(doc, "Consult Room Report", size_pt=13, color=TEAL_RGB,
+    _add_para(doc, subtitle, size_pt=13, color=TEAL_RGB,
               space_before=0, space_after=4, font_name=heading_font)
 
     # Teal rule
@@ -290,7 +292,7 @@ def generate_docx(
     # Metadata block
     for line in [
         f"Room: {room_name}",
-        f"Prepared for: {user_name}",
+        f"{participants_label}: {user_name}",
         f"Date: {date}",
     ]:
         _add_para(doc, line, size_pt=11, color=NEAR_BLACK_RGB,
@@ -405,6 +407,8 @@ def generate_pdf(
     room_name: str,
     user_name: str,
     date: str,
+    subtitle: str = "Consult Room Report",
+    participants_label: str = "Prepared for",
 ) -> bytes:
     buf = io.BytesIO()
     logo_path = _get_logo_path()
@@ -495,7 +499,7 @@ def generate_pdf(
     story.append(Paragraph(title, styles["cover_title"]))
 
     # Subtitle
-    story.append(Paragraph("Consult Room Report", styles["cover_sub"]))
+    story.append(Paragraph(subtitle, styles["cover_sub"]))
 
     # Teal rule
     story.append(HRFlowable(width="100%", thickness=1, color=TEAL_RL,
@@ -504,7 +508,7 @@ def generate_pdf(
     # Metadata
     for line in [
         f"Room: {room_name}",
-        f"Prepared for: {user_name}",
+        f"{participants_label}: {user_name}",
         f"Date: {date}",
     ]:
         story.append(Paragraph(line, styles["cover_meta"]))
