@@ -103,10 +103,22 @@ def save_debate_result(
     rounds: list | None = None,
 ) -> None:
     db = get_db()
-    payload: dict = {"result": result_text, "updated_at": _now()}
+    # Always save the synthesis result — this is what prevents the debate
+    # from re-running when the user navigates back to it.
+    db.table("debates").update(
+        {"result": result_text, "updated_at": _now()}
+    ).eq("id", debate_id).eq("user_id", user_id).execute()
+
+    # Save the structured transcript separately so a missing column
+    # (requires migration: ALTER TABLE debates ADD COLUMN transcript TEXT)
+    # never prevents the result from being persisted.
     if rounds is not None:
-        payload["transcript"] = json.dumps(rounds)
-    db.table("debates").update(payload).eq("id", debate_id).eq("user_id", user_id).execute()
+        try:
+            db.table("debates").update(
+                {"transcript": json.dumps(rounds)}
+            ).eq("id", debate_id).eq("user_id", user_id).execute()
+        except Exception:
+            pass
 
 
 def list_debates(user_id: str) -> list[dict]:
