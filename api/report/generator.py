@@ -44,6 +44,7 @@ from reportlab.platypus import (
 from reportlab.platypus.flowables import HRFlowable  # noqa: F811
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.utils import ImageReader
 
 # ---------------------------------------------------------------------------
 # Brand colours
@@ -81,16 +82,27 @@ def _get_logo_path() -> str | None:
     return None
 
 
-def _register_fonts() -> tuple[str, str]:
-    """Register Poppins if TTF files are present; return (bold_name, regular_name)."""
-    if os.path.exists(_POPPINS_BOLD) and os.path.exists(_POPPINS_REGULAR):
+def _register_heading_font() -> str:
+    """Register Poppins-Bold if available; return the font name to use for headings."""
+    if os.path.exists(_POPPINS_BOLD):
         try:
             pdfmetrics.registerFont(TTFont("Poppins-Bold", _POPPINS_BOLD))
-            pdfmetrics.registerFont(TTFont("Poppins", _POPPINS_REGULAR))
-            return "Poppins-Bold", "Poppins"
+            return "Poppins-Bold"
         except Exception:
             pass
-    return "Helvetica-Bold", "Helvetica"
+    return "Helvetica-Bold"
+
+
+def _logo_dimensions(logo_path: str, display_width_cm: float) -> tuple[float, float]:
+    """Return (width, height) in reportlab points preserving the image's aspect ratio."""
+    try:
+        ir = ImageReader(logo_path)
+        nat_w, nat_h = ir.getSize()
+        w = display_width_cm * cm
+        h = w * (nat_h / nat_w)
+        return w, h
+    except Exception:
+        return display_width_cm * cm, display_width_cm * cm  # square fallback
 
 
 # ===========================================================================
@@ -207,10 +219,8 @@ def generate_docx(
     user_name: str,
     date: str,
 ) -> bytes:
-    # Use Poppins for headings/titles if fonts are present; fall back to Arial.
-    heading_font = "Poppins" if (
-        os.path.exists(_POPPINS_BOLD) and os.path.exists(_POPPINS_REGULAR)
-    ) else "Arial"
+    # Use Poppins for headings/titles if font is present; fall back to Arial.
+    heading_font = "Poppins" if os.path.exists(_POPPINS_BOLD) else "Arial"
 
     doc = Document()
 
@@ -323,29 +333,31 @@ def generate_docx(
 # PDF generation (reportlab)
 # ===========================================================================
 
-def _rl_styles(bold_font: str, regular_font: str) -> dict[str, ParagraphStyle]:
-    """Build the reportlab paragraph styles."""
-    base = dict(fontName=regular_font, fontSize=11, leading=11 * 1.15,
-                textColor=NEAR_BLACK_RL, spaceAfter=6)
+def _rl_styles(heading_font: str) -> dict[str, ParagraphStyle]:
+    """Build the reportlab paragraph styles.
+    Body copy, bullets, and metadata use Helvetica; only headings use heading_font.
+    """
     return {
-        "body": ParagraphStyle("body", **base),
-        "h1": ParagraphStyle("h1", fontName=bold_font, fontSize=13,
+        "body": ParagraphStyle("body", fontName="Helvetica", fontSize=11,
+                               leading=11 * 1.15, textColor=NEAR_BLACK_RL,
+                               spaceAfter=6),
+        "h1": ParagraphStyle("h1", fontName=heading_font, fontSize=13,
                              leading=13 * 1.2, textColor=TEAL_RL,
                              spaceBefore=14, spaceAfter=2),
-        "h2": ParagraphStyle("h2", fontName=bold_font, fontSize=11,
+        "h2": ParagraphStyle("h2", fontName=heading_font, fontSize=11,
                              leading=11 * 1.2, textColor=TEAL_RL,
                              spaceBefore=8, spaceAfter=2),
-        "bullet": ParagraphStyle("bullet", fontName=regular_font, fontSize=11,
+        "bullet": ParagraphStyle("bullet", fontName="Helvetica", fontSize=11,
                                  leading=11 * 1.15, textColor=NEAR_BLACK_RL,
                                  leftIndent=18, firstLineIndent=0,
                                  bulletIndent=6, spaceAfter=3),
-        "cover_title": ParagraphStyle("cover_title", fontName=bold_font,
+        "cover_title": ParagraphStyle("cover_title", fontName=heading_font,
                                       fontSize=28, leading=32,
                                       textColor=NEAR_BLACK_RL, spaceAfter=8),
-        "cover_sub": ParagraphStyle("cover_sub", fontName=regular_font,
+        "cover_sub": ParagraphStyle("cover_sub", fontName=heading_font,
                                     fontSize=13, leading=16,
                                     textColor=TEAL_RL, spaceAfter=6),
-        "cover_meta": ParagraphStyle("cover_meta", fontName=regular_font,
+        "cover_meta": ParagraphStyle("cover_meta", fontName="Helvetica",
                                      fontSize=11, leading=14,
                                      textColor=NEAR_BLACK_RL, spaceAfter=3),
     }
@@ -370,7 +382,7 @@ def generate_pdf(
 ) -> bytes:
     buf = io.BytesIO()
     logo_path = _get_logo_path()
-    bold_font, regular_font = _register_fonts()
+    heading_font = _register_heading_font()
 
     pw, ph = A4
     margin = 2.5 * cm
@@ -397,32 +409,29 @@ def generate_pdf(
 
     def _on_cover(canvas, doc_):
         canvas.saveState()
-        canvas.setFont(regular_font, 9)
+        canvas.setFont("Helvetica", 9)
         canvas.setFillColor(GREY_RL)
         canvas.drawString(margin, margin * 0.7, "Private & Confidential")
         canvas.restoreState()
 
     def _on_body(canvas, doc_):
         canvas.saveState()
-        # Header: logo (or text) right-aligned
+        # Header: logo right-aligned, aspect-ratio correct
         if doc_.logo_path and os.path.exists(doc_.logo_path):
-            logo_h = 1.0 * cm
-            logo_w = 2.5 * cm
+            logo_w, logo_h = _logo_dimensions(doc_.logo_path, 2.5)
             canvas.drawImage(
                 doc_.logo_path,
                 pw - margin - logo_w,
                 ph - margin * 0.85 - logo_h,
                 width=logo_w, height=logo_h,
-                preserveAspectRatio=True, anchor="ne",
-                mask="auto",
             )
         else:
-            canvas.setFont(bold_font, 10)
+            canvas.setFont(heading_font, 10)
             canvas.setFillColor(TEAL_RL)
             canvas.drawRightString(pw - margin, ph - margin * 0.75, "Roundtable")
 
         # Footer: Page N
-        canvas.setFont(regular_font, 9)
+        canvas.setFont("Helvetica", 9)
         canvas.setFillColor(NEAR_BLACK_RL)
         canvas.drawRightString(pw - margin, margin * 0.7, f"Page {doc_.page}")
         canvas.restoreState()
@@ -432,7 +441,7 @@ def generate_pdf(
         PageTemplate(id="Body",  frames=[body_frame],  onPage=_on_body),
     ])
 
-    styles = _rl_styles(bold_font, regular_font)
+    styles = _rl_styles(heading_font)
     story = []
 
     # ========================================================================
@@ -441,16 +450,15 @@ def generate_pdf(
 
     story.append(NextPageTemplate("Cover"))
 
-    # Logo — right-aligned via a right-aligned paragraph
+    # Logo — right-aligned, aspect-ratio correct
     if logo_path and os.path.exists(logo_path):
-        logo_para_style = ParagraphStyle("logo_right", alignment=TA_RIGHT,
-                                         spaceAfter=0)
-        img = Image(logo_path, width=3.5 * cm, height=None)
+        logo_w, logo_h = _logo_dimensions(logo_path, 3.5)
+        img = Image(logo_path, width=logo_w, height=logo_h)
         img.hAlign = "RIGHT"
         story.append(img)
     else:
         story.append(Paragraph("<b>Roundtable</b>",
-                                ParagraphStyle("logo_text", fontName=bold_font,
+                                ParagraphStyle("logo_text", fontName=heading_font,
                                                fontSize=16, textColor=TEAL_RL,
                                                alignment=TA_RIGHT)))
 
