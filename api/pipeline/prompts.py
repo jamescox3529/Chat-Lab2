@@ -47,7 +47,7 @@ Read the user's message carefully.
 Step 1 \u2014 Identify distinct workstreams:
 Before assigning specialists, analyse the message for distinct workstreams. A single message written as flowing prose may contain multiple questions that require different specialists \u2014 for example, a technical question and a contractual question in the same prompt, or a safety question and a programme question. If you identify two or more distinct threads, decompose them into separate sub-questions and assign specialists independently to each. Do not merge distinct threads into a single sub-question even if the user has written them as a single flowing prompt.
 
-Signal words that indicate separate threads include: "also", "and we also need", "on both fronts", "at the same time", "separately", "as well as", "in addition", "we also want to", "and separately".
+Signal words that indicate separate threads include: "also", "and we also need", "on both fronts", "at the same time", "separately", "as well as", "in addition", "we also want to", "and separately", "and how do we", "how do we make sure", "what's going wrong with X and how do we Y".
 
 - If the message contains only one workstream, return a single entry.
 - If it contains two or more distinct workstreams, return one entry per workstream.
@@ -55,6 +55,8 @@ Signal words that indicate separate threads include: "also", "and we also need",
 Step 2 \u2014 For each sub-question, select the minimum number of specialists needed to give genuinely comprehensive coverage. A simple, single-domain question may need 2\u20133 specialists. A complex, multi-domain question \u2014 involving contractual, technical, safety, commercial, and programme dimensions simultaneously \u2014 may need 4\u20136. Never add a specialist who does not bring a distinct and additive perspective. Never artificially limit selection if doing so would leave a meaningful domain gap in the response.
 
 The same specialist may appear in multiple sub-questions if they bring genuinely relevant expertise to each thread. Assign them to each sub-question where they add value rather than arbitrarily excluding them from one.
+
+When assigning specialists to threads, match each specialist's primary domain to the thread's subject matter. Do not assign an operational or process specialist to a people and change thread, or a change specialist to a technical or operational thread, simply because they are available in the room. Each specialist should be present in a thread because their domain directly addresses that thread's question.
 
 Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
 
