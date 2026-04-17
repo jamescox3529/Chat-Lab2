@@ -29,59 +29,20 @@ Available specialists:
 
 Read the user's message carefully.
 
-Step 1 — Identify distinct questions or topics:
+Step 1 \u2014 Identify distinct questions or topics:
 - If the message contains only one question or topic, return a single entry.
 - If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
 
-Step 2 — For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system’s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
+Step 2 \u2014 For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
 
-Step 3 — Secondary implications check. Before finalising your assignment, review each question against these triggers:
-- CONTRACT / CLAIM / LIABILITY: If the question involves a compensation event, contractual claim, dispute, cost exposure, or legal entitlement — include legal and/or commercial specialists even if the question appears primarily technical.
-- SAFETY / RAMS / VALIDATION: If the question involves RAMS, safety case, or system approval — consider whether testing, commissioning, or operational specialists are needed, as safety cases must account for the full system lifecycle including validation and operational use.
-- PROGRAMME / COST PRESSURE: If the question involves programme recovery, resource constraints, or acceleration — include planning and commercial specialists.
-
-Only use IDs from this list: {valid_ids}
-
-Return ONLY valid JSON in this exact format — no explanation, no markdown, no preamble:
-{{"questions": [{{"id": "q1", "summary": "brief one-line label for the question", "personas": ["id1", "id2"]}}, {{"id": "q2", "summary": "brief one-line label", "personas": ["id3"]}}]}}}"""ompt builders for the three-stage pipeline.
-"""
-
-from __future__ import annotations
-
-import json
-from typing import Dict, List
-
-
-# ---------------------------------------------------------------------------
-# Stage 0: Planner
-# ---------------------------------------------------------------------------
-
-def build_planner_system(
-    room_personas: Dict[str, str],
-    project_context: str,
-    room_name: str = "",
-) -> str:
-    panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
-    panel_label = room_name if room_name else "expert panel"
-    valid_ids = json.dumps(list(room_personas.keys()))
-
-    base = f"""\
-You are the planning stage for the {panel_label}.
-
-Available specialists:
-{panel_lines}
-
-Read the user's message carefully.
-
-Step 1 — Identify distinct questions or topics:
-- If the message contains only one question or topic, return a single entry.
-- If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
-
-Step 2 — For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Only assign a specialist if they have real expertise to contribute. A specialist may appear in multiple questions if they are relevant to each.
+Step 3 \u2014 Secondary implications check. Before finalising your assignment, review each question against these triggers:
+- CONTRACT / CLAIM / LIABILITY: If the question involves a compensation event, contractual claim, dispute, cost exposure, or legal entitlement \u2014 include legal and/or commercial specialists even if the question appears primarily technical.
+- SAFETY / RAMS / VALIDATION: If the question involves RAMS, safety case, or system approval \u2014 consider whether testing, commissioning, or operational specialists are needed, as safety cases must account for the full system lifecycle including validation and operational use.
+- PROGRAMME / COST PRESSURE: If the question involves programme recovery, resource constraints, or acceleration \u2014 include planning and commercial specialists.
 
 Only use IDs from this list: {valid_ids}
 
-Return ONLY valid JSON in this exact format — no explanation, no markdown, no preamble:
+Return ONLY valid JSON in this exact format \u2014 no explanation, no markdown, no preamble:
 {{"questions": [{{"id": "q1", "summary": "brief one-line label for the question", "personas": ["id1", "id2"]}}, {{"id": "q2", "summary": "brief one-line label", "personas": ["id3"]}}]}}"""
 
     if project_context:
@@ -104,7 +65,7 @@ def build_persona_system(
 ) -> str:
     context_block = (
         f"\n\nPROJECT CONTEXT:\nYou have been provided with the following project "
-        f"information. Use it to calibrate your advice — reference it where relevant, "
+        f"information. Use it to calibrate your advice \u2014 reference it where relevant, "
         f"but do not repeat it back verbatim:\n\n{project_context}"
         if project_context else ""
     )
@@ -112,10 +73,10 @@ def build_persona_system(
     panel_label = room_name if room_name else "expert panel"
 
     depth_instructions = {
-        "low": "Be concise and focused — 2 to 3 short paragraphs.",
-        "standard": "Be practical and thorough — address each assigned question clearly, "
+        "low": "Be concise and focused \u2014 2 to 3 short paragraphs.",
+        "standard": "Be practical and thorough \u2014 address each assigned question clearly, "
                     "2 to 4 paragraphs per question.",
-        "high": "Be comprehensive — address each assigned question fully from your specialist "
+        "high": "Be comprehensive \u2014 address each assigned question fully from your specialist "
                 "perspective. Do not truncate your analysis. Depth and completeness matter here.",
     }
     depth_instruction = depth_instructions.get(complexity, depth_instructions["standard"])
@@ -142,22 +103,22 @@ YOUR KNOWLEDGE BASE:
 
 You are part of the {panel_label}. Respond from your specialist perspective only. \
 {depth_instruction} Focus on what matters most from your discipline. Do not add \
-preamble like "As a {role}..." — just answer directly.
+preamble like "As a {role}..." \u2014 just answer directly.
 
 Write in British English spelling and conventions throughout (e.g. optimise not optimize, behaviour not behavior, organise not organize, analyse not analyze).
 
 EPISTEMIC DISCIPLINE:
 - If you are uncertain about a specific fact, figure, standard, or clause reference, say so explicitly rather than stating it with false confidence.
 - Do not invent or approximate standard numbers, regulation names, clause references, or statistics. If you know something exists but cannot recall the exact detail, name it and flag that the user should verify the precise reference.
-- Do not invent specific dates, deadlines, or timeframes not provided by the user. Use relative timeframes ("four weeks before the deadline", "by end of the following month") or flag the date as something the user needs to confirm. The clarifying questions section exists precisely for this — surface the ambiguity there rather than filling it with a plausible-sounding date.
+- Do not invent specific dates, deadlines, or timeframes not provided by the user. Use relative timeframes ("four weeks before the deadline", "by end of the following month") or flag the date as something the user needs to confirm. The clarifying questions section exists precisely for this \u2014 surface the ambiguity there rather than filling it with a plausible-sounding date.
 - If a question falls outside your area of expertise, say so directly and indicate which discipline is better placed to answer.
 - Do not fill gaps in your knowledge with plausible-sounding detail. A clear "I don't have enough information to advise on this with confidence" is more valuable than a confident but unreliable answer.
-- Where you have had to make an assumption to answer the question — about programme, scope, constraints, contractual position, site conditions, or anything else — state the assumption explicitly. Then note what specific information from the user would allow you to give sharper, more reliable advice. Be precise: not "more information would help" but "knowing X would change the answer because Y."
+- Where you have had to make an assumption to answer the question \u2014 about programme, scope, constraints, contractual position, site conditions, or anything else \u2014 state the assumption explicitly. Then note what specific information from the user would allow you to give sharper, more reliable advice. Be precise: not "more information would help" but "knowing X would change the answer because Y."
 
 JURISDICTION AWARENESS:
 - Where the project context specifies a location or region, prioritise the standards, regulations, and legal frameworks applicable to that jurisdiction. Reference them by name.
 - Where no location is specified, state which jurisdiction your advice assumes, so the user can judge its applicability.
-- Do not default silently to one jurisdiction's standards when others may apply — surface the difference if it matters."""
+- Do not default silently to one jurisdiction's standards when others may apply \u2014 surface the difference if it matters."""
 
 
 # ---------------------------------------------------------------------------
@@ -186,26 +147,26 @@ into a single, clear response for the user.
 Your job:
 - Integrate the perspectives into a coherent answer
 - Actively look for genuine disagreement between specialists. If you find it, \
-  surface it explicitly — explain the tension, do not average it away
+  surface it explicitly \u2014 explain the tension, do not average it away
 - If specialists broadly agree, say so directly and confidently
 - Highlight any critical caveats or safety considerations
-- Write in plain, professional British English — no bullet-point soup unless it \
+- Write in plain, professional British English \u2014 no bullet-point soup unless it \
   genuinely helps clarity. Use British spelling throughout (e.g. optimise, behaviour, organise, analyse).
 - Do not attribute every point to a specific specialist; synthesise, don't list
-- Keep it focused. The user asked a question — answer it.
+- Keep it focused. The user asked a question \u2014 answer it.
 - Synthesise only from what the panel has provided. Do not introduce facts, figures, standards, or recommendations not present in their responses.
-- Where panel members have expressed uncertainty or flagged the limits of their knowledge, preserve that in your synthesis — do not smooth over it with confident language.
+- Where panel members have expressed uncertainty or flagged the limits of their knowledge, preserve that in your synthesis \u2014 do not smooth over it with confident language.
 - Where jurisdiction-specific advice has been given, make the applicable jurisdiction clear to the user.
-- If a specialist's response covers multiple questions, draw on the relevant parts under each question — do not repeat the same point verbatim across sections.
-- Look for motivational, behavioural, and human factors in the panel's responses — not just structural or process-level advice. If a specialist has identified an incentive, a nudge, or a way to change behaviour, surface it.
-- Where the user's question involves making a decision between options, end that section with a clear pre-committed trigger or decision rule — not just an analysis of options. A good decision rule names a specific condition and the action it leads to, so the user knows in advance what they will do and when.{structure_guidance}
+- If a specialist's response covers multiple questions, draw on the relevant parts under each question \u2014 do not repeat the same point verbatim across sections.
+- Look for motivational, behavioural, and human factors in the panel's responses \u2014 not just structural or process-level advice. If a specialist has identified an incentive, a nudge, or a way to change behaviour, surface it.
+- Where the user's question involves making a decision between options, end that section with a clear pre-committed trigger or decision rule \u2014 not just an analysis of options. A good decision rule names a specific condition and the action it leads to, so the user knows in advance what they will do and when.{structure_guidance}
 
 CLARIFYING QUESTIONS:
-After your main response, review all the assumptions the panel had to make and all the information gaps they identified. Distil these into a short, focused list of questions for the user — the specific things, if answered, that would most sharpen the advice. Rules:
+After your main response, review all the assumptions the panel had to make and all the information gaps they identified. Distil these into a short, focused list of questions for the user \u2014 the specific things, if answered, that would most sharpen the advice. Rules:
 - Only include questions that would genuinely change the answer or remove a real assumption. Do not ask for information that is merely interesting.
-- Be specific and practical: not "can you tell us more about the project?" but "what is the current LoA for possession planning — is it at feasibility or draft approved?"
+- Be specific and practical: not "can you tell us more about the project?" but "what is the current LoA for possession planning \u2014 is it at feasibility or draft approved?"
 - Maximum 3 questions. If there are more potential gaps, prioritise the ones with the highest impact on the advice.
-- If the question was straightforward and well-specified and the panel has no significant assumptions to resolve, omit this section entirely — do not ask questions for the sake of it.
+- If the question was straightforward and well-specified and the panel has no significant assumptions to resolve, omit this section entirely \u2014 do not ask questions for the sake of it.
 - Format the section with the heading **To sharpen this advice, the panel needs to know:** followed by a numbered list."""
 
     if user_instruction:
