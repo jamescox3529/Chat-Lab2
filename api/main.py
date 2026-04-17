@@ -39,7 +39,8 @@ from api.conversations.store import (
 )
 from api.documents.store import create_document, get_document, list_documents, delete_document
 from api.documents.extract import extract_text
-from api.pipeline.pipeline import run_pipeline
+import anthropic as _anthropic
+from api.pipeline.pipeline import run_pipeline, _get_client as _pipeline_client
 from api.pipeline.prompts import build_project_context, build_user_profile_instruction
 from api.report.synthesiser import synthesise_report
 from api.report.generator import generate_docx, generate_pdf
@@ -639,3 +640,128 @@ async def download_debate_report(
         media_type=media_type,
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+# =============================================================================
+# Eval — quality assessment
+# =============================================================================
+
+class EvalPersonaResponse(BaseModel):
+    persona_id: str
+    role: str
+    response: str
+
+class EvalPlannedQuestion(BaseModel):
+    id: str
+    summary: str
+    personas: list[str]
+
+class EvalAssessRequest(BaseModel):
+    question: str
+    grip_stage: str = ""
+    contract_type: str = ""
+    expected_personas: list[str] = []
+    actual_panel: list[str]
+    planned_questions: list[EvalPlannedQuestion]
+    persona_responses: list[EvalPersonaResponse]
+    synthesis: str
+    eval_focus: str = "all"
+
+
+_ASSESS_PROMPT = """You are an expert quality evaluator for Roundtable, a multi-specialist AI advisory panel for railway infrastructure projects.
+
+Evaluate the pipeline output below against the rubric and return a JSON assessment.
+
+## Test Input
+Question: {question}
+GRIP Stage: {grip_stage}
+Contract Type: {contract_type}
+Expected specialists (human judgement): {expected_personas}
+Actual panel selected: {actual_panel}
+
+## Planner Output (question decomposition)
+{planned_questions}
+
+## Individual Specialist Responses
+{persona_responses}
+
+## Synthesised Response
+{synthesis}
+
+## Rubric
+
+Score each dimension 1–5:
+1 = Significantly below expectations
+3 = Meets expectations  
+5 = Exemplary
+
+**Routing**: Were the right specialists selected? Were obvious specialists missed? Were irrelevant specialists included? How well did the planner decompose the question?
+
+**Persona Quality** (score each specialist): Is the response practitioner-level or generic? Are standards and frameworks cited correctly for UK jurisdiction? Does the specialist stay in their domain? Any hallmarks of shallow AI response (vague hedging, invented figures, placeholders)?
+
+**Synthesis**: Does it integrate perspectives or just concatenate them? Does it resolve tensions? Is it structured and actionable?
+
+Return ONLY valid JSON, no prose:
+{{
+  "routing": {{
+    "score": <1-5>,
+    "commentary": "<specific commentary>",
+    "missed": ["<persona_id>"],
+    "unnecessary": ["<persona_id>"]
+  }},
+  "persona_quality": [
+    {{"persona_id": "<id>", "role": "<role>", "score": <1-5>, "commentary": "<specific commentary>"}}
+  ],
+  "synthesis": {{
+    "score": <1-5>,
+    "commentary": "<specific commentary>"
+  }},
+  "overall": "<2-3 sentence overall assessment>"
+}}"""
+
+
+@app.post("/api/eval/assess")
+async def eval_assess(
+    body: EvalAssessRequest,
+    user_id: str = Depends(get_current_user_id),
+):
+    client = _pipeline_client()
+
+    planned_block = "\n".join(
+        f"Q{q.id}: {q.summary} → [{', '.join(q.personas)}]"
+        for q in body.planned_questions
+    )
+    persona_block = "\n\n".join(
+        f"[{p.role} / {p.persona_id}]:\n{p.response}"
+        for p in body.persona_responses
+    )
+
+    prompt = _ASSESS_PROMPT.format(
+        question=body.question,
+        grip_stage=body.grip_stage or "Not specified",
+        contract_type=body.contract_type or "Not specified",
+        expected_personas=", ".join(body.expected_personas) or "Not specified",
+        actual_panel=", ".join(body.actual_panel),
+        planned_questions=planned_block or "(none captured)",
+        persona_responses=persona_block or "(none captured)",
+        synthesis=body.synthesis or "(none captured)",
+    )
+
+    from api.config import MODEL
+    response = client.messages.create(
+        model=MODEL,
+        max_tokens=2000,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    raw = response.content[0].text.strip()
+    # Strip markdown code fences if present
+    if raw.startswith("```"):
+        raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+
+    try:
+        result = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise HTTPException(status_code=500, detail=f"Assessment parse error: {exc}\n\nRaw: {raw[:500]}")
+
+    return result

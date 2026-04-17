@@ -290,6 +290,13 @@ async def run_pipeline(
         # Stage 0: Plan — decompose questions and assign personas
         yield {"type": "status", "content": "Analysing your question..."}
         questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name)
+        yield {
+            "type": "plan",
+            "questions": [
+                {"id": q.id, "summary": q.summary, "personas": q.personas}
+                for q in questions
+            ],
+        }
 
         # Build persona → assigned questions map (deduplicated)
         persona_question_map: Dict[str, List[PlannedQuestion]] = {}
@@ -336,6 +343,16 @@ async def run_pipeline(
         for pid, q_ids, response in results:
             for q_id in q_ids:
                 structured_responses.setdefault(q_id, {})[pid] = response
+
+        # Emit individual persona responses for eval instrumentation
+        for pid, q_ids, response in results:
+            if pid in room_personas:
+                yield {
+                    "type": "persona",
+                    "persona_id": pid,
+                    "role": room_personas[pid].role,
+                    "response": response,
+                }
 
         # Stage 2: Synthesise
         yield {"type": "status", "content": "Synthesising response..."}

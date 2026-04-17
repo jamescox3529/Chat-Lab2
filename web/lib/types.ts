@@ -95,7 +95,9 @@ export type SSEEvent =
   | { type: "status"; content: string }
   | { type: "token"; content: string }
   | { type: "done"; panel: string[]; message_id: string }
-  | { type: "error"; content: string };
+  | { type: "error"; content: string }
+  | { type: "plan"; questions: Array<{ id: string; summary: string; personas: string[] }> }
+  | { type: "persona"; persona_id: string; role: string; response: string };
 
 // ── Debate types ────────────────────────────────────────────────────────────
 
