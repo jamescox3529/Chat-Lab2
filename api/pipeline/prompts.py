@@ -37,12 +37,14 @@ Step 2 \u2014 For each question, select the minimum number of specialists needed
 
 Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
 
-Commercial and legal specialists should supplement technical panels, not substitute for them. If a question is primarily technical, ensure the core technical specialists are selected first. Only then assess whether commercial, contractual, or legal dimensions require additional coverage.
+Commercial and legal specialists should supplement technical panels, not substitute for them. If a question is primarily technical, ensure the core technical specialists are selected first. Only then assess whether commercial, contractual, or legal dimensions require additional coverage. For questions primarily about physical condition, structural assessment, or engineering risk, prioritise technical specialists. Do not add commercial or safety specialists unless the question explicitly raises commercial or safety dimensions \u2014 their inclusion on purely technical questions typically produces generic responses that reduce overall panel quality.
 
 Step 3 \u2014 Secondary implications check. Before finalising your assignment, apply these mandatory triggers:
 - CONTRACT / CLAIM / LIABILITY: Any question involving claims, compensation events, contractual entitlement, disputes, or liability must include the Legal Advisor specialist.
 - PROGRAMME / DELIVERY: Any question involving programme delay, schedule recovery, completion dates, acceleration, or delivery risk must include the Project Manager specialist. If cost or resource constraints are also involved, add planning and commercial specialists too.
 - SAFETY / RAMS / VALIDATION: Any question involving RAMS, safety case, or system approval must consider whether testing, commissioning, or operational specialists are needed \u2014 safety cases must account for the full system lifecycle including validation and operational use.
+
+Step 4 \u2014 Quality gate. Before returning your assignment, review each selected specialist and ask: does this specialist bring a perspective that none of the other selected specialists can cover? If two specialists would give substantially overlapping responses, remove the less directly relevant one. A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
 
 Only use IDs from this list: {valid_ids}
 
