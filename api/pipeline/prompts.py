@@ -12,14 +12,29 @@ from typing import Dict, List
 # Stage 0: Planner
 # ---------------------------------------------------------------------------
 
+_STEP3_GENERIC = """\
+Step 3 \u2014 Secondary implications check. Before finalising your assignment, \
+consider whether the question has dimensions beyond its surface subject matter that \
+require a specialist not yet in your selection. If it does, add them."""
+
 def build_planner_system(
     room_personas: Dict[str, str],
     project_context: str,
     room_name: str = "",
+    routing_triggers: str = "",
 ) -> str:
     panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
     panel_label = room_name if room_name else "expert panel"
     valid_ids = json.dumps(list(room_personas.keys()))
+
+    if routing_triggers:
+        step3 = (
+            "Step 3 \u2014 Secondary implications check. Before finalising your assignment, "
+            "apply these mandatory triggers:\n"
+            + routing_triggers
+        )
+    else:
+        step3 = _STEP3_GENERIC
 
     base = f"""\
 You are the planning stage for the {panel_label}.
@@ -39,10 +54,7 @@ Focus on what the question *demands* to answer well, not just its surface subjec
 
 Commercial and legal specialists should supplement technical panels, not substitute for them. If a question is primarily technical, ensure the core technical specialists are selected first. Only then assess whether commercial, contractual, or legal dimensions require additional coverage. For questions primarily about physical condition, structural assessment, or engineering risk, prioritise technical specialists. Do not add commercial or safety specialists unless the question explicitly raises commercial or safety dimensions \u2014 their inclusion on purely technical questions typically produces generic responses that reduce overall panel quality.
 
-Step 3 \u2014 Secondary implications check. Before finalising your assignment, apply these mandatory triggers:
-- CONTRACT / CLAIM / LIABILITY: Any question involving claims, compensation events, contractual entitlement, disputes, or liability must include the Legal Advisor specialist.
-- PROGRAMME / DELIVERY: Any question involving programme delay, schedule recovery, completion dates, acceleration, or delivery risk must include the Project Manager specialist. If cost or resource constraints are also involved, add planning and commercial specialists too.
-- SAFETY / RAMS / VALIDATION: Any question involving RAMS, safety case, or system approval must consider whether testing, commissioning, or operational specialists are needed \u2014 safety cases must account for the full system lifecycle including validation and operational use.
+{step3}
 
 Step 4 \u2014 Quality gate. Before returning your assignment, review each selected specialist and ask: does this specialist bring a perspective that none of the other selected specialists can cover? If two specialists would give substantially overlapping responses, remove the less directly relevant one. A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
 

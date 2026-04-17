@@ -32,6 +32,7 @@ class Room:
     personas: List[str]
     pillar: str = ""
     project_context: List[ProjectContextField] = field(default_factory=list)
+    routing_triggers: str = ""
 
 
 def load_rooms() -> Dict[str, Room]:
@@ -59,6 +60,7 @@ def load_rooms() -> Dict[str, Room]:
                 personas=data.get("personas", []),
                 pillar=data.get("pillar", ""),
                 project_context=context_fields,
+                routing_triggers=data.get("routing_triggers", ""),
             )
             rooms[room.id] = room
         except Exception as exc:

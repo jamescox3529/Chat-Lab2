@@ -52,6 +52,10 @@ project_context:
       - Cost reduction and profitability
       - Culture change and people engagement
       - Production scheduling and capacity
+routing_triggers: |
+  - SAFETY / HAZARDOUS SUBSTANCES / REGULATORY COMPLIANCE: Any question involving workplace safety, hazardous substances, safety-critical environments, or regulatory compliance requirements must include the Safety Manager specialist as a primary selection, not a secondary addition.
+  - SUPPLY CHAIN / PULL SYSTEMS / INVENTORY: Any question involving pull systems, Kanban, replenishment signals, inventory positioning, or supplier integration must include the Supply Chain Strategist specialist.
+  - CULTURE / CHANGE / ADOPTION: Any question involving organisational resistance, management engagement, transformation stall, or behavioural change must include the Change Management Specialist.
 personas:
   - lean_sensei
   - ops_mgr

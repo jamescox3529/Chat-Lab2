@@ -90,6 +90,10 @@ project_context:
       - £25M – £100M
       - £100M – £500M
       - Over £500M
+routing_triggers: |
+  - CONTRACT / CLAIM / LIABILITY: Any question involving claims, compensation events, contractual entitlement, disputes, or liability must include the Legal Advisor specialist.
+  - PROGRAMME / DELIVERY: Any question involving programme delay, schedule recovery, completion dates, acceleration, or delivery risk must include the Project Manager specialist. If cost or resource constraints are also involved, add planning and commercial specialists too.
+  - SAFETY / RAMS / VALIDATION: Any question involving RAMS, safety case, or system approval must consider whether testing, commissioning, or operational specialists are needed — safety cases must account for the full system lifecycle including validation and operational use.
 personas:
   - pm
   - track_eng
