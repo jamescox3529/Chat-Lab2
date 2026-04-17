@@ -131,6 +131,7 @@ def _plan(
     project_context: str,
     room_name: str = "",
     routing_triggers: str = "",
+    decomposition_hints: str = "",
 ) -> List[PlannedQuestion]:
     """
     Returns a list of PlannedQuestion — one per distinct question in the message,
@@ -138,7 +139,7 @@ def _plan(
     Falls back to a single question covering all personas if parsing fails.
     """
     panel_map = {pid: p.role for pid, p in room_personas.items()}
-    system = build_planner_system(panel_map, project_context, room_name=room_name, routing_triggers=routing_triggers)
+    system = build_planner_system(panel_map, project_context, room_name=room_name, routing_triggers=routing_triggers, decomposition_hints=decomposition_hints)
 
     api_history = _build_api_history(history)
     api_history.append({"role": "user", "content": user_message})
@@ -290,7 +291,7 @@ async def run_pipeline(
 
         # Stage 0: Plan — decompose questions and assign personas
         yield {"type": "status", "content": "Analysing your question..."}
-        questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name, routing_triggers=room.routing_triggers)
+        questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name, routing_triggers=room.routing_triggers, decomposition_hints=room.decomposition_hints)
         yield {
             "type": "plan",
             "questions": [

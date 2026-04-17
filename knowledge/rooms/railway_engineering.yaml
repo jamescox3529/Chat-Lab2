@@ -95,7 +95,8 @@ routing_triggers: |
   - PROGRAMME / DELIVERY: Any question involving programme delay, schedule recovery, completion dates, acceleration, or delivery risk must include the Project Manager specialist. If cost or resource constraints are also involved, add planning and commercial specialists too.
   - SAFETY / RAMS / VALIDATION: Any question involving RAMS, safety case, or system approval must consider whether testing, commissioning, or operational specialists are needed — safety cases must account for the full system lifecycle including validation and operational use.
   - TRACK CONDITION / BALLAST / FORMATION: Any question about track condition, ballast assessment, track geometry, formation stability, or renewal decisions must include both track_eng and geotech_eng as primary specialists. Do not substitute construction or safety specialists for these — they are the primary domain experts for track and ground condition questions.
-  - CDM / CONSTRUCTION SAFETY (DECOMPOSITION): CDM obligations, Principal Contractor/Designer appointment, and construction safety management are always a distinct workstream from operational possession planning and programme delivery. If a question involves both CDM/safety responsibilities and operational or technical delivery, these must be decomposed into separate sub-questions even if the user has written them as a single flowing prompt.
+decomposition_hints: |
+  - CDM / CONSTRUCTION SAFETY: CDM obligations, Principal Contractor/Designer appointment, and construction safety management are always a distinct workstream from operational possession planning and programme delivery. If a question involves both CDM/safety responsibilities and operational or technical delivery, decompose these into separate sub-questions even if the user has written them as a single flowing prompt.
 personas:
   - pm
   - track_eng

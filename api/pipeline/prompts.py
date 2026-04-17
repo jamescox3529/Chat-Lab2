@@ -22,6 +22,7 @@ def build_planner_system(
     project_context: str,
     room_name: str = "",
     routing_triggers: str = "",
+    decomposition_hints: str = "",
 ) -> str:
     panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
     panel_label = room_name if room_name else "expert panel"
@@ -35,6 +36,11 @@ def build_planner_system(
         )
     else:
         step3 = _STEP3_GENERIC
+
+    step1_extra = (
+        f"\n\nAdditional decomposition rules for this room:\n{decomposition_hints}"
+        if decomposition_hints else ""
+    )
 
     base = f"""\
 You are the planning stage for the {panel_label}.
@@ -50,7 +56,7 @@ Before assigning specialists, analyse the message for distinct workstreams. A si
 Signal words that indicate separate threads include: "also", "and we also need", "on both fronts", "at the same time", "separately", "as well as", "in addition", "we also want to", "and separately", "and how do we", "how do we make sure", "what's going wrong with X and how do we Y".
 
 - If the message contains only one workstream, return a single entry.
-- If it contains two or more distinct workstreams, return one entry per workstream.
+- If it contains two or more distinct workstreams, return one entry per workstream.{step1_extra}
 
 Step 2 \u2014 For each sub-question, select the minimum number of specialists needed to give genuinely comprehensive coverage. A simple, single-domain question may need 2\u20133 specialists. A complex, multi-domain question \u2014 involving contractual, technical, safety, commercial, and programme dimensions simultaneously \u2014 may need 4\u20136. Never add a specialist who does not bring a distinct and additive perspective. Never artificially limit selection if doing so would leave a meaningful domain gap in the response.
 

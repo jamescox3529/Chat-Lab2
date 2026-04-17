@@ -33,6 +33,7 @@ class Room:
     pillar: str = ""
     project_context: List[ProjectContextField] = field(default_factory=list)
     routing_triggers: str = ""
+    decomposition_hints: str = ""
 
 
 def load_rooms() -> Dict[str, Room]:
@@ -61,6 +62,7 @@ def load_rooms() -> Dict[str, Room]:
                 pillar=data.get("pillar", ""),
                 project_context=context_fields,
                 routing_triggers=data.get("routing_triggers", ""),
+                decomposition_hints=data.get("decomposition_hints", ""),
             )
             rooms[room.id] = room
         except Exception as exc:
