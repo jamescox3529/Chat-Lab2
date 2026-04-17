@@ -656,6 +656,10 @@ class EvalPlannedQuestion(BaseModel):
     summary: str
     personas: list[str]
 
+class EvalExpectedSubQuestion(BaseModel):
+    thread: str
+    expected_personas: list[str]
+
 class EvalAssessRequest(BaseModel):
     question: str
     grip_stage: str = ""
@@ -666,46 +670,93 @@ class EvalAssessRequest(BaseModel):
     persona_responses: list[EvalPersonaResponse]
     synthesis: str
     eval_focus: str = "all"
+    expected_decomposition: list[EvalExpectedSubQuestion] = []
 
 
-_ASSESS_PROMPT = """You are an expert quality evaluator for Roundtable, a multi-specialist AI advisory panel for railway infrastructure projects.
+def _build_assess_prompt(body: "EvalAssessRequest") -> str:
+    is_multi = bool(body.expected_decomposition)
 
-Evaluate the pipeline output below against the rubric and return a JSON assessment.
+    planned_block = "\n".join(
+        f"  Q{q.id}: \"{q.summary}\" → [{', '.join(q.personas)}]"
+        for q in body.planned_questions
+    )
+    persona_block = "\n\n".join(
+        f"[{p.role} / {p.persona_id}]:\n{p.response}"
+        for p in body.persona_responses
+    )
 
-## Test Input
-Question: {question}
-GRIP Stage: {grip_stage}
-Contract Type: {contract_type}
-Expected specialists (human judgement): {expected_personas}
-Actual panel selected: {actual_panel}
+    context_line = f"Context: {body.grip_stage}" if body.grip_stage else ""
+    if body.contract_type:
+        context_line += f" | {body.contract_type}" if context_line else f"Context: {body.contract_type}"
 
-## Planner Output (question decomposition)
-{planned_questions}
+    if is_multi:
+        decomp_lines = "\n".join(
+            f"  Thread {i+1} — {sq.thread}: [{', '.join(sq.expected_personas)}]"
+            for i, sq in enumerate(body.expected_decomposition)
+        )
+        routing_section = f"""## Expected decomposition (human judgement)
+{decomp_lines}
+
+## Actual planner decomposition
+{planned_block or '(none captured)'}
+
+## Routing rubric for multi-part questions
+Score 1–5 on:
+- Did the Planner correctly identify the distinct threads in the question?
+- Was each thread assigned to the right specialists? A specialist in the wrong thread is a routing error even if they appear in the panel overall.
+- Was any shared specialist (appearing in multiple expected threads) correctly assigned across sub-questions?
+- Were any threads merged that should have been kept separate?
+In "missed", list persona IDs expected for a thread but absent from that thread's assignment.
+In "unnecessary", list persona IDs assigned to a thread where they add no distinct value."""
+        synthesis_rubric = "Does it maintain clear separation between distinct threads, or does it incorrectly merge unrelated workstreams? Does it resolve inter-thread tensions? Is it structured and actionable?"
+    else:
+        routing_section = f"""## Expected panel (human judgement)
+{', '.join(body.expected_personas) or 'Not specified'}
+
+## Actual panel selected
+{', '.join(body.actual_panel)}
+
+## Planner decomposition
+{planned_block or '(none captured)'}
+
+## Routing rubric
+Score 1–5: Were the right specialists selected? Were obvious specialists missed? Were irrelevant specialists included?"""
+        synthesis_rubric = "Does it integrate perspectives or just concatenate them? Does it resolve tensions? Is it structured and actionable?"
+
+    return f"""You are an expert quality evaluator for Roundtable, a multi-specialist AI advisory platform.
+
+Evaluate the pipeline output below and return a JSON assessment.
+
+## Question
+{body.question}
+{context_line}
+
+{routing_section}
 
 ## Individual Specialist Responses
-{persona_responses}
+{persona_block or '(none captured)'}
 
 ## Synthesised Response
-{synthesis}
+{body.synthesis or '(none captured)'}
 
 ## Rubric
 
 Score each dimension 1–5:
 1 = Significantly below expectations
-3 = Meets expectations  
+3 = Meets expectations
 5 = Exemplary
 
-**Routing**: Were the right specialists selected? Were obvious specialists missed? Were irrelevant specialists included? How well did the planner decompose the question?
+**Routing**: {routing_section.splitlines()[0].replace('## ', '')}
 
-**Persona Quality** (score each specialist): Is the response practitioner-level or generic? Are standards and frameworks cited correctly for UK jurisdiction? Does the specialist stay in their domain? Any hallmarks of shallow AI response (vague hedging, invented figures, placeholders)?
+**Persona Quality** (score each specialist): Is the response practitioner-level or generic? Are standards and frameworks cited correctly? Does the specialist stay in their domain? Any hallmarks of shallow AI response (vague hedging, invented figures, placeholders)?
 
-**Synthesis**: Does it integrate perspectives or just concatenate them? Does it resolve tensions? Is it structured and actionable?
+**Synthesis**: {synthesis_rubric}
 
 Return ONLY valid JSON, no prose:
 {{
   "routing": {{
     "score": <1-5>,
-    "commentary": "<specific commentary>",
+    "commentary": "<specific commentary on decomposition accuracy and specialist assignment>",
     "missed": ["<persona_id>"],
     "unnecessary": ["<persona_id>"]
   }},
@@ -726,26 +777,7 @@ async def eval_assess(
     user_id: str = Depends(get_current_user_id),
 ):
     client = _pipeline_client()
-
-    planned_block = "\n".join(
-        f"Q{q.id}: {q.summary} → [{', '.join(q.personas)}]"
-        for q in body.planned_questions
-    )
-    persona_block = "\n\n".join(
-        f"[{p.role} / {p.persona_id}]:\n{p.response}"
-        for p in body.persona_responses
-    )
-
-    prompt = _ASSESS_PROMPT.format(
-        question=body.question,
-        grip_stage=body.grip_stage or "Not specified",
-        contract_type=body.contract_type or "Not specified",
-        expected_personas=", ".join(body.expected_personas) or "Not specified",
-        actual_panel=", ".join(body.actual_panel),
-        planned_questions=planned_block or "(none captured)",
-        persona_responses=persona_block or "(none captured)",
-        synthesis=body.synthesis or "(none captured)",
-    )
+    prompt = _build_assess_prompt(body)
 
     from api.config import MODEL
     response = client.messages.create(
@@ -755,7 +787,6 @@ async def eval_assess(
     )
 
     raw = response.content[0].text.strip()
-    # Strip markdown code fences if present
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
 
