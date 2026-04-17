@@ -33,6 +33,50 @@ Step 1 — Identify distinct questions or topics:
 - If the message contains only one question or topic, return a single entry.
 - If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
 
+Step 2 — For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system’s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
+
+Step 3 — Secondary implications check. Before finalising your assignment, review each question against these triggers:
+- CONTRACT / CLAIM / LIABILITY: If the question involves a compensation event, contractual claim, dispute, cost exposure, or legal entitlement — include legal and/or commercial specialists even if the question appears primarily technical.
+- SAFETY / RAMS / VALIDATION: If the question involves RAMS, safety case, or system approval — consider whether testing, commissioning, or operational specialists are needed, as safety cases must account for the full system lifecycle including validation and operational use.
+- PROGRAMME / COST PRESSURE: If the question involves programme recovery, resource constraints, or acceleration — include planning and commercial specialists.
+
+Only use IDs from this list: {valid_ids}
+
+Return ONLY valid JSON in this exact format — no explanation, no markdown, no preamble:
+{{"questions": [{{"id": "q1", "summary": "brief one-line label for the question", "personas": ["id1", "id2"]}}, {{"id": "q2", "summary": "brief one-line label", "personas": ["id3"]}}]}}}"""ompt builders for the three-stage pipeline.
+"""
+
+from __future__ import annotations
+
+import json
+from typing import Dict, List
+
+
+# ---------------------------------------------------------------------------
+# Stage 0: Planner
+# ---------------------------------------------------------------------------
+
+def build_planner_system(
+    room_personas: Dict[str, str],
+    project_context: str,
+    room_name: str = "",
+) -> str:
+    panel_lines = "\n".join(f"- {pid}: {role}" for pid, role in room_personas.items())
+    panel_label = room_name if room_name else "expert panel"
+    valid_ids = json.dumps(list(room_personas.keys()))
+
+    base = f"""\
+You are the planning stage for the {panel_label}.
+
+Available specialists:
+{panel_lines}
+
+Read the user's message carefully.
+
+Step 1 — Identify distinct questions or topics:
+- If the message contains only one question or topic, return a single entry.
+- If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
+
 Step 2 — For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Only assign a specialist if they have real expertise to contribute. A specialist may appear in multiple questions if they are relevant to each.
 
 Only use IDs from this list: {valid_ids}

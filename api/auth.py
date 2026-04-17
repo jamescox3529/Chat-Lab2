@@ -6,12 +6,19 @@ The JWKS URL is fetched from Clerk and cached.
 """
 
 import os
+import ssl
 from functools import lru_cache
 
 import jwt
 from jwt import PyJWKClient
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
+try:
+    import certifi
+    _ssl_context = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    _ssl_context = None
 
 security = HTTPBearer(auto_error=False)
 
@@ -21,7 +28,7 @@ def _jwks_client() -> PyJWKClient:
     url = os.environ.get("CLERK_JWKS_URL")
     if not url:
         raise RuntimeError("CLERK_JWKS_URL is not set in .env")
-    return PyJWKClient(url, cache_keys=True)
+    return PyJWKClient(url, cache_keys=True, ssl_context=_ssl_context)
 
 
 def get_current_user_id(

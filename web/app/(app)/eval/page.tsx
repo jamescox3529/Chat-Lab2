@@ -370,6 +370,89 @@ export default function EvalPage() {
     []
   );
 
+  // ── Download result as markdown ───────────────────────────────────────────
+
+  const downloadResult = useCallback(() => {
+    if (!activeRun || !activeAssessment || activeAssessment.status !== "done") return;
+
+    const score = (n: number) => `${"★".repeat(n)}${"☆".repeat(5 - n)} ${n}/5`;
+
+    const lines: string[] = [
+      `# Roundtable Eval — ${activeTest.label}`,
+      `**Date:** ${new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}`,
+      "",
+      "## Question",
+      activeTest.question,
+      "",
+      `**GRIP Stage:** ${activeTest.grip_stage || "—"}  `,
+      `**Contract:** ${activeTest.contract_type || "—"}  `,
+      `**Expected panel:** ${activeTest.expected_personas.join(", ")}  `,
+      `**Actual panel:** ${activeRun.panel.join(", ")}`,
+      "",
+    ];
+
+    if (activeRun.planQuestions.length > 0) {
+      lines.push("## Planner Decomposition");
+      for (const q of activeRun.planQuestions) {
+        lines.push(`- **Q${q.id}:** ${q.summary} → [${q.personas.join(", ")}]`);
+      }
+      lines.push("");
+    }
+
+    lines.push("## Synthesised Response", "", activeRun.synthesis, "");
+
+    if (activeRun.personaResponses.length > 0) {
+      lines.push("## Individual Specialist Responses");
+      for (const p of activeRun.personaResponses) {
+        lines.push("", `### ${p.role} (${p.persona_id})`, "", p.response);
+      }
+      lines.push("");
+    }
+
+    lines.push("## Assessment");
+
+    if (activeAssessment.routing) {
+      lines.push(
+        "",
+        `### Routing — ${score(activeAssessment.routing.score)}`,
+        "",
+        activeAssessment.routing.commentary,
+      );
+      if (activeAssessment.routing.missed?.length)
+        lines.push(`**Missed:** ${activeAssessment.routing.missed.join(", ")}`);
+      if (activeAssessment.routing.unnecessary?.length)
+        lines.push(`**Unnecessary:** ${activeAssessment.routing.unnecessary.join(", ")}`);
+    }
+
+    if (activeAssessment.persona_quality?.length) {
+      lines.push("", "### Persona Quality");
+      for (const p of activeAssessment.persona_quality) {
+        lines.push("", `#### ${p.role} — ${score(p.score)}`, "", p.commentary);
+      }
+    }
+
+    if (activeAssessment.synthesis) {
+      lines.push(
+        "",
+        `### Synthesis — ${score(activeAssessment.synthesis.score)}`,
+        "",
+        activeAssessment.synthesis.commentary,
+      );
+    }
+
+    if (activeAssessment.overall) {
+      lines.push("", "### Overall", "", activeAssessment.overall);
+    }
+
+    const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `eval-${activeTest.id}-${Date.now()}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [activeTest, activeRun, activeAssessment]);
+
   // ── Re-assess without re-running ───────────────────────────────────────────
 
   const reAssess = useCallback(async () => {
@@ -584,12 +667,22 @@ export default function EvalPage() {
               Assessment
             </p>
             {activeRun?.status === "done" && (
-              <button
-                onClick={reAssess}
-                className="text-[10px] text-zinc-500 hover:text-zinc-800 underline"
-              >
-                Re-assess
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={reAssess}
+                  className="text-[10px] text-zinc-500 hover:text-zinc-800 underline"
+                >
+                  Re-assess
+                </button>
+                {activeAssessment?.status === "done" && (
+                  <button
+                    onClick={downloadResult}
+                    className="text-[10px] px-2 py-1 rounded bg-zinc-800 text-white hover:bg-zinc-600 transition-colors"
+                  >
+                    ↓ Download
+                  </button>
+                )}
+              </div>
             )}
           </div>
 
