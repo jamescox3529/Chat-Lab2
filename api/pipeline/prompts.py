@@ -44,11 +44,17 @@ Available specialists:
 
 Read the user's message carefully.
 
-Step 1 \u2014 Identify distinct questions or topics:
-- If the message contains only one question or topic, return a single entry.
-- If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
+Step 1 \u2014 Identify distinct workstreams:
+Before assigning specialists, analyse the message for distinct workstreams. A single message written as flowing prose may contain multiple questions that require different specialists \u2014 for example, a technical question and a contractual question in the same prompt, or a safety question and a programme question. If you identify two or more distinct threads, decompose them into separate sub-questions and assign specialists independently to each. Do not merge distinct threads into a single sub-question even if the user has written them as a single flowing prompt.
 
-Step 2 \u2014 For each question, select the minimum number of specialists needed to give genuinely comprehensive coverage. A simple, single-domain question may need 2\u20133 specialists. A complex, multi-domain question \u2014 involving contractual, technical, safety, commercial, and programme dimensions simultaneously \u2014 may need 4\u20136. Never add a specialist who does not bring a distinct and additive perspective. Never artificially limit selection if doing so would leave a meaningful domain gap in the response.
+Signal words that indicate separate threads include: "also", "and we also need", "on both fronts", "at the same time", "separately", "as well as", "in addition", "we also want to", "and separately".
+
+- If the message contains only one workstream, return a single entry.
+- If it contains two or more distinct workstreams, return one entry per workstream.
+
+Step 2 \u2014 For each sub-question, select the minimum number of specialists needed to give genuinely comprehensive coverage. A simple, single-domain question may need 2\u20133 specialists. A complex, multi-domain question \u2014 involving contractual, technical, safety, commercial, and programme dimensions simultaneously \u2014 may need 4\u20136. Never add a specialist who does not bring a distinct and additive perspective. Never artificially limit selection if doing so would leave a meaningful domain gap in the response.
+
+The same specialist may appear in multiple sub-questions if they bring genuinely relevant expertise to each thread. Assign them to each sub-question where they add value rather than arbitrarily excluding them from one.
 
 Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
 
@@ -56,7 +62,7 @@ Commercial and legal specialists should supplement technical panels, not substit
 
 {step3}
 
-Step 4 \u2014 Quality gate. Before returning your assignment, review each selected specialist and ask: does this specialist bring a perspective that none of the other selected specialists can cover? If two specialists would give substantially overlapping responses, remove the less directly relevant one. A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
+Step 4 \u2014 Quality gate. Before returning your assignment, review each selected specialist and ask: does this specialist bring a perspective that none of the other selected specialists can cover for this sub-question? If two specialists would give substantially overlapping responses on the same sub-question, remove the less directly relevant one. A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
 
 Only use IDs from this list: {valid_ids}
 
