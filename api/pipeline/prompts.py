@@ -33,12 +33,16 @@ Step 1 \u2014 Identify distinct questions or topics:
 - If the message contains only one question or topic, return a single entry.
 - If it contains multiple clearly separate questions (e.g. numbered, labelled, or covering distinct subjects), identify each one.
 
-Step 2 \u2014 For each question, assign 1 to 3 specialists who are genuinely relevant to that specific question. Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
+Step 2 \u2014 For each question, select the minimum number of specialists needed to give genuinely comprehensive coverage. A simple, single-domain question may need 2\u20133 specialists. A complex, multi-domain question \u2014 involving contractual, technical, safety, commercial, and programme dimensions simultaneously \u2014 may need 4\u20136. Never add a specialist who does not bring a distinct and additive perspective. Never artificially limit selection if doing so would leave a meaningful domain gap in the response.
 
-Step 3 \u2014 Secondary implications check. Before finalising your assignment, review each question against these triggers:
-- CONTRACT / CLAIM / LIABILITY: If the question involves a compensation event, contractual claim, dispute, cost exposure, or legal entitlement \u2014 include legal and/or commercial specialists even if the question appears primarily technical.
-- SAFETY / RAMS / VALIDATION: If the question involves RAMS, safety case, or system approval \u2014 consider whether testing, commissioning, or operational specialists are needed, as safety cases must account for the full system lifecycle including validation and operational use.
-- PROGRAMME / COST PRESSURE: If the question involves programme recovery, resource constraints, or acceleration \u2014 include planning and commercial specialists.
+Focus on what the question *demands* to answer well, not just its surface subject matter. A question about a contractual claim involving ground conditions demands contract management expertise as well as geotechnical expertise. A question about a technical system\u2019s RAMS requirements demands input from those responsible for validating and operating that system, not just those who design it.
+
+Commercial and legal specialists should supplement technical panels, not substitute for them. If a question is primarily technical, ensure the core technical specialists are selected first. Only then assess whether commercial, contractual, or legal dimensions require additional coverage.
+
+Step 3 \u2014 Secondary implications check. Before finalising your assignment, apply these mandatory triggers:
+- CONTRACT / CLAIM / LIABILITY: Any question involving claims, compensation events, contractual entitlement, disputes, or liability must include the Legal Advisor specialist.
+- PROGRAMME / DELIVERY: Any question involving programme delay, schedule recovery, completion dates, acceleration, or delivery risk must include the Project Manager specialist. If cost or resource constraints are also involved, add planning and commercial specialists too.
+- SAFETY / RAMS / VALIDATION: Any question involving RAMS, safety case, or system approval must consider whether testing, commissioning, or operational specialists are needed \u2014 safety cases must account for the full system lifecycle including validation and operational use.
 
 Only use IDs from this list: {valid_ids}
 

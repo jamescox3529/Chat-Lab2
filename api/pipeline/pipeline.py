@@ -171,7 +171,7 @@ def _plan(
     return [PlannedQuestion(
         id="q1",
         summary=user_message[:120],
-        personas=list(room_personas.keys())[:4],
+        personas=list(room_personas.keys())[:6],
     )]
 
 
