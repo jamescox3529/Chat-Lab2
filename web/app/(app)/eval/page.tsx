@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { createConversation, streamChat, setAuthToken } from "@/lib/api";
+import HeadToHead from "./HeadToHead";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -1103,7 +1104,7 @@ function StatusDot({ status }: { status: "idle" | "running" | "done" | "error" }
 
 function RoomSelector({ onSelect }: { onSelect: (id: RoomId) => void }) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-zinc-50">
+    <div className="flex flex-col items-center justify-center h-full bg-zinc-50">
       <div className="w-full max-w-md px-8">
         <div className="mb-8">
           <h1 className="text-xl font-semibold tracking-tight text-zinc-900">Roundtable Eval</h1>
@@ -1141,7 +1142,7 @@ function RoomSelector({ onSelect }: { onSelect: (id: RoomId) => void }) {
 // Main page
 // ---------------------------------------------------------------------------
 
-export default function EvalPage() {
+function RoomEvals() {
   const { getToken } = useAuth();
   const [activeRoom, setActiveRoom] = useState<RoomDef | null>(null);
   const [activeId, setActiveId] = useState<string>("");
@@ -1378,7 +1379,7 @@ export default function EvalPage() {
   // ---------------------------------------------------------------------------
 
   return (
-    <div className="flex flex-col h-screen bg-zinc-50 text-zinc-900">
+    <div className="flex flex-col h-full bg-zinc-50 text-zinc-900">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-zinc-200 shrink-0">
         <div className="flex items-center gap-3">
@@ -1728,6 +1729,41 @@ function PersonaAccordion({ persona }: { persona: PersonaCapture }) {
           {persona.response}
         </div>
       )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Page: Room evals | Head-to-head
+// Both views stay mounted so switching tabs never discards a run in progress.
+// ---------------------------------------------------------------------------
+
+type EvalMode = "rooms" | "h2h";
+
+export default function EvalPage() {
+  const [mode, setMode] = useState<EvalMode>("rooms");
+  const tab = (m: EvalMode, label: string) => (
+    <button
+      onClick={() => setMode(m)}
+      className={`px-3 py-1 text-xs font-medium rounded ${
+        mode === m ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-100"
+      }`}
+    >
+      {label}
+    </button>
+  );
+  return (
+    <div className="flex flex-col h-screen">
+      <div className="flex items-center gap-1 px-6 py-2 bg-white border-b border-zinc-200 shrink-0">
+        {tab("rooms", "Room evals")}
+        {tab("h2h", "Head-to-head")}
+      </div>
+      <div className={`flex-1 min-h-0 ${mode === "rooms" ? "" : "hidden"}`}>
+        <RoomEvals />
+      </div>
+      <div className={`flex-1 min-h-0 ${mode === "h2h" ? "" : "hidden"}`}>
+        <HeadToHead apiBase={BASE} />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,142 @@
+# Head-to-head questions: Roundtable vs plain single-model answers.
+# Deliberately NOT drawn from the eval test cases (Roundtable has been tuned on those).
+# Hard, multi-part, UK-specific, decision-oriented: the questions the ICP actually brings.
+questions:
+  - id: h2h01
+    room_id: railway_engineering
+    project_config:
+      location: UK & Ireland
+      infra_manager: Network Rail
+      infra_type: Signalling & Control Systems
+      contract_type: NEC4 Engineering & Construction Contract (ECC)
+      contract_option: Option C — Target (Activity Schedule)
+      grip_stage: GRIP 4 — Single Option Development (Pre-tender)
+      project_value: £25M – £100M
+    question: >
+      Our signalling supplier has just told us their interlocking data preparation will be
+      14 weeks late because of resource shortages. That pushes our first commissioning blockade
+      past the access window we've already booked. Do we re-book access, accelerate by bringing in
+      a second data-prep house, or descope stage 1? And how should we handle this contractually?
+
+  - id: h2h02
+    room_id: railway_engineering
+    project_config:
+      location: UK & Ireland
+      infra_manager: Network Rail
+      infra_type: Signalling & Control Systems
+      project_value: £5M – £25M
+    question: >
+      Renewal funding for a life-expired relay interlocking has slipped into the next control
+      period, so the client wants to keep it running for another 8 years. What evidence do we
+      need to justify a life extension, what are the realistic failure modes, and what mitigations
+      should we put in place in the meantime?
+
+  - id: h2h03
+    room_id: railway_engineering
+    project_config:
+      location: UK & Ireland
+      infra_manager: Transport for London (TfL)
+      infra_type: Premises & Stations
+      contract_type: NEC4 Engineering & Construction Contract (ECC)
+      contract_option: Option A — Priced (Activity Schedule)
+      project_value: £5M – £25M
+    question: >
+      We're delivering a step-free access scheme with two new lifts at a London Underground
+      station. The contractor wants to install in engineering hours only, but the programme
+      doesn't work without some weekend station closures. How do we build the case for closures,
+      what will LU asset assurance need before handover, and where are the usual commercial traps?
+
+  - id: h2h04
+    room_id: railway_engineering
+    project_config:
+      location: UK & Ireland
+      infra_manager: Network Rail
+      infra_type: Signalling & Control Systems
+      grip_stage: GRIP 3 — Option Selection
+    question: >
+      We want to introduce remote condition monitoring on point machines across a route,
+      with the data going back over a public cellular network. What cyber security obligations
+      apply, how should it be architected, and how does it affect the signalling safety case?
+
+  - id: h2h05
+    room_id: energy_power
+    project_config:
+      location: UK & Ireland
+      energy_type: Solar PV
+      project_stage: Development & Consenting
+      ownership: Private Developer
+    question: >
+      We have a 49.9 MW solar plus 20 MW battery project in development in England, with a
+      grid connection date of 2031 under the reformed connections process. Should we chase an
+      earlier connection by accepting a non-firm offer with curtailment? How would that affect
+      our route to market and lender appetite?
+
+  - id: h2h06
+    room_id: energy_power
+    project_config:
+      location: UK & Ireland
+      energy_type: Onshore Wind
+      project_stage: Development & Consenting
+      ownership: IPP (Independent Power Producer)
+    question: >
+      We're buying a consented 100 MW onshore wind project in Scotland. Due diligence has
+      flagged two things: the consent was granted for a tip height lower than the turbines now
+      on the market, and the grid connection depends on a substation the transmission owner
+      hasn't started building. What should we be pricing in, and what conditions should we put
+      in the share purchase agreement?
+
+  - id: h2h07
+    room_id: cybersecurity
+    project_config:
+      location: UK & Ireland
+      org_size: 250–1000 staff
+      industry: Critical National Infrastructure
+      security_maturity: Developing — policies and AV in place
+      primary_concern: Compliance & certification
+    question: >
+      We operate water treatment works under contract for a UK water company. Our client says
+      we're now in scope of NIS and they need evidence of CAF compliance within 9 months. We have
+      an IT security team but nobody owns OT security. Where do we start, what will the regulator
+      actually look for, and how should we split ownership between IT and operations?
+
+  - id: h2h08
+    room_id: cybersecurity
+    project_config:
+      location: UK & Ireland
+      org_size: 1000–5000 staff
+      industry: Financial Services
+      security_maturity: Managed — SOC and monitoring
+      primary_concern: Incident response & recovery
+    question: >
+      A key SaaS supplier that holds our customer data has just told us they've had a breach,
+      but they won't confirm the scope for "at least two weeks". We're a UK financial services
+      firm. What are our obligations and deadlines right now, and what should we be doing in
+      the next 72 hours?
+
+  - id: h2h09
+    room_id: org_design
+    project_config:
+      location: UK & Ireland
+      org_size: 1000–5000 staff
+      design_trigger: Merger or acquisition
+      current_structure: Matrix
+    question: >
+      We're merging two engineering consultancies of about 600 people each. One is regional and
+      partner-led; the other is organised by sector with a central delivery hub. Leadership wants
+      a single structure announced within 3 months. What are the realistic structural options,
+      how do we avoid losing key people during the process, and what are our UK consultation
+      obligations?
+
+  - id: h2h10
+    room_id: simply_lean
+    project_config:
+      location: UK & Ireland
+      industry: Food & Beverage
+      org_size: 100–500 staff
+      lean_maturity: Some CI activity — early stages
+      primary_challenge: Lead time and throughput improvement
+    question: >
+      We're a 300-person food manufacturer. OEE on our main packing lines is 52%, changeovers
+      take 90 minutes, and our biggest customer wants 30% more SKUs next year. Should we focus on
+      SMED first or invest in more capacity, and how do we make the change without disrupting
+      supply to that customer?

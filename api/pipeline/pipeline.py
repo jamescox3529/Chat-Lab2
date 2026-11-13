@@ -31,6 +31,19 @@ import anthropic
 
 from api.config import MODEL, FAST_MODEL, POWER_MODEL, TOKEN_BUDGETS
 from api.llm import no_thinking, response_text, warn_if_truncated
+
+
+def _record_usage(sink: list | None, stage: str, response) -> None:
+    """Append token usage for one call to `sink` (used by evals; None = no-op)."""
+    if sink is None:
+        return
+    u = getattr(response, "usage", None)
+    sink.append({
+        "stage": stage,
+        "model": getattr(response, "model", ""),
+        "input_tokens": getattr(u, "input_tokens", 0) or 0,
+        "output_tokens": getattr(u, "output_tokens", 0) or 0,
+    })
 from api.personas.loader import load_personas, Persona
 from api.rooms.loader import get_room
 from api.pipeline.prompts import (
@@ -133,6 +146,7 @@ def _plan(
     room_name: str = "",
     routing_triggers: str = "",
     decomposition_hints: str = "",
+    usage_sink: list | None = None,
 ) -> List[PlannedQuestion]:
     """
     Returns a list of PlannedQuestion — one per distinct question in the message,
@@ -152,6 +166,7 @@ def _plan(
         messages=api_history,
         **no_thinking(FAST_MODEL),
     )
+    _record_usage(usage_sink, "planner", response)
 
     raw = response_text(response)
     try:
@@ -194,6 +209,7 @@ def _call_persona(
     assigned_questions: List[PlannedQuestion] | None = None,
     complexity: str = "standard",
     token_budget: int = 900,
+    usage_sink: list | None = None,
 ) -> str:
     system = build_persona_system(
         role=persona.role,
@@ -215,6 +231,7 @@ def _call_persona(
         messages=api_history,
         **no_thinking(MODEL),
     )
+    _record_usage(usage_sink, "persona", response)
 
     return response_text(response)
 
@@ -233,6 +250,7 @@ async def _stream_synthesiser(
     room_name: str = "",
     token_budget: int = 2500,
     model: str = MODEL,
+    usage_sink: list | None = None,
 ) -> AsyncIterator[str]:
     system = build_synthesiser_system(
         user_instruction,
@@ -255,7 +273,9 @@ async def _stream_synthesiser(
     ) as stream:
         for text in stream.text_stream:
             yield text
-        warn_if_truncated(stream.get_final_message(), "synthesiser")
+        final = stream.get_final_message()
+        warn_if_truncated(final, "synthesiser")
+        _record_usage(usage_sink, "synthesiser", final)
 
 
 # ---------------------------------------------------------------------------
@@ -269,6 +289,7 @@ async def run_pipeline(
     project_context: str,
     user_instruction: str,
     user_profile: dict | None = None,
+    usage_sink: list | None = None,
 ) -> AsyncIterator[dict]:
     """
     Async generator that yields SSE event dicts:
@@ -296,7 +317,7 @@ async def run_pipeline(
 
         # Stage 0: Plan — decompose questions and assign personas
         yield {"type": "status", "content": "Analysing your question..."}
-        questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name, routing_triggers=room.routing_triggers, decomposition_hints=room.decomposition_hints)
+        questions = _plan(client, user_message, history, room_personas, project_context, room_name=room.name, routing_triggers=room.routing_triggers, decomposition_hints=room.decomposition_hints, usage_sink=usage_sink)
         yield {
             "type": "plan",
             "questions": [
@@ -333,6 +354,7 @@ async def run_pipeline(
                 None, _call_persona,
                 client, persona, user_message, history, project_context,
                 user_instruction, room.name, assigned_qs, complexity, budgets["persona"],
+                usage_sink,
             )
             return pid, [q.id for q in assigned_qs], response
 
@@ -379,6 +401,7 @@ async def run_pipeline(
             client, user_message, questions, structured_responses,
             persona_roles, user_instruction, room_name=room.name,
             token_budget=budgets["synthesiser"], model=synth_model,
+            usage_sink=usage_sink,
         ):
             yield {"type": "token", "content": token}
 

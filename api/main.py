@@ -53,8 +53,10 @@ from api.debate.store import (
     delete_debate as delete_debate_record,
 )
 from api.report.generator import build_debate_markdown
+from api.eval.h2h import router as h2h_router
 
 app = FastAPI(title="Chat-Lab2 API", version="1.0.0")
+app.include_router(h2h_router)
 
 # ALLOWED_ORIGINS is a comma-separated list set in production env vars.
 # Falls back to "*" for local development when the var is absent.
