@@ -7,13 +7,15 @@ Application-wide constants and configuration values.
 import os
 
 # Claude models
-MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5-5")
 # Fast/cheap model for lightweight tasks (planner, title generation).
 # Defaults to MODEL so it always works — set ANTHROPIC_FAST_MODEL in env
 # to a valid Haiku model ID to get the speed benefit.
 FAST_MODEL = os.getenv("ANTHROPIC_FAST_MODEL", MODEL)
 # Powerful model for high-complexity synthesis. Defaults to MODEL if not set.
 POWER_MODEL = os.getenv("ANTHROPIC_POWER_MODEL", MODEL)
+# Model for Generate Report. Defaults to POWER_MODEL if not set.
+REPORT_MODEL = os.getenv("ANTHROPIC_REPORT_MODEL", POWER_MODEL)
 
 # Token budgets by complexity tier: persona = per-expert response, synthesiser = final output
 TOKEN_BUDGETS: dict[str, dict[str, int]] = {

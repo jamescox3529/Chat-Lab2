@@ -14,6 +14,7 @@ from typing import Optional
 import anthropic
 
 from api.config import FAST_MODEL
+from api.llm import no_thinking, response_text
 from api.db import get_db
 
 
@@ -38,8 +39,9 @@ def _generate_and_save_title(conv_id: str, text: str, context: str = "") -> None
                     "Reply with only the title:\n\n" + source
                 ),
             }],
+            **no_thinking(FAST_MODEL),
         )
-        title = response.content[0].text.strip().strip('"').strip("'")
+        title = response_text(response).strip('"').strip("'")
     except Exception:
         title = text[:60] + ("…" if len(text) > 60 else "")
     try:

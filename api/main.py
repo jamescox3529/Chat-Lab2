@@ -780,13 +780,15 @@ async def eval_assess(
     prompt = _build_assess_prompt(body)
 
     from api.config import MODEL
+    from api.llm import no_thinking, response_text
     response = client.messages.create(
         model=MODEL,
         max_tokens=2000,
         messages=[{"role": "user", "content": prompt}],
+        **no_thinking(MODEL),
     )
 
-    raw = response.content[0].text.strip()
+    raw = response_text(response)
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
 

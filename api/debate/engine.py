@@ -28,6 +28,7 @@ from typing import AsyncIterator, Dict, List
 import anthropic
 
 from api.config import MODEL
+from api.llm import no_thinking, response_text
 from api.personas.loader import load_personas
 from api.debate.prompts import (
     build_debate_persona_system,
@@ -64,8 +65,9 @@ def _call_persona_round(
         max_tokens=PERSONA_MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
+        **no_thinking(MODEL),
     )
-    return persona_id, response.content[0].text.strip()
+    return persona_id, response_text(response)
 
 
 async def run_debate(
@@ -229,6 +231,7 @@ async def run_debate(
             max_tokens=SYNTHESIS_MAX_TOKENS,
             system=system,
             messages=[{"role": "user", "content": user_msg}],
+            **no_thinking(MODEL),
         ) as stream:
             for text in stream.text_stream:
                 yield {"type": "token", "content": text}

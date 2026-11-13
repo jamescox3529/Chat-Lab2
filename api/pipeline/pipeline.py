@@ -30,6 +30,7 @@ from typing import AsyncIterator, Dict, List
 import anthropic
 
 from api.config import MODEL, FAST_MODEL, POWER_MODEL, TOKEN_BUDGETS
+from api.llm import no_thinking, response_text
 from api.personas.loader import load_personas, Persona
 from api.rooms.loader import get_room
 from api.pipeline.prompts import (
@@ -149,9 +150,10 @@ def _plan(
         max_tokens=512,
         system=system,
         messages=api_history,
+        **no_thinking(FAST_MODEL),
     )
 
-    raw = response.content[0].text.strip()
+    raw = response_text(response)
     try:
         data = json.loads(raw)
         questions: List[PlannedQuestion] = []
@@ -211,9 +213,10 @@ def _call_persona(
         max_tokens=token_budget,
         system=system,
         messages=api_history,
+        **no_thinking(MODEL),
     )
 
-    return response.content[0].text.strip()
+    return response_text(response)
 
 
 # ---------------------------------------------------------------------------
@@ -248,6 +251,7 @@ async def _stream_synthesiser(
         max_tokens=token_budget,
         system=system,
         messages=[{"role": "user", "content": user_content}],
+        **no_thinking(model),
     ) as stream:
         for text in stream.text_stream:
             yield text

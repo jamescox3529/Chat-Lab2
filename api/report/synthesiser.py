@@ -10,6 +10,9 @@ from __future__ import annotations
 import os
 from anthropic import Anthropic
 
+from api.config import REPORT_MODEL
+from api.llm import no_thinking, response_text
+
 _SYSTEM_PROMPT = """\
 You are a professional report writer for Roundtable, an AI-powered expert panel platform.
 
@@ -78,9 +81,10 @@ async def synthesise_report(
     )
 
     response = client.messages.create(
-        model="claude-opus-4-6",
+        model=REPORT_MODEL,
         max_tokens=4096,
         system=_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
+        **no_thinking(REPORT_MODEL),
     )
-    return response.content[0].text
+    return response_text(response)
