@@ -55,6 +55,8 @@ project_context:
 routing_triggers: |
   - SAFETY / HAZARDOUS SUBSTANCES / REGULATORY COMPLIANCE: Any question involving workplace safety, hazardous substances, safety-critical environments, or regulatory compliance requirements must include the Safety Manager specialist as a primary selection, not a secondary addition.
   - SUPPLY CHAIN / PULL SYSTEMS / INVENTORY: Any question involving pull systems, Kanban, replenishment signals, inventory positioning, or supplier integration must include the Supply Chain Strategist specialist.
+  - OPERATIONS / SHOP FLOOR: Any question about production flow, line performance, defect reduction on a line, implementing a system on the shop floor, or scaling an improvement programme across sites must include the Operations Manager (ops_mgr) — they own day-to-day operational reality and capacity.
+  - FINANCIAL / BUSINESS CASE: Include the Business Performance Analyst (biz_analyst) only when the question explicitly concerns financial impact, P&L, cost savings validation, KPIs or a business case. Do not add biz_analyst for measurement-system, data-reliability or statistical-capability questions — process_eng and ci_coach own those.
   - CULTURE / CHANGE / ADOPTION: Any question involving organisational resistance, management engagement, transformation stall, or behavioural change must include the Change Management Specialist.
 personas:
   - lean_sensei
