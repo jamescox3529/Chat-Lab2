@@ -305,6 +305,12 @@ async def run_pipeline(
             ],
         }
 
+        # A question the Planner splits into several threads needs more room than
+        # the message-length heuristic suggests: never treat it as "low".
+        if len(questions) >= 2 and complexity == "low":
+            complexity = "standard"
+            budgets = TOKEN_BUDGETS[complexity]
+
         # Build persona → assigned questions map (deduplicated)
         persona_question_map: Dict[str, List[PlannedQuestion]] = {}
         for question in questions:

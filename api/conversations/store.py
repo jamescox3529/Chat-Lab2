@@ -30,7 +30,7 @@ def _generate_and_save_title(conv_id: str, text: str, context: str = "") -> None
             source = text[:500]
         response = client.messages.create(
             model=FAST_MODEL,
-            max_tokens=20,
+            max_tokens=60,
             messages=[{
                 "role": "user",
                 "content": (

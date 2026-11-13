@@ -25,7 +25,7 @@ def _generate_and_save_title(debate_id: str, question: str) -> None:
         client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
         response = client.messages.create(
             model=FAST_MODEL,
-            max_tokens=20,
+            max_tokens=60,
             messages=[{
                 "role": "user",
                 "content": (
