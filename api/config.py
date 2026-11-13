@@ -19,9 +19,9 @@ REPORT_MODEL = os.getenv("ANTHROPIC_REPORT_MODEL", POWER_MODEL)
 
 # Token budgets by complexity tier: persona = per-expert response, synthesiser = final output
 TOKEN_BUDGETS: dict[str, dict[str, int]] = {
-    "low":      {"persona": 600,  "synthesiser": 1500},
-    "standard": {"persona": 900,  "synthesiser": 5000},
-    "high":     {"persona": 1500, "synthesiser": 5000},
+    "low":      {"persona": 1500, "synthesiser": 3000},
+    "standard": {"persona": 2000, "synthesiser": 5000},
+    "high":     {"persona": 3000, "synthesiser": 6000},
 }
 
 # Document limits

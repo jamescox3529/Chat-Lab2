@@ -30,7 +30,7 @@ from typing import AsyncIterator, Dict, List
 import anthropic
 
 from api.config import MODEL, FAST_MODEL, POWER_MODEL, TOKEN_BUDGETS
-from api.llm import no_thinking, response_text
+from api.llm import no_thinking, response_text, warn_if_truncated
 from api.personas.loader import load_personas, Persona
 from api.rooms.loader import get_room
 from api.pipeline.prompts import (
@@ -255,6 +255,7 @@ async def _stream_synthesiser(
     ) as stream:
         for text in stream.text_stream:
             yield text
+        warn_if_truncated(stream.get_final_message(), "synthesiser")
 
 
 # ---------------------------------------------------------------------------
