@@ -230,7 +230,7 @@ function OutcomeBadge({ o }: { o: Outcome | null }) {
 // ---------------------------------------------------------------------------
 
 export default function HeadToHead({ apiBase }: { apiBase: string }) {
-  const { getToken } = useAuth();
+  const { getToken, isLoaded, isSignedIn } = useAuth();
   const [questions, setQuestions] = useState<H2HQuestion[]>([]);
   const [loadError, setLoadError] = useState<string>("");
   const [answers, setAnswers] = useState<Record<string, Partial<Record<Arm, ArmResult>>>>({});
@@ -252,15 +252,18 @@ export default function HeadToHead({ apiBase }: { apiBase: string }) {
     return res.json();
   }
 
+  // Wait for Clerk: fetching before it has a token returns 401.
   useEffect(() => {
+    if (!isLoaded || !isSignedIn) return;
     api<{ questions: H2HQuestion[] }>("/api/eval/h2h/questions")
       .then((d) => {
+        setLoadError("");
         setQuestions(d.questions);
-        if (d.questions.length) setSelected(d.questions[0].id);
+        if (d.questions.length) setSelected((s) => s || d.questions[0].id);
       })
       .catch((e) => setLoadError(String(e)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoaded, isSignedIn]);
 
   // ── Running ───────────────────────────────────────────────────────────────
 
@@ -529,14 +532,14 @@ export default function HeadToHead({ apiBase }: { apiBase: string }) {
   return (
     <div className="flex flex-col h-full bg-zinc-50 text-zinc-900">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-zinc-200 shrink-0">
-        <div>
+      <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-3 bg-white border-b border-zinc-200 shrink-0">
+        <div className="min-w-0">
           <h2 className="text-base font-semibold tracking-tight">Head-to-head</h2>
           <p className="text-xs text-zinc-500">
             Roundtable vs plain Sonnet 5.5 and plain Opus 5.5 · {questions.length} questions · judged blind by Opus 5.5, both orders
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 whitespace-nowrap">
           <span className="text-xs text-zinc-500 mr-2" title="Estimated from token usage at list prices">
             Spent so far: <span className="font-medium text-zinc-800">{money(totals.cost)}</span>
           </span>
