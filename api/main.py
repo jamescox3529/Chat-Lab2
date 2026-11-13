@@ -783,7 +783,7 @@ async def eval_assess(
     from api.llm import no_thinking, response_text
     response = client.messages.create(
         model=MODEL,
-        max_tokens=2000,
+        max_tokens=6000,
         messages=[{"role": "user", "content": prompt}],
         **no_thinking(MODEL),
     )
