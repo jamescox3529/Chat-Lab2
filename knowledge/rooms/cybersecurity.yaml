@@ -57,9 +57,16 @@ project_context:
       - Supply chain security
       - Ransomware preparedness
       - Third-party risk
+routing_triggers: |
+  - OT / ICS / SCADA CONTAINMENT: cyber_sec must ONLY be selected when the question explicitly involves operational technology (OT) systems, industrial control systems (ICS), SCADA, or critical national infrastructure where the specific risk is IT/OT convergence or operational safety. Cloud environments, corporate IT, and standard enterprise security questions do NOT trigger cyber_sec — even if the organisation is in a CNI sector. Sector label alone is never sufficient; the question must explicitly name OT or industrial control systems.
+  - CISO SCOPE: cyber_ciso covers board-level communication, security programme strategy, investment prioritisation, and governance. Do NOT add cyber_ciso to questions that are entirely within one technical domain (architecture design, live incident response, compliance framework implementation) unless there is an explicit board, programme, or organisational strategy dimension. A question about what to do in the first 72 hours of an active incident is not a strategy question — it belongs entirely to cyber_incident.
+  - LIVE INCIDENT SINGLE-DOMAIN RULE: When a question describes an active or ongoing incident (ransomware underway, breach in progress, system compromise detected), cyber_incident owns the response entirely. Do not add cyber_ciso, cyber_architecture, or cyber_threat_intel unless the question explicitly raises a strategic, architectural, or threat profiling dimension beyond the immediate response. Threat actor attribution and TTP analysis are not priorities in the first hours of a live incident.
+  - THREAT INTELLIGENCE TRIGGER: cyber_threat_intel should be added when knowing which threat actors, TTPs, or attack patterns target this type of organisation would materially change which controls to prioritise, which gaps are highest risk, or how to frame a security investment. A question about starting security architecture for a specific sector type benefits from threat intelligence. A question about compliance framework implementation does not.
+  - QUALITY GATE — ADDITIVE COVERAGE ONLY: Before adding any specialist beyond the clear lead for a sub-question, ask: what specific dimension does this specialist bring that the current panel cannot already cover? If cyber_sec and cyber_architecture are both selected for an OT segmentation question, ask whether cyber_threat_intel adds a genuinely distinct perspective that neither already provides. If the answer is uncertain, do not add the specialist.
 personas:
   - cyber_ciso
   - cyber_threat_intel
   - cyber_compliance
   - cyber_architecture
   - cyber_incident
+  - cyber_sec

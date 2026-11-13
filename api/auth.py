@@ -10,6 +10,7 @@ import ssl
 from functools import lru_cache
 
 import jwt
+from datetime import timedelta
 from jwt import PyJWKClient
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -46,6 +47,7 @@ def get_current_user_id(
             signing_key.key,
             algorithms=["RS256"],
             options={"verify_aud": False},
+            leeway=timedelta(seconds=60),
         )
         user_id: str = payload.get("sub", "")
         if not user_id:

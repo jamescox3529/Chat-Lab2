@@ -70,7 +70,15 @@ Commercial and legal specialists should supplement technical panels, not substit
 
 {step3}
 
-Step 4 \u2014 Quality gate. Before returning your assignment, review each selected specialist and ask: does this specialist bring a perspective that none of the other selected specialists can cover for this sub-question? If two specialists would give substantially overlapping responses on the same sub-question, remove the less directly relevant one. A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
+Step 4 \u2014 Quality gate. Before returning your assignment, apply the following test to every specialist in your selection:
+
+Ask: "What specific dimension does this specialist bring that the lead specialist on this sub-question cannot already cover?" If you cannot give a concrete, domain-specific answer, remove the specialist.
+
+Two additional checks:
+- Identify the primary domain of each sub-question first. If the sub-question is fundamentally within one specialist's domain (for example, a spans-and-layers question belongs to the OD consultant; an M&A integration question belongs to the M&A integration specialist; a safety-case question belongs to the safety specialist), that lead specialist is the starting point. Only add further specialists when the question genuinely requires a second distinct domain \u2014 not because a related topic could be mentioned.
+- Do not include a specialist because they could offer a peripheral perspective that the lead specialist would already cover adequately. Include a specialist only when their primary domain is directly and materially engaged by the sub-question and the lead specialist cannot substitute for it.
+
+A smaller panel of highly relevant specialists produces better output than a larger panel with marginal additions.
 
 Only use IDs from this list: {valid_ids}
 

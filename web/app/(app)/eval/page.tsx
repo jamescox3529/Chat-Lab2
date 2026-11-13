@@ -74,9 +74,10 @@ interface TestCase {
   suite: "control" | "multi_part";
   config_labels?: { label: string; value: string }[];
   expected_decomposition?: ExpectedSubQuestion[];
+  project_config?: Record<string, string>; // override for rooms with non-standard config fields
 }
 
-type RoomId = "railway_engineering" | "simply_lean";
+type RoomId = "railway_engineering" | "simply_lean" | "org_design" | "cybersecurity" | "energy_power";
 
 interface RoomDef {
   id: RoomId;
@@ -401,6 +402,640 @@ const LEAN_MULTI: TestCase[] = [
 ];
 
 // ---------------------------------------------------------------------------
+// Organisational Design — Control Suite
+// Persona IDs verified against knowledge/rooms/org_design.yaml:
+// od_consultant, od_hr_strategy, od_process_design, od_culture, od_ma_integration
+// ---------------------------------------------------------------------------
+
+const ORG_DESIGN_CONTROL: TestCase[] = [
+  {
+    id: "tc1",
+    label: "Functional to sector-based redesign",
+    suite: "control",
+    question:
+      "We are a UK professional services firm of around 800 people currently structured as a functional organisation. Our new strategy requires us to become more client-sector focused. Walk us through how you would approach redesigning the structure, and what the main structural options are.",
+    grip_stage: "Strategy shift",
+    contract_type: "",
+    expected_personas: ["od_consultant", "od_hr_strategy"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Organisation size", value: "250–1000 staff" },
+      { label: "Design trigger", value: "Strategy shift" },
+      { label: "Current structure", value: "Functional" },
+    ],
+  },
+  {
+    id: "tc2",
+    label: "60 roles at risk — selection process",
+    suite: "control",
+    question:
+      "We're about to announce a restructure that will put approximately 60 roles at risk across three business units. What does a legally defensible selection process look like, and what are the key people risks we need to manage through the at-risk period?",
+    grip_stage: "Strategy shift",
+    contract_type: "",
+    expected_personas: ["od_hr_strategy", "od_consultant"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Organisation size", value: "250–1000 staff" },
+      { label: "Design trigger", value: "Strategy shift" },
+    ],
+  },
+  {
+    id: "tc3",
+    label: "Spans, layers, and management cost",
+    suite: "control",
+    question:
+      "Our organisation has an average management span of 3.2 direct reports and nine layers from CEO to frontline. We have around 2,000 staff. Make the case for what this is costing us and what a target operating structure should look like.",
+    grip_stage: "Performance issues",
+    contract_type: "",
+    expected_personas: ["od_consultant"],
+    eval_focus: "persona",
+    config_labels: [
+      { label: "Organisation size", value: "1000–5000 staff" },
+      { label: "Design trigger", value: "Performance issues" },
+    ],
+  },
+  {
+    id: "tc4",
+    label: "Shared services centre design",
+    suite: "control",
+    question:
+      "We want to centralise our finance, HR, and procurement functions into a shared services centre. What should we centralise, what should we keep close to the business, and how do we structure the transition without destroying service quality?",
+    grip_stage: "Cost reduction",
+    contract_type: "",
+    expected_personas: ["od_consultant", "od_process_design", "od_hr_strategy"],
+    eval_focus: "synthesis",
+    config_labels: [
+      { label: "Organisation size", value: "1000–5000 staff" },
+      { label: "Design trigger", value: "Cost reduction" },
+    ],
+  },
+  {
+    id: "tc5",
+    label: "Post-acquisition integration stall",
+    suite: "control",
+    question:
+      "We completed an acquisition six months ago. Integration has been slower than planned, we're seeing higher-than-expected attrition in the acquired business, and cultural friction is visible at team level. What should we be doing now?",
+    grip_stage: "Merger or acquisition",
+    contract_type: "",
+    expected_personas: ["od_ma_integration", "od_culture", "od_hr_strategy"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Organisation size", value: "250–1000 staff" },
+      { label: "Design trigger", value: "Merger or acquisition" },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Organisational Design — Multi-Part Suite
+// ---------------------------------------------------------------------------
+
+const ORG_DESIGN_MULTI: TestCase[] = [
+  {
+    id: "tc6",
+    label: "Structure + culture + process redesign in parallel",
+    suite: "multi_part",
+    question:
+      "We're redesigning our operating model following a strategy shift. Three things need to happen in parallel: first, we need to move from a matrix to a business unit structure and define clear accountability at each level. Second, we've had consistent feedback that our culture doesn't support the pace and autonomy the new strategy requires — we need to understand what's driving that and how to address it. Third, several of our core delivery processes cross the old matrix boundaries and will need to be redesigned to work in the new structure. Where do we start and how do we sequence this?",
+    grip_stage: "Strategy shift",
+    contract_type: "",
+    expected_personas: ["od_consultant", "od_culture", "od_process_design"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Organisation size", value: "250–1000 staff" },
+      { label: "Design trigger", value: "Strategy shift" },
+      { label: "Current structure", value: "Matrix" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Moving from matrix to business unit structure with clear accountability",
+        expected_personas: ["od_consultant"],
+      },
+      {
+        thread: "Cultural diagnosis and intervention for pace and autonomy",
+        expected_personas: ["od_culture", "od_consultant"],
+      },
+      {
+        thread: "Redesigning cross-boundary delivery processes for the new structure",
+        expected_personas: ["od_process_design"],
+      },
+    ],
+  },
+  {
+    id: "tc7",
+    label: "Day 1 structure + talent retention pre-close",
+    suite: "multi_part",
+    question:
+      "We're four weeks from closing an acquisition. We need to know two things: what our Day 1 operating structure should look like and how the two organisations will be governed in the first 100 days — and separately, what we need to do right now to retain the critical talent in the target business before they start getting calls from recruiters.",
+    grip_stage: "Merger or acquisition",
+    contract_type: "",
+    expected_personas: ["od_ma_integration", "od_consultant", "od_hr_strategy"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Design trigger", value: "Merger or acquisition" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Day 1 operating structure and 100-day governance",
+        expected_personas: ["od_ma_integration", "od_consultant"],
+      },
+      {
+        thread: "Retaining critical talent in the target business pre-close",
+        expected_personas: ["od_ma_integration", "od_hr_strategy"],
+      },
+    ],
+  },
+  {
+    id: "tc8",
+    label: "Job architecture mess + post-restructure disengagement",
+    suite: "multi_part",
+    question:
+      "We've just completed a significant restructure and the new structure is in place, but we're realising we have two problems that are connected but probably need different solutions. Our job architecture is a mess — we have over 150 unique job titles across 600 people, pay decisions are inconsistent, and people don't understand how to progress — and at the same time the restructure has knocked confidence and we're seeing disengagement and some passive resistance to the new ways of working. How do we get on top of both?",
+    grip_stage: "Strategy shift",
+    contract_type: "",
+    expected_personas: ["od_hr_strategy", "od_consultant", "od_culture"],
+    eval_focus: "routing",
+    config_labels: [
+      { label: "Organisation size", value: "600 staff" },
+      { label: "Design trigger", value: "Strategy shift" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Job architecture rationalisation and pay consistency",
+        expected_personas: ["od_hr_strategy", "od_consultant"],
+      },
+      {
+        thread: "Post-restructure disengagement and passive resistance",
+        expected_personas: ["od_culture"],
+      },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Cybersecurity — Control Suite
+// Persona IDs verified against knowledge/rooms/cybersecurity.yaml:
+// cyber_ciso, cyber_threat_intel, cyber_compliance, cyber_architecture, cyber_incident, cyber_sec
+// ---------------------------------------------------------------------------
+
+const CYBER_CONTROL: TestCase[] = [
+  {
+    id: "tc1",
+    label: "Security architecture baseline (M365/Azure)",
+    suite: "control",
+    question:
+      "We're a 600-person professional services firm with a largely cloud-based environment on Microsoft 365 and Azure. We've never implemented a formal security architecture. Where do we start and what should our priority controls be?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_architecture", "cyber_threat_intel"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "250–1000 staff",
+      industry: "Professional Services",
+      security_maturity: "Basic — minimal controls",
+      primary_concern: "Security architecture review",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Industry", value: "Professional Services" },
+      { label: "Security Maturity", value: "Basic — minimal controls" },
+      { label: "Primary Concern", value: "Security architecture review" },
+    ],
+  },
+  {
+    id: "tc2",
+    label: "ISO 27001 certification pathway",
+    suite: "control",
+    question:
+      "We're a UK financial services firm preparing for ISO 27001 certification. We've done a basic gap assessment internally and have about 40% of controls in place. What does the path to certification look like, what are the most common gaps at our stage, and how long should we realistically budget?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_compliance", "cyber_ciso"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "250–1000 staff",
+      industry: "Financial Services",
+      security_maturity: "Developing — policies and AV in place",
+      primary_concern: "Compliance & certification",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Industry", value: "Financial Services" },
+      { label: "Security Maturity", value: "Developing — policies and AV in place" },
+      { label: "Primary Concern", value: "Compliance & certification" },
+    ],
+  },
+  {
+    id: "tc3",
+    label: "Live ransomware — 72-hour response",
+    suite: "control",
+    question:
+      "We discovered this morning that we've had a ransomware infection. It appears to have started overnight. We have backups but we're not sure if they're clean. We haven't told anyone yet. Walk us through exactly what we need to do in the next 72 hours.",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_incident"],
+    eval_focus: "persona",
+    project_config: {
+      org_size: "250–1000 staff",
+      security_maturity: "Developing — policies and AV in place",
+      primary_concern: "Incident response & recovery",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Security Maturity", value: "Developing — policies and AV in place" },
+      { label: "Primary Concern", value: "Incident response & recovery" },
+    ],
+  },
+  {
+    id: "tc4",
+    label: "Board cybersecurity investment proposal",
+    suite: "control",
+    question:
+      "Our board has asked us to present a cybersecurity investment proposal for the next financial year. We need to balance compliance obligations (we're working towards ISO 27001 and have NIS2 obligations) against actual threat-based priorities. How do we make the case and where should the money go?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_ciso", "cyber_compliance", "cyber_threat_intel"],
+    eval_focus: "synthesis",
+    project_config: {
+      org_size: "1000–5000 staff",
+      industry: "Professional Services",
+      security_maturity: "Managed — SOC and monitoring",
+      primary_concern: "Compliance & certification",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "1000–5000 staff" },
+      { label: "Industry", value: "Professional Services" },
+      { label: "Security Maturity", value: "Managed — SOC and monitoring" },
+      { label: "Primary Concern", value: "Compliance & certification" },
+    ],
+  },
+  {
+    id: "tc5",
+    label: "IT/OT segmentation — water treatment CNI",
+    suite: "control",
+    question:
+      "We operate water treatment facilities across the UK and our OT and IT networks are currently flat — no segmentation between our corporate network and our SCADA systems. We've just had a near-miss where malware on a corporate laptop almost reached the control network. What do we need to fix and how do we make sure an IT incident can't become a safety incident?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_sec", "cyber_architecture", "cyber_incident"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "1000–5000 staff",
+      industry: "Critical National Infrastructure",
+      security_maturity: "Basic — minimal controls",
+      primary_concern: "Security architecture review",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "1000–5000 staff" },
+      { label: "Industry", value: "Critical National Infrastructure" },
+      { label: "Security Maturity", value: "Basic — minimal controls" },
+      { label: "Primary Concern", value: "Security architecture review" },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Cybersecurity — Multi-Part Suite
+// ---------------------------------------------------------------------------
+
+const CYBER_MULTI: TestCase[] = [
+  {
+    id: "tc6",
+    label: "Healthcare: threats + controls + compliance",
+    suite: "multi_part",
+    question:
+      "We're a mid-size healthcare organisation and we've been told by our insurer that our premium is increasing because we're in a high-risk sector. We need to do three things: first, understand what threats are actually targeting healthcare organisations right now and how serious they are; second, review whether our technical controls are appropriate given those threats; and third, understand what compliance frameworks we should be working towards to satisfy both the insurer and our regulators. How do we approach all three?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_threat_intel", "cyber_ciso", "cyber_architecture", "cyber_compliance"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "250–1000 staff",
+      industry: "Healthcare",
+      security_maturity: "Developing — policies and AV in place",
+      primary_concern: "Threat detection & prevention",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Industry", value: "Healthcare" },
+      { label: "Security Maturity", value: "Developing — policies and AV in place" },
+      { label: "Primary Concern", value: "Threat detection & prevention" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Healthcare threat landscape — ransomware groups, NHS targeting, medical devices",
+        expected_personas: ["cyber_threat_intel", "cyber_ciso"],
+      },
+      {
+        thread: "Technical controls review against identified healthcare threats",
+        expected_personas: ["cyber_architecture"],
+      },
+      {
+        thread: "Compliance frameworks — UK healthcare obligations, DSP Toolkit, NIS, ISO 27001",
+        expected_personas: ["cyber_compliance"],
+      },
+    ],
+  },
+  {
+    id: "tc7",
+    label: "IR programme testing + GDPR breach obligations",
+    suite: "multi_part",
+    question:
+      "We've been asked by our CEO to make sure we're properly prepared for a major cyber incident. Two things need sorting: first, our incident response plan hasn't been updated in three years and has never been tested — we need to know what a credible IR programme looks like and how to test it properly. Second, we've realised we don't actually understand our GDPR breach notification obligations — when the clock starts, what we have to report, and what happens if we miss the 72-hour deadline. Can you address both?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_incident", "cyber_ciso", "cyber_compliance"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "250–1000 staff",
+      security_maturity: "Developing — policies and AV in place",
+      primary_concern: "Incident response & recovery",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Security Maturity", value: "Developing — policies and AV in place" },
+      { label: "Primary Concern", value: "Incident response & recovery" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "IR plan update and testing programme — tabletop exercises, playbooks, roles",
+        expected_personas: ["cyber_incident", "cyber_ciso"],
+      },
+      {
+        thread: "GDPR breach notification obligations — 72-hour clock, Article 33/34, ICO consequences",
+        expected_personas: ["cyber_incident", "cyber_compliance"],
+      },
+    ],
+  },
+  {
+    id: "tc8",
+    label: "Vulnerability prioritisation + phishing programme",
+    suite: "multi_part",
+    question:
+      "We keep failing our phishing simulations — our click rate is sitting at around 22% despite running training for two years — and at the same time we know we've got a backlog of unpatched vulnerabilities, some of them rated critical, but we don't have the capacity to patch everything so we're not sure which ones actually matter. Both problems feel related because they're both about not knowing what to prioritise, but they probably need different approaches. How do we get on top of both?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["cyber_threat_intel", "cyber_architecture", "cyber_ciso"],
+    eval_focus: "routing",
+    project_config: {
+      org_size: "250–1000 staff",
+      security_maturity: "Managed — SOC and monitoring",
+      primary_concern: "Threat detection & prevention",
+    },
+    config_labels: [
+      { label: "Organisation Size", value: "250–1000 staff" },
+      { label: "Security Maturity", value: "Managed — SOC and monitoring" },
+      { label: "Primary Concern", value: "Threat detection & prevention" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Vulnerability prioritisation — EPSS, KEV, ATT&CK-mapped risk, SLA framework",
+        expected_personas: ["cyber_threat_intel", "cyber_architecture"],
+      },
+      {
+        thread: "Phishing programme redesign — TTP-informed simulations, behaviour change, culture measurement",
+        expected_personas: ["cyber_threat_intel", "cyber_ciso"],
+      },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Energy & Power Systems — Control Suite
+// Persona IDs verified against knowledge/rooms/energy_power.yaml:
+// energy_systems_eng, energy_grid_specialist, energy_renewables,
+// energy_regulatory, energy_project_finance, energy_environmental
+// ---------------------------------------------------------------------------
+
+const ENERGY_CONTROL: TestCase[] = [
+  {
+    id: "tc1",
+    label: "Route to market — CfD vs PPA vs merchant",
+    suite: "control",
+    question:
+      "We're developing a 150 MW onshore wind farm in Scotland. We have a connection offer and planning consent. We're now looking at our route to market — whether to go for CfD AR7, a long-term corporate PPA, or a merchant strategy. How do we think about the choice and what are the revenue and financing implications of each?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_renewables", "energy_project_finance"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Onshore Wind",
+      project_stage: "Development & Consenting",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Onshore Wind" },
+      { label: "Project Stage", value: "Development & Consenting" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+  },
+  {
+    id: "tc2",
+    label: "Transmission connection offer — curtailment and costs",
+    suite: "control",
+    question:
+      "We've received a transmission connection offer for a 400 MW offshore wind project connecting at 400 kV. The offer includes a non-firm connection with a 15% curtailment obligation and a reinforcement cost contribution of £45 million. We need to understand whether these terms are reasonable and what the revenue impact of the curtailment obligation is.",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_grid_specialist", "energy_systems_eng"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Offshore Wind",
+      project_stage: "Development & Consenting",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Offshore Wind" },
+      { label: "Project Stage", value: "Development & Consenting" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+  },
+  {
+    id: "tc3",
+    label: "SPA hen harrier HRA — Scottish onshore wind consenting",
+    suite: "control",
+    question:
+      "We're at pre-application stage for a 350 MW onshore wind project in the Scottish Highlands. The site overlaps with a Special Protection Area for hen harrier and golden eagle. What are the consenting risks and how do we manage the Habitats Regulations Assessment process?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_environmental", "energy_regulatory"],
+    eval_focus: "persona",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Onshore Wind",
+      project_stage: "Development & Consenting",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Onshore Wind" },
+      { label: "Project Stage", value: "Development & Consenting" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+  },
+  {
+    id: "tc4",
+    label: "Solar-plus-BESS financial close — lender concerns",
+    suite: "control",
+    question:
+      "We're trying to get a 200 MW solar-plus-BESS project to financial close. Our lenders are raising concerns about curtailment risk from the non-firm connection, the bankability of the co-located BESS revenue stack, and whether the energy yield P50/P90 spread is acceptable. How do we address these three concerns?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_project_finance", "energy_renewables", "energy_grid_specialist"],
+    eval_focus: "synthesis",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Solar PV",
+      project_stage: "Financial Close",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Solar PV / Battery Storage & BESS" },
+      { label: "Project Stage", value: "Financial Close" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+  },
+  {
+    id: "tc5",
+    label: "BESS G99 protection test failures — commissioning",
+    suite: "control",
+    question:
+      "Our 100 MW BESS project is due for commissioning. We've failed the G99 protection performance standard tests twice. The DNO is threatening to delay energisation. What are the likely causes and how do we resolve this?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_systems_eng", "energy_grid_specialist"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Battery Storage & BESS",
+      project_stage: "Commissioning",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Battery Storage & BESS" },
+      { label: "Project Stage", value: "Commissioning" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Energy & Power Systems — Multi-Part Suite
+// ---------------------------------------------------------------------------
+
+const ENERGY_MULTI: TestCase[] = [
+  {
+    id: "tc6",
+    label: "500 MW offshore: yield + grid + consenting",
+    suite: "multi_part",
+    question:
+      "We're at feasibility stage for a 500 MW offshore wind project in the North Sea. Three workstreams need to progress in parallel: first, we need to understand what energy yield we should expect and which turbine options we should be evaluating; second, we need to understand the grid connection options and what transmission capacity is available; and third, we need to understand the consenting route and the key environmental constraints we should be scoping. What does each workstream look like at feasibility stage?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_renewables", "energy_grid_specialist", "energy_systems_eng", "energy_environmental", "energy_regulatory"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Offshore Wind",
+      project_stage: "Feasibility & Options",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Offshore Wind" },
+      { label: "Project Stage", value: "Feasibility & Options" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Energy yield assessment and turbine selection at feasibility stage",
+        expected_personas: ["energy_renewables"],
+      },
+      {
+        thread: "Grid connection options and transmission capacity for 500 MW offshore",
+        expected_personas: ["energy_grid_specialist", "energy_systems_eng"],
+      },
+      {
+        thread: "Consenting route and environmental constraints — DCO, EIA, HRA scoping",
+        expected_personas: ["energy_environmental", "energy_regulatory"],
+      },
+    ],
+  },
+  {
+    id: "tc7",
+    label: "CfD bid strategy + project finance structure",
+    suite: "multi_part",
+    question:
+      "We're preparing to bid into the next CfD allocation round with a 250 MW offshore wind project, and at the same time we need to start structuring our project finance. Two questions: first, what bid price should we be targeting and what are the risks of underbidding or overbidding in the current market; and second, what financing structure should we be targeting and what will lenders need to see before they'll engage seriously on terms?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_renewables", "energy_regulatory", "energy_project_finance"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Offshore Wind",
+      project_stage: "Development & Consenting",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Offshore Wind" },
+      { label: "Project Stage", value: "Development & Consenting" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "CfD bid price strategy — underbid/overbid risks, AR mechanics, LCOE benchmarks",
+        expected_personas: ["energy_renewables", "energy_regulatory"],
+      },
+      {
+        thread: "Project finance structure — leverage, DSCR, lender requirements for CfD-backed project",
+        expected_personas: ["energy_project_finance", "energy_regulatory"],
+      },
+    ],
+  },
+  {
+    id: "tc8",
+    label: "Noise condition + consent duration threatening financial close",
+    suite: "multi_part",
+    question:
+      "We've just received planning consent for a 120 MW onshore wind farm but we have two conditions that are causing us problems and they're both threatening our ability to get to financial close. The first is a noise condition that requires us to curtail turbines at certain wind speeds to protect nearby receptors, and we're not sure how significant the energy yield impact is or whether we can negotiate the condition. The second is that our lenders have flagged that the planning consent has a 5-year implementation period and they're worried about whether the project will be bankable if we need to refinance before construction starts. How do we deal with both?",
+    grip_stage: "",
+    contract_type: "",
+    expected_personas: ["energy_environmental", "energy_regulatory", "energy_project_finance", "energy_renewables"],
+    eval_focus: "routing",
+    project_config: {
+      location: "UK & Ireland",
+      energy_type: "Onshore Wind",
+      project_stage: "Development & Consenting",
+      ownership: "Private Developer",
+    },
+    config_labels: [
+      { label: "Location", value: "UK & Ireland" },
+      { label: "Energy Type", value: "Onshore Wind" },
+      { label: "Project Stage", value: "Development & Consenting" },
+      { label: "Ownership", value: "Private Developer" },
+    ],
+    expected_decomposition: [
+      {
+        thread: "Noise planning condition — ETSU-R-97 assessment, negotiation scope, Section 73 modification",
+        expected_personas: ["energy_environmental", "energy_regulatory"],
+      },
+      {
+        thread: "Consent implementation period and bankability — lender concerns, refinancing risk, yield impact of curtailment",
+        expected_personas: ["energy_project_finance", "energy_renewables"],
+      },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
 // Room definitions
 // ---------------------------------------------------------------------------
 
@@ -414,6 +1049,21 @@ const ROOMS: RoomDef[] = [
     id: "simply_lean",
     name: "Lean Manufacturing",
     testCases: [...LEAN_CONTROL, ...LEAN_MULTI],
+  },
+  {
+    id: "org_design",
+    name: "Organisational Design",
+    testCases: [...ORG_DESIGN_CONTROL, ...ORG_DESIGN_MULTI],
+  },
+  {
+    id: "cybersecurity",
+    name: "Cybersecurity",
+    testCases: [...CYBER_CONTROL, ...CYBER_MULTI],
+  },
+  {
+    id: "energy_power",
+    name: "Energy & Power Systems",
+    testCases: [...ENERGY_CONTROL, ...ENERGY_MULTI],
   },
 ];
 
@@ -546,7 +1196,7 @@ export default function EvalPage() {
       const token = await getToken();
       setAuthToken(token);
       const conv = await createConversation(activeRoom!.id, {
-        project_config: { grip_stage: tc.grip_stage, contract_type: tc.contract_type },
+        project_config: tc.project_config ?? { grip_stage: tc.grip_stage, contract_type: tc.contract_type },
         user_profile: {},
         document_ids: [],
       });
@@ -582,7 +1232,7 @@ export default function EvalPage() {
       }
 
       setRuns((prev) => ({ ...prev, [tc.id]: { ...prev[tc.id], status: "done", panel, synthesis, planQuestions, personaResponses } }));
-      await runAssessment(tc, panel, planQuestions, personaResponses, synthesis, token);
+      await runAssessment(tc, panel, planQuestions, personaResponses, synthesis);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       setRuns((prev) => ({ ...prev, [tc.id]: { ...prev[tc.id], status: "error", error: msg } }));
@@ -597,10 +1247,10 @@ export default function EvalPage() {
     planQuestions: PlannedQuestion[],
     personaResponses: PersonaCapture[],
     synthesis: string,
-    token: string | null
   ) {
     setAssessments((prev) => ({ ...prev, [tc.id]: { status: "assessing" } }));
     try {
+      const token = await getToken();
       const res = await fetch(`${BASE}/api/eval/assess`, {
         method: "POST",
         headers: {
@@ -712,9 +1362,7 @@ export default function EvalPage() {
 
   async function reAssess() {
     if (!activeRun || activeRun.status !== "done") return;
-    const token = await getToken();
-    setAuthToken(token);
-    await runAssessment(activeTest, activeRun.panel, activeRun.planQuestions, activeRun.personaResponses, activeRun.synthesis, token);
+    await runAssessment(activeTest, activeRun.panel, activeRun.planQuestions, activeRun.personaResponses, activeRun.synthesis);
   }
 
   async function runSuite(suite: "control" | "multi_part") {

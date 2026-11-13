@@ -40,3 +40,15 @@ api/data/
 # Supabase migration scratchpad
 supabase_phase5.sql
 supabase_schema.sql
+
+# Build artefacts
+*.tsbuildinfo
+
+# Office lock files
+~$*
+
+# Local Claude Code state (settings, worktrees)
+.claude/
+
+# Loose design files at repo root (canonical copies live in web/public/)
+/roundtable-logo*
